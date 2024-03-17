@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<mat-dialog-content>
+    {{ data.message }}
+</mat-dialog-content>
+<mat-dialog-actions>
+    <div class="flex !justify-center w-full">
+        <div class="w-full">
+            <button class="w-full" mat-flat-button color="primary" [autofocus]="true" (click)="dialogRef.close(true)">
+                确定
+            </button>
+        </div>
+    </div>
+</mat-dialog-actions>
