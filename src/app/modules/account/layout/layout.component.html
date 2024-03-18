@@ -1,0 +1,53 @@
+<div class="inset-0 flex h-full">
+    <div class="flex flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-4 lg:w-72">
+        <div class="flex h-16 shrink-0 items-center justify-center">
+            <a routerLink="/">
+                <img class="h-8 w-auto" src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Your Company">
+            </a>
+        </div>
+        <nav class="flex flex-1 flex-col">
+            <mat-accordion displayMode="flat">
+                <mat-expansion-panel class="!shadow-none">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            This is the
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-list role="list">
+                        <mat-list-item role="listitem">Item 1</mat-list-item>
+                        <mat-list-item role="listitem">Item 2</mat-list-item>
+                    </mat-list>
+                </mat-expansion-panel>
+                <mat-expansion-panel class="!shadow-none">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Self aware
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-list role="list">
+                        <mat-list-item role="listitem">Item 3</mat-list-item>
+                    </mat-list>
+                </mat-expansion-panel>
+                <div class="mat-expansion-panel !shadow-none">
+                    <a routerLink="/" class="w-full mat-expansion-panel-header mat-focus-indicator mat-expansion-toggle-indicator-after">Home</a>
+                </div>
+            </mat-accordion>
+
+            <ul role="list" class="flex flex-1 flex-col gap-y-7">
+                <li class="mt-auto">
+                    <a href="#" class="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50">
+                        <img class="h-8 w-8 rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                        <span class="sr-only">Your profile</span>
+                        <span aria-hidden="true">Tom Cook</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <main class="py-10 w-full">
+        <div class="px-4 sm:px-6 lg:px-8">
+            <router-outlet />
+        </div>
+    </main>
+</div>
