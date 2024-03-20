@@ -3,6 +3,7 @@ import {AuthService} from "@services/auth/auth.service";
 import {Platform} from "@angular/cdk/platform";
 import {RouterLink} from "@angular/router";
 import {NgForOf} from "@angular/common";
+import {MatAnchor} from "@angular/material/button";
 
 @Component({
     selector: 'app-default-header',
@@ -10,6 +11,7 @@ import {NgForOf} from "@angular/common";
     imports: [
         RouterLink,
         NgForOf,
+        MatAnchor,
     ],
     templateUrl: './default-header.component.html',
     styleUrls: ['./default-header.component.scss']

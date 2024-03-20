@@ -7,30 +7,23 @@
         </div>
         <nav class="flex flex-1 flex-col">
             <mat-accordion displayMode="flat">
-                <mat-expansion-panel class="!shadow-none">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            This is the
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <mat-list role="list">
-                        <mat-list-item role="listitem">Item 1</mat-list-item>
-                        <mat-list-item role="listitem">Item 2</mat-list-item>
-                    </mat-list>
-                </mat-expansion-panel>
-                <mat-expansion-panel class="!shadow-none">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Self aware
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <mat-list role="list">
-                        <mat-list-item role="listitem">Item 3</mat-list-item>
-                    </mat-list>
-                </mat-expansion-panel>
-                <div class="mat-expansion-panel !shadow-none">
-                    <a routerLink="/" class="w-full mat-expansion-panel-header mat-focus-indicator mat-expansion-toggle-indicator-after">Home</a>
-                </div>
+                <ng-template class="!shadow-none" *ngFor="let menu of menus" [ngIf]="true">
+                    <mat-expansion-panel class="!shadow-none" *ngIf="menu.children && menu.children.length > 0">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title class="gap-1">
+                                <mat-icon color="yellow">{{menu.icon}}</mat-icon> {{menu.label}}
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <mat-list role="list">
+                            <mat-list-item role="listitem" *ngFor="let child of menu.children">{{child.label}}</mat-list-item>
+                        </mat-list>
+                    </mat-expansion-panel>
+                    <div class="mat-expansion-panel !shadow-none" *ngIf="!menu.children || menu?.children?.length === 0">
+                        <a class="w-full mat-expansion-panel-header mat-focus-indicator mat-expansion-toggle-indicator-after gap-1">
+                            <mat-icon class="text-red-400">{{menu.icon}}</mat-icon> {{menu.label}}
+                        </a>
+                    </div>
+                </ng-template>
             </mat-accordion>
 
             <ul role="list" class="flex flex-1 flex-col gap-y-7">

@@ -6,6 +6,7 @@ import { IndexComponent } from "./index/index.component";
 import { LayoutComponent } from './layout/layout.component';
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatList, MatListModule} from "@angular/material/list";
+import {MatIcon} from "@angular/material/icon";
 
 export const routes: Routes = [
     {
@@ -27,7 +28,8 @@ export const routes: Routes = [
         RouterModule.forChild(routes),
         MatButtonModule,
         MatExpansionModule,
-        MatListModule
+        MatListModule,
+        MatIcon
     ]
 })
 export class AccountModule {
