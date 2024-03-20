@@ -11,7 +11,7 @@
                     <mat-expansion-panel class="!shadow-none" *ngIf="menu.children && menu.children.length > 0">
                         <mat-expansion-panel-header>
                             <mat-panel-title class="gap-1">
-                                <mat-icon color="yellow">{{menu.icon}}</mat-icon> {{menu.label}}
+                                <mat-icon>{{menu.icon}}</mat-icon> {{menu.label}}
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <mat-list role="list">
@@ -20,7 +20,7 @@
                     </mat-expansion-panel>
                     <div class="mat-expansion-panel !shadow-none" *ngIf="!menu.children || menu?.children?.length === 0">
                         <a class="w-full mat-expansion-panel-header mat-focus-indicator mat-expansion-toggle-indicator-after gap-1">
-                            <mat-icon class="text-red-400">{{menu.icon}}</mat-icon> {{menu.label}}
+                            <mat-icon>{{menu.icon}}</mat-icon> {{menu.label}}
                         </a>
                     </div>
                 </ng-template>

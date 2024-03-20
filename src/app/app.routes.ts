@@ -14,4 +14,14 @@ export const routes: Routes = [
         component: PureLayoutComponent,
         loadChildren: () => import('@modules/account/account.module').then(m => m.AccountModule)
     },
+    {
+        path: 'organization',
+        component: DefaultLayoutComponent,
+        loadChildren: () => import('@modules/organization/organization.module').then(m => m.OrganizationModule)
+    },
+    {
+        path: 'passport',
+        component: DefaultLayoutComponent,
+        loadChildren: () => import('@modules/passport/passport.module').then(m => m.PassportModule)
+    },
 ];
