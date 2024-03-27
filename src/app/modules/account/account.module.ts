@@ -9,7 +9,7 @@ import {MatList, MatListModule} from "@angular/material/list";
 import {MatIcon} from "@angular/material/icon";
 import { OrganizationsComponent } from './organizations/organizations.component';
 
-export const routes: Routes = [
+const routes: Routes = [
     {
         path: '',
         component: LayoutComponent,

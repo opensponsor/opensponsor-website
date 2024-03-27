@@ -15,9 +15,9 @@ export const routes: Routes = [
         loadChildren: () => import('@modules/account/account.module').then(m => m.AccountModule)
     },
     {
-        path: 'organization',
+        path: 'organizations',
         component: DefaultLayoutComponent,
-        loadChildren: () => import('@modules/organization/organization.module').then(m => m.OrganizationModule)
+        loadChildren: () => import('@modules/organizations/organizations.module').then(m => m.OrganizationsModule)
     },
     {
         path: 'passport',

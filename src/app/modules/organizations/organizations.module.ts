@@ -1,27 +1,28 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {InfoComponent} from './info/info.component';
+import {NewComponent} from './new/new.component';
 import {RouterModule, Routes} from "@angular/router";
-import {IndexComponent} from "@modules/home/index/index.component";
-import {MatButtonModule} from "@angular/material/button";
 
 const routes: Routes = [
     {
         path: '',
         children: [
-            {path: '', component: IndexComponent, pathMatch: 'full'},
+            {path: 'new', component: NewComponent, pathMatch: 'full'},
+            {path: ':id', component: InfoComponent, pathMatch: 'full'},
         ]
     }
 ];
 
 @NgModule({
     declarations: [
-        IndexComponent
+        InfoComponent,
+        NewComponent
     ],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
-        MatButtonModule,
     ]
 })
-export class HomeModule {
+export class OrganizationsModule {
 }
