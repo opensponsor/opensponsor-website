@@ -16,32 +16,13 @@ export class LayoutComponent {
 
     public menus: Menu[] = [
         {
-            label: '项目',
-            link: '',
-            icon: 'category',
-            children: [
-                {
-                    label: '管理项目',
-                    link: '',
-                },
-                {
-                    label: '项目托管',
-                    link: '',
-                }
-            ]
-        },
-        {
             label: '组织',
             link: '',
             icon: 'group',
             children: [
                 {
                     label: '管理组织',
-                    link: '',
-                },
-                {
-                    label: '项目托管',
-                    link: '',
+                    link: '/account/organizations',
                 }
             ]
         },

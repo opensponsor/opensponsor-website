@@ -7,6 +7,7 @@ import { LayoutComponent } from './layout/layout.component';
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatList, MatListModule} from "@angular/material/list";
 import {MatIcon} from "@angular/material/icon";
+import { OrganizationsComponent } from './organizations/organizations.component';
 
 export const routes: Routes = [
     {
@@ -14,6 +15,7 @@ export const routes: Routes = [
         component: LayoutComponent,
         children: [
             {path: '', component: IndexComponent, pathMatch: 'full'},
+            {path: 'organizations', component: OrganizationsComponent, pathMatch: 'full'},
         ]
     }
 ];
@@ -21,7 +23,8 @@ export const routes: Routes = [
 @NgModule({
     declarations: [
         IndexComponent,
-        LayoutComponent
+        LayoutComponent,
+        OrganizationsComponent
     ],
     imports: [
         CommonModule,

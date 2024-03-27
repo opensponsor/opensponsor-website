@@ -15,7 +15,7 @@
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <mat-list role="list">
-                            <mat-list-item role="listitem" *ngFor="let child of menu.children">{{child.label}}</mat-list-item>
+                            <a mat-list-item [routerLink]="child.link" class="cursor-pointer" role="listitem" *ngFor="let child of menu.children">{{child.label}}</a>
                         </mat-list>
                     </mat-expansion-panel>
                     <div class="mat-expansion-panel !shadow-none" *ngIf="!menu.children || menu?.children?.length === 0">
