@@ -6,8 +6,17 @@ import { IndexComponent } from "./index/index.component";
 import { LayoutComponent } from './layout/layout.component';
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatList, MatListModule} from "@angular/material/list";
-import {MatIcon} from "@angular/material/icon";
+import {MatIcon, MatIconModule} from "@angular/material/icon";
 import { OrganizationsComponent } from './organizations/organizations.component';
+import { ProfileComponent } from './profile/profile.component';
+import { SocialComponent } from './social/social.component';
+import { PaymentComponent } from './payment/payment.component';
+import { DevelopmentComponent } from './development/development.component';
+import {MatDividerModule} from "@angular/material/divider";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatInputModule} from "@angular/material/input";
+import {MatCardModule} from "@angular/material/card";
 
 const routes: Routes = [
     {
@@ -16,6 +25,10 @@ const routes: Routes = [
         children: [
             {path: '', component: IndexComponent, pathMatch: 'full'},
             {path: 'organizations', component: OrganizationsComponent, pathMatch: 'full'},
+            {path: 'profile', component: ProfileComponent, pathMatch: 'full'},
+            {path: 'social', component: SocialComponent, pathMatch: 'full'},
+            {path: 'payment', component: PaymentComponent, pathMatch: 'full'},
+            {path: 'development', component: DevelopmentComponent, pathMatch: 'full'},
         ]
     }
 ];
@@ -24,7 +37,11 @@ const routes: Routes = [
     declarations: [
         IndexComponent,
         LayoutComponent,
-        OrganizationsComponent
+        OrganizationsComponent,
+        ProfileComponent,
+        SocialComponent,
+        PaymentComponent,
+        DevelopmentComponent
     ],
     imports: [
         CommonModule,
@@ -32,7 +49,14 @@ const routes: Routes = [
         MatButtonModule,
         MatExpansionModule,
         MatListModule,
-        MatIcon
+        MatIconModule,
+        MatButtonModule,
+        MatIconModule,
+        MatDividerModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatCardModule
     ]
 })
 export class AccountModule {

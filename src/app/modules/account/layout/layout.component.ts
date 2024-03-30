@@ -59,11 +59,11 @@ export class LayoutComponent {
             children: [
                 {
                     label: '基本信息',
-                    link: ''
+                    link: 'profile'
                 },
                 {
                     label: '社交账户',
-                    link: ''
+                    link: 'social'
                 },
                 {
                     label: '规则',
@@ -75,14 +75,14 @@ export class LayoutComponent {
                 },
                 {
                     label: '支付方式',
-                    link: ''
+                    link: 'payment'
                 },
                 {
                     label: '开发',
-                    link: ''
+                    link: 'development'
                 },
                 {
-                    label: 'web hook',
+                    label: 'webhook',
                     link: ''
                 },
             ]
