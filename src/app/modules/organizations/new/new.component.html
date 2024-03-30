@@ -1,6 +1,47 @@
-<form class="grid grid-flow-row-dense grid-cols-2 gap-1" (ngSubmit)="formGroup.valid && save()" [formGroup]="formGroup">
-    <mat-form-field class="w-full">
-        <mat-label>Title</mat-label>
-        <input matInput name="title" [formControl]="formGroup.controls.title" required placeholder="pat@example.com">
-    </mat-form-field>
-</form>
+<div class="grid grid-cols-1 mt-10 gap-10">
+    <h1 class="text-center">创建组织</h1>
+    <div class="grid grid-cols-2 gap-4">
+        <form class="flex flex-col gap-1 w-full" style="display: flex; flex-direction: column;" (ngSubmit)="formGroup.valid && save()" [formGroup]="formGroup">
+            <h3>组织信息</h3>
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>name</mat-label>
+                <input matInput name="title" [formControl]="formGroup.controls.name">
+            </mat-form-field>
+            <mat-form-field subscriptSizing="dynamic" class="w-full" appearance="outline">
+                <mat-label>legalName</mat-label>
+                <input matInput name="slug" [formControl]="formGroup.controls.legalName">
+                <mat-error *ngIf="formGroup.controls.legalName.invalid">
+                    Legal names are private and used in receipts
+                    Legal names are private and used in receipts
+                </mat-error>
+                <mat-hint>
+                    Legal names are private and used in receipts
+                    Legal names are private and used in receipts
+                    Legal names are private and used in receipts
+                </mat-hint>
+            </mat-form-field>
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>introduce</mat-label>
+                <input matInput name="slug" [formControl]="formGroup.controls.introduce">
+            </mat-form-field>
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>link</mat-label>
+                <input matInput name="location" [formControl]="formGroup.controls.url">
+            </mat-form-field>
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>website</mat-label>
+                <input matInput name="location" [formControl]="formGroup.controls.website">
+            </mat-form-field>
+            <button mat-flat-button color="primary" class="w-full">创建组织</button>
+        </form>
+        <div class="invite-admin">
+            <h3>邀请成员</h3>
+            <mat-card>
+                <mat-card-content>
+                    invite
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+</div>

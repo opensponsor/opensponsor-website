@@ -16,6 +16,7 @@ import {MatIcon, MatIconModule} from "@angular/material/icon";
 import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInput, MatInputModule} from "@angular/material/input";
+import {MatCard, MatCardContent, MatCardModule} from "@angular/material/card";
 
 const routes: Routes = [
     {
@@ -40,7 +41,8 @@ const routes: Routes = [
         MatDividerModule,
         MatFormFieldModule,
         ReactiveFormsModule,
-        MatInputModule
+        MatInputModule,
+        MatCardModule
     ]
 })
 export class OrganizationsModule {

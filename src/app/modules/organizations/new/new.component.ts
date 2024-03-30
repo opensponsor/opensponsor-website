@@ -8,7 +8,37 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class NewComponent {
     public formGroup = new FormGroup({
-        title: new FormControl(null, [
+        name: new FormControl(null, [
+            Validators.required,
+            Validators.minLength(4),
+            Validators.maxLength(64),
+        ]),
+        legalName: new FormControl(null, [
+            Validators.required,
+            Validators.minLength(4),
+            Validators.maxLength(64),
+        ]),
+        company: new FormControl(null, [
+            Validators.required,
+            Validators.minLength(4),
+            Validators.maxLength(64),
+        ]),
+        url: new FormControl(null, [
+            Validators.required,
+            Validators.minLength(4),
+            Validators.maxLength(64),
+        ]),
+        website: new FormControl(null, [
+            Validators.required,
+            Validators.minLength(4),
+            Validators.maxLength(64),
+        ]),
+        introduce: new FormControl(null, [
+            Validators.required,
+            Validators.minLength(4),
+            Validators.maxLength(64),
+        ]),
+        currency: new FormControl(null, [
             Validators.required,
             Validators.minLength(4),
             Validators.maxLength(64),
