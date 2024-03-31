@@ -62,6 +62,10 @@ export class LayoutComponent {
                     link: 'profile'
                 },
                 {
+                    label: '安全',
+                    link: 'security'
+                },
+                {
                     label: '社交账户',
                     link: 'social'
                 },
