@@ -15,11 +15,11 @@
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <mat-list role="list">
-                            <a mat-list-item [routerLink]="child.link" class="!cursor-pointer" role="listitem" *ngFor="let child of menu.children">{{child.label}}</a>
+                            <a mat-list-item [disabled]="!child.link" [routerLink]="child.link" class="!cursor-pointer" role="listitem" *ngFor="let child of menu.children">{{child.label}}</a>
                         </mat-list>
                     </mat-expansion-panel>
                     <div class="mat-expansion-panel !shadow-none" *ngIf="!menu.children || menu?.children?.length === 0">
-                        <a class="!cursor-pointer w-full mat-expansion-panel-header mat-focus-indicator mat-expansion-toggle-indicator-after gap-1">
+                        <a [routerLink]="menu.link" class="!cursor-pointer w-full mat-expansion-panel-header mat-focus-indicator mat-expansion-toggle-indicator-after gap-1">
                             <mat-icon>{{menu.icon}}</mat-icon> {{menu.label}}
                         </a>
                     </div>

@@ -17,6 +17,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatCardModule} from "@angular/material/card";
+import { SecurityComponent } from './security/security.component';
 
 const routes: Routes = [
     {
@@ -26,6 +27,7 @@ const routes: Routes = [
             {path: '', component: IndexComponent, pathMatch: 'full'},
             {path: 'organizations', component: OrganizationsComponent, pathMatch: 'full'},
             {path: 'profile', component: ProfileComponent, pathMatch: 'full'},
+            {path: 'security', component: SecurityComponent, pathMatch: 'full'},
             {path: 'social', component: SocialComponent, pathMatch: 'full'},
             {path: 'payment', component: PaymentComponent, pathMatch: 'full'},
             {path: 'development', component: DevelopmentComponent, pathMatch: 'full'},
@@ -41,7 +43,8 @@ const routes: Routes = [
         ProfileComponent,
         SocialComponent,
         PaymentComponent,
-        DevelopmentComponent
+        DevelopmentComponent,
+        SecurityComponent
     ],
     imports: [
         CommonModule,
