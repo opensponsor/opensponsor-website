@@ -17,6 +17,9 @@ import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInput, MatInputModule} from "@angular/material/input";
 import {MatCard, MatCardContent, MatCardModule} from "@angular/material/card";
+import { CommunityComponent } from './community/community.component';
+import { OpenSourceCommunityComponent } from './open-source-community/open-source-community.component';
+import { FiscalHostComponent } from './fiscal-host/fiscal-host.component';
 
 const routes: Routes = [
     {
@@ -31,7 +34,10 @@ const routes: Routes = [
 @NgModule({
     declarations: [
         InfoComponent,
-        NewComponent
+        NewComponent,
+        CommunityComponent,
+        OpenSourceCommunityComponent,
+        FiscalHostComponent
     ],
     imports: [
         CommonModule,
