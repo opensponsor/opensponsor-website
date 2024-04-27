@@ -16,7 +16,7 @@ type HttpResponse<T> = {
 @Injectable({
     providedIn: 'root'
 })
-export class HttpService {
+export abstract class HttpService {
     private headers: Record<string, any> = {
         'Content-Type': 'application/json',
     }
