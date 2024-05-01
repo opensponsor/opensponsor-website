@@ -1,21 +1,20 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpParams, HttpResponse} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
-import {throwError} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import {SnackBarService} from '@services/snack-bar/snack-bar.service';
 import {environment} from "@environments/environment";
 import {Platform} from "@angular/cdk/platform";
 import {ViolationReport} from "@app/interfaces";
 
-type HttpResponse<T> = {
+type HttpResult<T> = {
     currentPageNumber: number
     lastPageNumber: number
     pageSize: number
     totalRecords: number
     message: string
     code: number
-    records: T[]
-    data: T
+    records: T
 }
 
 
@@ -70,7 +69,7 @@ export abstract class HttpService {
     }
 
     public get<T>(url: string, params?: HttpParams) {
-        return this.http.get<HttpResponse<T>>(this.getUrl(url), {
+        return this.http.get<T extends Array<any> ? HttpResult<T> : T>(this.getUrl(url), {
             headers: this.headers,
             observe: 'response',
             responseType: 'json',
@@ -81,18 +80,18 @@ export abstract class HttpService {
     }
 
     public post<T>(url: string, body: any | null, params?: HttpParams) {
-        return this.http.post<HttpResponse<T>>(this.getUrl(url), body, {
+        return this.http.post<T extends Array<any> ? HttpResult<T> : T>(this.getUrl(url), body, {
             headers: this.headers,
             observe: 'response',
             responseType: 'json',
             params: params || {}
         }).pipe(
             catchError(this.handleError.bind(this))
-        )
+        );
     }
 
     public put<T>(url: string, body: any | null, params?: HttpParams) {
-        return this.http.put<HttpResponse<T>>(this.getUrl(url), body, {
+        return this.http.put<T extends Array<any> ? HttpResult<T> : T>(this.getUrl(url), body, {
             headers: this.headers,
             observe: 'response',
             responseType: 'json',
@@ -103,7 +102,7 @@ export abstract class HttpService {
     }
 
     public delete<T>(url: string, params?: HttpParams) {
-        return this.http.delete<HttpResponse<T>>(this.getUrl(url), {
+        return this.http.delete<T extends Array<any> ? HttpResult<T> : T>(this.getUrl(url), {
             headers: this.headers,
             observe: 'response',
             responseType: 'json',
