@@ -3,6 +3,11 @@ import {CommonModule} from '@angular/common';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {RouterModule, Routes} from "@angular/router";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatFormField, MatFormFieldModule} from "@angular/material/form-field";
+import {MatInput, MatInputModule} from "@angular/material/input";
+import {MatAutocomplete, MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatSelect, MatSelectModule} from "@angular/material/select";
 
 const routes: Routes = [
     {
@@ -23,6 +28,11 @@ const routes: Routes = [
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatAutocompleteModule,
+        MatSelectModule,
     ]
 })
 export class PassportModule {

@@ -20,12 +20,20 @@ import {MatCard, MatCardContent, MatCardModule} from "@angular/material/card";
 import { CommunityComponent } from './community/community.component';
 import { OpenSourceCommunityComponent } from './open-source-community/open-source-community.component';
 import { FiscalHostComponent } from './fiscal-host/fiscal-host.component';
+import { CreateComponent } from './create/create.component';
+import { IndexComponent } from './index/index.component';
+import {FormComponent} from "@modules/organizations/form/form.component";
 
 const routes: Routes = [
     {
         path: '',
         children: [
+            {path: '', component: IndexComponent, pathMatch: 'full'},
             {path: 'new', component: NewComponent, pathMatch: 'full'},
+            {path: 'create', component: CreateComponent, pathMatch: 'full'},
+            {path: 'create/open-source', component: OpenSourceCommunityComponent, pathMatch: 'full'},
+            {path: 'create/community', component: CommunityComponent, pathMatch: 'full'},
+            {path: 'create/fiscal-host', component: FiscalHostComponent, pathMatch: 'full'},
             {path: ':id', component: InfoComponent, pathMatch: 'full'},
         ]
     }
@@ -37,7 +45,9 @@ const routes: Routes = [
         NewComponent,
         CommunityComponent,
         OpenSourceCommunityComponent,
-        FiscalHostComponent
+        FiscalHostComponent,
+        CreateComponent,
+        IndexComponent
     ],
     imports: [
         CommonModule,
@@ -48,7 +58,8 @@ const routes: Routes = [
         MatFormFieldModule,
         ReactiveFormsModule,
         MatInputModule,
-        MatCardModule
+        MatCardModule,
+        FormComponent
     ]
 })
 export class OrganizationsModule {
