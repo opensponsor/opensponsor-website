@@ -8,9 +8,14 @@ import {Platform} from "@angular/cdk/platform";
 import {ViolationReport} from "@app/interfaces";
 
 type HttpResponse<T> = {
-    message: string;
-    list: T[];
-    code: number;
+    currentPageNumber: number
+    lastPageNumber: number
+    pageSize: number
+    totalRecords: number
+    message: string
+    code: number
+    records: T[]
+    data: T
 }
 
 
@@ -52,7 +57,9 @@ export abstract class HttpService {
             if(res.error.exception) {
                 this.snackBar.message({message: res.error.exception});
             } else if(res.error.parameterViolations.length > 0) {
-                this.snackBar.message({message: res.error.parameterViolations[0].message});
+                // const name = res.error.parameterViolations[0].path.split('.').pop();
+                const firstParams = res.error.parameterViolations[0];
+                this.snackBar.message({message: `${firstParams.message}: ${firstParams.value}`});
             } else {
                 this.snackBar.message({message: `Backend returned code ${res.status}`});
             }
