@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpParams, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
-import {Observable, throwError} from 'rxjs';
+import {throwError} from 'rxjs';
 import {SnackBarService} from '@services/snack-bar/snack-bar.service';
 import {environment} from "@environments/environment";
 import {Platform} from "@angular/cdk/platform";
