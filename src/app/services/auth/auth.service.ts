@@ -1,7 +1,7 @@
 import {Injectable, signal} from '@angular/core';
 import {HttpService} from "@services/http/http.service";
-import RequestSignUp from "@app/payload/RequestSignUp";
-import RequestSignIn from "@app/payload/RequestSignIn";
+import RequestRegister from "@app/payload/RequestRegister";
+import RequestLogin from "@app/payload/RequestLogin";
 import RequestSignInUseCode from "@app/payload/RequestSignInUseCode";
 import {toObservable} from '@angular/core/rxjs-interop';
 import AuthInfo from "@app/models/AuthInfo";
@@ -28,7 +28,7 @@ export class AuthService {
     ) {
     }
 
-    public login<T>(data: RequestSignIn) {
+    public login<T>(data: RequestLogin) {
         return this.httpService.post<T>(this.Urls.login, data);
     }
 
@@ -36,7 +36,7 @@ export class AuthService {
         return this.httpService.post<T>(this.Urls.loginForCode, data);
     }
 
-    public register<T>(data: RequestSignUp) {
+    public register<T>(data: RequestRegister) {
         return this.httpService.post<T>(this.Urls.register, data);
     }
 
