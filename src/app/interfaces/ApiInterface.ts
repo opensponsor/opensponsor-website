@@ -68,7 +68,7 @@ export interface LoginBody {
    * @maxLength 32
    * @pattern \S
    */
-  passport: string;
+  account: string;
   /**
    * @minLength 6
    * @maxLength 64
@@ -101,6 +101,20 @@ export interface RegisterBody {
   password: string;
 }
 
+export interface ResteasyConstraintViolation {
+  constraintType?: Type;
+  path?: string;
+  message?: string;
+  value?: string;
+}
+
+export enum Type {
+  CLASS = "CLASS",
+  PROPERTY = "PROPERTY",
+  PARAMETER = "PARAMETER",
+  RETURN_VALUE = "RETURN_VALUE",
+}
+
 /**
  * @format uuid
  * @pattern [a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}
@@ -113,7 +127,7 @@ export interface User {
    * @minLength 2
    * @maxLength 32
    */
-  name?: string;
+  username?: string;
   /**
    * @minLength 2
    * @maxLength 32
@@ -150,4 +164,12 @@ export interface UserToken {
   whenCreated?: Instant;
   whenModified?: Instant;
   whenDeleted?: Instant;
+}
+
+export interface ViolationReport {
+  exception?: string;
+  propertyViolations?: ResteasyConstraintViolation[];
+  classViolations?: ResteasyConstraintViolation[];
+  parameterViolations?: ResteasyConstraintViolation[];
+  returnValueViolations?: ResteasyConstraintViolation[];
 }
