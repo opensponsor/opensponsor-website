@@ -4,6 +4,7 @@ import {Platform} from "@angular/cdk/platform";
 import {RouterLink} from "@angular/router";
 import {NgForOf} from "@angular/common";
 import {MatAnchor} from "@angular/material/button";
+import {User} from "@app/interfaces/ApiInterface";
 
 @Component({
     selector: 'app-default-header',
@@ -27,14 +28,17 @@ export class DefaultHeaderComponent {
         ]
     };
 
+    public authInfo: Partial<User> | null = {};
+
     constructor(
         public readonly authService: AuthService,
         public readonly platform: Platform,
     ) {
-        // if (this.platform.isBrowser) {
-        //     this.authService.authInfo$.subscribe(data => {
-        //         // console.dir(data);
-        //     });
-        // }
+        if (this.platform.isBrowser) {
+            this.authInfo = this.authService.authInfo();
+            this.authService.authInfo$.subscribe(data => {
+                this.authInfo = data;
+            });
+        }
     }
 }
