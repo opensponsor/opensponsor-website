@@ -31,7 +31,6 @@ export class RegisterComponent {
             Validators.maxLength(64),
         ]),
         legalName: new FormControl<string>("", [
-            Validators.required,
             Validators.minLength(4),
             Validators.maxLength(64),
         ]),

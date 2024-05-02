@@ -28,7 +28,6 @@ export class FormComponent {
             Validators.maxLength(64),
         ]),
         legalName: new FormControl(null, [
-            Validators.required,
             Validators.minLength(4),
             Validators.maxLength(64),
         ]),

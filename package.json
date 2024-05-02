@@ -8,7 +8,7 @@
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
         "serve:ssr:opensponsor-website": "node dist/opensponsor-website/server/server.mjs",
-        "generateApi": "npx swagger-typescript-api -p http://localhost:8080/q/openapi --no-client -o ./src/app/interfaces --name ApiInterface.ts"
+        "generateInterface": "npx swagger-typescript-api -p http://localhost:8080/q/openapi --no-client -o ./src/app/interfaces --name ApiInterface.ts"
     },
     "private": true,
     "dependencies": {

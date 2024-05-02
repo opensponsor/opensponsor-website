@@ -20,7 +20,7 @@ export interface CountryCodes {
    * @minLength 2
    * @maxLength 16
    */
-  countryCodes?: string;
+  countryCode?: string;
   /**
    * @minLength 1
    * @maxLength 64
@@ -85,16 +85,17 @@ export interface RegisterBody {
    * @maxLength 32
    * @pattern \S
    */
-  name: string;
+  username: string;
   /**
    * @minLength 2
    * @maxLength 32
    * @pattern \S
    */
   legalName: string;
+  countryCode: CountryCodes;
   sex?: E_SEX;
   /**
-   * @minLength 6
+   * @minLength 8
    * @maxLength 32
    * @pattern \S
    */
@@ -137,16 +138,12 @@ export interface User {
   avatar?: string;
   sex?: E_SEX;
   role?: string;
-  /**
-   * @minLength 2
-   * @maxLength 10
-   */
-  dialingCode?: string;
+  countryCode?: CountryCodes;
   /**
    * @minLength 4
    * @maxLength 11
    */
-  phone?: string;
+  phoneNumber?: string;
   /**
    * @minLength 6
    * @maxLength 32
