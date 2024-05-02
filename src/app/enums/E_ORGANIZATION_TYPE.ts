@@ -5,7 +5,7 @@ export enum E_ORGANIZATION_TYPE {
     FISCAL_HOST = "FISCAL_HOST",
 
     /**
-     * common organization
+     * COMMUNITY
      */
-    ORGANIZATION = "ORGANIZATION",
+    COMMUNITY = "COMMUNITY",
 }
