@@ -40,7 +40,7 @@ export abstract class HttpService {
     }
 
     private getUrl(url: string) {
-        const uri = new URL([environment.apiUrl, url].join("/"));
+        const uri = new URL([environment.api, url].join("/"));
         const path = uri.pathname.replaceAll('//', '/');
         return `${uri.origin}${path}${uri.search}`;
     }
@@ -56,9 +56,13 @@ export abstract class HttpService {
             if(res.error.exception) {
                 this.snackBar.message({message: res.error.exception});
             } else if(res.error.parameterViolations.length > 0) {
-                // const name = res.error.parameterViolations[0].path.split('.').pop();
+                const name = res.error.parameterViolations[0].path.split('.').pop();
                 const firstParams = res.error.parameterViolations[0];
-                this.snackBar.message({message: `${firstParams.message}: ${firstParams.value}`});
+                this.snackBar.message({message: `${name}: ${firstParams.message}`});
+            } else if(res.error.propertyViolations.length > 0) {
+                const name = res.error.propertyViolations[0].path.split('.').pop();
+                const firstParams = res.error.propertyViolations[0];
+                this.snackBar.message({message: `${name}: ${firstParams.message}`});
             } else {
                 this.snackBar.message({message: `Backend returned code ${res.status}`});
             }
