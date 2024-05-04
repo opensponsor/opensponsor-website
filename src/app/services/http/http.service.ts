@@ -6,6 +6,7 @@ import {SnackBarService} from '@services/snack-bar/snack-bar.service';
 import {environment} from "@environments/environment";
 import {Platform} from "@angular/cdk/platform";
 import {ViolationReport} from "@app/interfaces";
+import {AuthService} from "@services/auth/auth.service";
 
 type HttpResult<T> = {
     currentPageNumber: number
@@ -26,7 +27,7 @@ export abstract class HttpService {
         'Content-Type': 'application/json',
     }
 
-    constructor(
+    protected constructor(
         private platform: Platform,
         private http: HttpClient,
         private snackBar: SnackBarService
@@ -50,11 +51,12 @@ export abstract class HttpService {
             // A client-side or network error occurred. Handle it accordingly.
             this.snackBar.message({message: `An error occurred: ${res.error.message}`});
             console.log(`An error occurred:`, res.error.message)
-        } else {
+        } else if(res.error) {
             // The backend returned an unsuccessful response code.
             // The response body may contain clues as to what went wrong.
             if(res.error.exception) {
                 this.snackBar.message({message: res.error.exception});
+                console.log(`Backend returned code ${res.status}, body was: `, res.error.exception);
             } else if(res.error.parameterViolations.length > 0) {
                 const name = res.error.parameterViolations[0].path.split('.').pop();
                 const firstParams = res.error.parameterViolations[0];
@@ -66,7 +68,10 @@ export abstract class HttpService {
             } else {
                 this.snackBar.message({message: `Backend returned code ${res.status}`});
             }
-            console.log(`Backend returned code ${res.status}, body was: `, res.error.exception);
+        } else if(res.status === 401) {
+            this.snackBar.message({message: "登录信息失效, 请先登录."});
+        } else {
+            this.snackBar.message({message: res.message});
         }
         // Return an observable with a user-facing error message.
         return throwError(() => new Error('Something bad happened; please try again later.'));
