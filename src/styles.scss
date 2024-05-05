@@ -16,10 +16,14 @@ body {
 }
 
 
+
 .material-icons {
+    font-family: 'Material Symbols Rounded', serif;
     font-weight: normal;
     font-style: normal;
-    font-size: 16px;  /* Preferred icon size */
+    color: #5f6368;
+    height: auto !important;
+    font-size: 20px;  /* Preferred icon size */
     display: inline-block;
     line-height: 1;
     text-transform: none;
@@ -27,6 +31,4 @@ body {
     word-wrap: normal;
     white-space: nowrap;
     direction: ltr;
-    width: 16px !important;
-    height: 16px !important;
 }
