@@ -24,4 +24,9 @@ export const routes: Routes = [
         component: DefaultLayoutComponent,
         loadChildren: () => import('@modules/passport/passport.module').then(m => m.PassportModule)
     },
+    {
+        path: 'dashboard',
+        component: PureLayoutComponent,
+        loadChildren: () => import('@modules/dashboard/dashboard.module').then(m => m.DashboardModule)
+    },
 ];

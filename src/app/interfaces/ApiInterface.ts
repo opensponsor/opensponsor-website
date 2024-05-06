@@ -51,6 +51,11 @@ export interface CountryCodes {
   whenDeleted?: Instant;
 }
 
+export enum E_ORGANIZATION_TYPE {
+  FISCAL_HOST = "FISCAL_HOST",
+  COMMUNITY = "COMMUNITY",
+}
+
 export enum E_SEX {
   WOMEN = "WOMEN",
   MAN = "MAN",
@@ -77,6 +82,40 @@ export interface LoginBody {
   password: string;
 }
 
+export interface Organization {
+  id?: UUID;
+  /**
+   * @minLength 2
+   * @maxLength 32
+   */
+  name?: string;
+  /** @maxLength 32 */
+  legalName?: string;
+  /**
+   * @minLength 2
+   * @maxLength 32
+   */
+  slug?: string;
+  /**
+   * @minLength 2
+   * @maxLength 150
+   */
+  introduce?: string;
+  type?: E_ORGANIZATION_TYPE;
+  /** @uniqueItems true */
+  tags?: string[];
+  /**
+   * @minLength 2
+   * @maxLength 32
+   */
+  website?: string;
+  /** Organization Owner */
+  user?: User;
+  whenCreated?: Instant;
+  whenModified?: Instant;
+  whenDeleted?: Instant;
+}
+
 export type PanacheEntityBase = object;
 
 export interface RegisterBody {
@@ -86,12 +125,7 @@ export interface RegisterBody {
    * @pattern \S
    */
   username: string;
-  /**
-   * @minLength 2
-   * @maxLength 32
-   * @pattern \S
-   */
-  legalName: string;
+  legalName?: string;
   countryCode: CountryCodes;
   sex?: E_SEX;
   /**
@@ -129,15 +163,13 @@ export interface User {
    * @maxLength 32
    */
   username?: string;
-  /**
-   * @minLength 2
-   * @maxLength 32
-   */
+  /** @maxLength 32 */
   legalName?: string;
   /** @maxLength 42 */
   avatar?: string;
   sex?: E_SEX;
   role?: string;
+  /** User country code */
   countryCode?: CountryCodes;
   /**
    * @minLength 4
