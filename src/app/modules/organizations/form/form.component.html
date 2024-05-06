@@ -1,41 +1,69 @@
 <div class="grid grid-cols-1 mt-10 gap-10">
     <h1 class="text-center">创建组织</h1>
     <div class="grid grid-cols-2 gap-4">
-        <form class="flex flex-col gap-1 w-full" style="display: flex; flex-direction: column;" (ngSubmit)="formGroup.valid && save()" [formGroup]="formGroup">
-            <h3>组织信息</h3>
-            <mat-form-field class="w-full" appearance="outline">
-                <mat-label>name</mat-label>
-                <input matInput name="title" [formControl]="formGroup.controls.name">
+        <form class="flex flex-col gap-3 w-full" style="display: flex; flex-direction: column;" (ngSubmit)="formGroup.valid && save()" [formGroup]="formGroup">
+            <h3>组织信息 (&nbsp;*标记为必填&nbsp;)</h3>
+            <mat-form-field floatLabel="always" class="w-full" appearance="outline">
+                <mat-label>组织名称</mat-label>
+                <input matInput name="title" [formControl]="formGroup.controls.name" placeholder="Open Sponsor">
             </mat-form-field>
-            <mat-form-field subscriptSizing="dynamic" class="w-full" appearance="outline">
-                <mat-label>legalName</mat-label>
-                <input matInput name="slug" [formControl]="formGroup.controls.legalName">
-                <mat-error *ngIf="formGroup.controls.legalName.invalid">
-                    Legal names are private and used in receipts
-                    Legal names are private and used in receipts
-                </mat-error>
-                <mat-hint>
-                    Legal names are private and used in receipts
-                    Legal names are private and used in receipts
-                    Legal names are private and used in receipts
-                </mat-hint>
+            <mat-form-field floatLabel="always" subscriptSizing="dynamic" class="w-full" appearance="outline">
+                <mat-label>
+                    法定名称 <mat-icon matTooltip="不会公开">lock</mat-icon>
+                </mat-label>
+                <input matInput name="legalName" [formControl]="formGroup.controls.legalName" placeholder="xxx有限公司">
+                <mat-hint>营业执照注册名称, 用于收据、发票、税务、费用付款明细和其他非公开内容。法定名称仅对管理员可见。</mat-hint>
             </mat-form-field>
-            <mat-form-field class="w-full" appearance="outline">
-                <mat-label>introduce</mat-label>
-                <input matInput name="slug" [formControl]="formGroup.controls.introduce">
+            <mat-form-field floatLabel="always" subscriptSizing="dynamic" class="w-full" appearance="outline">
+                <mat-label>主页链接</mat-label>
+                <span matTextPrefix>{{urlOrigin}}</span>
+                <input matInput name="slug" [formControl]="formGroup.controls.slug">
             </mat-form-field>
-            <mat-form-field class="w-full" appearance="outline">
-                <mat-label>link</mat-label>
-                <input matInput name="location" [formControl]="formGroup.controls.url">
+            <mat-form-field floatLabel="always" class="w-full" appearance="outline">
+                <mat-label>简介</mat-label>
+                <textarea matInput name="introduce" [formControl]="formGroup.controls.introduce"></textarea>
             </mat-form-field>
-            <mat-form-field class="w-full" appearance="outline">
-                <mat-label>website</mat-label>
-                <input matInput name="location" [formControl]="formGroup.controls.website">
+            <mat-form-field floatLabel="always" class="w-full" appearance="outline">
+                <mat-label>标签</mat-label>
+                <input type="text"
+                       placeholder="Pick one"
+                       aria-label="Number"
+                       name="tags"
+                       matInput
+                       [matChipInputFor]="chipGrid"
+                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                       [matChipInputAddOnBlur]="true"
+                       (matChipInputTokenEnd)="add($event)"
+                       [formControl]="formGroup.controls.tags"
+                       [matAutocomplete]="auto" />
+
+                <mat-chip-grid matTextPrefix #chipGrid aria-label="Enter fruits">
+                    @for (tag of tags; track tag) {
+                        <mat-chip-row
+                            (removed)="remove(tag)"
+                            [aria-description]="'press enter to edit ' + tag">
+                            {{tag}}
+                            <button matChipRemove [attr.aria-label]="'remove ' + tag">
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </mat-chip-row>
+                    }
+                </mat-chip-grid>
+                <mat-autocomplete autoActiveFirstOption="" (optionSelected)="selected($event)" #auto="matAutocomplete">
+                    @for (option of filteredOptions | async; track option) {
+                        <mat-option [value]="option">{{option}}</mat-option>
+                    }
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field floatLabel="always" class="w-full" appearance="outline">
+                <mat-label>网站链接</mat-label>
+                <span matTextPrefix>https://</span>
+                <input matInput name="website" [formControl]="formGroup.controls.website" placeholder="www.example.com" />
             </mat-form-field>
             <button mat-flat-button color="primary" class="w-full">创建组织</button>
         </form>
         <div class="invite-admin">
-            <h3>邀请成员</h3>
+            <h3>邀请管理员</h3>
             <mat-card>
                 <mat-card-content>
                     invite
