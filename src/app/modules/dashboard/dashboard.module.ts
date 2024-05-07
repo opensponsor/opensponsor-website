@@ -14,6 +14,7 @@ import { WebhookComponent } from './webhook/webhook.component';
 import { PaymentComponent } from './payment/payment.component';
 import { GradeComponent } from './grade/grade.component';
 import { DevelopmentComponent } from './development/development.component';
+import {MatButton, MatButtonModule} from "@angular/material/button";
 
 const routes: Routes = [
     {
@@ -55,6 +56,7 @@ const routes: Routes = [
         MatExpansionModule,
         MatListModule,
         MatIconModule,
+        MatButtonModule,
     ]
 })
 export class DashboardModule {
