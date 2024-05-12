@@ -17,6 +17,7 @@ export class DialogService {
 
     private defaultConfig: MatDialogConfig = {
         width: "60vw",
+        maxWidth: "80vw",
     }
 
     public open<T, R>(component: ComponentType<any>, config?: MatDialogConfig) {
