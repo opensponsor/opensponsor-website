@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GradeComponent } from './grade.component';
+import { TierDialogComponent } from './tier-dialog.component';
 
-describe('GradeComponent', () => {
-  let component: GradeComponent;
-  let fixture: ComponentFixture<GradeComponent>;
+describe('TierDialogComponent', () => {
+  let component: TierDialogComponent;
+  let fixture: ComponentFixture<TierDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [GradeComponent]
+      declarations: [TierDialogComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(GradeComponent);
+    fixture = TestBed.createComponent(TierDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

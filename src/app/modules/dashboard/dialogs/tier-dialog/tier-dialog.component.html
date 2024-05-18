@@ -1,0 +1,81 @@
+<h2 mat-dialog-title>捐赠等级</h2>
+<mat-dialog-content class="mat-typography">
+    <div class="flex flex-row gap-4 flex-nowrap">
+        <div class="w-8/12">
+            <form #form class="grid grid-flow-row-dense grid-cols-1 gap-1 w-full" (ngSubmit)="formGroup.valid && save()" [formGroup]="formGroup">
+                <mat-form-field class="w-full">
+                    <mat-label>捐赠类型</mat-label>
+                    <input matInput formControlName="type" [formControl]="formGroup.controls.type" required/>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>标题</mat-label>
+                    <input matInput formControlName="name" [formControl]="formGroup.controls.name" required/>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>描述</mat-label>
+                    <textarea matInput formControlName="description" [formControl]="formGroup.controls.description"></textarea>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>捐赠金额</mat-label>
+                    <input matInput formControlName="amount" [formControl]="formGroup.controls.amount" required/>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>捐赠金额类型</mat-label>
+                    <mat-select formControlName="amountType" [formControl]="formGroup.controls.amountType" required>
+                        @for (amount_type of E_AMOUNT_TYPE | enumerated; track amount_type) {
+                            <mat-option [value]="amount_type">{{amount_type | translate}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+                @if (formGroup.controls.amountType.value === E_AMOUNT_TYPE.FLEXIBLE) {
+                    <mat-form-field class="w-full">
+                        <mat-label>最小金额</mat-label>
+                        <input matInput formControlName="minimumAmount" [formControl]="formGroup.controls.minimumAmount" required/>
+                    </mat-form-field>
+                }
+                <mat-form-field class="w-full">
+                    <mat-label>接受货币</mat-label>
+                    <mat-select formControlName="currency" [formControl]="formGroup.controls.currency" required>
+                        @for (currency of E_IBAN_CURRENCIES | enumerated:{pick: [E_IBAN_CURRENCIES.CNY]}; track currency) {
+                            <mat-option [value]="currency">{{currency | translate }}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>捐赠周期</mat-label>
+                    <mat-select formControlName="interval" [formControl]="formGroup.controls.interval" required>
+                        @for (interval of E_INTERVAL | enumerated; track interval) {
+                            <mat-option [value]="interval">{{interval | translate}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>库存</mat-label>
+                    <input matInput formControlName="maxQuantity" [formControl]="formGroup.controls.maxQuantity"/>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>筹款目标</mat-label>
+                    <input matInput formControlName="goal" [formControl]="formGroup.controls.goal" required/>
+                </mat-form-field>
+                <div class="w-full">
+                    <mat-slide-toggle>使用独立页面</mat-slide-toggle>
+                </div>
+                <mat-form-field class="w-full">
+                    <mat-label>按钮文字</mat-label>
+                    <input matInput formControlName="button" [formControl]="formGroup.controls.button" required/>
+                </mat-form-field>
+            </form>
+        </div>
+        <div class="w-4/12">
+            <div class="sticky top-0 h-full max-h-[65vh] py-1">
+                <app-tier-card class="h-full" [tier]="transformType(this.formGroup.value)"></app-tier-card>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <div class="w-full flex justify-between">
+        <button mat-flat-button class="w-4/6" color="primary" type="button" (click)="submit(form)">创建等级</button>
+        <button mat-button [mat-dialog-close]="false" tabindex="0">Cancel</button>
+    </div>
+</mat-dialog-actions>
