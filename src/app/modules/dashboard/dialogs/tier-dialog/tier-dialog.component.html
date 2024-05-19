@@ -5,7 +5,11 @@
             <form #form class="grid grid-flow-row-dense grid-cols-1 gap-1 w-full" (ngSubmit)="formGroup.valid && save()" [formGroup]="formGroup">
                 <mat-form-field class="w-full">
                     <mat-label>捐赠类型</mat-label>
-                    <input matInput formControlName="type" [formControl]="formGroup.controls.type" required/>
+                    <mat-select [formControl]="formGroup.controls.type" required>
+                        @for (type of E_TIER_TYPE | enumerated; track type) {
+                            <mat-option [value]="type">{{type | translate}}</mat-option>
+                        }
+                    </mat-select>
                 </mat-form-field>
                 <mat-form-field class="w-full">
                     <mat-label>标题</mat-label>
@@ -17,38 +21,7 @@
                 </mat-form-field>
                 <mat-form-field class="w-full">
                     <mat-label>捐赠金额</mat-label>
-                    <input matInput formControlName="amount" [formControl]="formGroup.controls.amount" required/>
-                </mat-form-field>
-                <mat-form-field class="w-full">
-                    <mat-label>捐赠金额类型</mat-label>
-                    <mat-select [formControl]="formGroup.controls.amountType" required>
-                        @for (amount_type of E_AMOUNT_TYPE | enumerated; track amount_type) {
-                            <mat-option [value]="amount_type">{{amount_type | translate}}</mat-option>
-                        }
-                    </mat-select>
-                </mat-form-field>
-                @if (formGroup.controls.amountType.value === E_AMOUNT_TYPE.FLEXIBLE) {
-                    <div class="grid grid-cols-3 gap-1">
-                        @for (item of this.formGroup.controls.presets.controls; track item) {
-                            <mat-form-field class="w-full">
-                                <mat-label>预设金额</mat-label>
-                                <input matInput type="number" min="0" max="90000" [formControl]="item" required />
-                            </mat-form-field>
-                        }
-                    </div>
-                }
-
-                <mat-form-field class="w-full">
-                    <mat-label>最小金额</mat-label>
-                    <input matInput formControlName="minimumAmount" [formControl]="formGroup.controls.minimumAmount" required/>
-                </mat-form-field>
-                <mat-form-field class="w-full">
-                    <mat-label>接受货币</mat-label>
-                    <mat-select [formControl]="formGroup.controls.currency" required>
-                        @for (currency of E_IBAN_CURRENCIES | enumerated:{pick: [E_IBAN_CURRENCIES.CNY]}; track currency) {
-                            <mat-option [value]="currency">{{currency | translate }}</mat-option>
-                        }
-                    </mat-select>
+                    <input matInput formControlName="amount" type="number" [formControl]="formGroup.controls.amount" required/>
                 </mat-form-field>
                 <mat-form-field class="w-full">
                     <mat-label>捐赠周期</mat-label>
@@ -58,13 +31,46 @@
                         }
                     </mat-select>
                 </mat-form-field>
+                @if(formGroup.controls.interval.value !== E_INTERVAL.FLEXIBLE) {
+                    <mat-form-field class="w-full">
+                        <mat-label>捐赠金额类型</mat-label>
+                        <mat-select [formControl]="formGroup.controls.amountType" required>
+                            @for (amount_type of E_AMOUNT_TYPE | enumerated; track amount_type) {
+                                <mat-option [value]="amount_type">{{amount_type | translate}}</mat-option>
+                            }
+                        </mat-select>
+                    </mat-form-field>
+                }
+                @if (formGroup.controls.amountType.value === E_AMOUNT_TYPE.FLEXIBLE || formGroup.controls.interval.value === E_INTERVAL.FLEXIBLE) {
+                    <h3>预设金额</h3>
+                    <div class="grid grid-cols-3 gap-1">
+                        @for (item of this.formGroup.controls.presets.controls; track item) {
+                            <mat-form-field class="w-full">
+                                <mat-label>金额</mat-label>
+                                <input matInput type="number" min="0" max="90000" [formControl]="item" required />
+                            </mat-form-field>
+                        }
+                    </div>
+                    <mat-form-field class="w-full">
+                        <mat-label>最小金额</mat-label>
+                        <input matInput formControlName="minimumAmount" type="number" [formControl]="formGroup.controls.minimumAmount" required/>
+                    </mat-form-field>
+                }
+                <mat-form-field class="w-full">
+                    <mat-label>接受货币</mat-label>
+                    <mat-select [formControl]="formGroup.controls.currency" required>
+                        @for (currency of E_IBAN_CURRENCIES | enumerated:{pick: [E_IBAN_CURRENCIES.CNY]}; track currency) {
+                            <mat-option [value]="currency">{{currency | translate }}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
                 <mat-form-field class="w-full">
                     <mat-label>库存</mat-label>
-                    <input matInput formControlName="maxQuantity" [formControl]="formGroup.controls.maxQuantity"/>
+                    <input matInput formControlName="maxQuantity" type="number" [formControl]="formGroup.controls.maxQuantity"/>
                 </mat-form-field>
                 <mat-form-field class="w-full">
                     <mat-label>筹款目标</mat-label>
-                    <input matInput formControlName="goal" [formControl]="formGroup.controls.goal" required/>
+                    <input matInput formControlName="goal" type="number" [formControl]="formGroup.controls.goal" required/>
                 </mat-form-field>
                 <div class="w-full">
                     <mat-slide-toggle>使用独立页面</mat-slide-toggle>

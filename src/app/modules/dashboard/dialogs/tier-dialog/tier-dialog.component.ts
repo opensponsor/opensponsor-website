@@ -11,14 +11,12 @@ import transformType from "@app/utils/transformType";
 })
 export class TierDialogComponent {
     public formGroup = new FormGroup({
-        type: new FormControl<E_TIER_TYPE | null>(null, [
-            Validators.required,
-            Validators.minLength(4),
-            Validators.maxLength(64),
+        type: new FormControl<E_TIER_TYPE | null>(E_TIER_TYPE.DONATION, [
+            Validators.required
         ]),
         name: new FormControl(null, [
             Validators.required,
-            Validators.minLength(4),
+            Validators.minLength(1),
             Validators.maxLength(64),
         ]),
         description: new FormControl<string>('', [
@@ -32,20 +30,18 @@ export class TierDialogComponent {
         ]),
         presets: new FormArray([
             new FormControl<number | null>(null, [
-                Validators.required,
                 Validators.min(1),
             ]),
             new FormControl<number | null>(null, [
-                Validators.required,
                 Validators.min(1)
             ])
         ]),
+        interval: new FormControl<E_INTERVAL>(E_INTERVAL.MONTH, []),
         amountType: new FormControl<E_AMOUNT_TYPE>(E_AMOUNT_TYPE.FIXED, [
             Validators.required,
         ]),
         minimumAmount: new FormControl<number | null>(null, []),
         currency: new FormControl<E_IBAN_CURRENCIES>(E_IBAN_CURRENCIES.CNY, []),
-        interval: new FormControl<E_INTERVAL>(E_INTERVAL.MONTH, []),
         maxQuantity: new FormControl<number | null>(null, []),
         goal: new FormControl<number | null>(null, []),
         button: new FormControl<string>("贡献", []),
@@ -53,7 +49,12 @@ export class TierDialogComponent {
 
     public save() {
         if (this.formGroup.valid) {
-            console.dir(this.formGroup);
+            console.dir(this.formGroup.value);
+        }
+        for (let controlsKey in this.formGroup.controls) {
+            if(this.formGroup.get(controlsKey)?.invalid) {
+                console.dir(this.formGroup.get(controlsKey));
+            }
         }
     }
 
@@ -91,7 +92,6 @@ export class TierDialogComponent {
             this.formGroup.controls.presets.controls
                 = this.formGroup.controls.presets.controls.filter((_, index) => indexList.includes(index));
             const newItem = new FormControl<number | null>(null, [
-                Validators.required,
                 Validators.min(1)
             ]);
             newItem.valueChanges.subscribe(item => {
@@ -108,9 +108,9 @@ export class TierDialogComponent {
 
     }
 
-    protected readonly Object = Object;
     protected readonly E_AMOUNT_TYPE = E_AMOUNT_TYPE;
     protected readonly transformType = transformType;
     protected readonly E_INTERVAL = E_INTERVAL;
     protected readonly E_IBAN_CURRENCIES = E_IBAN_CURRENCIES;
+    protected readonly E_TIER_TYPE = E_TIER_TYPE;
 }

@@ -3,6 +3,7 @@ import {JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {E_AMOUNT_TYPE, E_INTERVAL, Tier} from "@app/interfaces/ApiInterface";
 import {TranslatePipe} from "@app/pipes/translate/translate.pipe";
 import {MatButton} from "@angular/material/button";
+import {EnumeratedPipe} from "@app/pipes/enumerated/enumerated.pipe";
 
 @Component({
     selector: 'app-tier-card',
@@ -12,7 +13,7 @@ import {MatButton} from "@angular/material/button";
         NgForOf,
         NgIf,
         TranslatePipe,
-        MatButton
+        MatButton,
     ],
     templateUrl: './tier-card.component.html',
     styleUrl: './tier-card.component.scss'
