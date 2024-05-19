@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {DialogRef} from "@angular/cdk/dialog";
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {E_AMOUNT_TYPE, E_IBAN_CURRENCIES, E_INTERVAL, E_TIER_TYPE} from "@app/interfaces/ApiInterface";
@@ -104,6 +104,14 @@ export class TierDialogComponent {
             item.valueChanges.subscribe(() => {
                 presetsSubscribe();
             })
+        })
+
+        this.formGroup.controls.type.valueChanges.subscribe(value => {
+            if(value === E_TIER_TYPE.PRODUCT) {
+                this.formGroup.controls.maxQuantity.addValidators(Validators.required)
+            } else {
+                this.formGroup.controls.maxQuantity.removeValidators(Validators.required)
+            }
         })
 
     }

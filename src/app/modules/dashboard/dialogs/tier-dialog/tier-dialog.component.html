@@ -64,13 +64,15 @@
                         }
                     </mat-select>
                 </mat-form-field>
-                <mat-form-field class="w-full">
-                    <mat-label>库存</mat-label>
-                    <input matInput formControlName="maxQuantity" type="number" [formControl]="formGroup.controls.maxQuantity"/>
-                </mat-form-field>
+                @if(formGroup.controls.type.value === E_TIER_TYPE.PRODUCT) {
+                    <mat-form-field class="w-full">
+                        <mat-label>库存</mat-label>
+                        <input matInput formControlName="maxQuantity" type="number" [formControl]="formGroup.controls.maxQuantity"/>
+                    </mat-form-field>
+                }
                 <mat-form-field class="w-full">
                     <mat-label>筹款目标</mat-label>
-                    <input matInput formControlName="goal" type="number" [formControl]="formGroup.controls.goal" required/>
+                    <input matInput formControlName="goal" type="number" [formControl]="formGroup.controls.goal"/>
                 </mat-form-field>
                 <div class="w-full">
                     <mat-slide-toggle>使用独立页面</mat-slide-toggle>
