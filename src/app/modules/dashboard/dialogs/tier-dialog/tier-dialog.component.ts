@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {DialogRef} from "@angular/cdk/dialog";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {E_AMOUNT_TYPE, E_IBAN_CURRENCIES, E_INTERVAL, E_TIER_TYPE} from "@app/interfaces/ApiInterface";
 import transformType from "@app/utils/transformType";
 
@@ -30,7 +30,16 @@ export class TierDialogComponent {
         amount: new FormControl<number | null>(null, [
             Validators.required,
         ]),
-        presets: new FormControl<number[]>([], []),
+        presets: new FormArray([
+            new FormControl<number | null>(null, [
+                Validators.required,
+                Validators.min(1),
+            ]),
+            new FormControl<number | null>(null, [
+                Validators.required,
+                Validators.min(1)
+            ])
+        ]),
         amountType: new FormControl<E_AMOUNT_TYPE>(E_AMOUNT_TYPE.FIXED, [
             Validators.required,
         ]),
@@ -52,8 +61,6 @@ export class TierDialogComponent {
         if(this.formGroup.valid) {
             this.save();
         } else {
-            console.dir(Object.values(E_INTERVAL));
-            console.dir(Object.keys(E_INTERVAL));
             form.requestSubmit();
         }
     }
@@ -61,7 +68,44 @@ export class TierDialogComponent {
     constructor(
         private readonly dialogRef: DialogRef<TierDialogComponent>
     ) {
-        // console.dir(dialogRef.config.data.a = 1000)
+        this.valueChangesSubscribe();
+    }
+
+    public valueChangesSubscribe() {
+        this.formGroup.controls.amountType.valueChanges.subscribe(value => {
+            if(value === E_AMOUNT_TYPE.FLEXIBLE) {
+                this.formGroup.controls.minimumAmount.addValidators(Validators.required);
+            } else {
+                this.formGroup.controls.minimumAmount.removeValidators(Validators.required);
+            }
+        });
+
+        const presetsSubscribe = () => {
+            const indexList: number[] = [];
+            this.formGroup.controls.presets.controls.forEach((control, index) => {
+                if(Number.isInteger(control.value)) {
+                    // this.formGroup.controls.presets.controls.splice(index, 1)
+                    indexList.push(index)
+                }
+            });
+            this.formGroup.controls.presets.controls
+                = this.formGroup.controls.presets.controls.filter((_, index) => indexList.includes(index));
+            const newItem = new FormControl<number | null>(null, [
+                Validators.required,
+                Validators.min(1)
+            ]);
+            newItem.valueChanges.subscribe(item => {
+                presetsSubscribe();
+            })
+            this.formGroup.controls.presets.controls.push(newItem);
+        }
+
+        this.formGroup.controls.presets.controls.forEach(item => {
+            item.valueChanges.subscribe(() => {
+                presetsSubscribe();
+            })
+        })
+
     }
 
     protected readonly Object = Object;

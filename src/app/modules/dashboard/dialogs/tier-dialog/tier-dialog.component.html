@@ -21,21 +21,30 @@
                 </mat-form-field>
                 <mat-form-field class="w-full">
                     <mat-label>捐赠金额类型</mat-label>
-                    <mat-select formControlName="amountType" [formControl]="formGroup.controls.amountType" required>
+                    <mat-select [formControl]="formGroup.controls.amountType" required>
                         @for (amount_type of E_AMOUNT_TYPE | enumerated; track amount_type) {
                             <mat-option [value]="amount_type">{{amount_type | translate}}</mat-option>
                         }
                     </mat-select>
                 </mat-form-field>
                 @if (formGroup.controls.amountType.value === E_AMOUNT_TYPE.FLEXIBLE) {
-                    <mat-form-field class="w-full">
-                        <mat-label>最小金额</mat-label>
-                        <input matInput formControlName="minimumAmount" [formControl]="formGroup.controls.minimumAmount" required/>
-                    </mat-form-field>
+                    <div class="grid grid-cols-3 gap-1">
+                        @for (item of this.formGroup.controls.presets.controls; track item) {
+                            <mat-form-field class="w-full">
+                                <mat-label>预设金额</mat-label>
+                                <input matInput type="number" min="0" max="90000" [formControl]="item" required />
+                            </mat-form-field>
+                        }
+                    </div>
                 }
+
+                <mat-form-field class="w-full">
+                    <mat-label>最小金额</mat-label>
+                    <input matInput formControlName="minimumAmount" [formControl]="formGroup.controls.minimumAmount" required/>
+                </mat-form-field>
                 <mat-form-field class="w-full">
                     <mat-label>接受货币</mat-label>
-                    <mat-select formControlName="currency" [formControl]="formGroup.controls.currency" required>
+                    <mat-select [formControl]="formGroup.controls.currency" required>
                         @for (currency of E_IBAN_CURRENCIES | enumerated:{pick: [E_IBAN_CURRENCIES.CNY]}; track currency) {
                             <mat-option [value]="currency">{{currency | translate }}</mat-option>
                         }
@@ -43,7 +52,7 @@
                 </mat-form-field>
                 <mat-form-field class="w-full">
                     <mat-label>捐赠周期</mat-label>
-                    <mat-select formControlName="interval" [formControl]="formGroup.controls.interval" required>
+                    <mat-select [formControl]="formGroup.controls.interval" required>
                         @for (interval of E_INTERVAL | enumerated; track interval) {
                             <mat-option [value]="interval">{{interval | translate}}</mat-option>
                         }
