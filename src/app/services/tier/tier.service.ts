@@ -9,8 +9,9 @@ import {HttpParams} from "@angular/common/http";
 export class TierService {
 
     private Urls = {
-        create: "/tier/create",
-        list: "/edit",
+        create: "/tier",
+        edit: "/tier",
+        delete: "/delete",
     }
 
     constructor(private readonly httpService: HttpService) {
