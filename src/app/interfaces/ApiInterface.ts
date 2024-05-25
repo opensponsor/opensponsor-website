@@ -338,8 +338,8 @@ export interface ResteasyConstraintViolation {
 
 export interface Tier {
   id?: UUID;
-  /** 所属组织 */
-  organization?: Organization;
+  /** 所属组织ID */
+  organizationId?: UUID;
   /**
    * url path
    * @minLength 2
@@ -351,18 +351,21 @@ export interface Tier {
    * @minLength 2
    * @maxLength 32
    */
-  name?: string;
+  name: string;
   /** 捐助等级类型 */
   type?: E_TIER_TYPE;
   /**
    * 描述
    * @maxLength 500
    */
-  description?: string;
-  /** 捐助等级类型 */
+  description: string;
+  /**
+   * 捐助等级类型
+   * @maxLength 1000
+   */
   longDescription?: string;
   /** 是否使用独立页面 */
-  useStandalonePage?: boolean;
+  useStandalonePage: boolean;
   /** 视频URL */
   videoUrl?: string;
   /**
