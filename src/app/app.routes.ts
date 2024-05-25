@@ -15,7 +15,12 @@ export const routes: Routes = [
         loadChildren: () => import('@modules/account/account.module').then(m => m.AccountModule)
     },
     {
-        path: 'organizations',
+        path: 'create',
+        component: DefaultLayoutComponent,
+        loadChildren: () => import('@modules/create/create.module').then(m => m.CreateModule)
+    },
+    {
+        path: ':name',
         component: DefaultLayoutComponent,
         loadChildren: () => import('@modules/organizations/organizations.module').then(m => m.OrganizationsModule)
     },
