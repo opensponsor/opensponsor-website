@@ -47,13 +47,22 @@
                         @for (item of this.formGroup.controls.presets.controls; track item) {
                             <mat-form-field class="w-full">
                                 <mat-label>金额</mat-label>
-                                <input matInput type="number" min="0" max="90000" [formControl]="item" required />
+                                <input matInput
+                                       type="number"
+                                       min="0"
+                                       max="90000"
+                                       [formControl]="item"
+                                       [required]="formGroup.controls.amountType.value === E_AMOUNT_TYPE.FLEXIBLE || formGroup.controls.interval.value === E_INTERVAL.FLEXIBLE" />
                             </mat-form-field>
                         }
                     </div>
                     <mat-form-field class="w-full">
                         <mat-label>最小金额</mat-label>
-                        <input matInput formControlName="minimumAmount" type="number" [formControl]="formGroup.controls.minimumAmount" required/>
+                        <input matInput
+                               formControlName="minimumAmount"
+                               type="number"
+                               [formControl]="formGroup.controls.minimumAmount"
+                               [required]="formGroup.controls.amountType.value === E_AMOUNT_TYPE.FLEXIBLE || formGroup.controls.interval.value === E_INTERVAL.FLEXIBLE"/>
                     </mat-form-field>
                 }
                 <mat-form-field class="w-full">
@@ -67,7 +76,11 @@
                 @if(formGroup.controls.type.value === E_TIER_TYPE.PRODUCT) {
                     <mat-form-field class="w-full">
                         <mat-label>库存</mat-label>
-                        <input matInput formControlName="maxQuantity" type="number" [formControl]="formGroup.controls.maxQuantity"/>
+                        <input matInput
+                               formControlName="maxQuantity"
+                               type="number"
+                               [required]="formGroup.controls.type.value === E_TIER_TYPE.PRODUCT"
+                               [formControl]="formGroup.controls.maxQuantity"/>
                     </mat-form-field>
                 }
                 <mat-form-field class="w-full">

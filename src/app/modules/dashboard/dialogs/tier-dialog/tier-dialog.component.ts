@@ -1,8 +1,16 @@
 import {Component} from '@angular/core';
 import {DialogRef} from "@angular/cdk/dialog";
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
-import {E_AMOUNT_TYPE, E_IBAN_CURRENCIES, E_INTERVAL, E_TIER_TYPE} from "@app/interfaces/ApiInterface";
+import {
+    E_AMOUNT_TYPE,
+    E_IBAN_CURRENCIES,
+    E_INTERVAL,
+    E_TIER_TYPE,
+    Organization,
+    Tier
+} from "@app/interfaces/ApiInterface";
 import transformType from "@app/utils/transformType";
+import {TierService} from "@services/tier/tier.service";
 
 @Component({
   selector: 'app-tier-dialog',
@@ -11,10 +19,10 @@ import transformType from "@app/utils/transformType";
 })
 export class TierDialogComponent {
     public formGroup = new FormGroup({
-        type: new FormControl<E_TIER_TYPE | null>(E_TIER_TYPE.DONATION, [
+        type: new FormControl<E_TIER_TYPE>(E_TIER_TYPE.DONATION, [
             Validators.required
         ]),
-        name: new FormControl(null, [
+        name: new FormControl("", [
             Validators.required,
             Validators.minLength(1),
             Validators.maxLength(64),
@@ -49,11 +57,20 @@ export class TierDialogComponent {
 
     public save() {
         if (this.formGroup.valid) {
-            console.dir(this.formGroup.value);
-        }
-        for (let controlsKey in this.formGroup.controls) {
-            if(this.formGroup.get(controlsKey)?.invalid) {
-                console.dir(this.formGroup.get(controlsKey));
+            const tier = this.formGroup.value as Tier
+            tier.organizationId = this.dialogRef.config.data.id;
+            this.tierService.create(tier).subscribe(res => {
+                if(res.status === 200) {
+                    this.dialogRef.close();
+                }
+            });
+        } else {
+            console.dir("invalid");
+            for (const formKey in this.formGroup.controls) {
+                if(this.formGroup.get(formKey)?.invalid) {
+                    console.warn(formKey)
+                    console.dir(this.formGroup.get(formKey));
+                }
             }
         }
     }
@@ -62,22 +79,37 @@ export class TierDialogComponent {
         if(this.formGroup.valid) {
             this.save();
         } else {
+            console.dir("invalid");
+            for (const formKey in this.formGroup.controls) {
+                if(this.formGroup.get(formKey)?.invalid) {
+                    console.warn(formKey)
+                    console.dir(this.formGroup.get(formKey));
+                }
+            }
             form.requestSubmit();
         }
     }
 
+    private organization: Organization = {};
+
     constructor(
-        private readonly dialogRef: DialogRef<TierDialogComponent>
+        private readonly dialogRef: DialogRef<TierDialogComponent>,
+        private readonly tierService: TierService,
     ) {
         this.valueChangesSubscribe();
     }
 
+    /**
+     * 值改变时设置其他相关字段
+     */
     public valueChangesSubscribe() {
         this.formGroup.controls.amountType.valueChanges.subscribe(value => {
             if(value === E_AMOUNT_TYPE.FLEXIBLE) {
                 this.formGroup.controls.minimumAmount.addValidators(Validators.required);
+                this.formGroup.controls.presets.controls.forEach(c => c.addValidators(Validators.required))
             } else {
                 this.formGroup.controls.minimumAmount.removeValidators(Validators.required);
+                this.formGroup.controls.presets.controls.forEach(c => c.removeValidators(Validators.required))
             }
         });
 
@@ -102,7 +134,9 @@ export class TierDialogComponent {
 
         this.formGroup.controls.presets.controls.forEach(item => {
             item.valueChanges.subscribe(() => {
-                presetsSubscribe();
+                if(this.formGroup.controls.presets.controls.length > 2) {
+                    presetsSubscribe();
+                }
             })
         })
 
