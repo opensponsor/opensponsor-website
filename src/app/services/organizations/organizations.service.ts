@@ -9,6 +9,7 @@ export class OrganizationsService {
     private Urls = {
         create: "/organizations",
         list: "/organizations",
+        get: "/organizations",
     }
 
     constructor(private httpService: HttpService) {
@@ -20,6 +21,10 @@ export class OrganizationsService {
 
     public list() {
         return this.httpService.get<Organization[]>(this.Urls.create)
+    }
+
+    public getOrganizationByName(name: string) {
+        return this.httpService.get<Organization>(`${this.Urls.get}/${name}`);
     }
 
 }
