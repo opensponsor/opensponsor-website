@@ -20,7 +20,6 @@ import {User} from "@app/interfaces/ApiInterface";
 export class DefaultHeaderComponent {
     public menuGroup = {
         left: [
-            {label: "首页", link: "/"},
             {label: "发现社区", link: "/organizations"},
         ],
         right: [
