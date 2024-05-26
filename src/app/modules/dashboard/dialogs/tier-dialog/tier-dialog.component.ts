@@ -6,8 +6,8 @@ import {
     E_IBAN_CURRENCIES,
     E_INTERVAL,
     E_TIER_TYPE,
-    Organization,
-    Tier
+    Tier,
+    UUID
 } from "@app/interfaces/ApiInterface";
 import transformType from "@app/utils/transformType";
 import {TierService} from "@services/tier/tier.service";
@@ -33,17 +33,14 @@ export class TierDialogComponent {
         useStandalonePage: new FormControl<boolean>(false, [
             Validators.required,
         ]),
+        slug: new FormControl<string>("", [
+            Validators.minLength(2),
+            Validators.maxLength(32),
+        ]),
         amount: new FormControl<number | null>(null, [
             Validators.required,
         ]),
-        presets: new FormArray([
-            new FormControl<number | null>(null, [
-                Validators.min(1),
-            ]),
-            new FormControl<number | null>(null, [
-                Validators.min(1)
-            ])
-        ]),
+        presets: new FormArray(this.presetsFormArray()),
         interval: new FormControl<E_INTERVAL>(E_INTERVAL.MONTH, []),
         amountType: new FormControl<E_AMOUNT_TYPE>(E_AMOUNT_TYPE.FIXED, [
             Validators.required,
@@ -55,15 +52,43 @@ export class TierDialogComponent {
         button: new FormControl<string>("贡献", []),
     });
 
+    private presetsFormArray() {
+        if(this.dialogRef.config.data.tier && this.dialogRef.config.data.tier.presets.length > 0) {
+            return this.dialogRef.config.data.tier.presets.map((p: number) => {
+                return new FormControl<number | null>(p, [
+                    Validators.min(1),
+                ])
+            }) as FormControl[];
+        } else {
+            return [
+                new FormControl<number | null>(null, [
+                    Validators.min(1),
+                ]),
+                new FormControl<number | null>(null, [
+                    Validators.min(1)
+                ])
+            ]
+        }
+    }
+
     public save() {
         if (this.formGroup.valid) {
             const tier = this.formGroup.value as Tier
-            tier.organizationId = this.dialogRef.config.data.id;
-            this.tierService.create(tier).subscribe(res => {
-                if(res.status === 200) {
-                    this.dialogRef.close();
-                }
-            });
+            tier.organization = this.dialogRef.config.data.org;
+            if(this.dialogRef.config.data.tier) {
+                tier.id = this.dialogRef.config.data.tier.id;
+                this.tierService.update(tier).subscribe(res => {
+                    if(res.status === 200) {
+                        this.dialogRef.close();
+                    }
+                });
+            } else {
+                this.tierService.create(tier).subscribe(res => {
+                    if(res.status === 200) {
+                        this.dialogRef.close();
+                    }
+                });
+            }
         } else {
             console.dir("invalid");
             for (const formKey in this.formGroup.controls) {
@@ -90,13 +115,23 @@ export class TierDialogComponent {
         }
     }
 
-    private organization: Organization = {};
-
     constructor(
         private readonly dialogRef: DialogRef<TierDialogComponent>,
         private readonly tierService: TierService,
     ) {
         this.valueChangesSubscribe();
+
+        this.initializeValue();
+    }
+
+    private initializeValue() {
+        if(this.dialogRef.config.data.tier) {
+            for (let controlsKey in this.formGroup.controls) {
+                if(controlsKey !== 'presets') {
+                    this.formGroup.get(controlsKey)?.setValue(this.dialogRef.config.data.tier[controlsKey])
+                }
+            }
+        }
     }
 
     /**

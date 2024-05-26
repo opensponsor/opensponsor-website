@@ -56,7 +56,7 @@ export class LayoutComponent {
         },
         {
             label: '贡献等级',
-            link: 'grade',
+            link: 'tiers',
             icon: 'diamond'
         },
         {

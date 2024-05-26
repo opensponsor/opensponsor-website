@@ -1,5 +1,5 @@
 import {afterNextRender, Component} from '@angular/core';
-import {Organization, UUID} from "@app/interfaces/ApiInterface";
+import {Organization, Tier, UUID} from "@app/interfaces/ApiInterface";
 import {DialogService} from "@services/dialog/dialog.service";
 import {TierDialogComponent} from "@modules/dashboard/dialogs/tier-dialog/tier-dialog.component";
 import {ActivatedRoute} from "@angular/router";
@@ -12,14 +12,15 @@ import {Platform} from "@angular/cdk/platform";
   styleUrl: './tiers.component.scss'
 })
 export class TiersComponent {
-    public organization: Organization = {};
+    public organization: Partial<Organization> = {};
+
     constructor(
         private readonly dialogService: DialogService,
         private readonly activatedRoute: ActivatedRoute,
         private readonly organizationsService: OrganizationsService,
         private readonly platform: Platform,
     ) {
-        if(platform.isBrowser) {
+        if(this.platform.isBrowser) {
             this.getOrg();
         }
     }
@@ -32,10 +33,10 @@ export class TiersComponent {
         })
     }
 
-    public openDialog(id?: UUID) {
+    public openDialog(tier?: Tier) {
         const ref = this.dialogService.open(TierDialogComponent, {
             disableClose: true,
-            data: this.organization
+            data: {org: this.organization, tier: tier}
         }).afterClosed().subscribe(res => {
             this.getOrg();
         })
