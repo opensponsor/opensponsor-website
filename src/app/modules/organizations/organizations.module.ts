@@ -6,14 +6,13 @@ import {MatButtonModule,} from "@angular/material/button";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatIconModule} from "@angular/material/icon";
 import {MatCardModule} from "@angular/material/card";
-import { IndexComponent } from './index/index.component';
+import {TierCardComponent} from "@app/components/tier-card/tier-card.component";
 
 const routes: Routes = [
     {
         path: '',
         children: [
-            {path: '', component: IndexComponent, pathMatch: 'full'},
-            {path: ':name', component: InfoComponent, pathMatch: 'full'},
+            {path: '', component: InfoComponent, pathMatch: 'full'},
         ]
     },
 ];
@@ -21,7 +20,6 @@ const routes: Routes = [
 @NgModule({
     declarations: [
         InfoComponent,
-        IndexComponent,
     ],
     imports: [
         CommonModule,
@@ -30,6 +28,7 @@ const routes: Routes = [
         MatIconModule,
         MatDividerModule,
         MatCardModule,
+        TierCardComponent,
     ],
 })
 export class OrganizationsModule {

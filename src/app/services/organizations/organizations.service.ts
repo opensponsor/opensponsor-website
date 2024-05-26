@@ -15,7 +15,7 @@ export class OrganizationsService {
     constructor(private httpService: HttpService) {
     }
 
-    public create(organization: Organization) {
+    public create(organization: Partial<Organization>) {
         return this.httpService.post<Organization>(this.Urls.create, organization)
     }
 
