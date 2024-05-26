@@ -21,7 +21,7 @@ export class TierService {
         return this.httpService.post<Tier>(this.Urls.create, tier);
     }
 
-    public edit(tier: Tier) {
+    public update(tier: Tier) {
         return this.httpService.put<Tier>(this.Urls.create, tier);
     }
 
