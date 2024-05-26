@@ -125,7 +125,7 @@ export class FormComponent {
 
     public save() {
         if (this.formGroup.valid) {
-            const data = this.formGroup.value as Organization;
+            const data = this.formGroup.value as Partial<Organization>;
             data.tags = [...this.tags];
             this.organizationsService.create(data).subscribe(res => {
                 console.dir(res.body);
