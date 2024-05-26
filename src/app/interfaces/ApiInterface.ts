@@ -274,38 +274,57 @@ export interface LoginBody {
 }
 
 export interface Organization {
-  id?: UUID;
+  id: UUID;
   /**
+   * Organization name
    * @minLength 2
    * @maxLength 32
    */
-  name?: string;
-  /** @maxLength 32 */
+  name: string;
+  /**
+   * Organization legal name
+   * @minLength 2
+   * @maxLength 32
+   */
   legalName?: string;
   /**
+   * url slug
    * @minLength 2
    * @maxLength 32
    */
-  slug?: string;
+  slug: string;
   /**
+   * introduce
    * @minLength 2
    * @maxLength 150
    */
   introduce?: string;
-  type?: E_ORGANIZATION_TYPE;
-  /** @uniqueItems true */
-  tags?: string[];
   /**
+   * organization types
    * @minLength 2
-   * @maxLength 32
+   * @maxLength 150
+   */
+  type: E_ORGANIZATION_TYPE;
+  /**
+   * organization tags
+   * @uniqueItems true
+   */
+  tags: string[];
+  /**
+   * website url
+   * @minLength 2
+   * @maxLength 150
    */
   website?: string;
   /** 捐助等级 */
-  tiers?: Tier[];
-  /** Organization Owner */
-  user?: User;
-  whenCreated?: Instant;
-  whenModified?: Instant;
+  tiers: Tier[];
+  /** 所属用户 */
+  user: User;
+  /** when created */
+  whenCreated: Instant;
+  /** when modified */
+  whenModified: Instant;
+  /** when deleted */
   whenDeleted?: Instant;
 }
 
@@ -338,8 +357,8 @@ export interface ResteasyConstraintViolation {
 
 export interface Tier {
   id?: UUID;
-  /** 所属组织ID */
-  organizationId?: UUID;
+  /** 所属组织 */
+  organization: Organization;
   /**
    * url path
    * @minLength 2
