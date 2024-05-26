@@ -19,11 +19,11 @@ export const routes: Routes = [
         component: DefaultLayoutComponent,
         loadChildren: () => import('@modules/create/create.module').then(m => m.CreateModule)
     },
-    {
-        path: ':name',
-        component: DefaultLayoutComponent,
-        loadChildren: () => import('@modules/organizations/organizations.module').then(m => m.OrganizationsModule)
-    },
+    // {
+    //     path: 'explore',
+    //     component: DefaultLayoutComponent,
+    //     loadChildren: () => import('@modules/explore/explore.module').then(m => m.ExploreModule)
+    // },
     {
         path: 'passport',
         component: DefaultLayoutComponent,
@@ -33,5 +33,10 @@ export const routes: Routes = [
         path: 'dashboard',
         component: PureLayoutComponent,
         loadChildren: () => import('@modules/dashboard/dashboard.module').then(m => m.DashboardModule)
+    },
+    {
+        path: ':name',
+        component: FullWidthLayoutComponent,
+        loadChildren: () => import('@modules/organizations/organizations.module').then(m => m.OrganizationsModule)
     },
 ];
