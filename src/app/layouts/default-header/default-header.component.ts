@@ -21,10 +21,10 @@ export class DefaultHeaderComponent {
     public menuGroup = {
         left: [
             {label: "首页", link: "/"},
-            {label: "价格", link: "/product/price"},
+            {label: "发现社区", link: "/organizations"},
         ],
         right: [
-            {label: "发起预约", link: "/booking/create"},
+            {label: "发起预约", link: "/create"},
         ]
     };
 
