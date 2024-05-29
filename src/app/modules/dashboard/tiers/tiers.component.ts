@@ -5,6 +5,7 @@ import {TierDialogComponent} from "@modules/dashboard/dialogs/tier-dialog/tier-d
 import {ActivatedRoute} from "@angular/router";
 import {OrganizationsService} from "@services/organizations/organizations.service";
 import {Platform} from "@angular/cdk/platform";
+import {RouteService} from "@services/route/route.service";
 
 @Component({
   selector: 'app-tiers',
@@ -19,7 +20,9 @@ export class TiersComponent {
         private readonly activatedRoute: ActivatedRoute,
         private readonly organizationsService: OrganizationsService,
         private readonly platform: Platform,
+        private readonly routeService: RouteService,
     ) {
+        this.routeService.setSnapshot(this.activatedRoute.snapshot);
         if(this.platform.isBrowser) {
             this.getOrg();
         }

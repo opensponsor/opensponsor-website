@@ -3,11 +3,11 @@ import {ActivatedRoute} from "@angular/router";
 import {RouteService} from "@services/route/route.service";
 
 @Component({
-  selector: 'app-security',
-  templateUrl: './security.component.html',
-  styleUrl: './security.component.scss'
+  selector: 'app-index',
+  templateUrl: './index.component.html',
+  styleUrl: './index.component.scss'
 })
-export class SecurityComponent {
+export class IndexComponent {
     constructor(
         private readonly activatedRoute: ActivatedRoute,
         private readonly routeService: RouteService,

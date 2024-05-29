@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {SettingComponent} from './setting/setting.component';
 import {RouterModule, Routes} from "@angular/router";
 import {LayoutComponent} from './layout/layout.component';
 import {MatExpansionModule} from "@angular/material/expansion";
@@ -26,13 +25,14 @@ import {MatSelectModule} from "@angular/material/select";
 import {TierCardComponent} from "@app/components/tier-card/tier-card.component";
 import {TranslatePipe} from "@app/pipes/translate/translate.pipe";
 import {EnumeratedPipe} from "@app/pipes/enumerated/enumerated.pipe";
+import { IndexComponent } from './index/index.component';
 
 const routes: Routes = [
     {
         path: '',
         component: LayoutComponent,
         children: [
-            {path: ':name', component: SettingComponent, pathMatch: 'full'},
+            {path: ':name', component: IndexComponent, pathMatch: 'full'},
             {path: ':name/profile', component: ProfileComponent, pathMatch: 'full'},
             {path: ':name/team', component: TeamComponent, pathMatch: 'full'},
             {path: ':name/tiers', component: TiersComponent, pathMatch: 'full'},
@@ -49,7 +49,6 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [
-        SettingComponent,
         LayoutComponent,
         ProfileComponent,
         TeamComponent,
@@ -60,6 +59,7 @@ const routes: Routes = [
         DevelopmentComponent,
         TiersComponent,
         TierDialogComponent,
+        IndexComponent,
     ],
     imports: [
         CommonModule,
