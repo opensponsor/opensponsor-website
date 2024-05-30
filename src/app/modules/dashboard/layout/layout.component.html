@@ -7,8 +7,8 @@
         </div>
         <nav class="flex flex-1 flex-col">
             <mat-accordion displayMode="flat">
-                <ng-template class="!shadow-none" *ngFor="let menu of menus" [ngIf]="true">
-                    <mat-expansion-panel #panel [expanded]="menu.active" class="!shadow-none" *ngIf="menu.children && menu.children.length > 0">
+                <ng-template *ngFor="let menu of menus" [ngIf]="true">
+                    <mat-expansion-panel [expanded]="menu.active" class="!shadow-none !rounded-none" *ngIf="menu.children && menu.children.length > 0">
                         <mat-expansion-panel-header>
                             <mat-panel-title class="gap-1">
                                 <mat-icon>{{menu.icon}}</mat-icon> {{menu.label}}
@@ -26,7 +26,7 @@
                             </a>
                         </mat-list>
                     </mat-expansion-panel>
-                    <div class="mat-expansion-panel !shadow-none" *ngIf="!menu.children || menu?.children?.length === 0">
+                    <div class="mat-expansion-panel !rounded-none !shadow-none" *ngIf="!menu.children || menu?.children?.length === 0">
                         <a [routerLink]="trimUrl([rootPath, menu.link])"
                            [ngClass]="{'!bg-gray-200': menu.active}"
                            class="!cursor-pointer w-full mat-expansion-panel-header mat-focus-indicator mat-expansion-toggle-indicator-after gap-1">

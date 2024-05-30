@@ -26,6 +26,7 @@ import {TierCardComponent} from "@app/components/tier-card/tier-card.component";
 import {TranslatePipe} from "@app/pipes/translate/translate.pipe";
 import {EnumeratedPipe} from "@app/pipes/enumerated/enumerated.pipe";
 import { IndexComponent } from './index/index.component';
+import { ContributorComponent } from './contributor/contributor.component';
 
 const routes: Routes = [
     {
@@ -38,6 +39,7 @@ const routes: Routes = [
             {path: ':name/tiers', component: TiersComponent, pathMatch: 'full'},
 
             {path: ':name/profile', component: ProfileComponent, pathMatch: 'full'},
+            {path: ':name/contributor', component: ContributorComponent, pathMatch: 'full'},
             {path: ':name/security', component: SecurityComponent, pathMatch: 'full'},
             {path: ':name/social', component: SocialComponent, pathMatch: 'full'},
             {path: ':name/payment', component: PaymentComponent, pathMatch: 'full'},
@@ -60,6 +62,7 @@ const routes: Routes = [
         TiersComponent,
         TierDialogComponent,
         IndexComponent,
+        ContributorComponent,
     ],
     imports: [
         CommonModule,

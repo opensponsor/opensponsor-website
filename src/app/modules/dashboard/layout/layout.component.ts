@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {RouteService} from "@services/route/route.service";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 
 type Menu = {
     label: string;
@@ -38,7 +37,7 @@ export class LayoutComponent {
         },
         {
             label: '贡献者',
-            link: '',
+            link: 'contributor',
             icon: 'apps'
         },
         {
@@ -54,7 +53,7 @@ export class LayoutComponent {
         },
         {
             label: 'Team',
-            link: '',
+            link: 'team',
             icon: 'group'
         },
         {
@@ -104,21 +103,24 @@ export class LayoutComponent {
 
     public constructor(
         private readonly activatedRoute: ActivatedRoute,
-        private readonly routeService: RouteService,
+        private readonly router: Router,
     ) {
-        this.activatedRoute.firstChild?.url.subscribe(segments => {
-            this.rootPath = ['/dashboard', segments[0].path].join("/");
-        });
-
-        this.routeService.currentRoute$.subscribe((snapshot) => {
-            if(snapshot?.routeConfig?.path) {
-                this.configPath = snapshot?.routeConfig?.path;
+        this.activatedRoute.firstChild?.params.subscribe(value => {
+            this.rootPath = ['/dashboard', value['name']].join("/");
+            this.activeMenu();
+        })
+        this.router.events.subscribe((e) => {
+            if(e instanceof NavigationEnd) {
                 this.activeMenu();
             }
         })
     }
 
     public activeMenu() {
+        if(this.activatedRoute.snapshot.children && this.activatedRoute.snapshot.children[0].routeConfig?.path) {
+            this.configPath = this.activatedRoute.snapshot.children[0].routeConfig?.path;
+        }
+
         this.menus.forEach(menu => {
             if(menu.children && menu.children.length > 0) {
                 menu.children.forEach(child => {
