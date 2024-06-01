@@ -1,2 +1,5 @@
-<p>profile works!</p>
-<p>{{this.organizationsService.organization?.name}}</p>
+@if (organizationsService.organization) {
+    <app-organization-form
+        [data]="organizationsService.organization"
+        [organizationType]="organizationsService.organization?.type || E_ORGANIZATION_TYPE.COMMUNITY" />
+}

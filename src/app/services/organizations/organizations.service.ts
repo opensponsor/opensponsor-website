@@ -10,6 +10,7 @@ export class OrganizationsService {
 
     private Urls = {
         create: "/organizations",
+        update: "/organizations",
         list: "/organizations",
         get: "/organizations",
     }
@@ -19,6 +20,10 @@ export class OrganizationsService {
 
     public create(organization: Partial<Organization>) {
         return this.httpService.post<Organization>(this.Urls.create, organization)
+    }
+
+    public update(organization: Partial<Organization>) {
+        return this.httpService.put<Organization>(this.Urls.update, organization)
     }
 
     public list() {

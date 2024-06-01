@@ -27,6 +27,7 @@ import {TranslatePipe} from "@app/pipes/translate/translate.pipe";
 import {EnumeratedPipe} from "@app/pipes/enumerated/enumerated.pipe";
 import { IndexComponent } from './index/index.component';
 import { ContributorComponent } from './contributor/contributor.component';
+import {OrganizationFormComponent} from "@app/forms/organization-form/organization-form.component";
 
 const routes: Routes = [
     {
@@ -81,6 +82,7 @@ const routes: Routes = [
         TierCardComponent,
         TranslatePipe,
         EnumeratedPipe,
+        OrganizationFormComponent,
     ]
 })
 export class DashboardModule {

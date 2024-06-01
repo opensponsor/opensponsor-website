@@ -1,4 +1,4 @@
-import {Component, inject, Input} from '@angular/core';
+import {Component, inject, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatCardModule} from "@angular/material/card";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -15,6 +15,8 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {OrganizationsService} from "@services/organizations/organizations.service";
 import {E_ORGANIZATION_TYPE, Organization} from "@app/interfaces/ApiInterface";
+import {SnackBarService} from "@services/snack-bar/snack-bar.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-organization-form',
@@ -35,12 +37,18 @@ import {E_ORGANIZATION_TYPE, Organization} from "@app/interfaces/ApiInterface";
     templateUrl: './organization-form.component.html',
     styleUrl: './organization-form.component.scss'
 })
-export class OrganizationFormComponent {
+export class OrganizationFormComponent implements OnInit {
     @Input({
         required: true,
         transform: (value: E_ORGANIZATION_TYPE) => value
     })
     organizationType: E_ORGANIZATION_TYPE = E_ORGANIZATION_TYPE.COMMUNITY;
+
+    // update organization
+    @Input({
+        required: false,
+    })
+    data: Organization | undefined;
 
     // @Input({
     //     required: true,
@@ -85,9 +93,11 @@ export class OrganizationFormComponent {
 
     constructor(
         private readonly platform: Platform,
+        private readonly snackBarService: SnackBarService,
+        private readonly router: Router,
         private readonly organizationsService: OrganizationsService
     ) {
-        if(platform.isBrowser) {
+        if(this.platform.isBrowser) {
             this.urlOrigin = [location?.origin, '/'].join("");
         }
 
@@ -95,6 +105,19 @@ export class OrganizationFormComponent {
             startWith(''),
             map((value: any) => this._filter(value || '')),
         );
+    }
+
+    ngOnInit() {
+        if(this.data) {
+            const record: Record<string, any> = this.data;
+            for (let controlsKey in this.formGroup.controls) {
+                if(record[controlsKey] && this.formGroup.get(controlsKey)) {
+                    this.formGroup.get(controlsKey)?.setValue(record[controlsKey]);
+                }
+            }
+
+            this.formGroup.controls.name.disable();
+        }
     }
 
     private _filter(value: string): string[] {
@@ -125,11 +148,21 @@ export class OrganizationFormComponent {
 
     public save() {
         if (this.formGroup.valid) {
-            const data = this.formGroup.value as Partial<Organization>;
-            data.tags = [...this.tags];
-            this.organizationsService.create(data).subscribe(res => {
-                console.dir(res.body);
-            })
+            if(this.data) {
+                const data = {...this.data, ...this.formGroup.value} as Organization;
+                data.tags = [...this.tags];
+                // data.user;
+                this.organizationsService.update(data).subscribe(res => {
+                    this.snackBarService.message({message: '更新完成'})
+                })
+            } else {
+                const data = this.formGroup.value as Partial<Organization>;
+                this.organizationsService.create(data).subscribe(res => {
+                    this.router.navigate(['/dashboard/', res.body?.name]).then(() => {
+                        this.snackBarService.message({message: '组织已经创建'});
+                    })
+                })
+            }
         }
     }
 }
