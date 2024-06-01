@@ -7,7 +7,7 @@ import {FiscalHostComponent} from './fiscal-host/fiscal-host.component';
 import {LayoutComponent} from './layout/layout.component';
 import {MatAnchor, MatButton} from "@angular/material/button";
 import {RouterLink, RouterModule, RouterOutlet, Routes} from "@angular/router";
-import {FormComponent} from "@modules/create/form/form.component";
+import {OrganizationFormComponent} from "@app/forms/organization-form/organization-form.component";
 
 const routes: Routes = [
     {
@@ -37,7 +37,7 @@ const routes: Routes = [
         RouterOutlet,
         MatAnchor,
         RouterLink,
-        FormComponent
+        OrganizationFormComponent
     ]
 })
 export class CreateModule {

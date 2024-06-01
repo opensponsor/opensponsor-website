@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
+import {OrganizationsService} from "@services/organizations/organizations.service";
+import {Platform} from "@angular/cdk/platform";
 
 type Menu = {
     label: string;
@@ -104,16 +106,21 @@ export class LayoutComponent {
     public constructor(
         private readonly activatedRoute: ActivatedRoute,
         private readonly router: Router,
+        private readonly platform: Platform,
+        private readonly organizationsService: OrganizationsService,
     ) {
-        this.activatedRoute.firstChild?.params.subscribe(value => {
-            this.rootPath = ['/dashboard', value['name']].join("/");
-            this.activeMenu();
-        })
-        this.router.events.subscribe((e) => {
-            if(e instanceof NavigationEnd) {
+        if(platform.isBrowser) {
+            this.activatedRoute.firstChild?.params.subscribe(value => {
+                this.rootPath = ['/dashboard', value['name']].join("/");
+                this.organizationsService.getOrganizationByName(value['name']).subscribe();
                 this.activeMenu();
-            }
-        })
+            })
+            this.router.events.subscribe((e) => {
+                if(e instanceof NavigationEnd) {
+                    this.activeMenu();
+                }
+            })
+        }
     }
 
     public activeMenu() {

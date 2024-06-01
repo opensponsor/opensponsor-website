@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {OrganizationsService} from "@services/organizations/organizations.service";
 
 @Component({
   selector: 'app-profile',
@@ -8,8 +8,8 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ProfileComponent {
     constructor(
-        private readonly activatedRoute: ActivatedRoute,
+        protected readonly organizationsService: OrganizationsService,
     ) {
-
+        console.dir(this.organizationsService.organization);
     }
 }

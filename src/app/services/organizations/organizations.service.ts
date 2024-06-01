@@ -6,6 +6,8 @@ import {Organization} from "@app/interfaces/ApiInterface";
     providedIn: 'root'
 })
 export class OrganizationsService {
+    public organization: Organization | undefined;
+
     private Urls = {
         create: "/organizations",
         list: "/organizations",
@@ -24,7 +26,12 @@ export class OrganizationsService {
     }
 
     public getOrganizationByName(name: string) {
-        return this.httpService.get<Organization>(`${this.Urls.get}/${name}`);
+        return this.httpService.get<Organization>(`${this.Urls.get}/${name}`).pipe(res => {
+            res.subscribe(data => {
+                this.organization = data.body as Organization;
+            })
+            return res;
+        });
     }
 
 }

@@ -17,7 +17,7 @@ import {OrganizationsService} from "@services/organizations/organizations.servic
 import {E_ORGANIZATION_TYPE, Organization} from "@app/interfaces/ApiInterface";
 
 @Component({
-    selector: 'app-form',
+    selector: 'app-organization-form',
     standalone: true,
     imports: [
         MatCardModule,
@@ -32,10 +32,10 @@ import {E_ORGANIZATION_TYPE, Organization} from "@app/interfaces/ApiInterface";
         AsyncPipe,
         MatChipsModule
     ],
-    templateUrl: './form.component.html',
-    styleUrl: './form.component.scss'
+    templateUrl: './organization-form.component.html',
+    styleUrl: './organization-form.component.scss'
 })
-export class FormComponent {
+export class OrganizationFormComponent {
     @Input({
         required: true,
         transform: (value: E_ORGANIZATION_TYPE) => value

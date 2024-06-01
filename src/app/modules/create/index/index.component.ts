@@ -9,7 +9,7 @@ export class IndexComponent {
     public createList = [
         {
             logo: "https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg",
-            link: "/create/open-source",
+            link: "/create/open-source-community",
             text: "创建开源社区",
             description: "https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg",
         },

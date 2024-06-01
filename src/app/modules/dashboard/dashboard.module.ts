@@ -18,7 +18,7 @@ import {MatInput} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { TiersComponent } from './tiers/tiers.component';
 import { TierDialogComponent } from './dialogs/tier-dialog/tier-dialog.component';
-import {MatRipple, MatRippleModule} from "@angular/material/core";
+import {MatRippleModule} from "@angular/material/core";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatSelectModule} from "@angular/material/select";
@@ -37,8 +37,6 @@ const routes: Routes = [
             {path: ':name/profile', component: ProfileComponent, pathMatch: 'full'},
             {path: ':name/team', component: TeamComponent, pathMatch: 'full'},
             {path: ':name/tiers', component: TiersComponent, pathMatch: 'full'},
-
-            {path: ':name/profile', component: ProfileComponent, pathMatch: 'full'},
             {path: ':name/contributor', component: ContributorComponent, pathMatch: 'full'},
             {path: ':name/security', component: SecurityComponent, pathMatch: 'full'},
             {path: ':name/social', component: SocialComponent, pathMatch: 'full'},
@@ -46,7 +44,7 @@ const routes: Routes = [
             {path: ':name/development', component: DevelopmentComponent, pathMatch: 'full'},
             {path: ':name/webhook', component: WebhookComponent, pathMatch: 'full'},
         ]
-    }
+    },
 ]
 
 @NgModule({
