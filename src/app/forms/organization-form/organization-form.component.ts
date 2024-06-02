@@ -48,12 +48,12 @@ export class OrganizationFormComponent implements OnInit {
     @Input({
         required: false,
     })
-    data: Organization | undefined;
+    data: Partial<Organization> = {};
 
     // @Input({
     //     required: true,
     // })
-    tags: Set<string> = new Set();
+    tags: Set<string> = new Set(this.data?.tags || []);
 
     readonly separatorKeysCodes = [ENTER, COMMA] as const;
     announcer = inject(LiveAnnouncer);
@@ -108,14 +108,16 @@ export class OrganizationFormComponent implements OnInit {
     }
 
     ngOnInit() {
+        const ignore = ['tags'];
         if(this.data) {
             const record: Record<string, any> = this.data;
             for (let controlsKey in this.formGroup.controls) {
-                if(record[controlsKey] && this.formGroup.get(controlsKey)) {
+                if(record[controlsKey] && this.formGroup.get(controlsKey) && !ignore.includes(controlsKey)) {
                     this.formGroup.get(controlsKey)?.setValue(record[controlsKey]);
                 }
             }
 
+            this.data.tags?.forEach(t => this.tags.add(t))
             this.formGroup.controls.name.disable();
         }
     }
