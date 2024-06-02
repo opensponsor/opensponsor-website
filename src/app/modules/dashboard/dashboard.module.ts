@@ -10,7 +10,6 @@ import { TeamComponent } from './team/team.component';
 import { SecurityComponent } from './security/security.component';
 import { SocialComponent } from './social/social.component';
 import { WebhookComponent } from './webhook/webhook.component';
-import { PaymentComponent } from './payment/payment.component';
 import { DevelopmentComponent } from './development/development.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
@@ -28,6 +27,8 @@ import {EnumeratedPipe} from "@app/pipes/enumerated/enumerated.pipe";
 import { IndexComponent } from './index/index.component';
 import { ContributorComponent } from './contributor/contributor.component';
 import {OrganizationFormComponent} from "@app/forms/organization-form/organization-form.component";
+import { SendingMoneyComponent } from './sending-money/sending-money.component';
+import { ReceivingMoneyComponent } from './receiving-money/receiving-money.component';
 
 const routes: Routes = [
     {
@@ -41,7 +42,8 @@ const routes: Routes = [
             {path: ':name/contributor', component: ContributorComponent, pathMatch: 'full'},
             {path: ':name/security', component: SecurityComponent, pathMatch: 'full'},
             {path: ':name/social', component: SocialComponent, pathMatch: 'full'},
-            {path: ':name/payment', component: PaymentComponent, pathMatch: 'full'},
+            {path: ':name/sending-money', component: SendingMoneyComponent, pathMatch: 'full'},
+            {path: ':name/receiving-money', component: ReceivingMoneyComponent, pathMatch: 'full'},
             {path: ':name/development', component: DevelopmentComponent, pathMatch: 'full'},
             {path: ':name/webhook', component: WebhookComponent, pathMatch: 'full'},
         ]
@@ -56,12 +58,13 @@ const routes: Routes = [
         SecurityComponent,
         SocialComponent,
         WebhookComponent,
-        PaymentComponent,
         DevelopmentComponent,
         TiersComponent,
         TierDialogComponent,
         IndexComponent,
         ContributorComponent,
+        SendingMoneyComponent,
+        ReceivingMoneyComponent,
     ],
     imports: [
         CommonModule,

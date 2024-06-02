@@ -88,8 +88,12 @@ export class LayoutComponent {
                     link: ''
                 },
                 {
-                    label: '支付方式',
-                    link: 'payment'
+                    label: '付款设置',
+                    link: 'sending-money'
+                },
+                {
+                    label: '首款设置',
+                    link: 'receiving-money'
                 },
                 {
                     label: '开发',
