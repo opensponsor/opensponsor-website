@@ -27,15 +27,15 @@ export class DialogService {
         });
     }
 
-    public openXS<T, R>(component: ComponentType<any>, config: MatDialogConfig) {
+    public openXS<T, R>(component: ComponentType<any>, config?: MatDialogConfig) {
         return this.open<T, R>(component, {...{width: "30vw"}, ...config});
     }
 
-    public openMD<T, R>(component: ComponentType<any>, config: MatDialogConfig) {
+    public openMD<T, R>(component: ComponentType<any>, config?: MatDialogConfig) {
         return this.open<T, R>(component, {...{width: "60vw"}, ...config});
     }
 
-    public openLG<T, R>(component: ComponentType<any>, config: MatDialogConfig) {
+    public openLG<T, R>(component: ComponentType<any>, config?: MatDialogConfig) {
         return this.open<T, R>(component, {...{width: "80vw"}, ...config});
     }
 
