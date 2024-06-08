@@ -50,8 +50,8 @@ export class AuthService {
     public persistAuth(user: User) {
         if (user && user.token?.token) {
             localStorage.setItem("accessToken", user.token.token);
-            this.authInfo.set(user);
         }
+        this.authInfo.set(user);
     }
 
     public removeAuthInfo() {
