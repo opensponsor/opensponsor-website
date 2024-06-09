@@ -30,6 +30,13 @@ export class OrganizationsService {
         return this.httpService.get<Organization[]>(this.Urls.create)
     }
 
+    // refresh organization data
+    public refresh() {
+        if(this.organization?.name) {
+            this.getOrganizationByName(this.organization?.name);
+        }
+    }
+
     public getOrganizationByName(name: string) {
         return this.httpService.get<Organization>(`${this.Urls.get}/${name}`).pipe(res => {
             res.subscribe(data => {
