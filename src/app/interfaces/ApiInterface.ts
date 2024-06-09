@@ -51,6 +51,42 @@ export interface CountryCodes {
   whenDeleted?: Instant;
 }
 
+export interface DebitCard {
+  id?: UUID;
+  /**
+   * Debit Card No
+   * @minLength 16
+   * @maxLength 22
+   */
+  cardNo?: string;
+  /**
+   * legal name
+   * @minLength 2
+   * @maxLength 16
+   */
+  legalName?: string;
+  /** User country code */
+  countryCode?: CountryCodes;
+  /**
+   * @minLength 4
+   * @maxLength 11
+   */
+  phoneNumber?: string;
+  /**
+   * bank name
+   * @minLength 2
+   * @maxLength 64
+   */
+  bankName?: string;
+  /** create for organization */
+  organization?: Organization;
+  /** create by user */
+  user?: User;
+  whenCreated?: Instant;
+  whenModified?: Instant;
+  whenDeleted?: Instant;
+}
+
 export enum E_AMOUNT_TYPE {
   FIXED = "FIXED",
   FLEXIBLE = "FLEXIBLE",
@@ -234,6 +270,12 @@ export enum E_INTERVAL {
   FLEXIBLE = "FLEXIBLE",
 }
 
+export enum E_ORGANIZATION_ROLE {
+  ADMIN = "ADMIN",
+  MEMBER = "MEMBER",
+  ACCOUNTANT = "ACCOUNTANT",
+}
+
 export enum E_ORGANIZATION_TYPE {
   FISCAL_HOST = "FISCAL_HOST",
   COMMUNITY = "COMMUNITY",
@@ -271,6 +313,19 @@ export interface LoginBody {
    * @pattern \S
    */
   password: string;
+}
+
+export interface Member {
+  id?: UUID;
+  /** user */
+  user: User;
+  /** organization */
+  organization: Organization;
+  /** member role */
+  roles: E_ORGANIZATION_ROLE;
+  whenCreated?: Instant;
+  whenModified?: Instant;
+  whenDeleted?: Instant;
 }
 
 export interface Organization {
@@ -320,6 +375,13 @@ export interface Organization {
   tiers: Tier[];
   /** 所属用户 */
   user: User;
+  /**
+   * members
+   * @uniqueItems true
+   */
+  members: Member[];
+  /** receiving-money debitCard */
+  debitCard?: DebitCard;
   /** when created */
   whenCreated: Instant;
   /** when modified */
