@@ -29,6 +29,7 @@ import { ContributorComponent } from './contributor/contributor.component';
 import {OrganizationFormComponent} from "@app/forms/organization-form/organization-form.component";
 import { SendingMoneyComponent } from './sending-money/sending-money.component';
 import { ReceivingMoneyComponent } from './receiving-money/receiving-money.component';
+import { DebitCardDialogComponent } from './dialogs/debit-card-dialog/debit-card-dialog.component';
 
 const routes: Routes = [
     {
@@ -65,6 +66,7 @@ const routes: Routes = [
         ContributorComponent,
         SendingMoneyComponent,
         ReceivingMoneyComponent,
+        DebitCardDialogComponent,
     ],
     imports: [
         CommonModule,
