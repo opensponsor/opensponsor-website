@@ -1,1 +1,28 @@
-<p>receiving-money works!</p>
+<div class="space-y-4">
+    <div class="text-xl">收款设置</div>
+    <div class="grid grid-cols-1 gap-2">
+        @if (organizationsService?.organization?.debitCard) {
+            <div class="item">
+                <div class="flex gap-2 items-center">
+                    收款银行: {{organizationsService?.organization?.debitCard?.bankName}}
+                    <button mat-stroked-button (click)="openDialog()">
+                        修改
+                    </button>
+                </div>
+
+                <div class="mt-2">
+                    <mat-divider></mat-divider>
+                </div>
+            </div>
+        } @else {
+            <div class="item">
+                <div>
+                    <button mat-stroked-button (click)="openDialog()">设置储蓄卡</button>
+                </div>
+                <div class="mt-2">
+                    <mat-divider></mat-divider>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -10,8 +10,8 @@ export class TierService {
 
     private Urls = {
         create: "/tier",
-        edit: "/tier",
-        delete: "/delete",
+        update: "/tier",
+        delete: "/tier",
     }
 
     constructor(private readonly httpService: HttpService) {
@@ -22,13 +22,13 @@ export class TierService {
     }
 
     public update(tier: Tier) {
-        return this.httpService.put<Tier>(this.Urls.create, tier);
+        return this.httpService.put<Tier>(this.Urls.update, tier);
     }
 
     public delete(tier: Tier) {
         const params = new HttpParams();
         params.set('id', String(tier.id))
-        return this.httpService.delete(this.Urls.create, params);
+        return this.httpService.delete(this.Urls.delete, params);
     }
 
 

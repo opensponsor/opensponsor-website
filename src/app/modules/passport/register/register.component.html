@@ -1,25 +1,3 @@
-<!--
-  This example requires some changes to your config:
-
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
-<!--
-  This example requires updating your template:
-
-  ```
-  <html class="h-full bg-gray-50">
-  <body class="h-full">
-  ```
--->
 <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
         <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
@@ -48,7 +26,7 @@
                     </mat-form-field>
                     <mat-form-field class="[&>div]:rounded-l-none w-9/12">
                         <mat-label>手机号</mat-label>
-                        <input matInput name="phoneNumber" [formControl]="formGroup.controls.phoneNumber" required placeholder="法定名称">
+                        <input matInput name="phoneNumber" [formControl]="formGroup.controls.phoneNumber" required placeholder="手机号">
                     </mat-form-field>
                 </div>
 
