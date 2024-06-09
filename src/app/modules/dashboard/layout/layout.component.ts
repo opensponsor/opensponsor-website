@@ -92,7 +92,7 @@ export class LayoutComponent {
                     link: 'sending-money'
                 },
                 {
-                    label: '首款设置',
+                    label: '收款设置',
                     link: 'receiving-money'
                 },
                 {
