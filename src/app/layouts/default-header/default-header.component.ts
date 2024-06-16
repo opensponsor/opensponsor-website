@@ -1,8 +1,8 @@
-import {Component, computed} from '@angular/core';
+import {Component, computed, HostListener} from '@angular/core';
 import {AuthService} from "@services/auth/auth.service";
 import {Platform} from "@angular/cdk/platform";
 import {RouterLink} from "@angular/router";
-import {NgForOf} from "@angular/common";
+import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {MatAnchor} from "@angular/material/button";
 import {User} from "@app/interfaces/ApiInterface";
 
@@ -13,11 +13,15 @@ import {User} from "@app/interfaces/ApiInterface";
         RouterLink,
         NgForOf,
         MatAnchor,
+        NgIf,
+        NgClass,
     ],
     templateUrl: './default-header.component.html',
     styleUrls: ['./default-header.component.scss']
 })
 export class DefaultHeaderComponent {
+    public hideHeader = false;
+    public scrollY = 0;
     public menuGroup = {
         left: [
             {label: "发现社区", link: "/organizations"},
@@ -28,6 +32,17 @@ export class DefaultHeaderComponent {
     };
 
     public authInfo: Partial<User> | null = {};
+
+    @HostListener('window:scroll', ['$event']) // for window scroll events
+    onScroll(event: Event) {
+        if(window.scrollY < this.scrollY) {
+            this.hideHeader = false;
+        } else if(this.scrollY > 100) {
+            this.hideHeader = true
+        }
+
+        this.scrollY = window.scrollY;
+    }
 
     constructor(
         public readonly authService: AuthService,
