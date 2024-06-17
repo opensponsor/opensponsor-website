@@ -21,7 +21,7 @@ import {User} from "@app/interfaces/ApiInterface";
 })
 export class DefaultHeaderComponent {
     public hideHeader = false;
-    public scrollY = 0;
+    private scrollY = 0;
     public menuGroup = {
         left: [
             {label: "发现社区", link: "/organizations"},
