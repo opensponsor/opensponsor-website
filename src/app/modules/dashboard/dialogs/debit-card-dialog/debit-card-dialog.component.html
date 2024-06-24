@@ -32,7 +32,8 @@
     </div>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <div class="w-full flex justify-between">
-        <button mat-flat-button class="w-full" (click)="submit(form)" color="primary" type="button">保存</button>
+    <div class="w-full flex justify-between gap-1">
+        <button mat-stroked-button class="w-1/4" [mat-dialog-close]="false">取消</button>
+        <button mat-flat-button class="w-3/4" (click)="submit(form)" color="primary" type="button">保存</button>
     </div>
 </mat-dialog-actions>

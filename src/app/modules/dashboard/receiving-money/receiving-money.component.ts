@@ -22,9 +22,11 @@ export class ReceivingMoneyComponent {
         this.dialogService.openXS(DebitCardDialogComponent, {
             disableClose: true,
             data: {debitCard: this.organizationsService?.organization?.debitCard},
-        }).afterClosed().subscribe(() => {
-            this.organizationsService.refresh();
-            this.snackBarService.message({message: '已经保存'})
+        }).afterClosed().subscribe((res) => {
+            if(res) {
+                this.organizationsService.refresh();
+                this.snackBarService.message({message: '已经保存'})
+            }
         });
     }
 }

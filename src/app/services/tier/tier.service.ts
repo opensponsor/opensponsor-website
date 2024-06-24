@@ -12,9 +12,14 @@ export class TierService {
         create: "/tier",
         update: "/tier",
         delete: "/tier",
+        get: "/tier",
     }
 
     constructor(private readonly httpService: HttpService) {
+    }
+
+    public get(tier: Tier) {
+        return this.httpService.get<Tier>(this.Urls.create, tier);
     }
 
     public create(tier: Tier) {
