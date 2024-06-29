@@ -121,4 +121,14 @@ export abstract class HttpService {
         )
     }
 
+    public buildHttpParams(data: Record<string, any>) {
+        const params = new HttpParams();
+        for (let key in data) {
+            if(data[key]) {
+                params.set(key, data[key]);
+            }
+        }
+        return params;
+    }
+
 }

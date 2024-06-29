@@ -19,7 +19,7 @@ export class TierService {
     }
 
     public get(tier: Tier) {
-        return this.httpService.get<Tier>(this.Urls.create, tier);
+        return this.httpService.get<Tier>(this.Urls.create, this.httpService.buildHttpParams(tier));
     }
 
     public create(tier: Tier) {
