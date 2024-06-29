@@ -19,11 +19,11 @@ export const routes: Routes = [
         component: DefaultLayoutComponent,
         loadChildren: () => import('@modules/create/create.module').then(m => m.CreateModule)
     },
-    // {
-    //     path: 'explore',
-    //     component: DefaultLayoutComponent,
-    //     loadChildren: () => import('@modules/explore/explore.module').then(m => m.ExploreModule)
-    // },
+    {
+        path: 'explore',
+        component: DefaultLayoutComponent,
+        loadChildren: () => import('@modules/explore/explore.module').then(m => m.ExploreModule)
+    },
     {
         path: 'passport',
         component: DefaultLayoutComponent,

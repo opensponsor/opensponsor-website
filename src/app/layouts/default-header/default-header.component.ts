@@ -27,7 +27,7 @@ export class DefaultHeaderComponent {
             {label: "发现社区", link: "/organizations"},
         ],
         right: [
-            {label: "发起预约", link: "/create"},
+            {label: "创建社区", link: "/create"},
         ]
     };
 
