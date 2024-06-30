@@ -1,1 +1,10 @@
-<p>index works!</p>
+<div class="flex flex-col gap-6">
+    <div>
+        search box
+    </div>
+    <div class="grid grid-cols-4 gap-4">
+        @for (org of organizations; track org) {
+            <app-org-card [org]="org"></app-org-card>
+        }
+    </div>
+</div>
