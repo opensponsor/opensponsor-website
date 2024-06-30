@@ -1,0 +1,18 @@
+<div class="border-b bg-white border-gray-200 rounded-md overflow-hidden relative">
+    <div class="px-4 py-5 sm:px-6 bg-blue-200 rounded-md">
+        <div class="h-10">logo: {{ org?.name }}</div>
+        <div>
+            <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" [routerLink]="['/', org?.slug]">{{ org?.name }}</a>
+        </div>
+    </div>
+    <div class="px-4 py-5 sm:px-6">
+        <div class="flex flex-row gap-4">
+            <div>{{ org?.type }}</div>
+            <div>地区</div>
+        </div>
+        <div>{{ org?.tags }}</div>
+        <div>贡献者数量</div>
+        <div>累计筹集资金</div>
+        <div>{{ org?.introduce }}</div>
+    </div>
+</div>
