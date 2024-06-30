@@ -422,17 +422,17 @@ export interface Tier {
   /** 所属组织 */
   organization: Organization;
   /**
-   * url path
-   * @minLength 2
-   * @maxLength 32
-   */
-  slug?: string;
-  /**
    * 捐助等级名称
    * @minLength 2
    * @maxLength 32
    */
   name: string;
+  /**
+   * url path
+   * @minLength 2
+   * @maxLength 32
+   */
+  slug?: string;
   /** 捐助等级类型 */
   type?: E_TIER_TYPE;
   /**
@@ -528,10 +528,10 @@ export interface User {
    * @maxLength 32
    */
   email?: string;
-  token?: UserToken;
   whenCreated?: Instant;
   whenModified?: Instant;
   whenDeleted?: Instant;
+  token?: UserToken;
 }
 
 export interface UserToken {

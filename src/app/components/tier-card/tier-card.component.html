@@ -29,6 +29,8 @@
             <!-- Payment frequency, update based on frequency toggle state -->
             <span class="text-sm font-semibold leading-6 text-gray-600">/{{tier.amountType | translate}}</span>
         </p>
-        <button mat-flat-button color="primary" class="w-full">{{tier.button || '贡献'}}</button>
+        <a mat-flat-button color="primary" class="w-full" [routerLink]="['contribute', tier.slug, 'checkout']">
+            {{tier.button || '贡献'}}
+        </a>
     </div>
 </div>

@@ -7,6 +7,7 @@ import {HttpParams} from "@angular/common/http";
   providedIn: 'root'
 })
 export class TierService {
+    public tier: Tier | undefined;
 
     private Urls = {
         create: "/tier",
@@ -18,8 +19,13 @@ export class TierService {
     constructor(private readonly httpService: HttpService) {
     }
 
-    public get(tier: Tier) {
-        return this.httpService.get<Tier>(this.Urls.create, this.httpService.buildHttpParams(tier));
+    public get(slug: string) {
+        return this.httpService.get<Tier>(`${this.Urls.create}/${slug}`).pipe(res => {
+            res.subscribe(data => {
+                this.tier = data.body as Tier;
+            })
+            return res;
+        });
     }
 
     public create(tier: Tier) {
