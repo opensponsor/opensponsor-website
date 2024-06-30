@@ -2,6 +2,7 @@ import {Routes} from '@angular/router';
 import {FullWidthLayoutComponent} from "@app/layouts/full-width-layout/full-width-layout.component";
 import {DefaultLayoutComponent} from "@app/layouts/default-layout/default-layout.component";
 import {PureLayoutComponent} from "@app/layouts/pure-layout/pure-layout.component";
+import {PageNotFoundComponent} from "@modules/error/page-not-found/page-not-found.component";
 
 export const routes: Routes = [
     {
@@ -38,5 +39,10 @@ export const routes: Routes = [
         path: ':name',
         component: FullWidthLayoutComponent,
         loadChildren: () => import('@modules/organizations/organizations.module').then(m => m.OrganizationsModule)
+    },
+    {
+        path: '**',
+        component: DefaultLayoutComponent,
+        loadChildren: () => import('@modules/error/error.module').then(m => m.ErrorModule)
     },
 ];
