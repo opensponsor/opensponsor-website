@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ActivatedRoute, RouterLinkActive} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router, RouterLinkActive} from "@angular/router";
 
 @Component({
   selector: 'app-checkout',
@@ -15,8 +15,24 @@ export class CheckoutComponent {
     ];
 
     constructor(
-        private readonly activatedRoute: ActivatedRoute
+        private readonly router: Router,
+        private readonly activatedRoute: ActivatedRoute,
     ) {
+        this.activatedRoute.firstChild?.data.subscribe(value => {
+            this.setSteps()
+        })
+        this.router.events.subscribe((e) => {
+            if(e instanceof NavigationEnd) {
+                this.setSteps()
+            }
+        })
+    }
+
+    private setSteps() {
+        for (const key in this.steps) {
+            this.steps[key].completed = false;
+        }
+
         this.activatedRoute.firstChild?.data.subscribe(value => {
             for (const key in this.steps) {
                 this.steps[key].completed = true;
