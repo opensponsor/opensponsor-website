@@ -19,8 +19,8 @@ export class TierService {
     constructor(private readonly httpService: HttpService) {
     }
 
-    public get(slug: string) {
-        return this.httpService.get<Tier>(`${this.Urls.create}/${slug}`).pipe(res => {
+    public get(organizationId: string, slug: string) {
+        return this.httpService.get<Tier>(`${this.Urls.create}/${organizationId}/${slug}`).pipe(res => {
             res.subscribe(data => {
                 this.tier = data.body as Tier;
             })
