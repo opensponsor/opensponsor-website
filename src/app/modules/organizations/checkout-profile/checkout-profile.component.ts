@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {TierService} from "@services/tier/tier.service";
-import {Tier} from "@app/interfaces/ApiInterface";
+import {Organization, Tier} from "@app/interfaces/ApiInterface";
 import {Platform} from "@angular/cdk/platform";
+import {OrganizationsService} from "@services/organizations/organizations.service";
 
 @Component({
   selector: 'app-checkout-profile',
@@ -17,17 +18,17 @@ export class CheckoutProfileComponent {
         private readonly tierService: TierService,
         private readonly platform: Platform,
     ) {
-        if(this.platform.isBrowser) {this.activatedRoute.parent?.paramMap.subscribe(paramMap => {
-            const tier = paramMap.get('tier');
-            const organization = paramMap.get('name');
-            if(this.tierService.tier) {
-                this.tier = this.tierService.tier;
-            } else {
-                // redirect start
-                this.tierService.redirectStart(paramMap).then()
-            }
-        });
-
+        if(this.platform.isBrowser) {
+            this.activatedRoute.parent?.paramMap.subscribe(paramMap => {
+                const tier = paramMap.get('tier');
+                const organization = paramMap.get('name');
+                if(this.tierService.tier()) {
+                    this.tier = this.tierService.tier();
+                } else {
+                    // redirect start
+                    this.tierService.redirectStart(paramMap).then()
+                }
+            })
         }
     }
 }

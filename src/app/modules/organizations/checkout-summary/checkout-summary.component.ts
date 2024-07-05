@@ -15,8 +15,8 @@ export class CheckoutSummaryComponent {
         private readonly activatedRoute: ActivatedRoute,
         private readonly tierService: TierService,
     ) {
-        if(this.tierService.tier) {
-            this.tier = this.tierService.tier;
+        if(this.tierService.tier()) {
+            this.tier = this.tierService.tier();
         } else {
             // redirect start
         }

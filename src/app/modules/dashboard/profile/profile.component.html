@@ -1,5 +1,5 @@
-@if (organizationsService.organization) {
+@if (organization) {
     <app-organization-form
-        [data]="organizationsService.organization"
-        [organizationType]="organizationsService.organization.type || E_ORGANIZATION_TYPE.COMMUNITY" />
+        [data]="organization"
+        [organizationType]="organization?.type || E_ORGANIZATION_TYPE.COMMUNITY" />
 }

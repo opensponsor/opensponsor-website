@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
+import {Injectable, signal} from '@angular/core';
 import {HttpService} from "@services/http/http.service";
 import {Tier} from "@app/interfaces/ApiInterface";
 import {HttpParams} from "@angular/common/http";
 import {ParamMap, Router} from "@angular/router";
+import {toObservable} from "@angular/core/rxjs-interop";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TierService {
-    public tier: Tier | undefined;
+    public tier = signal<Tier | undefined>(undefined);
+    public tier$ = toObservable(this.tier);
 
     private Urls = {
         create: "/tier",
@@ -26,7 +28,7 @@ export class TierService {
     public get(organizationId: string, slug: string) {
         return this.httpService.get<Tier>(`${this.Urls.create}/${organizationId}/${slug}`).pipe(res => {
             res.subscribe(data => {
-                this.tier = data.body as Tier;
+                this.tier.set(data.body as Tier);
             })
             return res;
         });

@@ -1,12 +1,14 @@
-import {Injectable} from '@angular/core';
+import {Injectable, signal} from '@angular/core';
 import {HttpService} from "@services/http/http.service";
-import {Organization} from "@app/interfaces/ApiInterface";
+import {Organization, User} from "@app/interfaces/ApiInterface";
+import {toObservable} from "@angular/core/rxjs-interop";
 
 @Injectable({
     providedIn: 'root'
 })
 export class OrganizationsService {
-    public organization: Organization | undefined;
+    public organization =  signal<Organization | undefined>(undefined);
+    public organization$ =  toObservable(this.organization);
 
     private Urls = {
         create: "/organizations",
@@ -40,7 +42,7 @@ export class OrganizationsService {
     public getOrganizationByName(name: string) {
         return this.httpService.get<Organization>(`${this.Urls.get}/${name}`).pipe(res => {
             res.subscribe(data => {
-                this.organization = data.body as Organization;
+                this.organization.set(data.body as Organization);
             })
             return res;
         });

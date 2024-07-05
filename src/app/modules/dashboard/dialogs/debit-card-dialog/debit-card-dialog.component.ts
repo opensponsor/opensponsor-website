@@ -66,7 +66,7 @@ export class DebitCardDialogComponent {
     public save() {
         if(this.formGroup.valid) {
             const data = this.formGroup.value as DebitCard;
-            data.organization = this.organizationsService.organization;
+            data.organization = this.organizationsService.organization();
             if(this.dialogRef.config.data.debitCard.id) {
                 data.id = this.dialogRef.config.data.debitCard.id;
                 this.debitCardService.update(data).subscribe(res => {
