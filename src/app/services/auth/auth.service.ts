@@ -19,7 +19,7 @@ export class AuthService {
         user: "/session/user",
     }
 
-    authInfo = signal<User | null>(null);
+    authInfo = signal<User | undefined>(undefined);
 
     authInfo$ = toObservable(this.authInfo);
 
@@ -56,7 +56,7 @@ export class AuthService {
 
     public removeAuthInfo() {
         localStorage.removeItem("accessToken");
-        this.authInfo.set(null);
+        this.authInfo.set(undefined);
     }
 
     public getAuthUser() {

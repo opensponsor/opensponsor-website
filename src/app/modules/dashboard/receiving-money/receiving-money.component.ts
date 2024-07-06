@@ -21,7 +21,7 @@ export class ReceivingMoneyComponent {
     public openDialog() {
         this.dialogService.openXS(DebitCardDialogComponent, {
             disableClose: true,
-            data: {debitCard: this.organizationsService?.organization?.debitCard},
+            data: {debitCard: this.organizationsService?.organization()?.debitCard},
         }).afterClosed().subscribe((res) => {
             if(res) {
                 this.organizationsService.refresh();

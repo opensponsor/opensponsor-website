@@ -1,15 +1,16 @@
-import {AfterViewChecked, Component} from '@angular/core';
+import {afterNextRender, Component} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router, RouterLinkActive} from "@angular/router";
 import {CheckoutService} from "@services/checkout/checkout.service";
 import {OrganizationsService} from "@services/organizations/organizations.service";
 import {Organization} from "@app/interfaces/ApiInterface";
+import {Platform} from "@angular/cdk/platform";
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss'
 })
-export class CheckoutComponent implements AfterViewChecked {
+export class CheckoutComponent {
     public organization: Organization | undefined;
 
     public steps = [
@@ -21,22 +22,28 @@ export class CheckoutComponent implements AfterViewChecked {
 
     constructor(
         private readonly router: Router,
+        private readonly platform: Platform,
         private readonly activatedRoute: ActivatedRoute,
         private readonly checkoutService: CheckoutService,
         private readonly organizationsService: OrganizationsService,
     ) {
-        this.activatedRoute.firstChild?.data.subscribe(value => {
+        afterNextRender(() => {
             this.setSteps()
         })
-        this.router.events.subscribe((e) => {
-            if(e instanceof NavigationEnd) {
+        if(platform.isBrowser) {
+            this.activatedRoute.firstChild?.data.subscribe(value => {
                 this.setSteps()
+            })
+            this.router.events.subscribe((e) => {
+                if(e instanceof NavigationEnd) {
+                    this.setSteps()
+                    this.organization = this.organizationsService.organization();
+                }
+            })
+            this.organizationsService.organization$.subscribe(() => {
                 this.organization = this.organizationsService.organization();
-            }
-        })
-        this.organizationsService.organization$.subscribe(() => {
-            this.organization = this.organizationsService.organization();
-        })
+            })
+        }
     }
 
 
@@ -54,9 +61,5 @@ export class CheckoutComponent implements AfterViewChecked {
                 }
             }
         })
-    }
-
-    ngAfterViewChecked(): void {
-        this.setSteps()
     }
 }

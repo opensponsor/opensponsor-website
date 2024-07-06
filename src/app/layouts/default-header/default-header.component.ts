@@ -31,7 +31,7 @@ export class DefaultHeaderComponent {
         ]
     };
 
-    public authInfo: Partial<User> | null = {};
+    public authInfo: Partial<User> | undefined = {};
 
     @HostListener('window:scroll', ['$event']) // for window scroll events
     onScroll(event: Event) {
