@@ -27,12 +27,9 @@ export class CheckoutComponent {
         private readonly checkoutService: CheckoutService,
         private readonly organizationsService: OrganizationsService,
     ) {
-        afterNextRender(() => {
-            this.setSteps()
-        })
         if(platform.isBrowser) {
-            this.activatedRoute.firstChild?.data.subscribe(value => {
-                this.setSteps()
+            this.checkoutService.stepDesc$.subscribe(() => {
+                this.setSteps();
             })
             this.router.events.subscribe((e) => {
                 if(e instanceof NavigationEnd) {
@@ -50,7 +47,7 @@ export class CheckoutComponent {
     private setSteps() {
         for (const index in this.steps) {
             this.steps[index].completed = false;
-            this.steps[index].desc = this.checkoutService.stepDesc[this.steps[index].key];
+            this.steps[index].desc = this.checkoutService.stepDesc()[this.steps[index].key];
         }
 
         this.activatedRoute.firstChild?.data.subscribe(value => {

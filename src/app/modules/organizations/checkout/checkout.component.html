@@ -22,7 +22,7 @@
             </div>
 
             <div class="flex justify-center">
-                <button mat-button> 返回 {{organization?.name}} 页 </button>
+                <a mat-button [routerLink]="['/', organization?.slug]"> 返回 {{organization?.name}} 页 </a>
             </div>
         </div>
     </div>
