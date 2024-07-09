@@ -69,6 +69,7 @@ export abstract class HttpService {
                 this.snackBar.message({message: `Backend returned code ${res.status}`});
             }
         } else if(res.status === 401) {
+            localStorage.removeItem("accessToken")
             this.snackBar.message({message: "登录信息失效, 请先登录."});
         } else {
             this.snackBar.message({message: res.message});
