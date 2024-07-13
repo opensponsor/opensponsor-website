@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {afterNextRender, AfterRenderPhase, Component} from '@angular/core';
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {TierService} from "@services/tier/tier.service";
 import {Organization, Tier} from "@app/interfaces/ApiInterface";
 import {Platform} from "@angular/cdk/platform";
 import {OrganizationsService} from "@services/organizations/organizations.service";
+import {AuthService} from "@services/auth/auth.service";
+
+type OptionType = {type: 'user' | 'organization'; id: string; name: string; desc: string};
 
 @Component({
   selector: 'app-checkout-profile',
@@ -12,23 +15,59 @@ import {OrganizationsService} from "@services/organizations/organizations.servic
 })
 export class CheckoutProfileComponent {
     public tier: Tier | undefined;
+    selected: OptionType | undefined;
+
+    profileSelectOpen = false;
+
+    public profileOptions: OptionType[] = [];
+    public organizationOptions: OptionType[] = [];
 
     constructor(
         private readonly activatedRoute: ActivatedRoute,
         private readonly tierService: TierService,
         private readonly platform: Platform,
+        private readonly authService: AuthService,
+        private readonly organizationsService: OrganizationsService,
     ) {
         if(this.platform.isBrowser) {
-            this.activatedRoute.parent?.paramMap.subscribe(paramMap => {
-                const tier = paramMap.get('tier');
-                const organization = paramMap.get('name');
-                if(this.tierService.tier()) {
-                    this.tier = this.tierService.tier();
-                } else {
-                    // redirect start
-                    this.tierService.redirectStart(paramMap).then()
+            if(this.tierService.tier()) {
+                this.tier = this.tierService.tier();
+            } else {
+                // redirect start
+                if(this.activatedRoute.parent?.snapshot?.paramMap) {
+                    this.tierService.redirectStart(this.activatedRoute.parent?.snapshot.paramMap as ParamMap).then()
                 }
-            })
+            }
+            this.setProfileOptions();
+            this.setOrganizationsOptions();
         }
+    }
+
+    private setProfileOptions() {
+        const info = this.authService.authInfo();
+        if(info) {
+            this.profileOptions.push({
+                type: 'user',
+                id: info.id,
+                name: info.username,
+                desc: `@${info.username}`,
+            })
+            this.selected = this.profileOptions[0];
+        }
+    }
+
+    private setOrganizationsOptions() {
+        this.organizationsService.list({userId: this.authService.authInfo()?.id}).subscribe(res => {
+            if(res.status === 200 && res.body?.records.length) {
+                res.body?.records.forEach(it => {
+                    this.organizationOptions.push({
+                        type: 'organization',
+                        id: it.id,
+                        name: it.name,
+                        desc: `@${it.name}`,
+                    })
+                })
+            }
+        })
     }
 }

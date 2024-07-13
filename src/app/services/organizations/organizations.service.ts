@@ -28,14 +28,15 @@ export class OrganizationsService {
         return this.httpService.put<Organization>(this.Urls.update, organization)
     }
 
-    public list() {
-        return this.httpService.get<Organization[]>(this.Urls.create)
+    public list(filter?: Partial<Organization>) {
+        return this.httpService.get<Organization[]>(this.Urls.list, this.httpService.buildHttpParams(filter || {}))
     }
 
     // refresh organization data
     public refresh() {
-        if(this.organization?.name) {
-            this.getOrganizationByName(this.organization?.name);
+        const org = this.organization();
+        if(org?.name) {
+            this.getOrganizationByName(org.name);
         }
     }
 

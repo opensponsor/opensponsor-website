@@ -14,6 +14,7 @@ import {CheckoutService} from "@services/checkout/checkout.service";
 export class CheckoutStartComponent {
     public tier: Tier | undefined;
     public organization: Organization | undefined;
+
     constructor(
         private readonly activatedRoute: ActivatedRoute,
         private readonly tierService: TierService,
@@ -33,7 +34,7 @@ export class CheckoutStartComponent {
                                 this.tierService.get(res.body?.id, tier).subscribe(res2 => {
                                     if(res2.status === 200) {
                                         const tier = this.tier = res2.body as Tier;
-                                        this.checkoutService.stepDesc['checkoutStart'] = `${tier.amount}${tier.currency}/${tier.interval}`
+                                        this.checkoutService.stepDesc.set({'checkoutStart': `${tier.amount}${tier.currency}/${tier.interval}`});
                                     }
                                 });
                             } else {

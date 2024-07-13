@@ -14,6 +14,8 @@ import { CheckoutStartComponent } from './checkout-start/checkout-start.componen
 import { CheckoutProfileComponent } from './checkout-profile/checkout-profile.component';
 import { CheckoutSummaryComponent } from './checkout-summary/checkout-summary.component';
 import { CheckoutPaymentComponent } from './checkout-payment/checkout-payment.component';
+import {MatSelectModule} from "@angular/material/select";
+import {MatExpansionModule, MatExpansionPanel, MatExpansionPanelTitle} from "@angular/material/expansion";
 
 const routes: Routes = [
     {
@@ -50,6 +52,7 @@ const routes: Routes = [
         MatButtonModule,
         MatIconModule,
         MatDividerModule,
+        MatSelectModule,
         MatCardModule,
         TierCardComponent,
     ],

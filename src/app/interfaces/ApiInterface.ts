@@ -10,7 +10,7 @@
  */
 
 export interface CountryCodes {
-  id?: UUID;
+  id: UUID;
   /**
    * @minLength 2
    * @maxLength 16
@@ -46,13 +46,15 @@ export interface CountryCodes {
    * @maxLength 16
    */
   currencyAlphabeticCode?: string;
-  whenCreated?: Instant;
-  whenModified?: Instant;
+  /** when created */
+  whenCreated: Instant;
+  /** when modified */
+  whenModified: Instant;
   whenDeleted?: Instant;
 }
 
 export interface DebitCard {
-  id?: UUID;
+  id: UUID;
   /**
    * Debit Card No
    * @minLength 16
@@ -82,8 +84,10 @@ export interface DebitCard {
   organization?: Organization;
   /** create by user */
   user?: User;
-  whenCreated?: Instant;
-  whenModified?: Instant;
+  /** when created */
+  whenCreated: Instant;
+  /** when modified */
+  whenModified: Instant;
   whenDeleted?: Instant;
 }
 
@@ -294,6 +298,23 @@ export enum E_TIER_TYPE {
   SERVICE = "SERVICE",
 }
 
+export interface Example {
+  id: UUID;
+  name: string;
+  likeName?: string;
+  /** @format int32 */
+  age: number;
+  /** @format int32 */
+  minAge?: number;
+  /** @format int32 */
+  maxAge?: number;
+  /** when created */
+  whenCreated: Instant;
+  /** when modified */
+  whenModified: Instant;
+  whenDeleted?: Instant;
+}
+
 /**
  * @format date-time
  * @example "2022-03-10T16:15:50.000Z"
@@ -316,15 +337,17 @@ export interface LoginBody {
 }
 
 export interface Member {
-  id?: UUID;
+  id: UUID;
   /** user */
   user: User;
   /** organization */
   organization: Organization;
   /** member role */
   roles: E_ORGANIZATION_ROLE;
-  whenCreated?: Instant;
-  whenModified?: Instant;
+  /** when created */
+  whenCreated: Instant;
+  /** when modified */
+  whenModified: Instant;
   whenDeleted?: Instant;
 }
 
@@ -373,6 +396,8 @@ export interface Organization {
   website?: string;
   /** 捐助等级 */
   tiers: Tier[];
+  /** filterable */
+  userId?: string;
   /** 所属用户 */
   user: User;
   /**
@@ -418,7 +443,7 @@ export interface ResteasyConstraintViolation {
 }
 
 export interface Tier {
-  id?: UUID;
+  id: UUID;
   /** 所属组织 */
   organization: Organization;
   /**
@@ -485,8 +510,10 @@ export interface Tier {
    * @format int64
    */
   goal?: number;
-  whenCreated?: Instant;
-  whenModified?: Instant;
+  /** when created */
+  whenCreated: Instant;
+  /** when modified */
+  whenModified: Instant;
   whenDeleted?: Instant;
 }
 
@@ -504,41 +531,58 @@ export enum Type {
 export type UUID = string;
 
 export interface User {
-  id?: UUID;
+  id: UUID;
   /**
+   * username
    * @minLength 2
    * @maxLength 32
    */
-  username?: string;
-  /** @maxLength 32 */
-  legalName?: string;
-  /** @maxLength 42 */
+  username: string;
+  /**
+   * legalName
+   * @maxLength 32
+   */
+  legalName: string;
+  /**
+   * avatar
+   * @maxLength 42
+   */
   avatar?: string;
+  /** sex */
   sex?: E_SEX;
+  /** role */
   role?: string;
+  /** password */
+  password?: string;
   /** User country code */
   countryCode?: CountryCodes;
   /**
+   * phoneNumber
    * @minLength 4
    * @maxLength 11
    */
   phoneNumber?: string;
   /**
+   * email
    * @minLength 6
    * @maxLength 32
    */
   email?: string;
-  whenCreated?: Instant;
-  whenModified?: Instant;
+  /** when created */
+  whenCreated: Instant;
+  /** when modified */
+  whenModified: Instant;
   whenDeleted?: Instant;
   token?: UserToken;
 }
 
 export interface UserToken {
-  id?: UUID;
+  id: UUID;
   token?: string;
-  whenCreated?: Instant;
-  whenModified?: Instant;
+  /** when created */
+  whenCreated: Instant;
+  /** when modified */
+  whenModified: Instant;
   whenDeleted?: Instant;
 }
 
