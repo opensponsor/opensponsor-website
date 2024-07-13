@@ -9,7 +9,7 @@
         "test": "ng test",
         "serve:ssr:opensponsor-website": "node dist/opensponsor-website/server/server.mjs",
         "generateInterface": "npx swagger-typescript-api -p http://localhost:8080/q/openapi --no-client -o ./src/app/interfaces --name ApiInterface.ts",
-        "gi": "npm run generateInterface"
+        "gi": "npm run generateInterface && git commit ./src/app/interfaces/ApiInterface.ts -m 'update ApiInterface.ts'"
     },
     "private": true,
     "dependencies": {
