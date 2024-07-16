@@ -16,6 +16,8 @@ import { CheckoutSummaryComponent } from './checkout-summary/checkout-summary.co
 import { CheckoutPaymentComponent } from './checkout-payment/checkout-payment.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatExpansionModule, MatExpansionPanel, MatExpansionPanelTitle} from "@angular/material/expansion";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatInput, MatInputModule} from "@angular/material/input";
 
 const routes: Routes = [
     {
@@ -55,6 +57,8 @@ const routes: Routes = [
         MatSelectModule,
         MatCardModule,
         TierCardComponent,
+        ReactiveFormsModule,
+        MatInputModule,
     ],
 })
 export class OrganizationsModule {

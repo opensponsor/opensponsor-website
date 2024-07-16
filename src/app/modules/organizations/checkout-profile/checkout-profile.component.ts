@@ -1,10 +1,11 @@
-import {afterNextRender, AfterRenderPhase, Component} from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {TierService} from "@services/tier/tier.service";
 import {Organization, Tier} from "@app/interfaces/ApiInterface";
 import {Platform} from "@angular/cdk/platform";
 import {OrganizationsService} from "@services/organizations/organizations.service";
 import {AuthService} from "@services/auth/auth.service";
+import {FormControl, FormControlName, FormGroup} from "@angular/forms";
 
 type OptionType = {type: 'user' | 'organization'; id: string; name: string; desc: string};
 
@@ -21,6 +22,11 @@ export class CheckoutProfileComponent {
 
     public profileOptions: OptionType[] = [];
     public organizationOptions: OptionType[] = [];
+
+    public formGroup = new FormGroup({
+        name: new FormControl(),
+        legalName: new FormControl(),
+    })
 
     constructor(
         private readonly activatedRoute: ActivatedRoute,
@@ -69,5 +75,11 @@ export class CheckoutProfileComponent {
                 })
             }
         })
+    }
+
+    public selectProfile(item: OptionType) {
+        this.selected = item;
+        this.profileSelectOpen = false;
+        this.formGroup.controls.name.setValue(item.name);
     }
 }
