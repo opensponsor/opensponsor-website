@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, ParamMap} from "@angular/router";
 import {Tier} from "@app/interfaces/ApiInterface";
 import {TierService} from "@services/tier/tier.service";
 
@@ -19,6 +19,17 @@ export class CheckoutPaymentComponent {
             this.tier = this.tierService.tier();
         } else {
             // redirect start
+            if(this.activatedRoute.parent?.snapshot?.paramMap) {
+                this.tierService.redirectStep(this.activatedRoute.parent?.snapshot.paramMap as ParamMap, 'start').then()
+            }
         }
+    }
+
+    public expandPanel(e: 'unionPay' | 'aliPay' | 'weChatPay') {
+        console.dir(e);
+    }
+
+    public toLink(to: 'summary') {
+        this.tierService.redirectStep(this.activatedRoute.parent?.snapshot.paramMap as ParamMap, to).then();
     }
 }

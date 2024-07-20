@@ -48,10 +48,11 @@ export class TierService {
         return this.httpService.delete(this.Urls.delete, params);
     }
 
-    public redirectStart(paramMap: ParamMap) {
+    public redirectStep(paramMap: ParamMap, step: 'start' | 'profile' | 'summary' | 'payment') {
         const tier = paramMap.get('tier');
         const organization = paramMap.get('name');
-        return this.router.navigate(['/', organization, 'contribute', tier, 'checkout'])
+        const st = step === 'start' ? '' : step;
+        return this.router.navigate(['/', organization, 'contribute', tier, 'checkout', st].filter(i => i))
     }
 
 

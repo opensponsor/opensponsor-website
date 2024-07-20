@@ -77,7 +77,7 @@
             <div>
                 <form class="space-y-6" [formGroup]="formGroup">
                     <mat-form-field class="w-full" appearance="outline">
-                        <mat-label>姓名</mat-label>
+                        <mat-label>姓名 </mat-label>
                         <input matInput formControlName="name" [formControl]="this.formGroup.controls.name" />
                         <mat-hint>用于公开显示</mat-hint>
                     </mat-form-field>
@@ -92,7 +92,7 @@
     </div>
 
     <div class="flex justify-between">
-        <a mat-stroked-button routerLink="..">返回 <mat-icon>arrow_left_alt</mat-icon> </a>
-        <a mat-stroked-button routerLink="../payment">支付方式 <mat-icon iconPositionEnd>arrow_right_alt</mat-icon> </a>
+        <a mat-stroked-button (click)="toLink('start')">详细信息 <mat-icon>arrow_left_alt</mat-icon> </a>
+        <a mat-stroked-button (click)="toLink('summary')">摘要 <mat-icon iconPositionEnd>arrow_right_alt</mat-icon> </a>
     </div>
 </div>

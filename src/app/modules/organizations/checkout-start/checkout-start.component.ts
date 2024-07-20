@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, ParamMap} from "@angular/router";
 import {TierService} from "@services/tier/tier.service";
 import {Organization, Tier} from "@app/interfaces/ApiInterface";
 import {OrganizationsService} from "@services/organizations/organizations.service";
@@ -45,5 +45,9 @@ export class CheckoutStartComponent {
                 }
             })
         }
+    }
+
+    public toLink(to: 'profile') {
+        this.tierService.redirectStep(this.activatedRoute.snapshot.paramMap as ParamMap, to).then();
     }
 }

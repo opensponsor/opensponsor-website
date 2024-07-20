@@ -15,9 +15,15 @@ import { CheckoutProfileComponent } from './checkout-profile/checkout-profile.co
 import { CheckoutSummaryComponent } from './checkout-summary/checkout-summary.component';
 import { CheckoutPaymentComponent } from './checkout-payment/checkout-payment.component';
 import {MatSelectModule} from "@angular/material/select";
-import {MatExpansionModule, MatExpansionPanel, MatExpansionPanelTitle} from "@angular/material/expansion";
+import {
+    MatExpansionModule,
+    MatExpansionPanel,
+    MatExpansionPanelHeader,
+    MatExpansionPanelTitle
+} from "@angular/material/expansion";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatInput, MatInputModule} from "@angular/material/input";
+import {MatRadioButton, MatRadioModule} from "@angular/material/radio";
 
 const routes: Routes = [
     {
@@ -59,6 +65,8 @@ const routes: Routes = [
         TierCardComponent,
         ReactiveFormsModule,
         MatInputModule,
+        MatRadioModule,
+        MatExpansionModule,
     ],
 })
 export class OrganizationsModule {

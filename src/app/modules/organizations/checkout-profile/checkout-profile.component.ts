@@ -41,7 +41,7 @@ export class CheckoutProfileComponent {
             } else {
                 // redirect start
                 if(this.activatedRoute.parent?.snapshot?.paramMap) {
-                    this.tierService.redirectStart(this.activatedRoute.parent?.snapshot.paramMap as ParamMap).then()
+                    this.tierService.redirectStep(this.activatedRoute.parent?.snapshot.paramMap as ParamMap, 'start').then()
                 }
             }
             this.setProfileOptions();
@@ -59,6 +59,7 @@ export class CheckoutProfileComponent {
                 desc: `@${info.username}`,
             })
             this.selected = this.profileOptions[0];
+            this.formGroup.controls.name.setValue(this.selected.name);
         }
     }
 
@@ -81,5 +82,9 @@ export class CheckoutProfileComponent {
         this.selected = item;
         this.profileSelectOpen = false;
         this.formGroup.controls.name.setValue(item.name);
+    }
+
+    public toLink(to: 'start' | 'summary') {
+        this.tierService.redirectStep(this.activatedRoute.parent?.snapshot.paramMap as ParamMap, to).then();
     }
 }

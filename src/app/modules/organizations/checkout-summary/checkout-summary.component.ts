@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {Tier} from "@app/interfaces/ApiInterface";
+import {ActivatedRoute, ParamMap} from "@angular/router";
+import {Organization, Tier} from "@app/interfaces/ApiInterface";
 import {TierService} from "@services/tier/tier.service";
+import {OrganizationsService} from "@services/organizations/organizations.service";
 
 @Component({
   selector: 'app-checkout-summary',
@@ -10,15 +11,25 @@ import {TierService} from "@services/tier/tier.service";
 })
 export class CheckoutSummaryComponent {
     public tier: Tier | undefined;
+    public organization: Organization | undefined;
 
     constructor(
         private readonly activatedRoute: ActivatedRoute,
         private readonly tierService: TierService,
+        private readonly organizationsService: OrganizationsService,
     ) {
         if(this.tierService.tier()) {
             this.tier = this.tierService.tier();
+            this.organization = this.organizationsService.organization();
         } else {
             // redirect start
+            if(this.activatedRoute.parent?.snapshot?.paramMap) {
+                this.tierService.redirectStep(this.activatedRoute.parent?.snapshot.paramMap as ParamMap, 'start').then()
+            }
         }
+    }
+
+    public toLink(to: 'profile' | 'payment') {
+        this.tierService.redirectStep(this.activatedRoute.parent?.snapshot.paramMap as ParamMap, to).then();
     }
 }
