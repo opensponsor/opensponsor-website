@@ -6,9 +6,8 @@ import {SnackBarService} from '@services/snack-bar/snack-bar.service';
 import {environment} from "@environments/environment";
 import {Platform} from "@angular/cdk/platform";
 import {ViolationReport} from "@app/interfaces";
-import {AuthService} from "@services/auth/auth.service";
 
-type HttpResult<T> = {
+export type HttpResult<T> = {
     currentPageNumber: number
     lastPageNumber: number
     pageSize: number
