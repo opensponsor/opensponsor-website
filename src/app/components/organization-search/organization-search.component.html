@@ -1,0 +1,8 @@
+<div>
+    <form method="dialog" (ngSubmit)="doSearch()">
+        <mat-form-field appearance="outline" class="w-full rounded-full">
+            <input matInput [formControl]="keyword" placeholder="search name and tags for organizations">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </form>
+</div>
