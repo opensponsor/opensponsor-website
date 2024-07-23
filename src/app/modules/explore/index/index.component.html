@@ -1,10 +1,11 @@
 <div class="flex flex-col gap-6">
-    <div>
-        search box
-    </div>
+    <app-organization-search></app-organization-search>
     <div class="grid grid-cols-4 gap-4">
-        @for (org of organizations; track org) {
+        @for (org of httpResult?.records; track org) {
             <app-org-card [org]="org"></app-org-card>
         }
+    </div>
+    <div *ngIf="httpResult">
+        <app-paginator [result]="httpResult"></app-paginator>
     </div>
 </div>
