@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TierDialogComponent } from './tier-dialog.component';
+import {TierDialogComponent} from './tier-dialog.component';
 
 describe('TierDialogComponent', () => {
   let component: TierDialogComponent;
@@ -8,10 +8,10 @@ describe('TierDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TierDialogComponent]
+      imports: [TierDialogComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(TierDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

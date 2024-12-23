@@ -4,49 +4,49 @@ import {Organization, User} from "@app/interfaces/ApiInterface";
 import {toObservable} from "@angular/core/rxjs-interop";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class OrganizationsService {
-    public organization =  signal<Organization | undefined>(undefined);
-    public organization$ =  toObservable(this.organization);
+  public organization = signal<Organization | undefined>(undefined);
+  public organization$ = toObservable(this.organization);
 
-    private Urls = {
-        create: "/organizations",
-        update: "/organizations",
-        list: "/organizations",
-        get: "/organizations",
-    }
+  private Urls = {
+    create: "/organizations",
+    update: "/organizations",
+    list: "/organizations",
+    get: "/organizations",
+  }
 
-    constructor(private httpService: HttpService) {
-    }
+  constructor(private httpService: HttpService) {
+  }
 
-    public create(organization: Partial<Organization>) {
-        return this.httpService.post<Organization>(this.Urls.create, organization)
-    }
+  public create(organization: Partial<Organization>) {
+    return this.httpService.post<Organization>(this.Urls.create, organization)
+  }
 
-    public update(organization: Partial<Organization>) {
-        return this.httpService.put<Organization>(this.Urls.update, organization)
-    }
+  public update(organization: Partial<Organization>) {
+    return this.httpService.put<Organization>(this.Urls.update, organization)
+  }
 
-    public list(filter?: Partial<Organization>) {
-        return this.httpService.get<Organization[]>(this.Urls.list, this.httpService.buildHttpParams(filter || {}))
-    }
+  public list(filter?: Partial<Organization>) {
+    return this.httpService.get<Organization[]>(this.Urls.list, this.httpService.buildHttpParams(filter || {}))
+  }
 
-    // refresh organization data
-    public refresh() {
-        const org = this.organization();
-        if(org?.name) {
-            this.getOrganizationByName(org.name);
-        }
+  // refresh organization data
+  public refresh() {
+    const org = this.organization();
+    if (org?.name) {
+      this.getOrganizationByName(org.name);
     }
+  }
 
-    public getOrganizationByName(name: string) {
-        return this.httpService.get<Organization>(`${this.Urls.get}/${name}`).pipe(res => {
-            res.subscribe(data => {
-                this.organization.set(data.body as Organization);
-            })
-            return res;
-        });
-    }
+  public getOrganizationByName(name: string) {
+    return this.httpService.get<Organization>(`${this.Urls.get}/${name}`).pipe(res => {
+      res.subscribe(data => {
+        this.organization.set(data.body as Organization);
+      })
+      return res;
+    });
+  }
 
 }

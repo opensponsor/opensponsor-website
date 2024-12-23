@@ -3,19 +3,18 @@ import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from "@angular/material/
 import {MatButtonModule} from "@angular/material/button";
 
 @Component({
-    selector: 'app-alert',
-    templateUrl: './alert.component.html',
-    styleUrls: ['./alert.component.scss'],
-    standalone: true,
-    imports: [
-        MatDialogModule,
-        MatButtonModule,
-    ]
+  selector: 'app-alert',
+  templateUrl: './alert.component.html',
+  styleUrls: ['./alert.component.scss'],
+  imports: [
+    MatDialogModule,
+    MatButtonModule,
+  ]
 })
 export class AlertComponent {
-    constructor(
-        public dialogRef: MatDialogRef<AlertComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: { title: string; message: string; }
-    ) {
-    }
+  constructor(
+    public dialogRef: MatDialogRef<AlertComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { title: string; message: string; }
+  ) {
+  }
 }

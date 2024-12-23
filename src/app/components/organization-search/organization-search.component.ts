@@ -6,47 +6,46 @@ import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
-    selector: 'app-organization-search',
-    standalone: true,
-    imports: [
-        MatFormFieldModule,
-        MatInputModule,
-        MatIconModule,
-        FormsModule,
-        ReactiveFormsModule
-    ],
-    templateUrl: './organization-search.component.html',
-    styleUrl: './organization-search.component.scss'
+  selector: 'app-organization-search',
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  templateUrl: './organization-search.component.html',
+  styleUrl: './organization-search.component.scss'
 })
 export class OrganizationSearchComponent {
-    public keyword = new FormControl('');
+  public keyword = new FormControl('');
 
-    public constructor(
-        private readonly router: Router,
-        private readonly activatedRoute: ActivatedRoute,
-    ) {
-        afterNextRender({
-            read: () => {
-                this.activatedRoute.queryParams.subscribe(params => {
-                    const queryParams = new URLSearchParams(params);
-                    this.keyword.setValue(queryParams.get('w'));
-                });
-            }
-        })
-    }
+  public constructor(
+    private readonly router: Router,
+    private readonly activatedRoute: ActivatedRoute,
+  ) {
+    afterNextRender({
+      read: () => {
+        this.activatedRoute.queryParams.subscribe(params => {
+          const queryParams = new URLSearchParams(params);
+          this.keyword.setValue(queryParams.get('w'));
+        });
+      }
+    })
+  }
 
-    public doSearch() {
-        const s = new URLSearchParams("");
-        if(this.keyword.value) {
-            this.activatedRoute.queryParams.subscribe(params => {
-                const queryParams = new URLSearchParams(params);
-                if(this.keyword.value) {
-                    queryParams.set('w', this.keyword.value);
-                    this.router.navigateByUrl(`${location.pathname}?${queryParams.toString()}`).then()
-                }
-            })
-        } else {
-            this.router.navigate([location.pathname]).then()
+  public doSearch() {
+    const s = new URLSearchParams("");
+    if (this.keyword.value) {
+      this.activatedRoute.queryParams.subscribe(params => {
+        const queryParams = new URLSearchParams(params);
+        if (this.keyword.value) {
+          queryParams.set('w', this.keyword.value);
+          this.router.navigateByUrl(`${location.pathname}?${queryParams.toString()}`).then()
         }
+      })
+    } else {
+      this.router.navigate([location.pathname]).then()
     }
+  }
 }

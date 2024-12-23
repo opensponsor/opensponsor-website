@@ -1,39 +1,40 @@
 <h2 mat-dialog-title>捐赠等级</h2>
 <mat-dialog-content class="mat-typography">
-    <div class="flex flex-row">
-        <form class="space-y-6" #form (ngSubmit)="formGroup.valid && save()" [formGroup]="formGroup">
-            <mat-form-field class="w-full">
-                <mat-label>卡号</mat-label>
-                <input matInput name="cardNo" [formControl]="formGroup.controls.cardNo" required placeholder="储蓄卡号">
-            </mat-form-field>
+  <div class="flex flex-row">
+    <form class="space-y-6" #form (ngSubmit)="formGroup.valid && save()" [formGroup]="formGroup">
+      <mat-form-field class="w-full">
+        <mat-label>卡号</mat-label>
+        <input matInput name="cardNo" [formControl]="formGroup.controls.cardNo" required placeholder="储蓄卡号">
+      </mat-form-field>
 
-            <mat-form-field class="w-full">
-                <mat-label>开户行名称</mat-label>
-                <input matInput name="bankName" [formControl]="formGroup.controls.bankName" placeholder="开户行名称">
-            </mat-form-field>
+      <mat-form-field class="w-full">
+        <mat-label>开户行名称</mat-label>
+        <input matInput name="bankName" [formControl]="formGroup.controls.bankName" placeholder="开户行名称">
+      </mat-form-field>
 
-            <mat-form-field class="w-full">
-                <mat-label>持卡人姓名</mat-label>
-                <input matInput name="legalName" [formControl]="formGroup.controls.legalName" placeholder="持卡人姓名">
-            </mat-form-field>
+      <mat-form-field class="w-full">
+        <mat-label>持卡人姓名</mat-label>
+        <input matInput name="legalName" [formControl]="formGroup.controls.legalName" placeholder="持卡人姓名">
+      </mat-form-field>
 
-            <div class="flex flex-row">
-                <mat-form-field class="[&>div]:rounded-r-none w-3/12">
-                    <mat-select required [formControl]="formGroup.controls.countryCode">
-                        <mat-option *ngFor="let item of countryCodes" [value]="item">{{item.dial}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field class="[&>div]:rounded-l-none w-9/12">
-                    <mat-label>预留手机号</mat-label>
-                    <input matInput name="phoneNumber" [formControl]="formGroup.controls.phoneNumber" required placeholder="银行预留手机号">
-                </mat-form-field>
-            </div>
-        </form>
-    </div>
+      <div class="flex flex-row">
+        <mat-form-field class="[&>div]:rounded-r-none w-3/12">
+          <mat-select required [formControl]="formGroup.controls.countryCode">
+            <mat-option *ngFor="let item of countryCodes" [value]="item">{{ item.dial }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="[&>div]:rounded-l-none w-9/12">
+          <mat-label>预留手机号</mat-label>
+          <input matInput name="phoneNumber" [formControl]="formGroup.controls.phoneNumber" required
+                 placeholder="银行预留手机号">
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <div class="w-full flex justify-between gap-1">
-        <button mat-stroked-button class="w-1/4" [mat-dialog-close]="false">取消</button>
-        <button mat-flat-button class="w-3/4" (click)="submit(form)" color="primary" type="button">保存</button>
-    </div>
+  <div class="w-full flex justify-between gap-1">
+    <button mat-stroked-button class="w-1/4" [mat-dialog-close]="false">取消</button>
+    <button mat-flat-button class="w-3/4" (click)="submit(form)" color="primary" type="button">保存</button>
+  </div>
 </mat-dialog-actions>

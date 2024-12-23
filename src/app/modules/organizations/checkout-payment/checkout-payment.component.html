@@ -1,42 +1,46 @@
 <div class="flex flex-col gap-4">
-    <div class="rounded-lg bg-white shadow">
-        <mat-accordion displayMode="flat" [multi]="false" class="[&_.mat-expansion-panel]:!shadow-none">
-            <mat-expansion-panel hideToggle (afterExpand)="expandPanel('unionPay')">
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <img src="https://m.unionpayintl.com/favicon.ico" alt="">
-                    </mat-panel-title>
-                    <mat-panel-description> 使用银联支付 </mat-panel-description>
-                </mat-expansion-panel-header>
-                <p>This is the primary content of the panel.</p>
-            </mat-expansion-panel>
-            <mat-expansion-panel hideToggle (afterExpand)="expandPanel('aliPay')">
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <img class="h-[24px]" src="https://mdn.alipayobjects.com/huamei_llciku/afts/img/A*ofPZSqIRTxYAAAAAAAAAAAAADsTiAQ/original" alt="">
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        使用支付宝支付
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-                <p>I'm visible because I am open</p>
-            </mat-expansion-panel>
-            <mat-expansion-panel hideToggle (afterExpand)="expandPanel('weChatPay')">
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <img src="https://gtimg.wechatpay.cn/core/favicon.ico" alt="">
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        使用微信支付
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-                <p>I'm visible because I am open</p>
-            </mat-expansion-panel>
-        </mat-accordion>
-    </div>
+  <div class="rounded-lg bg-white shadow">
+    <mat-accordion displayMode="flat" [multi]="false" class="[&_.mat-expansion-panel]:!shadow-none">
+      <mat-expansion-panel hideToggle (afterExpand)="expandPanel('unionPay')">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <img src="https://m.unionpayintl.com/favicon.ico" alt="">
+          </mat-panel-title>
+          <mat-panel-description> 使用银联支付</mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>This is the primary content of the panel.</p>
+      </mat-expansion-panel>
+      <mat-expansion-panel hideToggle (afterExpand)="expandPanel('aliPay')">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <img class="h-[24px]"
+                 src="https://mdn.alipayobjects.com/huamei_llciku/afts/img/A*ofPZSqIRTxYAAAAAAAAAAAAADsTiAQ/original"
+                 alt="">
+          </mat-panel-title>
+          <mat-panel-description>
+            使用支付宝支付
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>I'm visible because I am open</p>
+      </mat-expansion-panel>
+      <mat-expansion-panel hideToggle (afterExpand)="expandPanel('weChatPay')">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <img src="https://gtimg.wechatpay.cn/core/favicon.ico" alt="">
+          </mat-panel-title>
+          <mat-panel-description>
+            使用微信支付
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>I'm visible because I am open</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
 
-    <div class="flex justify-between">
-        <a mat-stroked-button (click)="toLink('summary')">摘要 <mat-icon>arrow_left_alt</mat-icon> </a>
-    </div>
+  <div class="flex justify-between">
+    <a mat-stroked-button (click)="toLink('summary')">摘要
+      <mat-icon>arrow_left_alt</mat-icon>
+    </a>
+  </div>
 </div>
 

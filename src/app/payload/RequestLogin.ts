@@ -1,5 +1,5 @@
 export default interface RequestLogin {
-    account: string;
+  account: string;
 
-    password: string;
+  password: string;
 }

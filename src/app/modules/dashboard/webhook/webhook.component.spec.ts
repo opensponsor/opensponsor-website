@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { WebhookComponent } from './webhook.component';
+import {WebhookComponent} from './webhook.component';
 
 describe('WebhookComponent', () => {
   let component: WebhookComponent;
@@ -8,10 +8,10 @@ describe('WebhookComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [WebhookComponent]
+      imports: [WebhookComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(WebhookComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

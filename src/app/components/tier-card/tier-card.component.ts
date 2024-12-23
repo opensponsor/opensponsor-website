@@ -6,26 +6,22 @@ import {MatAnchor, MatButton} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
 
 @Component({
-    selector: 'app-tier-card',
-    standalone: true,
-    imports: [
-        JsonPipe,
-        NgForOf,
-        NgIf,
-        TranslatePipe,
-        MatButton,
-        RouterLink,
-        MatAnchor,
-    ],
-    templateUrl: './tier-card.component.html',
-    styleUrl: './tier-card.component.scss'
+  selector: 'app-tier-card',
+  imports: [
+    NgIf,
+    TranslatePipe,
+    RouterLink,
+    MatAnchor,
+  ],
+  templateUrl: './tier-card.component.html',
+  styleUrl: './tier-card.component.scss'
 })
 export class TierCardComponent {
-    @Input({
-        required: true,
-    })
-    public tier: Partial<Tier> = {};
+  @Input({
+    required: true,
+  })
+  public tier: Partial<Tier> = {};
 
-    protected readonly E_AMOUNT_TYPE = E_AMOUNT_TYPE;
-    protected readonly E_INTERVAL = E_INTERVAL;
+  protected readonly E_AMOUNT_TYPE = E_AMOUNT_TYPE;
+  protected readonly E_INTERVAL = E_INTERVAL;
 }

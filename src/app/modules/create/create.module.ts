@@ -10,35 +10,29 @@ import {RouterLink, RouterModule, RouterOutlet, Routes} from "@angular/router";
 import {OrganizationFormComponent} from "@app/forms/organization-form/organization-form.component";
 
 const routes: Routes = [
-    {
-        path: '',
-        component: LayoutComponent,
-        children: [
-            {path: '', component: IndexComponent, pathMatch: 'full'},
-            {path: 'community', component: CommunityComponent, pathMatch: 'full'},
-            {path: 'fiscal-host', component: FiscalHostComponent, pathMatch: 'full'},
-            {path: 'open-source-community', component: OpenSourceCommunityComponent, pathMatch: 'full'},
-        ]
-    },
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      {path: '', component: IndexComponent, pathMatch: 'full'},
+      {path: 'community', component: CommunityComponent, pathMatch: 'full'},
+      {path: 'fiscal-host', component: FiscalHostComponent, pathMatch: 'full'},
+      {path: 'open-source-community', component: OpenSourceCommunityComponent, pathMatch: 'full'},
+    ]
+  },
 ];
 
 @NgModule({
-    declarations: [
-        IndexComponent,
-        OpenSourceCommunityComponent,
-        CommunityComponent,
-        FiscalHostComponent,
-        LayoutComponent
-    ],
-    imports: [
-        CommonModule,
-        RouterModule.forChild(routes),
-        MatButton,
-        RouterOutlet,
-        MatAnchor,
-        RouterLink,
-        OrganizationFormComponent
-    ]
+  declarations: [],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    MatButton,
+    RouterOutlet,
+    MatAnchor,
+    RouterLink,
+    OrganizationFormComponent
+  ]
 })
 export class CreateModule {
 }

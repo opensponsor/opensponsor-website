@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DebitCardDialogComponent } from './debit-card-dialog.component';
+import {DebitCardDialogComponent} from './debit-card-dialog.component';
 
 describe('DebitCardDialogComponent', () => {
   let component: DebitCardDialogComponent;
@@ -8,10 +8,10 @@ describe('DebitCardDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DebitCardDialogComponent]
+      imports: [DebitCardDialogComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(DebitCardDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

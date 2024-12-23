@@ -4,16 +4,15 @@ import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-paginator',
-  standalone: true,
-    imports: [
-        MatPaginator
-    ],
+  imports: [
+    MatPaginator
+  ],
   templateUrl: './paginator.component.html',
   styleUrl: './paginator.component.scss'
 })
 export class PaginatorComponent {
-    @Input({
-        required: true,
-    })
-    result: HttpResult<any> | undefined;
+  @Input({
+    required: true,
+  })
+  result: HttpResult<any> | undefined;
 }

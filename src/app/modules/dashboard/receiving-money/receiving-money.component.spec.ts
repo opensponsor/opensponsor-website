@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ReceivingMoneyComponent } from './receiving-money.component';
+import {ReceivingMoneyComponent} from './receiving-money.component';
 
 describe('ReceivingMoneyComponent', () => {
   let component: ReceivingMoneyComponent;
@@ -8,10 +8,10 @@ describe('ReceivingMoneyComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ReceivingMoneyComponent]
+      imports: [ReceivingMoneyComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(ReceivingMoneyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

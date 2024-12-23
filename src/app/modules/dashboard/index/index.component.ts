@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
@@ -7,9 +7,9 @@ import {ActivatedRoute} from "@angular/router";
   styleUrl: './index.component.scss'
 })
 export class IndexComponent {
-    constructor(
-        private readonly activatedRoute: ActivatedRoute,
-    ) {
+  constructor(
+    private readonly activatedRoute: ActivatedRoute,
+  ) {
 
-    }
+  }
 }

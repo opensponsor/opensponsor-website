@@ -9,27 +9,26 @@ import {PaginatorComponent} from "@app/components/paginator/paginator.component"
 import {OrganizationSearchComponent} from "@app/components/organization-search/organization-search.component";
 
 const routes: Routes = [
-    {
-        path: '',
-        children: [
-            {path: '', component: IndexComponent, pathMatch: 'full'},
-        ]
-    }
+  {
+    path: '',
+    children: [
+      {path: '', component: IndexComponent, pathMatch: 'full'},
+    ]
+  }
 ];
 
 @NgModule({
-    declarations: [
-        IndexComponent
-    ],
-    imports: [
-        CommonModule,
-        RouterModule.forChild(routes),
-        MatButtonModule,
-        OrgCardComponent,
-        MatPaginator,
-        PaginatorComponent,
-        OrganizationSearchComponent,
-    ]
+  declarations: [
+  ],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    MatButtonModule,
+    OrgCardComponent,
+    MatPaginator,
+    PaginatorComponent,
+    OrganizationSearchComponent,
+  ]
 })
 export class ExploreModule {
 }

@@ -1,18 +1,18 @@
 <h1 mat-dialog-title>{{ data.title }}</h1>
 <mat-dialog-content>
-    {{ data.message }}
+  {{ data.message }}
 </mat-dialog-content>
 <mat-dialog-actions>
-    <div class="grid grid-cols-2 gap-4 w-full">
-        <div class="w-full">
-            <button class="w-full" mat-stroked-button (click)="dialogRef.close(false)">
-                取消
-            </button>
-        </div>
-        <div class="w-full">
-            <button class="w-full" mat-flat-button color="primary" [autofocus]="true" (click)="dialogRef.close(true)">
-                确定
-            </button>
-        </div>
+  <div class="grid grid-cols-2 gap-4 w-full">
+    <div class="w-full">
+      <button class="w-full" mat-stroked-button (click)="dialogRef.close(false)">
+        取消
+      </button>
     </div>
+    <div class="w-full">
+      <button class="w-full" mat-flat-button color="primary" [autofocus]="true" (click)="dialogRef.close(true)">
+        确定
+      </button>
+    </div>
+  </div>
 </mat-dialog-actions>

@@ -5,23 +5,22 @@ import {IndexComponent} from "@modules/home/index/index.component";
 import {MatButtonModule} from "@angular/material/button";
 
 const routes: Routes = [
-    {
-        path: '',
-        children: [
-            {path: '', component: IndexComponent, pathMatch: 'full'},
-        ]
-    }
+  {
+    path: '',
+    children: [
+      {path: '', component: IndexComponent, pathMatch: 'full'},
+    ]
+  }
 ];
 
 @NgModule({
-    declarations: [
-        IndexComponent
-    ],
-    imports: [
-        CommonModule,
-        RouterModule.forChild(routes),
-        MatButtonModule,
-    ]
+  declarations: [
+  ],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    MatButtonModule,
+  ]
 })
 export class HomeModule {
 }

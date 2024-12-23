@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CheckoutProfileComponent } from './checkout-profile.component';
+import {CheckoutProfileComponent} from './checkout-profile.component';
 
 describe('CheckoutProfileComponent', () => {
   let component: CheckoutProfileComponent;
@@ -8,10 +8,10 @@ describe('CheckoutProfileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CheckoutProfileComponent]
+      imports: [CheckoutProfileComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(CheckoutProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

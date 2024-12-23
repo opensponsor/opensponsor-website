@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PureLayoutComponent } from './pure-layout.component';
+import {PureLayoutComponent} from './pure-layout.component';
 
 describe('PureLayoutComponent', () => {
   let component: PureLayoutComponent;
@@ -10,8 +10,8 @@ describe('PureLayoutComponent', () => {
     await TestBed.configureTestingModule({
       imports: [PureLayoutComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(PureLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

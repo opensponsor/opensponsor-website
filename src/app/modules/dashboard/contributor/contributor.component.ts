@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
@@ -7,9 +7,9 @@ import {ActivatedRoute} from "@angular/router";
   styleUrl: './contributor.component.scss'
 })
 export class ContributorComponent {
-    constructor(
-        private readonly activatedRoute: ActivatedRoute,
-    ) {
+  constructor(
+    private readonly activatedRoute: ActivatedRoute,
+  ) {
 
-    }
+  }
 }

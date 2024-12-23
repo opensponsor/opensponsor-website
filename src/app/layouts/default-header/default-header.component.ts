@@ -7,52 +7,50 @@ import {MatAnchor} from "@angular/material/button";
 import {User} from "@app/interfaces/ApiInterface";
 
 @Component({
-    selector: 'app-default-header',
-    standalone: true,
-    imports: [
-        RouterLink,
-        NgForOf,
-        MatAnchor,
-        NgIf,
-        NgClass,
-    ],
-    templateUrl: './default-header.component.html',
-    styleUrls: ['./default-header.component.scss']
+  selector: 'app-default-header',
+  imports: [
+    RouterLink,
+    NgForOf,
+    MatAnchor,
+    NgClass,
+  ],
+  templateUrl: './default-header.component.html',
+  styleUrls: ['./default-header.component.scss']
 })
 export class DefaultHeaderComponent {
-    public hideHeader = false;
-    private scrollY = 0;
-    public menuGroup = {
-        left: [
-            {label: "发现社区", link: "/explore"},
-        ],
-        right: [
-            {label: "创建社区", link: "/create"},
-        ]
-    };
+  public hideHeader = false;
+  private scrollY = 0;
+  public menuGroup = {
+    left: [
+      {label: "发现社区", link: "/explore"},
+    ],
+    right: [
+      {label: "创建社区", link: "/create"},
+    ]
+  };
 
-    public authInfo: Partial<User> | undefined = {};
+  public authInfo: Partial<User> | undefined = {};
 
-    @HostListener('window:scroll', ['$event']) // for window scroll events
-    onScroll(event: Event) {
-        if(window.scrollY < this.scrollY) {
-            this.hideHeader = false;
-        } else if(this.scrollY > 100) {
-            this.hideHeader = true
-        }
-
-        this.scrollY = window.scrollY;
+  @HostListener('window:scroll', ['$event']) // for window scroll events
+  onScroll(event: Event) {
+    if (window.scrollY < this.scrollY) {
+      this.hideHeader = false;
+    } else if (this.scrollY > 100) {
+      this.hideHeader = true
     }
 
-    constructor(
-        public readonly authService: AuthService,
-        public readonly platform: Platform,
-    ) {
-        if (this.platform.isBrowser) {
-            this.authInfo = this.authService.authInfo();
-            this.authService.authInfo$.subscribe(data => {
-                this.authInfo = data;
-            });
-        }
+    this.scrollY = window.scrollY;
+  }
+
+  constructor(
+    public readonly authService: AuthService,
+    public readonly platform: Platform,
+  ) {
+    if (this.platform.isBrowser) {
+      this.authInfo = this.authService.authInfo();
+      this.authService.authInfo$.subscribe(data => {
+        this.authInfo = data;
+      });
     }
+  }
 }

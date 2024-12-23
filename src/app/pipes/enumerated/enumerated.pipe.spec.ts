@@ -1,4 +1,4 @@
-import { EnumeratedPipe } from './enumerated.pipe';
+import {EnumeratedPipe} from './enumerated.pipe';
 
 describe('EnumeratedPipe', () => {
   it('create an instance', () => {

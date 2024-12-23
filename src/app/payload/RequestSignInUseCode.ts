@@ -1,5 +1,5 @@
 export default interface RequestSignInUseCode {
-    mobile: string;
+  mobile: string;
 
-    code: string;
+  code: string;
 }
