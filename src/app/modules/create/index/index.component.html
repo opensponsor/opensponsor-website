@@ -1,7 +1,7 @@
 <div class="aspect-[16/10] flex items-center justify-center gap-4">
   <div *ngFor="let item of createList" class="overflow-hidden rounded-lg bg-white shadow w-full">
     <div class="px-4 py-5 sm:px-6 flex justify-center">
-      <img class="w-1/2 rounded-2xl object-contain" [src]="item.logo" alt="">
+      <img class="w-1/2 rounded-2xl object-contain" [ngSrc]="item.logo" alt="" fill>
     </div>
     <div class="px-4 py-5 sm:p-6 text-center">
       <a [routerLink]="item.link" mat-flat-button>{{ item.text }}</a>

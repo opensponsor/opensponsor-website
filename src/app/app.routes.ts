@@ -1,8 +1,25 @@
-import {Routes} from '@angular/router';
+import {Routes, CanActivateFn, Router} from '@angular/router';
 import {FullWidthLayoutComponent} from "@app/layouts/full-width-layout/full-width-layout.component";
 import {DefaultLayoutComponent} from "@app/layouts/default-layout/default-layout.component";
 import {PureLayoutComponent} from "@app/layouts/pure-layout/pure-layout.component";
 import {PageNotFoundComponent} from "@modules/error/page-not-found/page-not-found.component";
+import {inject} from "@angular/core";
+import {SnackBarService} from "@services/snack-bar/snack-bar.service";
+
+
+const authGuard: CanActivateFn = (route, state) => {
+  const snackBarService = inject(SnackBarService);
+  const router = inject(Router);
+  const token = localStorage.getItem("accessToken");
+  if (token) {
+    return true;
+  } else {
+    router.navigate(['/passport/login']).then(() => {
+      snackBarService.message({message: '请先登陆账号'})
+    });
+    return false;
+  }
+};
 
 export const routes: Routes = [
   {
@@ -12,11 +29,13 @@ export const routes: Routes = [
   },
   {
     path: 'account',
+    canActivate: [authGuard],
     component: PureLayoutComponent,
     loadChildren: () => import('@modules/account/account.module').then(m => m.AccountModule)
   },
   {
     path: 'create',
+    canActivate: [authGuard],
     component: DefaultLayoutComponent,
     loadChildren: () => import('@modules/create/create.module').then(m => m.CreateModule)
   },
@@ -32,6 +51,7 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
+    canActivate: [authGuard],
     component: PureLayoutComponent,
     loadChildren: () => import('@modules/dashboard/dashboard.module').then(m => m.DashboardModule)
   },

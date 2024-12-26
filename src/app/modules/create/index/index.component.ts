@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {RouterLink} from "@angular/router";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgOptimizedImage} from "@angular/common";
 import {MatAnchor} from "@angular/material/button";
 
 @Component({
@@ -9,7 +9,8 @@ import {MatAnchor} from "@angular/material/button";
   imports: [
     RouterLink,
     NgForOf,
-    MatAnchor
+    MatAnchor,
+    NgOptimizedImage
   ],
   styleUrl: './index.component.scss'
 })

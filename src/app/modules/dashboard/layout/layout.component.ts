@@ -5,7 +5,7 @@ import {Platform} from "@angular/cdk/platform";
 import {MatExpansionModule, MatExpansionPanelHeader} from "@angular/material/expansion";
 import {MatIcon, MatIconModule} from "@angular/material/icon";
 import {MatList, MatListModule} from "@angular/material/list";
-import {NgClass, NgForOf, NgIf} from "@angular/common";
+import {NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 
 type Menu = {
   label: string;
@@ -18,16 +18,17 @@ type Menu = {
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
-  imports: [
-    MatExpansionModule,
-    MatIconModule,
-    RouterLink,
-    MatListModule,
-    NgClass,
-    NgForOf,
-    NgIf,
-    RouterOutlet
-  ],
+    imports: [
+        MatExpansionModule,
+        MatIconModule,
+        RouterLink,
+        MatListModule,
+        NgClass,
+        NgForOf,
+        NgIf,
+        RouterOutlet,
+        NgOptimizedImage
+    ],
   styleUrl: './layout.component.scss'
 })
 export class LayoutComponent {

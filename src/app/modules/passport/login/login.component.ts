@@ -6,16 +6,18 @@ import {Router, RouterLink} from "@angular/router";
 import {SnackBarService} from "@services/snack-bar/snack-bar.service";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import {NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  imports: [
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    RouterLink
-  ],
+    imports: [
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        RouterLink,
+        NgOptimizedImage
+    ],
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {

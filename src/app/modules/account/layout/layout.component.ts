@@ -3,7 +3,7 @@ import {RouterLink, RouterOutlet} from "@angular/router";
 import {MatAccordion, MatExpansionModule, MatExpansionPanel} from "@angular/material/expansion";
 import {MatIcon, MatIconModule} from "@angular/material/icon";
 import {MatList, MatListModule} from "@angular/material/list";
-import {NgForOf, NgIf} from "@angular/common";
+import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 
 type Menu = {
   label: string;
@@ -22,7 +22,8 @@ type Menu = {
     MatListModule,
     NgForOf,
     NgIf,
-    RouterOutlet
+    RouterOutlet,
+    NgOptimizedImage
   ],
   styleUrl: './layout.component.scss'
 })

@@ -9,20 +9,21 @@ import {SnackBarService} from "@services/snack-bar/snack-bar.service";
 import {MatFormFieldModule, MatLabel} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
-import {NgFor} from "@angular/common";
+import {NgFor, NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  imports: [
-    MatLabel,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatSelectModule,
-    RouterLink,
-    NgFor
-  ],
+    imports: [
+        MatLabel,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatSelectModule,
+        RouterLink,
+        NgFor,
+        NgOptimizedImage
+    ],
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
