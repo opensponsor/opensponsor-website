@@ -18,13 +18,15 @@ export class AppComponent {
     public readonly platform: Platform,
   ) {
     if (this.platform.isBrowser) {
-      this.authService.getAuthUser().subscribe(res => {
-        if (res.body) {
-          this.authService.persistAuth(res.body);
-        } else {
-          this.authService.removeAuthInfo();
-        }
-      })
+      if(localStorage.getItem("accessToken")) {
+        this.authService.getAuthUser().subscribe(res => {
+          if (res.body) {
+            this.authService.persistAuth(res.body);
+          } else {
+            this.authService.removeAuthInfo();
+          }
+        })
+      }
     }
   }
 }

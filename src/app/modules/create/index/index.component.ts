@@ -17,22 +17,22 @@ import {MatAnchor} from "@angular/material/button";
 export class IndexComponent {
   public createList = [
     {
-      logo: "https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg",
+      logo: "https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png",
       link: "/create/open-source-community",
       text: "创建开源社区",
-      description: "https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg",
+      description: "开源项目",
     },
     {
-      logo: "https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg",
+      logo: "https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png",
       link: "/create/community",
       text: "创建其他任何社区",
-      description: "https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg",
+      description: "其他公益项目",
     },
     {
-      logo: "https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg",
+      logo: "https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png",
       link: "/create/fiscal-host",
       text: "创建财务托管机构",
-      description: "https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg",
+      description: "财务托管机构",
     },
   ];
 }

@@ -5,20 +5,26 @@ import {PureLayoutComponent} from "@app/layouts/pure-layout/pure-layout.componen
 import {PageNotFoundComponent} from "@modules/error/page-not-found/page-not-found.component";
 import {inject} from "@angular/core";
 import {SnackBarService} from "@services/snack-bar/snack-bar.service";
-
+import {AuthService} from "@services/auth/auth.service";
 
 const authGuard: CanActivateFn = (route, state) => {
+  const authService = inject(AuthService);
   const snackBarService = inject(SnackBarService);
   const router = inject(Router);
-  const token = localStorage.getItem("accessToken");
-  if (token) {
-    return true;
-  } else {
-    router.navigate(['/passport/login']).then(() => {
-      snackBarService.message({message: '请先登陆账号'})
-    });
-    return false;
-  }
+
+  return new Promise(resolve => {
+    authService.getAuthUser().subscribe({
+      next: () => {
+        resolve(true)
+      },
+      error: err => {
+        router.navigate(["/passport/login"]).then(() => {
+          snackBarService.message({message: err.message});
+        })
+        resolve(false)
+      }
+    })
+  })
 };
 
 export const routes: Routes = [
