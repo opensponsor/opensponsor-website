@@ -121,10 +121,6 @@
         }
       },
       "i18n": {
-        "sourceLocale": {
-          "code": "cn",
-          "baseHref": ""
-        },
         "locales": {
           "en": {
             "translation": "src/locale/messages.en.xlf",
