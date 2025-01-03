@@ -1,6 +1,5 @@
 /* eslint-disable */
 /* tslint:disable */
-
 /*
  * ---------------------------------------------------------------
  * ## THIS FILE WAS GENERATED VIA SWAGGER-TYPESCRIPT-API        ##
@@ -299,21 +298,192 @@ export enum E_TIER_TYPE {
   SERVICE = "SERVICE",
 }
 
-export interface Example {
-  id: UUID;
-  name: string;
-  likeName?: string;
+export interface GithubLicense {
+  key?: string;
+  name?: string;
+  spdx_id?: string;
+  url?: string;
+  node_id?: string;
+}
+
+export interface GithubOrg {
+  login?: string;
+  /** @format double */
+  id?: number;
+  node_id?: string;
+  url?: string;
+  repos_url?: string;
+  events_url?: string;
+  hooks_url?: string;
+  issues_url?: string;
+  members_url?: string;
+  public_members_url?: string;
+  avatar_url?: string;
+  description?: string;
+}
+
+export interface GithubOwner {
+  login?: string;
   /** @format int32 */
-  age: number;
+  id?: number;
+  node_id?: string;
+  avatar_url?: string;
+  gravatar_id?: string;
+  url?: string;
+  html_url?: string;
+  followers_url?: string;
+  following_url?: string;
+  gists_url?: string;
+  starred_url?: string;
+  subscriptions_url?: string;
+  organizations_url?: string;
+  repos_url?: string;
+  events_url?: string;
+  received_events_url?: string;
+  type?: string;
+  user_view_type?: string;
+  site_admin?: boolean;
+}
+
+export interface GithubRepo {
   /** @format int32 */
-  minAge?: number;
+  id?: number;
+  node_id?: string;
+  name?: string;
+  full_name?: string;
+  owner?: GithubOwner;
+  html_url?: string;
+  description?: string;
+  fork?: boolean;
+  url?: string;
+  forks_url?: string;
+  keys_url?: string;
+  collaborators_url?: string;
+  teams_url?: string;
+  hooks_url?: string;
+  issue_events_url?: string;
+  events_url?: string;
+  assignees_url?: string;
+  branches_url?: string;
+  tags_url?: string;
+  blobs_url?: string;
+  git_tags_url?: string;
+  git_refs_url?: string;
+  trees_url?: string;
+  statuses_url?: string;
+  languages_url?: string;
+  stargazers_url?: string;
+  contributors_url?: string;
+  subscribers_url?: string;
+  subscription_url?: string;
+  commits_url?: string;
+  git_commits_url?: string;
+  comments_url?: string;
+  issue_comment_url?: string;
+  contents_url?: string;
+  compare_url?: string;
+  merges_url?: string;
+  archive_url?: string;
+  downloads_url?: string;
+  issues_url?: string;
+  pulls_url?: string;
+  milestones_url?: string;
+  notifications_url?: string;
+  labels_url?: string;
+  releases_url?: string;
+  deployments_url?: string;
+  created_at?: string;
+  updated_at?: string;
+  pushed_at?: string;
+  git_url?: string;
+  ssh_url?: string;
+  clone_url?: string;
+  svn_url?: string;
+  homepage?: string;
   /** @format int32 */
-  maxAge?: number;
-  /** when created */
-  whenCreated: Instant;
-  /** when modified */
-  whenModified: Instant;
-  whenDeleted?: Instant;
+  size?: number;
+  /** @format int32 */
+  stargazers_count?: number;
+  /** @format int32 */
+  watchers_count?: number;
+  has_issues?: boolean;
+  has_projects?: boolean;
+  has_downloads?: boolean;
+  has_wiki?: boolean;
+  has_pages?: boolean;
+  has_discussions?: boolean;
+  /** @format int32 */
+  forks_count?: number;
+  mirror_url?: string;
+  archived?: boolean;
+  disabled?: boolean;
+  /** @format int32 */
+  open_issues_count?: number;
+  license?: GithubLicense;
+  allow_forking?: boolean;
+  is_template?: boolean;
+  web_commit_signoff_required?: boolean;
+  visibility?: string;
+  /** @format int32 */
+  forks?: number;
+  /** @format int32 */
+  open_issues?: number;
+  /** @format int32 */
+  watchers?: number;
+  default_branch?: string;
+}
+
+export interface GithubRepoGroup {
+  /** login name */
+  login: string;
+  /** owner type */
+  type: string;
+  /** org info */
+  org?: GithubOrg;
+  /** user info */
+  user?: GithubUser;
+  /** user info */
+  repos: GithubRepo[];
+}
+
+export interface GithubUser {
+  login?: string;
+  /** @format int32 */
+  id?: number;
+  node_id?: string;
+  avatar_url?: string;
+  gravatar_id?: string;
+  url?: string;
+  html_url?: string;
+  followers_url?: string;
+  following_url?: string;
+  gists_url?: string;
+  starred_url?: string;
+  subscriptions_url?: string;
+  organizations_url?: string;
+  repos_url?: string;
+  events_url?: string;
+  received_events_url?: string;
+  type?: string;
+  user_view_type?: string;
+  site_admin?: boolean;
+  name?: string;
+  company?: string;
+  blog?: string;
+  location?: string;
+  email?: string;
+  bio?: string;
+  twitter_username?: string;
+  /** @format int32 */
+  public_repos?: number;
+  /** @format int32 */
+  public_gists?: number;
+  /** @format int32 */
+  followers?: number;
+  /** @format int32 */
+  following?: number;
+  created_at?: string;
+  updated_at?: string;
 }
 
 /**
@@ -415,8 +585,6 @@ export interface Organization {
   /** when deleted */
   whenDeleted?: Instant;
 }
-
-export type PanacheEntityBase = object;
 
 export interface RegisterBody {
   /**
