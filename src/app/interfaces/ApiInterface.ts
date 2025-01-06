@@ -298,6 +298,19 @@ export enum E_TIER_TYPE {
   SERVICE = "SERVICE",
 }
 
+export interface GithubAccessToken {
+  /** access token */
+  access_token: string;
+  refresh_token_expires_in?: string;
+  refresh_token?: string;
+  scope?: string;
+  token_type?: string;
+  expires_in?: string;
+  error?: string;
+  error_description?: string;
+  error_uri?: string;
+}
+
 export interface GithubLicense {
   key?: string;
   name?: string;
