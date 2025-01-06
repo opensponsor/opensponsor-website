@@ -3,8 +3,10 @@ import {AuthService} from "@services/auth/auth.service";
 import {Platform} from "@angular/cdk/platform";
 import {RouterLink} from "@angular/router";
 import {NgClass, NgForOf, NgIf} from "@angular/common";
-import {MatAnchor} from "@angular/material/button";
+import {MatAnchor, MatButton, MatButtonModule} from "@angular/material/button";
 import {User} from "@app/interfaces/ApiInterface";
+import {MatCardModule} from "@angular/material/card";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'app-default-header',
@@ -13,6 +15,8 @@ import {User} from "@app/interfaces/ApiInterface";
     NgForOf,
     MatAnchor,
     NgClass,
+    MatCardModule,
+    MatButtonModule,
   ],
   templateUrl: './default-header.component.html',
   styleUrls: ['./default-header.component.scss']
@@ -30,6 +34,8 @@ export class DefaultHeaderComponent {
   };
 
   public authInfo: Partial<User> | undefined = {};
+
+  public showCreateMenu = false
 
   @HostListener('window:scroll', ['$event']) // for window scroll events
   onScroll(event: Event) {

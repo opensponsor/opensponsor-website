@@ -9,7 +9,7 @@ import {
   Tier,
   UUID
 } from "@app/interfaces/ApiInterface";
-import transformType from "@app/utils/transformType";
+import transformType from "@app/utils/transform-type";
 import {TierService} from "@services/tier/tier.service";
 import {MatFormFieldModule, MatLabel} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";

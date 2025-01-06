@@ -18,7 +18,7 @@ export class IndexComponent {
   public createList = [
     {
       logo: "https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png",
-      link: "/create/open-source-community",
+      link: "/create/opensource-community",
       text: "创建开源社区",
       description: "开源项目",
     },
@@ -26,13 +26,7 @@ export class IndexComponent {
       logo: "https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png",
       link: "/create/community",
       text: "创建其他任何社区",
-      description: "其他公益项目",
-    },
-    {
-      logo: "https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png",
-      link: "/create/fiscal-host",
-      text: "创建财务托管机构",
-      description: "财务托管机构",
-    },
+      description: "其他项目",
+    }
   ];
 }
