@@ -283,6 +283,13 @@ export enum E_ORGANIZATION_ROLE {
 export enum E_ORGANIZATION_TYPE {
   FISCAL_HOST = "FISCAL_HOST",
   COMMUNITY = "COMMUNITY",
+  EVENT = "EVENT",
+  ORGANIZATION = "ORGANIZATION",
+  BOT = "BOT",
+  PROJECT = "PROJECT",
+  FUND = "FUND",
+  VENDOR = "VENDOR",
+  USER = "USER",
 }
 
 export enum E_SEX {
@@ -504,6 +511,35 @@ export interface GithubUser {
  * @example "2022-03-10T16:15:50.000Z"
  */
 export type Instant = string;
+
+export interface Licenses {
+  id: UUID;
+  /**
+   * @minLength 2
+   * @maxLength 64
+   */
+  key: string;
+  /**
+   * @minLength 2
+   * @maxLength 64
+   */
+  name: string;
+  /**
+   * @minLength 2
+   * @maxLength 64
+   */
+  spdxId: string;
+  /**
+   * @minLength 2
+   * @maxLength 64
+   */
+  url: string;
+  /** when created */
+  whenCreated: Instant;
+  /** when modified */
+  whenModified: Instant;
+  whenDeleted?: Instant;
+}
 
 export interface LoginBody {
   /**
