@@ -2,8 +2,11 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en-US" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="2118856116169775514" datatype="html">
-        <source>中文</source>
+      <trans-unit id="3381621952249622762" datatype="html">
+        <source> 使用email邀请成员 </source>
+      </trans-unit>
+      <trans-unit id="6480834189371322716" datatype="html">
+        <source>下一步</source>
       </trans-unit>
     </body>
   </file>
