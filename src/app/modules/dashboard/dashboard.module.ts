@@ -16,7 +16,6 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TiersComponent} from './tiers/tiers.component';
-import {TierDialogComponent} from './dialogs/tier-dialog/tier-dialog.component';
 import {MatRippleModule} from "@angular/material/core";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
@@ -29,7 +28,6 @@ import {ContributorComponent} from './contributor/contributor.component';
 import {OrganizationFormComponent} from "@app/forms/organization-form/organization-form.component";
 import {SendingMoneyComponent} from './sending-money/sending-money.component';
 import {ReceivingMoneyComponent} from './receiving-money/receiving-money.component';
-import {DebitCardDialogComponent} from './dialogs/debit-card-dialog/debit-card-dialog.component';
 
 const routes: Routes = [
   {

@@ -85,12 +85,12 @@
       </div>
       <div>
         <form class="space-y-6" [formGroup]="formGroup">
-          <mat-form-field class="w-full" appearance="outline">
+          <mat-form-field class="w-full">
             <mat-label>姓名</mat-label>
             <input matInput formControlName="name" [formControl]="this.formGroup.controls.name"/>
             <mat-hint>用于公开显示</mat-hint>
           </mat-form-field>
-          <mat-form-field class="w-full" appearance="outline">
+          <mat-form-field class="w-full">
             <mat-label>法定姓名</mat-label>
             <input matInput formControlName="legalName" [formControl]="this.formGroup.controls.legalName"/>
             <mat-hint>身份证显示名称(不公开显示)</mat-hint>

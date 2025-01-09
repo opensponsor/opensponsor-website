@@ -1,23 +1,19 @@
-import {Component} from '@angular/core';
-import {DialogRef} from "@angular/cdk/dialog";
+import {Component, inject} from '@angular/core';
 import {FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {
   E_AMOUNT_TYPE,
   E_IBAN_CURRENCIES,
   E_INTERVAL,
-  E_TIER_TYPE,
+  E_TIER_TYPE, Organization,
   Tier,
-  UUID
 } from "@app/interfaces/ApiInterface";
 import transformType from "@app/utils/transform-type";
 import {TierService} from "@services/tier/tier.service";
 import {MatFormFieldModule, MatLabel} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
-import {RouterLink} from "@angular/router";
-import {NgFor} from "@angular/common";
 import {EnumeratedPipe} from "@app/pipes/enumerated/enumerated.pipe";
-import {MatDialogModule} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {TranslatePipe} from "@app/pipes/translate/translate.pipe";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {TierCardComponent} from "@app/components/tier-card/tier-card.component";
@@ -42,6 +38,8 @@ import {MatButtonModule} from "@angular/material/button";
   styleUrl: './tier-dialog.component.scss',
 })
 export class TierDialogComponent {
+  readonly data = inject<{org: Organization; tier: Tier}>(MAT_DIALOG_DATA);
+
   public formGroup = new FormGroup({
     type: new FormControl<E_TIER_TYPE>(E_TIER_TYPE.DONATION, [
       Validators.required
@@ -77,8 +75,8 @@ export class TierDialogComponent {
   });
 
   private presetsFormArray() {
-    if (this.dialogRef.config.data.tier && this.dialogRef.config.data.tier.presets.length > 0) {
-      return this.dialogRef.config.data.tier.presets.map((p: number) => {
+    if (this.data.tier?.presets && this.data.tier.presets.length > 0) {
+      return this.data.tier.presets.map((p: number) => {
         return new FormControl<number | null>(p, [
           Validators.min(1),
         ])
@@ -98,9 +96,9 @@ export class TierDialogComponent {
   public save() {
     if (this.formGroup.valid) {
       const tier = this.formGroup.value as Tier
-      tier.organization = this.dialogRef.config.data.org;
-      if (this.dialogRef.config.data.tier) {
-        tier.id = this.dialogRef.config.data.tier.id;
+      tier.organization = this.data.org;
+      if (this.data.tier) {
+        tier.id = this.data.tier.id;
         this.tierService.update(tier).subscribe(res => {
           if (res.status === 200) {
             this.dialogRef.close();
@@ -140,19 +138,18 @@ export class TierDialogComponent {
   }
 
   constructor(
-    private readonly dialogRef: DialogRef<TierDialogComponent>,
+    private readonly dialogRef: MatDialogRef<TierDialogComponent>,
     private readonly tierService: TierService,
   ) {
     this.valueChangesSubscribe();
-
     this.initializeValue();
   }
 
   private initializeValue() {
-    if (this.dialogRef.config.data.tier) {
+    if (this.data.tier) {
       for (let controlsKey in this.formGroup.controls) {
         if (controlsKey !== 'presets') {
-          this.formGroup.get(controlsKey)?.setValue(this.dialogRef.config.data.tier[controlsKey])
+          this.formGroup.get(controlsKey)?.setValue((this.data.tier as Record<string, any>)[controlsKey])
         }
       }
     }

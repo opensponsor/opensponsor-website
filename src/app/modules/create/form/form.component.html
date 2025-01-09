@@ -1,4 +1,8 @@
-<form method="dialog" class="flex flex-col gap-3 bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl" (ngSubmit)="formGroup.valid && create" [formGroup]="formGroup">
+<form method="dialog"
+      class="flex flex-col gap-3 bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
+      (ngSubmit)="formGroup.valid && create()"
+      [formGroup]="formGroup"
+>
   <div class="grid grid-cols-1 gap-4 px-4 py-6 sm:p-8">
     <div class="grid w-full grid-cols-1 gap-x-6 gap-y-8">
       <div class="relative">
@@ -13,7 +17,7 @@
     <required-hint />
     <div class="grid w-full grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8">
       <div class="w-full">
-        <mat-form-field subscriptSizing="dynamic" class="w-full" appearance="outline">
+        <mat-form-field subscriptSizing="dynamic" class="w-full">
           <mat-label>
             社区(项目)名称
           </mat-label>
@@ -21,7 +25,7 @@
         </mat-form-field>
       </div>
       <div class="w-full">
-        <mat-form-field floatLabel="always" subscriptSizing="dynamic" class="w-full" appearance="outline">
+        <mat-form-field floatLabel="always" subscriptSizing="dynamic" class="w-full">
           <mat-label>主页链接</mat-label>
           <span matTextPrefix>{{ urlOrigin }}</span>
           <input matInput name="slug" [formControl]="formGroup.controls.slug">
@@ -29,13 +33,13 @@
       </div>
     </div>
     <div class="grid w-full grid-cols-1 gap-x-6 gap-y-8">
-      <mat-form-field class="w-full" appearance="outline">
+      <mat-form-field class="w-full">
         <mat-label>介绍你的社区主要工作</mat-label>
         <textarea matInput name="introduce" [formControl]="formGroup.controls.introduce"></textarea>
       </mat-form-field>
     </div>
     <div class="grid w-full grid-cols-1 gap-x-6 gap-y-8">
-      <mat-form-field class="w-full" appearance="outline">
+      <mat-form-field floatLabel="always" class="w-full">
         <mat-label>设置社区标签</mat-label>
         <input type="text"
                aria-label="Tags"
@@ -117,14 +121,13 @@
           </mat-expansion-panel-header>
           <div class="grid grid-cols-1 gap-2">
             <div>
-              <mat-form-field floatLabel="always" class="w-full" appearance="outline">
+              <mat-form-field floatLabel="always" class="w-full">
                 <mat-label>项目链接</mat-label>
-                <span matTextPrefix>https://</span>
-                <input matInput name="website" [formControl]="formGroup.controls.website" placeholder="github.com/org/repo"/>
+                <input matInput name="website" [formControl]="formGroup.controls.website" placeholder="https://github.com/org/repo"/>
               </mat-form-field>
             </div>
             <div>
-              <mat-form-field class="w-full" appearance="outline">
+              <mat-form-field class="w-full">
                 <mat-label>开源协议</mat-label>
                 <mat-select class="w-full" [formControl]="formGroup.controls.licenses">
                   @for (lic of licenses; track lic) {
@@ -134,7 +137,7 @@
               </mat-form-field>
             </div>
             <div>
-              <mat-form-field class="w-full" appearance="outline">
+              <mat-form-field class="w-full">
                 <mat-label>额外的许可证信息补充</mat-label>
                 <textarea matInput name="additionalLicenses" [formControl]="formGroup.controls.additionalLicenses"></textarea>
               </mat-form-field>
@@ -150,13 +153,13 @@
           </mat-expansion-panel-header>
           <div>
             <div>
-              <mat-form-field class="w-full" appearance="outline">
+              <mat-form-field class="w-full">
                 <mat-label>你有多少成员？</mat-label>
                 <input matInput type="number" name="memberAmount" [formControl]="formGroup.controls.amountOfMembers" />
               </mat-form-field>
             </div>
             <div>
-              <mat-form-field class="w-full" appearance="outline">
+              <mat-form-field class="w-full">
                 <mat-label>社区的以往事件信息</mat-label>
                 <textarea matInput name="previousEvents" [formControl]="formGroup.controls.previousEvents"></textarea>
               </mat-form-field>

@@ -4,10 +4,9 @@ import {MatRadioModule} from "@angular/material/radio";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatExpansionModule, MatExpansionPanel} from "@angular/material/expansion";
 import {MatIcon} from "@angular/material/icon";
-import {E_ORGANIZATION_TYPE, Licenses} from "@app/interfaces/ApiInterface";
+import {E_ORGANIZATION_TYPE, Licenses, Organization} from "@app/interfaces/ApiInterface";
 import {MatFormField, MatHint, MatLabel, MatPrefix, MatSuffix} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
-import {MatTooltip} from "@angular/material/tooltip";
 import {Platform} from "@angular/cdk/platform";
 import {
   MatAutocomplete,
@@ -21,8 +20,11 @@ import {LiveAnnouncer} from "@angular/cdk/a11y";
 import {Observable} from "rxjs";
 import {MatSelect} from "@angular/material/select";
 import {LicensesService} from "@services/licenses/licenses.service";
-import {MatButton, MatIconButton} from "@angular/material/button";
+import {MatButton} from "@angular/material/button";
 import {RequiredHintComponent} from "@app/components/required-hint/required-hint.component";
+import {OrganizationsService} from "@services/organizations/organizations.service";
+import {SnackBarService} from "@services/snack-bar/snack-bar.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-form',
@@ -120,6 +122,9 @@ export class FormComponent implements AfterViewInit {
   constructor(
     private platform: Platform,
     private licensesService: LicensesService,
+    private organizationsService: OrganizationsService,
+    private snackBarService: SnackBarService,
+    private router: Router,
   ) {
     if (this.platform.isBrowser) {
       this.urlOrigin = [location?.origin, '/'].join("");
@@ -181,7 +186,15 @@ export class FormComponent implements AfterViewInit {
   }
 
   create() {
-    alert('create')
+    if (this.formGroup.valid) {
+      const data = this.formGroup.value as Partial<Organization>;
+      data.tags = [...this.tags];
+      this.organizationsService.create(data).subscribe(res => {
+        this.router.navigate(['/dashboard/', res.body?.name]).then(() => {
+          this.snackBarService.message({message: '组织已经创建'});
+        })
+      })
+    }
   }
 
   private setLicenses() {

@@ -3,28 +3,30 @@
     <form class="flex flex-col gap-3 w-full" style="display: flex; flex-direction: column;"
           (ngSubmit)="formGroup.valid && save()" [formGroup]="formGroup">
       <h3>组织信息 (&nbsp;*标记为必填&nbsp;)</h3>
-      <mat-form-field floatLabel="always" class="w-full" appearance="outline">
+      <mat-form-field floatLabel="always" class="w-full">
         <mat-label>组织名称</mat-label>
         <input matInput name="title" [formControl]="formGroup.controls.name" placeholder="Open Sponsor">
       </mat-form-field>
-      <mat-form-field floatLabel="always" subscriptSizing="dynamic" class="w-full" appearance="outline">
-        <mat-label>
-          法定名称
-          <mat-icon matTooltip="不会公开">lock</mat-icon>
-        </mat-label>
-        <input matInput name="legalName" [formControl]="formGroup.controls.legalName" placeholder="xxx有限公司">
-        <mat-hint>营业执照注册名称, 用于收据、发票、税务、费用付款明细和其他非公开内容。法定名称仅对管理员可见。</mat-hint>
-      </mat-form-field>
-      <mat-form-field floatLabel="always" subscriptSizing="dynamic" class="w-full" appearance="outline">
+      @if (organizationType === E_ORGANIZATION_TYPE.ORGANIZATION) {
+        <mat-form-field floatLabel="always" subscriptSizing="dynamic" class="w-full">
+          <mat-label>
+            法定名称
+            <mat-icon matTooltip="不会公开">lock</mat-icon>
+          </mat-label>
+          <input matInput name="legalName" [formControl]="formGroup.controls.legalName" placeholder="xxx有限公司">
+          <mat-hint>营业执照注册名称, 用于收据、发票、税务、费用付款明细和其他非公开内容。法定名称仅对管理员可见。</mat-hint>
+        </mat-form-field>
+      }
+      <mat-form-field floatLabel="always" subscriptSizing="dynamic" class="w-full">
         <mat-label>主页链接</mat-label>
         <span matTextPrefix>{{ urlOrigin }}</span>
         <input matInput name="slug" [formControl]="formGroup.controls.slug">
       </mat-form-field>
-      <mat-form-field floatLabel="always" class="w-full" appearance="outline">
+      <mat-form-field floatLabel="always" class="w-full">
         <mat-label>简介</mat-label>
         <textarea matInput name="introduce" [formControl]="formGroup.controls.introduce"></textarea>
       </mat-form-field>
-      <mat-form-field floatLabel="always" class="w-full" appearance="outline">
+      <mat-form-field floatLabel="always" class="w-full">
         <mat-label>标签</mat-label>
         <input type="text"
                placeholder="Pick one"
@@ -56,10 +58,9 @@
           }
         </mat-autocomplete>
       </mat-form-field>
-      <mat-form-field floatLabel="always" class="w-full" appearance="outline">
+      <mat-form-field floatLabel="always" class="w-full">
         <mat-label>网站链接</mat-label>
-        <span matTextPrefix>https://</span>
-        <input matInput name="website" [formControl]="formGroup.controls.website" placeholder="www.example.com"/>
+        <input matInput name="website" [formControl]="formGroup.controls.website" placeholder="https://www.example.com"/>
       </mat-form-field>
       <button mat-flat-button color="primary" class="w-full">创建组织</button>
     </form>

@@ -3,11 +3,11 @@
   <div class="w-full lg:w-1/2 xl:w-1/2">
     <form class="flex flex-col gap-1 w-full" style="display: flex; flex-direction: column;"
           (ngSubmit)="formGroup.valid && save()" [formGroup]="formGroup">
-      <mat-form-field class="w-full" appearance="outline">
+      <mat-form-field class="w-full">
         <mat-label>name</mat-label>
         <input matInput name="title" [formControl]="formGroup.controls.name">
       </mat-form-field>
-      <mat-form-field subscriptSizing="dynamic" class="w-full" appearance="outline">
+      <mat-form-field subscriptSizing="dynamic" class="w-full">
         <mat-label>legalName</mat-label>
         <input matInput name="slug" [formControl]="formGroup.controls.legalName">
         <mat-error *ngIf="formGroup.controls.legalName.invalid">
@@ -17,23 +17,23 @@
           Legal names are private and used in receipts
         </mat-hint>
       </mat-form-field>
-      <mat-form-field class="w-full" appearance="outline">
+      <mat-form-field class="w-full">
         <mat-label>url</mat-label>
         <input matInput name="slug" [formControl]="formGroup.controls.url">
       </mat-form-field>
-      <mat-form-field class="w-full" appearance="outline">
+      <mat-form-field class="w-full">
         <mat-label>introduce</mat-label>
         <input matInput name="location" [formControl]="formGroup.controls.introduce">
       </mat-form-field>
-      <mat-form-field class="w-full" appearance="outline">
+      <mat-form-field class="w-full">
         <mat-label>tags</mat-label>
         <input matInput name="location" [formControl]="formGroup.controls.tags">
       </mat-form-field>
-      <mat-form-field class="w-full" appearance="outline">
+      <mat-form-field class="w-full">
         <mat-label>location</mat-label>
         <input matInput name="location" [formControl]="formGroup.controls.location">
       </mat-form-field>
-      <mat-form-field class="w-full" appearance="outline">
+      <mat-form-field class="w-full">
         <mat-label>address</mat-label>
         <input matInput name="location" [formControl]="formGroup.controls.address">
       </mat-form-field>

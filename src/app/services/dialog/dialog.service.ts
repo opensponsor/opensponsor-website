@@ -21,7 +21,7 @@ export class DialogService {
   }
 
   public open<T, R>(component: ComponentType<any>, config?: MatDialogConfig) {
-    return this.dialog.open(component, {
+    return this.dialog.open<T, R>(component, {
       ...this.defaultConfig,
       ...config,
     });

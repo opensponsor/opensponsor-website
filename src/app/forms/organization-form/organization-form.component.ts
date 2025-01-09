@@ -165,4 +165,6 @@ export class OrganizationFormComponent implements OnInit {
       }
     }
   }
+
+  protected readonly E_ORGANIZATION_TYPE = E_ORGANIZATION_TYPE;
 }

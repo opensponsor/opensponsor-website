@@ -6,6 +6,7 @@ import {provideClientHydration, withEventReplay} from '@angular/platform-browser
 import {provideHttpClient, withFetch} from "@angular/common/http";
 import {provideNoopAnimations} from "@angular/platform-browser/animations";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from "@angular/material/form-field";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,5 +18,6 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()),
     provideNoopAnimations(), provideAnimationsAsync(),
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}
   ]
 };
