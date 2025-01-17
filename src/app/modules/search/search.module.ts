@@ -30,5 +30,5 @@ const routes: Routes = [
     OrganizationSearchComponent,
   ]
 })
-export class ExploreModule {
+export class SearchModule {
 }

@@ -26,7 +26,7 @@ export class DefaultHeaderComponent {
   private scrollY = 0;
   public menuGroup = {
     left: [
-      {label: "发现社区", link: "/explore"},
+      {label: "发现社区", link: "/search"},
     ],
     right: [
       {label: "创建社区", link: "/create"},

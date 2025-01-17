@@ -2,21 +2,100 @@
   <div class="flex justify-center w-full">
     <section class="flex flex-col gap-8 max-w-4xl">
       <div class="flex flex-row justify-center items-center h-32">
-        <h1 class="text-6xl font-bold">找到你的社区!</h1>
+        <h1 class="text-6xl font-bold">加入你的社区!</h1>
       </div>
 
-      <div class="text-center">
-        Open Sponsor 是为长期项目服务的金融服务平台. 平台提供公开透明的资金筹集工具, 并为您提供税务、发票、资金管理等工具.
+      <div class="text-center text-2xl">
+        Open Sponsor 是一个为开源项目和长期项目服务的资金服务平台。平台为社区提供公开透明的资金筹集工具, 以及税务、资金管理，合规等服务。
       </div>
-      <div class="text-center flex justify-center gap-8">
+      <div class="text-center flex justify-center gap-4">
         <a href="" mat-flat-button color="primary" routerLink="/create">创建社区</a>
-        <a href="" mat-stroked-button routerLink="/explore">探索 Open Sponsor</a>
+        <a href="" mat-stroked-button routerLink="/search">探索 Open Sponsor</a>
       </div>
     </section>
   </div>
 
   <div>
-    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/a0ac3d166208029.64142cddb2ac1.jpg"
+    <img src="https://img9.doubanio.com/img/niffler/r/d0e87b58-6e95-11ef-8d2d-2eb7461eaf54.jpg"
          class="w-full rounded-md" alt="">
   </div>
+
+  <div class="flex justify-center w-full">
+    <section class="flex flex-col gap-8 max-w-4xl">
+      <div class="flex flex-col gap-2 justify-center items-center h-32">
+        <h1 class="text-6xl font-bold">透明的筹集和使用资金</h1>
+        <h1 class="text-2xl">
+          信任源于透明，公开收入和支出，让社区成员更了解社区的发展，并做出贡献。
+        </h1>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2">
+        <div class="rounded-sm">
+          <img src="https://img9.doubanio.com/img/niffler/r/d0e87b58-6e95-11ef-8d2d-2eb7461eaf54.jpg"
+               class="w-full rounded-md" alt="">
+        </div>
+        <div class="rounded-sm">
+          <img src="https://img9.doubanio.com/img/niffler/r/d0e87b58-6e95-11ef-8d2d-2eb7461eaf54.jpg"
+               class="w-full rounded-md" alt="">
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="flex justify-center w-full">
+    <section class="flex flex-col gap-8 max-w-4xl">
+      <div class="flex flex-row justify-center items-center h-32">
+        <h1 class="text-6xl font-bold">向社区做出贡献</h1>
+      </div>
+
+      <div class="grid grid-cols-4 gap-2">
+        @for (item of ['资金', 'code', '管理', '财务']; track item) {
+          <div class="w-full h-64 bg-gray-200">{{item}}</div>
+        }
+      </div>
+    </section>
+  </div>
+
+  <div class="flex justify-center w-full">
+    <section class="flex flex-col gap-8 max-w-4xl">
+      <div class="flex flex-col gap-2 justify-center items-center h-32">
+        <h1 class="text-6xl font-bold">托管资金</h1>
+        <h1 class="text-2xl">社区无需处理繁琐的税务、法律问题、一切交给财务托管方</h1>
+      </div>
+
+      <div class="grid grid-cols-4 gap-2">
+        @for (item of ['代码', '动物保护', '环境保护', '艺术创作']; track item) {
+          <div class="w-full h-64 bg-gray-200">{{item}}</div>
+        }
+      </div>
+    </section>
+  </div>
+
+  <div class="flex justify-center w-full">
+    <section class="flex flex-col gap-8 max-w-4xl">
+      <div class="flex flex-col gap-2 justify-center items-center h-32">
+        <h1 class="text-6xl font-bold">被他们信任</h1>
+        <div>入驻项目</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="flex justify-center w-full">
+    <section class="flex flex-col gap-8 max-w-4xl">
+      <div class="flex flex-col gap-2 justify-center items-center h-32">
+        <h1 class="text-6xl font-bold">共同组成伟大社区</h1>
+        <h1 class="text-2xl">第三方财务托管机构</h1>
+      </div>
+    </section>
+  </div>
+
+  <div class="flex justify-center w-full">
+    <section class="flex flex-col gap-8 max-w-4xl">
+      <div class="flex flex-col gap-2 justify-center items-center h-32">
+        <h1 class="text-6xl font-bold">数据</h1>
+        <h1 class="text-2xl">托管资金、托管项目</h1>
+      </div>
+    </section>
+  </div>
+
 </main>

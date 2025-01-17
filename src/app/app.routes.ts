@@ -48,9 +48,9 @@ export const routes: Routes = [
     loadChildren: () => import('@modules/create/create.module').then(m => m.CreateModule)
   },
   {
-    path: 'explore',
+    path: 'search',
     component: DefaultLayoutComponent,
-    loadChildren: () => import('@modules/explore/explore.module').then(m => m.ExploreModule)
+    loadChildren: () => import('@modules/search/search.module').then(m => m.SearchModule)
   },
   {
     path: 'passport',
