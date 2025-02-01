@@ -6,7 +6,7 @@ import {MatButton, MatButtonModule} from "@angular/material/button";
 import {NgIf} from "@angular/common";
 
 @Component({
-  selector: 'app-profile',
+  selector: 'os-profile',
   templateUrl: './profile.component.html',
   imports: [
     ReactiveFormsModule,

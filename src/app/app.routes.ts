@@ -20,7 +20,7 @@ const authGuard: CanActivateFn = (route, state) => {
       },
       error: err => {
         // ?ref=${state.url}
-        router.navigateByUrl("/passport/login").then(() => {
+        router.navigateByUrl("/user/login").then(() => {
           snackBarService.message({message: err.message});
         })
         resolve(false)
@@ -53,9 +53,9 @@ export const routes: Routes = [
     loadChildren: () => import('@modules/search/search.module').then(m => m.SearchModule)
   },
   {
-    path: 'passport',
+    path: 'user',
     component: DefaultLayoutComponent,
-    loadChildren: () => import('@modules/passport/passport.module').then(m => m.PassportModule)
+    loadChildren: () => import('@modules/user/user.module').then(m => m.UserModule)
   },
   {
     path: 'dashboard',

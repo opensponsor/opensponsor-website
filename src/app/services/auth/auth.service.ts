@@ -12,9 +12,9 @@ import {User} from "@app/interfaces/ApiInterface";
 })
 export class AuthService {
   private Urls = {
-    login: "/session/login",
-    loginForCode: "/session/login-for-sms",
-    register: "/session/register",
+    login: "/user/login",
+    loginForCode: "/user/login-for-sms",
+    register: "/user/register",
     logout: "/session/logout",
     user: "/session/user",
   }

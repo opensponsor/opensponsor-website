@@ -10,13 +10,13 @@ import {PaginatorComponent} from "@app/components/paginator/paginator.component"
 import {NgIf} from "@angular/common";
 
 @Component({
-  selector: 'app-index',
+  selector: 'os-index',
   templateUrl: './index.component.html',
   imports: [
     OrgCardComponent,
     OrganizationSearchComponent,
     PaginatorComponent,
-    NgIf
+    NgIf,
   ],
   styleUrl: './index.component.scss'
 })

@@ -7,7 +7,7 @@ import {MatAnchor} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 
 @Component({
-  selector: 'app-checkout-summary',
+  selector: 'os-checkout-summary',
   templateUrl: './checkout-summary.component.html',
   imports: [
     MatAnchor,

@@ -9,7 +9,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MatIcon} from "@angular/material/icon";
 
 @Component({
-  selector: 'app-default-header',
+  selector: 'os-default-header',
   imports: [
     RouterLink,
     NgForOf,

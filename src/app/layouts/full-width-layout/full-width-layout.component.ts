@@ -4,7 +4,7 @@ import {RouterOutlet} from "@angular/router";
 import {DefaultFooterComponent} from "@app/layouts/default-footer/default-footer.component";
 
 @Component({
-  selector: 'app-full-width-layout',
+  selector: 'os-full-width-layout',
   imports: [
     DefaultHeaderComponent,
     RouterOutlet,

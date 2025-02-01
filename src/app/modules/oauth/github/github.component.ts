@@ -3,7 +3,7 @@ import {Router} from "@angular/router";
 import {GithubService} from "@services/github/github.service";
 
 @Component({
-  selector: 'app-github',
+  selector: 'os-github',
   imports: [],
   templateUrl: './github.component.html',
   styleUrl: './github.component.scss'

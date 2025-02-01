@@ -9,7 +9,7 @@ import {MatInputModule} from "@angular/material/input";
 import {NgOptimizedImage} from "@angular/common";
 
 @Component({
-  selector: 'app-login',
+  selector: 'os-login',
   templateUrl: './login.component.html',
     imports: [
         MatFormFieldModule,

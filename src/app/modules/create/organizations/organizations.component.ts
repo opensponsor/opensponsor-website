@@ -3,7 +3,7 @@ import {OrganizationFormComponent} from "@app/forms/organization-form/organizati
 import {E_ORGANIZATION_TYPE} from "@app/interfaces/ApiInterface";
 
 @Component({
-  selector: 'app-organizations',
+  selector: 'os-organizations',
   imports: [
     OrganizationFormComponent
   ],

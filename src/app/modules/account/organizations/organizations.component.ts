@@ -7,7 +7,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 
 @Component({
-  selector: 'app-organizations',
+  selector: 'os-organizations',
   templateUrl: './organizations.component.html',
   imports: [
     MatCardModule,

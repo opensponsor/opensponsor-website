@@ -4,7 +4,7 @@ import {getWebFlowAuthorizationUrl} from "@octokit/oauth-methods";
 import {environment} from "@environments/environment";
 
 @Component({
-  selector: 'app-open-source-community',
+  selector: 'os-open-source-community',
   templateUrl: './open-source-community.component.html',
   imports: [
     MatButtonModule

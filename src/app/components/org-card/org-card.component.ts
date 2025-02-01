@@ -4,7 +4,7 @@ import {RouterLink} from "@angular/router";
 import {MatCardModule} from "@angular/material/card";
 
 @Component({
-  selector: 'app-org-card',
+  selector: 'os-org-card',
   imports: [
     RouterLink,
     MatCardModule,
@@ -16,5 +16,5 @@ export class OrgCardComponent {
   @Input({
     required: true,
   })
-  public org: Organization | undefined;
+  public org!: Organization;
 }

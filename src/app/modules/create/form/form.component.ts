@@ -27,7 +27,7 @@ import {SnackBarService} from "@services/snack-bar/snack-bar.service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-form',
+  selector: 'os-form',
   imports: [
     NgClass,
     MatRadioModule,

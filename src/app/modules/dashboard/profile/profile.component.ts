@@ -4,7 +4,7 @@ import {E_ORGANIZATION_TYPE, Organization} from "@app/interfaces/ApiInterface";
 import {OrganizationFormComponent} from "@app/forms/organization-form/organization-form.component";
 
 @Component({
-  selector: 'app-profile',
+  selector: 'os-profile',
   templateUrl: './profile.component.html',
   imports: [
     OrganizationFormComponent

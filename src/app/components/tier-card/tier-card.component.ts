@@ -6,7 +6,7 @@ import {MatAnchor, MatButton} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
 
 @Component({
-  selector: 'app-tier-card',
+  selector: 'os-tier-card',
   imports: [
     NgIf,
     TranslatePipe,

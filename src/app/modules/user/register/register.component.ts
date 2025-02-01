@@ -12,7 +12,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {NgFor, NgOptimizedImage} from "@angular/common";
 
 @Component({
-  selector: 'app-register',
+  selector: 'os-register',
   templateUrl: './register.component.html',
     imports: [
         MatLabel,
@@ -78,7 +78,7 @@ export class RegisterComponent {
     if (this.formGroup.valid) {
       this.authService.register<User>(this.formGroup.value as RequestRegister).subscribe(res => {
         if (res.body) {
-          this.router.navigateByUrl("/passport/login").then(() => {
+          this.router.navigateByUrl("/user/login").then(() => {
             this.snackBarService.message({message: '注册完成, 请登录!'})
           });
         }

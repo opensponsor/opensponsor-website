@@ -11,7 +11,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {NgForOf} from "@angular/common";
 
 @Component({
-  selector: 'app-tiers',
+  selector: 'os-tiers',
   templateUrl: './tiers.component.html',
   imports: [
     TierCardComponent,

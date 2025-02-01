@@ -8,7 +8,7 @@ import {TierCardComponent} from "@app/components/tier-card/tier-card.component";
 import {NgForOf} from "@angular/common";
 
 @Component({
-  selector: 'app-info',
+  selector: 'os-info',
   templateUrl: './info.component.html',
   imports: [
     MatButtonModule,

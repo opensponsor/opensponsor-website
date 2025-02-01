@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
-  selector: 'app-contributor',
+  selector: 'os-contributor',
   templateUrl: './contributor.component.html',
   styleUrl: './contributor.component.scss'
 })

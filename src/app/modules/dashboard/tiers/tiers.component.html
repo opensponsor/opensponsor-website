@@ -11,7 +11,7 @@
   <div class="grid grid-cols-4 gap-4">
     <div class="rounded-3xl ring-1 ring-gray-200" *ngFor="let tier of organization.tiers">
       <div class="relative overflow-hidden hover:opacity-90">
-        <app-tier-card [tier]="tier"/>
+        <os-tier-card [tier]="tier"/>
         <div class="absolute z-10 inset-0 opacity-0 hover:opacity-100">
           <div class="absolute top-2 right-2">
             <button mat-icon-button (click)="openDialog(tier)" color="primary" class="!ring-1 ring-gray-400">

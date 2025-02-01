@@ -13,7 +13,7 @@ type Menu = {
 }
 
 @Component({
-  selector: 'app-layout',
+  selector: 'os-layout',
   templateUrl: './layout.component.html',
   imports: [
     RouterLink,

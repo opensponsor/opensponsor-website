@@ -8,7 +8,7 @@ import {MatButton, MatButtonModule} from "@angular/material/button";
 import {MatDivider} from "@angular/material/divider";
 
 @Component({
-  selector: 'app-receiving-money',
+  selector: 'os-receiving-money',
   templateUrl: './receiving-money.component.html',
   imports: [
     MatButtonModule,

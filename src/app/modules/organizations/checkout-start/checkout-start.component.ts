@@ -9,7 +9,7 @@ import {MatAnchor} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 
 @Component({
-  selector: 'app-checkout-start',
+  selector: 'os-checkout-start',
   templateUrl: './checkout-start.component.html',
   imports: [
     MatAnchor,

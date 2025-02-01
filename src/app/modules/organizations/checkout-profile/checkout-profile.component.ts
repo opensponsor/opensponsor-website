@@ -14,7 +14,7 @@ import {MatInputModule} from "@angular/material/input";
 type OptionType = { type: 'user' | 'organization'; id: string; name: string; desc: string };
 
 @Component({
-  selector: 'app-checkout-profile',
+  selector: 'os-checkout-profile',
   templateUrl: './checkout-profile.component.html',
   imports: [
     MatAnchor,

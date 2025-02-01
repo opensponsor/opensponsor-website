@@ -8,7 +8,7 @@ import {NgClass} from "@angular/common";
 import {MatAnchor} from "@angular/material/button";
 
 @Component({
-  selector: 'app-checkout',
+  selector: 'os-checkout',
   templateUrl: './checkout.component.html',
   imports: [
     NgClass,

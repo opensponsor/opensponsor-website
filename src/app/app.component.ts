@@ -5,7 +5,7 @@ import {Platform} from "@angular/cdk/platform";
 
 
 @Component({
-  selector: 'app-root',
+  selector: 'os-root',
   imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

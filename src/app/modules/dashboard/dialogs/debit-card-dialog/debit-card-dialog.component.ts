@@ -13,7 +13,7 @@ import {MatOptionModule} from "@angular/material/core";
 import {MatButtonModule} from "@angular/material/button";
 
 @Component({
-  selector: 'app-debit-card-dialog',
+  selector: 'os-debit-card-dialog',
   templateUrl: './debit-card-dialog.component.html',
   imports: [
     MatDialogModule,

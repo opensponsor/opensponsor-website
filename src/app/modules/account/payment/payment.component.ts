@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'app-payment',
+  selector: 'os-payment',
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.scss'
 })

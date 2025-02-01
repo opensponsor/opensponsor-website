@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'app-development',
+  selector: 'os-development',
   templateUrl: './development.component.html',
   styleUrl: './development.component.scss'
 })

@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {MatDividerModule} from "@angular/material/divider";
 
 @Component({
-  selector: 'app-sending-money',
+  selector: 'os-sending-money',
   templateUrl: './sending-money.component.html',
   imports: [
     MatDividerModule

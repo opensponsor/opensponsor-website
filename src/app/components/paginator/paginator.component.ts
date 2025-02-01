@@ -3,7 +3,7 @@ import {HttpResult} from "@services/http/http.service";
 import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
-  selector: 'app-paginator',
+  selector: 'os-paginator',
   imports: [
     MatPaginator
   ],

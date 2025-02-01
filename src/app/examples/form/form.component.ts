@@ -4,7 +4,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 
 @Component({
-  selector: 'app-form',
+  selector: 'os-form',
   imports: [
     ReactiveFormsModule,
     MatFormFieldModule,

@@ -4,7 +4,7 @@ import {NgForOf, NgOptimizedImage} from "@angular/common";
 import {MatAnchor} from "@angular/material/button";
 
 @Component({
-  selector: 'app-index',
+  selector: 'os-index',
   templateUrl: './index.component.html',
   imports: [
     RouterLink,

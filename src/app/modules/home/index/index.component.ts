@@ -3,7 +3,7 @@ import {MatAnchor} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
 
 @Component({
-  selector: 'app-index',
+  selector: 'os-index',
   templateUrl: './index.component.html',
   imports: [
     MatAnchor,

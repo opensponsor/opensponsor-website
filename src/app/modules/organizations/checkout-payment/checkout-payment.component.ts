@@ -7,7 +7,7 @@ import {MatAnchor} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 
 @Component({
-  selector: 'app-checkout-payment',
+  selector: 'os-checkout-payment',
   templateUrl: './checkout-payment.component.html',
   imports: [
     MatExpansionModule,

@@ -19,7 +19,7 @@ import {SnackBarService} from "@services/snack-bar/snack-bar.service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-organization-form',
+  selector: 'os-organization-form',
   imports: [
     MatCardModule,
     MatFormFieldModule,

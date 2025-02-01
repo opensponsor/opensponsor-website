@@ -20,7 +20,7 @@ import {TierCardComponent} from "@app/components/tier-card/tier-card.component";
 import {MatButtonModule} from "@angular/material/button";
 
 @Component({
-  selector: 'app-tier-dialog',
+  selector: 'os-tier-dialog',
   templateUrl: './tier-dialog.component.html',
   imports: [
     MatLabel,
