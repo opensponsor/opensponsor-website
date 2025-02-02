@@ -1,4 +1,4 @@
-import {CountryCodes} from "@app/interfaces/ApiInterface";
+import {CountryCode} from "@app/interfaces/ApiInterface";
 
 export default interface RequestRegister {
   username: string;

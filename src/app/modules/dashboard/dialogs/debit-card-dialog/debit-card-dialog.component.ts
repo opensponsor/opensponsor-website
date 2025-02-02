@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {CountryCodes, DebitCard} from "@app/interfaces/ApiInterface";
+import {CountryCode, DebitCard} from "@app/interfaces/ApiInterface";
 import {CountryCodesService} from "@services/countryCodes/country-codes.service";
 import {DebitCardService} from "@services/debit-card/debit-card.service";
 import {OrganizationsService} from "@services/organizations/organizations.service";
@@ -34,7 +34,7 @@ export class DebitCardDialogComponent {
     bankName: new FormControl<string>('', [
       Validators.required
     ]),
-    countryCode: new FormControl<CountryCodes | null>(null, [
+    countryCode: new FormControl<CountryCode | null>(null, [
       Validators.required,
       Validators.minLength(4),
       Validators.maxLength(64),
@@ -47,7 +47,7 @@ export class DebitCardDialogComponent {
     ]),
   });
 
-  public countryCodes: CountryCodes[] = [];
+  public countryCodes: CountryCode[] = [];
 
   constructor(
     private readonly dialogRef: DialogRef<DebitCardDialogComponent>,
@@ -73,7 +73,7 @@ export class DebitCardDialogComponent {
     this.countryCodesService.all().then(codes => {
       this.countryCodes = codes;
       if (this.countryCodes.length > 0) {
-        this.formGroup.controls.countryCode.setValue(this.countryCodes[0] as any);
+        this.formGroup.controls.countryCode.setValue(this.countryCode[0] as any);
       }
     })
   }

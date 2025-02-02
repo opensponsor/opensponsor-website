@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from "@services/http/http.service";
-import {CountryCodes} from "@app/interfaces/ApiInterface";
+import {CountryCode} from "@app/interfaces/ApiInterface";
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +14,8 @@ export class CountryCodesService {
   }
 
   public all() {
-    return new Promise<CountryCodes[]>(resolve => {
-      this.httpService.get<CountryCodes[]>(this.Urls.all).subscribe(res => {
+    return new Promise<CountryCode[]>(resolve => {
+      this.httpService.get<CountryCode[]>(this.Urls.all).subscribe(res => {
         if (res.body?.records) {
           resolve(res.body?.records);
         } else {
