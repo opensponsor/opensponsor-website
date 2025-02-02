@@ -3,7 +3,7 @@ import {CountryCode} from "@app/interfaces/ApiInterface";
 export default interface RequestRegister {
   username: string;
 
-  countryCode: CountryCodes;
+  countryCode: CountryCode;
 
   phoneNumber: string;
 

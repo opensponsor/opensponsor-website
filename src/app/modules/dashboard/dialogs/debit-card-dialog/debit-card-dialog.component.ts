@@ -73,7 +73,7 @@ export class DebitCardDialogComponent {
     this.countryCodesService.all().then(codes => {
       this.countryCodes = codes;
       if (this.countryCodes.length > 0) {
-        this.formGroup.controls.countryCode.setValue(this.countryCode[0] as any);
+        this.formGroup.controls.countryCode.setValue(this.countryCodes[0] as any);
       }
     })
   }
