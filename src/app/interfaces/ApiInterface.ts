@@ -9,7 +9,7 @@
  * ---------------------------------------------------------------
  */
 
-export interface CountryCodes {
+export interface CountryCode {
   id: UUID;
   /**
    * country calling code
@@ -75,7 +75,7 @@ export interface DebitCard {
    */
   legalName?: string;
   /** User country code */
-  countryCode?: CountryCodes;
+  countryCode?: CountryCode;
   /**
    * @minLength 4
    * @maxLength 11
@@ -670,7 +670,7 @@ export interface RegisterBody {
    */
   username: string;
   slug?: string;
-  countryCode: CountryCodes;
+  countryCode: CountryCode;
   sex?: E_SEX;
   /**
    * @minLength 8
@@ -688,12 +688,13 @@ export interface ResteasyConstraintViolation {
 }
 
 export interface SendCodeBody {
+  countryCode: CountryCode;
   /**
    * @minLength 11
    * @maxLength 11
    * @pattern \S
    */
-  mobile: string;
+  phoneNumber: string;
 }
 
 export interface Tier {
@@ -822,7 +823,7 @@ export interface User {
   /** password */
   password?: string;
   /** User country code */
-  countryCode?: CountryCodes;
+  countryCode?: CountryCode;
   /**
    * phoneNumber
    * @minLength 4
