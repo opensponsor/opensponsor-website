@@ -69,8 +69,7 @@ export abstract class HttpService {
       }
     } else if (res.status === 401) {
       localStorage.removeItem("accessToken")
-      // this.snackBar.message({message: "登录信息失效, 请先登录."});
-      return throwError(() => new Error('请先登陆.'));
+      return throwError(() => new Error('请先登录。'));
     } else {
       this.snackBar.message({message: res.message});
     }
