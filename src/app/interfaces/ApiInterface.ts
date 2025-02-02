@@ -12,40 +12,47 @@
 export interface CountryCodes {
   id: UUID;
   /**
+   * country calling code
    * @minLength 2
    * @maxLength 16
    */
-  dial?: string;
+  dial: string;
   /**
+   * ISO3166-1-Alpha-2
    * @minLength 2
    * @maxLength 16
    */
-  countryCode?: string;
+  countryCode: string;
   /**
+   * official name en
    * @minLength 1
    * @maxLength 64
    */
-  officialNameEn?: string;
+  officialNameEn: string;
   /**
+   * official name cn
    * @minLength 1
    * @maxLength 64
    */
-  officialNameCn?: string;
+  officialNameCn: string;
   /**
+   * cldr display name
    * @minLength 1
    * @maxLength 32
    */
-  cldrDisplayName?: string;
+  cldrDisplayName: string;
   /**
+   * languages
    * @minLength 1
    * @maxLength 16
    */
-  languages?: string;
+  languages: string;
   /**
+   * currency alphabetic code
    * @minLength 1
    * @maxLength 16
    */
-  currencyAlphabeticCode?: string;
+  currencyAlphabeticCode: string;
   /** when created */
   whenCreated: Instant;
   /** when modified */
@@ -506,10 +513,7 @@ export interface GithubUser {
   updated_at?: string;
 }
 
-/**
- * @format date-time
- * @example "2022-03-10T16:15:50.000Z"
- */
+/** @format date-time */
 export type Instant = string;
 
 export interface Licenses {
@@ -611,9 +615,15 @@ export interface Organization {
   /**
    * website url
    * @minLength 2
-   * @maxLength 150
+   * @maxLength 128
    */
   website?: string;
+  /**
+   * social url
+   * @minLength 2
+   * @maxLength 128
+   */
+  social?: string;
   /** 捐助等级 */
   tiers: Tier[];
   /** filterable */
@@ -625,6 +635,23 @@ export interface Organization {
    * @uniqueItems true
    */
   members: Member[];
+  /** 开源协议 */
+  licenses?: Licenses;
+  /**
+   * 团队人数
+   * @format int32
+   */
+  amountOfMembers: number;
+  /**
+   * 额外的协议信息
+   * @maxLength 1000
+   */
+  additionalLicenses?: string;
+  /**
+   * 项目以往历史事件
+   * @maxLength 1000
+   */
+  previousEvents?: string;
   /** receiving-money debitCard */
   debitCard?: DebitCard;
   /** when created */
@@ -642,7 +669,7 @@ export interface RegisterBody {
    * @pattern \S
    */
   username: string;
-  legalName?: string;
+  slug?: string;
   countryCode: CountryCodes;
   sex?: E_SEX;
   /**
@@ -658,6 +685,15 @@ export interface ResteasyConstraintViolation {
   path?: string;
   message?: string;
   value?: string;
+}
+
+export interface SendCodeBody {
+  /**
+   * @minLength 11
+   * @maxLength 11
+   * @pattern \S
+   */
+  mobile: string;
 }
 
 export interface Tier {
@@ -757,10 +793,23 @@ export interface User {
    */
   username: string;
   /**
-   * legalName
+   * url slug
+   * @minLength 2
    * @maxLength 32
    */
-  legalName: string;
+  slug: string;
+  /**
+   * website url
+   * @minLength 2
+   * @maxLength 128
+   */
+  website?: string;
+  /**
+   * social url
+   * @minLength 2
+   * @maxLength 128
+   */
+  social?: string;
   /**
    * avatar
    * @maxLength 42
@@ -786,12 +835,12 @@ export interface User {
    * @maxLength 32
    */
   email?: string;
+  token?: UserToken;
   /** when created */
   whenCreated: Instant;
   /** when modified */
   whenModified: Instant;
   whenDeleted?: Instant;
-  token?: UserToken;
 }
 
 export interface UserToken {
