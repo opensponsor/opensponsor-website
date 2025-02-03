@@ -547,12 +547,14 @@ export interface Licenses {
 
 export interface LoginBody {
   /**
+   * account
    * @minLength 2
    * @maxLength 32
    * @pattern \S
    */
   account: string;
   /**
+   * password
    * @minLength 6
    * @maxLength 64
    * @pattern \S
@@ -664,15 +666,36 @@ export interface Organization {
 
 export interface RegisterBody {
   /**
+   * user name
    * @minLength 2
    * @maxLength 32
    * @pattern \S
    */
   username: string;
-  slug?: string;
-  countryCode: CountryCode;
-  sex?: E_SEX;
   /**
+   * url slug
+   * @minLength 1
+   * @pattern \S
+   */
+  slug: string;
+  /**
+   * phone number
+   * @minLength 1
+   * @pattern \S
+   */
+  phoneNumber: string;
+  /**
+   * code
+   * @minLength 1
+   * @pattern \S
+   */
+  code: string;
+  /** country code */
+  countryCode: CountryCode;
+  /** sex */
+  sex: E_SEX;
+  /**
+   * password
    * @minLength 8
    * @maxLength 32
    * @pattern \S
@@ -695,6 +718,13 @@ export interface SendCodeBody {
    * @pattern \S
    */
   phoneNumber: string;
+}
+
+export interface SendSmsResponseBody {
+  bizId?: string;
+  code?: string;
+  message?: string;
+  requestId?: string;
 }
 
 export interface Tier {
