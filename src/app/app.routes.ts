@@ -6,6 +6,7 @@ import {PageNotFoundComponent} from "@modules/error/page-not-found/page-not-foun
 import {inject} from "@angular/core";
 import {SnackBarService} from "@services/snack-bar/snack-bar.service";
 import {AuthService} from "@services/auth/auth.service";
+import {NotFoundComponent} from "@app/layouts/not-found/not-found.component";
 
 const authGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
@@ -68,6 +69,11 @@ export const routes: Routes = [
     canActivate: [authGuard],
     component: DefaultLayoutComponent,
     loadChildren: () => import('@modules/oauth/oauth.module').then(m => m.OauthModule)
+  },
+  {
+    path: 'not-found',
+    canActivate: [],
+    component: NotFoundComponent
   },
   {
     path: ':slug',
