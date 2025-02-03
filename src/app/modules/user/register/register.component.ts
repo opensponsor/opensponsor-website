@@ -9,7 +9,7 @@ import {SnackBarService} from "@services/snack-bar/snack-bar.service";
 import {MatFormFieldModule, MatLabel} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
-import {NgFor, NgOptimizedImage} from "@angular/common";
+import {NgClass, NgFor, NgOptimizedImage} from "@angular/common";
 import {environment} from "@environments/environment";
 import slugify from "limax";
 import {SmsCodeButtonComponent} from "@app/components/sms-code-button/sms-code-button.component";
@@ -91,7 +91,7 @@ export class RegisterComponent {
         }
       ]
     }),
-    smsCode: new FormControl<string>("", [
+    code: new FormControl<string>("", [
       Validators.required,
       Validators.minLength(4),
       Validators.maxLength(4),

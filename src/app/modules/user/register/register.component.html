@@ -39,7 +39,7 @@
         </div>
 
         <os-sms-code-button ngDefaultControl
-                            [formControl]="formGroup.controls.slug"
+                            [formControl]="formGroup.controls.code"
                             [countryCode]="formGroup.controls.countryCode.value"
                             [phoneNumber]="formGroup.controls.phoneNumber.value" />
 
@@ -47,6 +47,7 @@
           <mat-label>密码</mat-label>
           <input matInput name="password" type="password" [formControl]="formGroup.controls.password" required
                  placeholder="密码">
+          <mat-hint>至少8位</mat-hint>
         </mat-form-field>
 
         <div class="flex items-center justify-between">
