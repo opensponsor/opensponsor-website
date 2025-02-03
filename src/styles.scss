@@ -8,7 +8,8 @@
 @use "themes/fix-style";
 @use "swiper/swiper-bundle.css";
 
-body {
+html, body {
+  overscroll-behavior: none;
   height: 100%;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
