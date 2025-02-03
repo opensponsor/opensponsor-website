@@ -720,6 +720,13 @@ export interface SendCodeBody {
   phoneNumber: string;
 }
 
+export interface SendSmsResponseAliyun {
+  headers?: Record<string, string>;
+  /** @format int32 */
+  statusCode?: number;
+  body?: SendSmsResponseBody;
+}
+
 export interface SendSmsResponseBody {
   bizId?: string;
   code?: string;
