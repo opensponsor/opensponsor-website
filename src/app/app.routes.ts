@@ -70,7 +70,7 @@ export const routes: Routes = [
     loadChildren: () => import('@modules/oauth/oauth.module').then(m => m.OauthModule)
   },
   {
-    path: ':name',
+    path: ':slug',
     component: FullWidthLayoutComponent,
     loadChildren: () => import('@modules/organizations/organizations.module').then(m => m.OrganizationsModule)
   },
