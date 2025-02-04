@@ -567,6 +567,13 @@ export interface LoginBody {
    * @pattern \S
    */
   password: string;
+  /**
+   * code
+   * @minLength 4
+   * @maxLength 4
+   * @pattern \S
+   */
+  code: string;
 }
 
 export interface Member {
