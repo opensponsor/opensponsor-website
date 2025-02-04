@@ -1,11 +1,7 @@
 import {Injectable, signal} from '@angular/core';
 import {HttpService} from "@services/http/http.service";
-import RequestRegister from "@app/payload/RequestRegister";
-import RequestLogin from "@app/payload/RequestLogin";
-import RequestSignInUseCode from "@app/payload/RequestSignInUseCode";
 import {toObservable} from '@angular/core/rxjs-interop';
-import AuthInfo from "@app/models/AuthInfo";
-import {User} from "@app/interfaces/ApiInterface";
+import {LoginBody, RegisterBody, User} from "@app/interfaces/ApiInterface";
 
 @Injectable({
   providedIn: 'root'
@@ -28,15 +24,15 @@ export class AuthService {
   ) {
   }
 
-  public login<T>(data: RequestLogin) {
+  public login<T>(data: LoginBody) {
     return this.httpService.post<T>(this.Urls.login, data);
   }
 
-  public loginForCode<T>(data: RequestSignInUseCode) {
+  public loginForCode<T>(data: Pick<LoginBody, 'phoneNumber' | 'countryCode' | 'code'>) {
     return this.httpService.post<T>(this.Urls.loginForCode, data);
   }
 
-  public register<T>(data: RequestRegister) {
+  public register<T>(data: RegisterBody) {
     return this.httpService.post<T>(this.Urls.register, data);
   }
 
