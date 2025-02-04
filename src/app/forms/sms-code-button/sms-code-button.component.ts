@@ -5,6 +5,8 @@ import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInput} from "@angular/material/input";
 import {validatePhoneNumber} from "@app/components/regular/phone-number";
 import {CountryCode} from "@app/interfaces/ApiInterface";
+import {SmsService} from "@services/sms/sms.service";
+import {SnackBarService} from "@services/snack-bar/snack-bar.service";
 
 @Component({
   selector: 'os-sms-code-button',
@@ -35,9 +37,19 @@ export class SmsCodeButtonComponent {
   })
   countryCode: CountryCode | null = null;
 
+  constructor(
+    private smsService: SmsService,
+    private snackBarService: SnackBarService,
+  ) {
+  }
+
   public send() {
-    if(this.phoneNumber && validatePhoneNumber(this.phoneNumber)) {
-      alert("send code" + this.countryCode);
+    if(this.countryCode && this.phoneNumber && validatePhoneNumber(this.phoneNumber)) {
+      this.smsService.sendVerificationCode(this.countryCode, this.phoneNumber).subscribe(res => {
+        if(res.status == 200) {
+          console.dir(res.body?.data.body)
+        }
+      })
     }
   }
 
