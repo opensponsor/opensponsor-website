@@ -1,60 +1,22 @@
 import {Component} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {AuthService} from "@services/auth/auth.service";
-import {User} from "@app/interfaces/ApiInterface";
-import {Router, RouterLink} from "@angular/router";
-import {SnackBarService} from "@services/snack-bar/snack-bar.service";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
+import {MatTabsModule} from "@angular/material/tabs";
+import {ForPhoneNumberComponent} from "@modules/user/for-phone-number/for-phone-number.component";
+import {ForEmailComponent} from "@modules/user/for-email/for-email.component";
+import {ForSmsCodeComponent} from "@modules/user/for-sms-code/for-sms-code.component";
 import {NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'os-login',
   templateUrl: './login.component.html',
-    imports: [
-        MatFormFieldModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        RouterLink,
-        NgOptimizedImage
-    ],
+  imports: [
+    MatTabsModule,
+    ForPhoneNumberComponent,
+    ForEmailComponent,
+    ForSmsCodeComponent,
+    NgOptimizedImage,
+  ],
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  constructor(
-    private readonly authService: AuthService,
-    private readonly router: Router,
-    private readonly snackBarService: SnackBarService,
-  ) {
-  }
 
-  public formGroup = new FormGroup({
-    account: new FormControl(null, [
-      Validators.required,
-      Validators.minLength(4),
-      Validators.maxLength(64),
-    ]),
-    password: new FormControl(null, [
-      Validators.required,
-      Validators.minLength(4),
-      Validators.maxLength(64),
-    ]),
-  });
-
-  public login() {
-    if (this.formGroup.valid) {
-      const data = {
-        account: String(this.formGroup.value.account),
-        password: String(this.formGroup.value.password),
-      }
-      this.authService.login<User>(data).subscribe(res => {
-        if (res.body) {
-          this.authService.persistAuth(res.body.data);
-          this.router.navigateByUrl("/").then(() => {
-            this.snackBarService.message({message: 'Login successful!'})
-          });
-        }
-      })
-    }
-  }
 }

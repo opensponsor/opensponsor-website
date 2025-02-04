@@ -7,6 +7,7 @@ import {validatePhoneNumber} from "@app/components/regular/phone-number";
 import {CountryCode} from "@app/interfaces/ApiInterface";
 import {SmsService} from "@services/sms/sms.service";
 import {SnackBarService} from "@services/snack-bar/snack-bar.service";
+import { isDevMode } from '@angular/core';
 
 @Component({
   selector: 'os-sms-code-button',
@@ -25,7 +26,7 @@ export class SmsCodeButtonComponent {
   @Input({
     required: true,
   })
-  formControl!: FormControl;
+  smsCodeFormControl!: FormControl;
 
   @Input({
     required: true,
@@ -37,17 +38,46 @@ export class SmsCodeButtonComponent {
   })
   countryCode: CountryCode | null = null;
 
+  private initialText = '获取验证码';
+  private pendingTimes = isDevMode() ? 5 : 80; // seconds
+  public text = this.initialText;
+  public disabled = false;
+
   constructor(
     private smsService: SmsService,
     private snackBarService: SnackBarService,
   ) {
   }
 
+  private countDown(seconds: number) {
+    this.text = `${seconds}s`;
+
+    if (seconds === 0) {
+      this.disabled = false;
+      this.text = this.initialText;
+    } else {
+      setTimeout(() => {
+        const remaining = seconds - 1;
+        this.text = `${remaining}s`;
+        this.countDown(remaining);
+      }, 1000)
+    }
+  }
+
   public send() {
+    this.disabled = true;
     if(this.countryCode && this.phoneNumber && validatePhoneNumber(this.phoneNumber)) {
-      this.smsService.sendVerificationCode(this.countryCode, this.phoneNumber).subscribe(res => {
-        if(res.status == 200) {
-          console.dir(res.body?.data.body)
+      this.smsService.sendVerificationCode(this.countryCode, this.phoneNumber).subscribe({
+        next: res => {
+          if(res.body?.code == 200) {
+            this.countDown(this.pendingTimes);
+          } else {
+            this.snackBarService.message({message: res.body?.message as string});
+          }
+        },
+        error: err => {
+          this.disabled = false;
+          this.snackBarService.message({message: err.body.message})
         }
       })
     }

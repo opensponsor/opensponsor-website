@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
 import {AuthService} from "@services/auth/auth.service";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {CountryCode, User} from "@app/interfaces/ApiInterface";
-import RequestRegister from "@app/payload/RequestRegister";
+import {CountryCode, RegisterBody, User} from "@app/interfaces/ApiInterface";
 import {Router, RouterLink} from "@angular/router";
 import {SnackBarService} from "@services/snack-bar/snack-bar.service";
 import {MatFormFieldModule, MatLabel} from "@angular/material/form-field";
@@ -102,7 +101,7 @@ export class RegisterComponent {
 
   public register() {
     if (this.formGroup.valid) {
-      this.authService.register<User>(this.formGroup.value as RequestRegister).subscribe(res => {
+      this.authService.register<User>(this.formGroup.value as RegisterBody).subscribe(res => {
         if (res.body) {
           this.router.navigateByUrl("/user/login").then(() => {
             this.snackBarService.message({message: '注册完成, 请登录!'})
