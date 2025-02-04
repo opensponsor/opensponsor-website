@@ -20,9 +20,9 @@
           <input matInput name="username" [formControl]="formGroup.controls.slug" required>
         </mat-form-field>
 
-        <os-country-phone-group
-          [countryCodeControl]="formGroup.controls.countryCode"
-          [phoneNumberControl]="formGroup.controls.phoneNumber" />
+        <os-country-phone-group ngDefaultControl
+                                [countryCodeControl]="formGroup.controls.countryCode"
+                                [phoneNumberControl]="formGroup.controls.phoneNumber" />
 
         <os-sms-code-button ngDefaultControl
                             [formControl]="formGroup.controls.code"
