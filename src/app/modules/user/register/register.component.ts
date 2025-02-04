@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {AuthService} from "@services/auth/auth.service";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {CountryCodesService} from "@services/countryCodes/country-codes.service";
 import {CountryCode, User} from "@app/interfaces/ApiInterface";
 import RequestRegister from "@app/payload/RequestRegister";
 import {Router, RouterLink} from "@angular/router";
@@ -9,11 +8,12 @@ import {SnackBarService} from "@services/snack-bar/snack-bar.service";
 import {MatFormFieldModule, MatLabel} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
-import {NgClass, NgFor, NgOptimizedImage} from "@angular/common";
+import {NgOptimizedImage} from "@angular/common";
 import {environment} from "@environments/environment";
 import slugify from "limax";
 import {SmsCodeButtonComponent} from "@app/forms/sms-code-button/sms-code-button.component";
 import {validatePhoneNumber} from "@app/components/regular/phone-number";
+import {CountryPhoneGroupComponent} from "@app/forms/country-phone-group/country-phone-group.component";
 
 @Component({
   selector: 'os-register',
@@ -25,23 +25,20 @@ import {validatePhoneNumber} from "@app/components/regular/phone-number";
     ReactiveFormsModule,
     MatSelectModule,
     RouterLink,
-    NgFor,
     NgOptimizedImage,
     SmsCodeButtonComponent,
+    CountryPhoneGroupComponent,
   ],
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
   constructor(
     private readonly authService: AuthService,
-    private readonly countryCodesService: CountryCodesService,
     private readonly router: Router,
     private readonly snackBarService: SnackBarService,
   ) {
-    this.getAllCountryCodes();
   }
 
-  public countryCodes: CountryCode[] = [];
   public environment = environment;
 
   public formGroup = new FormGroup({
@@ -103,17 +100,6 @@ export class RegisterComponent {
     ]),
   });
 
-  private getAllCountryCodes() {
-    this.formGroup.controls.phoneNumber.disable();
-    this.countryCodesService.all().then(codes => {
-      this.countryCodes = codes;
-      if (this.countryCodes.length > 0) {
-        this.formGroup.controls.phoneNumber.enable();
-        this.formGroup.controls.countryCode.setValue(this.countryCodes[0] as any);
-      }
-    })
-  }
-
   public register() {
     if (this.formGroup.valid) {
       this.authService.register<User>(this.formGroup.value as RequestRegister).subscribe(res => {
@@ -125,6 +111,4 @@ export class RegisterComponent {
       })
     }
   }
-
-  protected readonly JSON = JSON;
 }
