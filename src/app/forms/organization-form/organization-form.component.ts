@@ -158,7 +158,7 @@ export class OrganizationFormComponent implements OnInit {
       } else {
         const data = this.formGroup.value as Partial<Organization>;
         this.organizationsService.create(data).subscribe(res => {
-          this.router.navigate(['/dashboard/', res.body?.name]).then(() => {
+          this.router.navigate(['/dashboard/', res.body?.data.name]).then(() => {
             this.snackBarService.message({message: '组织已经创建'});
           })
         })
