@@ -32,12 +32,15 @@ export class InfoComponent {
   }
 
   private getOrg() {
-    const name = this.activatedRoute.snapshot.paramMap.get("name") as string;
-    this.organizationsService.getOrganizationByName(this.activatedRoute.snapshot.paramMap.get("name") as string).subscribe((res) => {
-      if (res.body) {
-        this.organization = res.body;
-      } else {
-        // not found org
+    const slug = this.activatedRoute.snapshot.paramMap.get("slug") as string;
+    this.organizationsService.getOrganizationByName(slug).subscribe({
+      next: (res) => {
+        if (res.body) {
+          this.organization = res.body.data;
+        }
+      },
+      error: err => {
+        this.router.navigateByUrl("/not-found").then();
       }
     })
   }

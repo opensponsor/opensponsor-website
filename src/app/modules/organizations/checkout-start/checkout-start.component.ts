@@ -35,12 +35,12 @@ export class CheckoutStartComponent {
         if (organization) {
           this.organizationsService.getOrganizationByName(organization).subscribe(res => {
             if (res.status === 200 && res.body) {
-              this.organization = res.body;
+              this.organization = res.body.data;
               if (tier) {
-                this.tierService.get(res.body?.id, tier).subscribe(res2 => {
+                this.tierService.get(res.body.data?.id, tier).subscribe(res2 => {
                   if (res2.status === 200) {
-                    const tier = this.tier = res2.body as Tier;
-                    this.checkoutService.stepDesc.set({'checkoutStart': `${tier.amount}${tier.currency}/${tier.interval}`});
+                    const tier = this.tier = res2.body?.data;
+                    this.checkoutService.stepDesc.set({'checkoutStart': `${tier?.amount}${tier?.currency}/${tier?.interval}`});
                   }
                 });
               } else {

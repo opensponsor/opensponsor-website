@@ -24,8 +24,8 @@ export class GithubService {
 
   public getAccessToken(code: string) {
     return this.httpService.get<GithubAccessToken>(`${this.Urls.accessToken}?code=${code}`).pipe(map(res => {
-      if(res.body?.access_token) {
-        this.setToken(res.body?.access_token)
+      if(res.body?.data) {
+        this.setToken(res.body?.data.access_token)
       }
       return res;
     }));

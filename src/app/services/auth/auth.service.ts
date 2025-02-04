@@ -12,11 +12,11 @@ import {User} from "@app/interfaces/ApiInterface";
 })
 export class AuthService {
   private Urls = {
-    login: "/user/login",
-    loginForCode: "/user/login-for-sms",
-    register: "/user/register",
+    login: "/session/login",
+    loginForCode: "/session/login-for-sms",
+    register: "/session/register",
     logout: "/session/logout",
-    user: "/session/user",
+    authUser: "/session/user",
   }
 
   authInfo = signal<User | undefined>(undefined);
@@ -60,6 +60,6 @@ export class AuthService {
   }
 
   public getAuthUser() {
-    return this.httpService.get<User>(this.Urls.user);
+    return this.httpService.get<User>(this.Urls.authUser);
   }
 }

@@ -39,7 +39,7 @@ export class TiersComponent {
   private getOrg() {
     this.organizationsService.getOrganizationByName(this.activatedRoute.snapshot.paramMap.get("name") as string).subscribe((res) => {
       if (res.body) {
-        this.organization = res.body;
+        this.organization = res.body.data;
       }
     })
   }

@@ -7,7 +7,7 @@ import {environment} from "@environments/environment";
 import {Platform} from "@angular/cdk/platform";
 import {ViolationReport} from "@app/interfaces";
 
-export type HttpResult<T> = {
+export type HttpResultOfArray<T> = {
   currentPageNumber: number
   lastPageNumber: number
   pageSize: number
@@ -15,6 +15,12 @@ export type HttpResult<T> = {
   message: string
   code: number
   records: T
+}
+
+export type HttpResultOfData<T> = {
+  message: string
+  code: number
+  data: T
 }
 
 
@@ -56,16 +62,16 @@ export abstract class HttpService {
       if (res.error.exception) {
         this.snackBar.message({message: res.error.exception});
         console.log(`Backend returned code ${res.status}, body was: `, res.error.exception);
-      } else if (res.error.parameterViolations.length > 0) {
+      } else if (res?.error?.parameterViolations && res.error.parameterViolations.length > 0) {
         const name = res.error.parameterViolations[0].path.split('.').pop();
         const firstParams = res.error.parameterViolations[0];
         this.snackBar.message({message: `${name}: ${firstParams.message}`});
-      } else if (res.error.propertyViolations.length > 0) {
+      } else if (res?.error?.propertyViolations && res.error.propertyViolations.length > 0) {
         const name = res.error.propertyViolations[0].path.split('.').pop();
         const firstParams = res.error.propertyViolations[0];
         this.snackBar.message({message: `${name}: ${firstParams.message}`});
       } else {
-        this.snackBar.message({message: `Backend returned code ${res.status}`});
+        this.snackBar.message({message: `${res.message}`});
       }
     } else if (res.status === 401) {
       localStorage.removeItem("accessToken")
@@ -78,7 +84,7 @@ export abstract class HttpService {
   }
 
   public get<T>(url: string, params?: HttpParams) {
-    return this.http.get<T extends Array<any> ? HttpResult<T> : T>(this.getUrl(url), {
+    return this.http.get<T extends Array<any> ? HttpResultOfArray<T> : HttpResultOfData<T>>(this.getUrl(url), {
       headers: this.headers,
       observe: 'response',
       responseType: 'json',
@@ -89,7 +95,7 @@ export abstract class HttpService {
   }
 
   public post<T>(url: string, body: any | null, params?: HttpParams) {
-    return this.http.post<T extends Array<any> ? HttpResult<T> : T>(this.getUrl(url), body, {
+    return this.http.post<T extends Array<any> ? HttpResultOfArray<T> : HttpResultOfData<T>>(this.getUrl(url), body, {
       headers: this.headers,
       observe: 'response',
       responseType: 'json',
@@ -100,7 +106,7 @@ export abstract class HttpService {
   }
 
   public put<T>(url: string, body: any | null, params?: HttpParams) {
-    return this.http.put<T extends Array<any> ? HttpResult<T> : T>(this.getUrl(url), body, {
+    return this.http.put<T extends Array<any> ? HttpResultOfArray<T> : HttpResultOfData<T>>(this.getUrl(url), body, {
       headers: this.headers,
       observe: 'response',
       responseType: 'json',
@@ -111,7 +117,7 @@ export abstract class HttpService {
   }
 
   public delete<T>(url: string, params?: HttpParams) {
-    return this.http.delete<T extends Array<any> ? HttpResult<T> : T>(this.getUrl(url), {
+    return this.http.delete<T extends Array<any> ? HttpResultOfArray<T> : HttpResultOfData<T>>(this.getUrl(url), {
       headers: this.headers,
       observe: 'response',
       responseType: 'json',

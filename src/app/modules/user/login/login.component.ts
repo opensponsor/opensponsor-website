@@ -49,7 +49,7 @@ export class LoginComponent {
       }
       this.authService.login<User>(data).subscribe(res => {
         if (res.body) {
-          this.authService.persistAuth(res.body);
+          this.authService.persistAuth(res.body.data);
           this.router.navigateByUrl("/").then(() => {
             this.snackBarService.message({message: 'Login successful!'})
           });

@@ -2,7 +2,7 @@ import {AfterViewChecked, Component, OnInit} from '@angular/core';
 import {OrganizationsService} from "@services/organizations/organizations.service";
 import {Organization} from "@app/interfaces/ApiInterface";
 import {Platform} from "@angular/cdk/platform";
-import {HttpResult} from "@services/http/http.service";
+import {HttpResultOfArray} from "@services/http/http.service";
 import {ActivatedRoute} from "@angular/router";
 import {OrgCardComponent} from "@app/components/org-card/org-card.component";
 import {OrganizationSearchComponent} from "@app/components/organization-search/organization-search.component";
@@ -21,7 +21,7 @@ import {NgIf} from "@angular/common";
   styleUrl: './index.component.scss'
 })
 export class IndexComponent implements OnInit {
-  public httpResult: HttpResult<Organization[]> | null = null;
+  public httpResult: HttpResultOfArray<Organization[]> | null = null;
 
   constructor(
     private readonly platform: Platform,

@@ -12,7 +12,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {NgClass, NgFor, NgOptimizedImage} from "@angular/common";
 import {environment} from "@environments/environment";
 import slugify from "limax";
-import {SmsCodeButtonComponent} from "@app/components/sms-code-button/sms-code-button.component";
+import {SmsCodeButtonComponent} from "@app/forms/sms-code-button/sms-code-button.component";
 import {validatePhoneNumber} from "@app/components/regular/phone-number";
 
 @Component({

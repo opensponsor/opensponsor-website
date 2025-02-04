@@ -20,8 +20,8 @@ export class AppComponent {
     if (this.platform.isBrowser) {
       if(localStorage.getItem("accessToken")) {
         this.authService.getAuthUser().subscribe(res => {
-          if (res.body) {
-            this.authService.persistAuth(res.body);
+          if (res.body?.data) {
+            this.authService.persistAuth(res.body.data);
           } else {
             this.authService.removeAuthInfo();
           }
