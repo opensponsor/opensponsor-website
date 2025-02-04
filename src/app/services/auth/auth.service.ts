@@ -24,7 +24,7 @@ export class AuthService {
   ) {
   }
 
-  public login<T>(data: LoginBody) {
+  public login<T>(data: Pick<LoginBody, 'phoneNumber' | 'countryCode' | 'password'>) {
     return this.httpService.post<T>(this.Urls.login, data);
   }
 
