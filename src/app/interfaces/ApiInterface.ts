@@ -546,13 +546,20 @@ export interface Licenses {
 }
 
 export interface LoginBody {
+  /** countryCode */
+  countryCode: CountryCode;
   /**
-   * account
+   * phoneNumber
    * @minLength 2
    * @maxLength 32
-   * @pattern \S
    */
-  account: string;
+  phoneNumber: string;
+  /**
+   * email
+   * @minLength 2
+   * @maxLength 32
+   */
+  email: string;
   /**
    * password
    * @minLength 6
