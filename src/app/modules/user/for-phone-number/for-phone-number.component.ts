@@ -54,11 +54,13 @@ export class ForPhoneNumberComponent {
         password: String(this.formGroup.value.password),
       }
       this.authService.login<User>(data).subscribe(res => {
-        if (res.body) {
+        if (res.body && res.body.data) {
           this.authService.persistAuth(res.body.data);
           this.router.navigateByUrl("/").then(() => {
             this.snackBarService.message({message: 'Login successful!'})
           });
+        } else {
+          this.snackBarService.message({message: 'Login failed!'})
         }
       })
     }
