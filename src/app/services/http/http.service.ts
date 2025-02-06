@@ -37,6 +37,9 @@ export abstract class HttpService {
     private http: HttpClient,
     private snackBar: SnackBarService
   ) {
+  }
+
+  private setToken() {
     if (this.platform.isBrowser) {
       const accessToken = localStorage.getItem('accessToken');
       if (accessToken && accessToken.length > 0) {
@@ -84,6 +87,7 @@ export abstract class HttpService {
   }
 
   public get<T>(url: string, params?: HttpParams) {
+    this.setToken();
     return this.http.get<T extends Array<any> ? HttpResultOfArray<T> : HttpResultOfData<T>>(this.getUrl(url), {
       headers: this.headers,
       observe: 'response',
@@ -95,6 +99,7 @@ export abstract class HttpService {
   }
 
   public post<T>(url: string, body: any | null, params?: HttpParams) {
+    this.setToken();
     return this.http.post<T extends Array<any> ? HttpResultOfArray<T> : HttpResultOfData<T>>(this.getUrl(url), body, {
       headers: this.headers,
       observe: 'response',
@@ -106,6 +111,7 @@ export abstract class HttpService {
   }
 
   public put<T>(url: string, body: any | null, params?: HttpParams) {
+    this.setToken();
     return this.http.put<T extends Array<any> ? HttpResultOfArray<T> : HttpResultOfData<T>>(this.getUrl(url), body, {
       headers: this.headers,
       observe: 'response',
@@ -117,6 +123,7 @@ export abstract class HttpService {
   }
 
   public delete<T>(url: string, params?: HttpParams) {
+    this.setToken();
     return this.http.delete<T extends Array<any> ? HttpResultOfArray<T> : HttpResultOfData<T>>(this.getUrl(url), {
       headers: this.headers,
       observe: 'response',
