@@ -7,26 +7,32 @@ import {inject} from "@angular/core";
 import {SnackBarService} from "@services/snack-bar/snack-bar.service";
 import {AuthService} from "@services/auth/auth.service";
 import {NotFoundComponent} from "@app/layouts/not-found/not-found.component";
+import {Platform} from "@angular/cdk/platform";
 
 const authGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const snackBarService = inject(SnackBarService);
   const router = inject(Router);
   const activatedRoute = inject(ActivatedRoute);
+  const platform = inject(Platform);
 
   return new Promise(resolve => {
-    authService.getAuthUser().subscribe({
-      next: () => {
-        resolve(true)
-      },
-      error: err => {
-        // ?ref=${state.url}
-        router.navigateByUrl("/user/login").then(() => {
-          snackBarService.message({message: err.message});
-        })
-        resolve(false)
-      }
-    })
+    if(platform.isBrowser) {
+      authService.getAuthUser().subscribe({
+        next: () => {
+          resolve(true)
+        },
+        error: err => {
+          // ?ref=${state.url}
+          router.navigateByUrl("/user/login").then(() => {
+            snackBarService.message({message: err.message});
+          })
+          resolve(false)
+        }
+      })
+    } else {
+      resolve(true);
+    }
   })
 };
 
