@@ -5,7 +5,13 @@
       <os-org-card [org]="org"></os-org-card>
     }
   </div>
-  <div *ngIf="httpResult">
-    <os-paginator [result]="httpResult"></os-paginator>
-  </div>
+  @if (loading) {
+    loading...
+  } @else {
+    @if(httpResult && httpResult.records.length > 0) {
+      <os-paginator [result]="httpResult"></os-paginator>
+    } @else {
+      <os-empty-states />
+    }
+  }
 </div>

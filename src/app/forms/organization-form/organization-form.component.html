@@ -1,8 +1,9 @@
 <div class="grid grid-cols-1 mt-10 gap-10">
   <div class="grid grid-cols-2 gap-4">
-    <form class="flex flex-col gap-3 w-full" style="display: flex; flex-direction: column;"
+    <form class="flex flex-col gap-3 w-full"
           (ngSubmit)="formGroup.valid && save()" [formGroup]="formGroup">
-      <h3>组织信息 (&nbsp;*标记为必填&nbsp;)</h3>
+      <h3>组织信息</h3>
+      <os-required-hint />
       <mat-form-field floatLabel="always" class="w-full">
         <mat-label>组织名称</mat-label>
         <input matInput name="title" [formControl]="formGroup.controls.name" placeholder="Open Sponsor">
@@ -19,7 +20,7 @@
       }
       <mat-form-field floatLabel="always" subscriptSizing="dynamic" class="w-full">
         <mat-label>主页链接</mat-label>
-        <span matTextPrefix>{{ urlOrigin }}</span>
+        <span matTextPrefix class="text-gray-400">{{ urlOrigin }}</span>
         <input matInput name="slug" [formControl]="formGroup.controls.slug">
       </mat-form-field>
       <mat-form-field floatLabel="always" class="w-full">

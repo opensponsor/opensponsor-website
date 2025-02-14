@@ -8,6 +8,7 @@ import {OrgCardComponent} from "@app/components/org-card/org-card.component";
 import {OrganizationSearchComponent} from "@app/components/organization-search/organization-search.component";
 import {PaginatorComponent} from "@app/components/paginator/paginator.component";
 import {NgIf} from "@angular/common";
+import {EmptyStatesComponent} from "@app/components/empty-states/empty-states.component";
 
 @Component({
   selector: 'os-index',
@@ -16,12 +17,14 @@ import {NgIf} from "@angular/common";
     OrgCardComponent,
     OrganizationSearchComponent,
     PaginatorComponent,
-    NgIf,
+    EmptyStatesComponent,
   ],
   styleUrl: './index.component.scss'
 })
 export class IndexComponent implements OnInit {
   public httpResult: HttpResultOfArray<Organization[]> | null = null;
+  public loading = false;
+
 
   constructor(
     private readonly platform: Platform,
@@ -38,10 +41,15 @@ export class IndexComponent implements OnInit {
   }
 
   private getList(filter?: Partial<Organization>) {
-    this.organizationsService.list(filter).subscribe(res => {
-      if (res.status === 200) {
-        this.httpResult = res.body;
-      }
+    this.loading = true;
+    this.organizationsService.list(filter).subscribe({
+      next: res => {
+        this.loading = false;
+        if (res.status === 200) {
+          this.httpResult = res.body;
+        }
+      },
+      error: err => {}
     });
   }
 

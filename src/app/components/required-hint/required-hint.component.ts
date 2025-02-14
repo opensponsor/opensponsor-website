@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'required-hint',
+  selector: 'os-required-hint',
   imports: [],
   templateUrl: './required-hint.component.html',
   styleUrl: './required-hint.component.scss'
