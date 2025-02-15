@@ -57,7 +57,7 @@
                 }
               ],
               "outputHashing": "all",
-              "localize": ["en", "cn"]
+              "localize": ["en"]
             },
             "development": {
               "optimization": false,
