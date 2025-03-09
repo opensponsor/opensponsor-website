@@ -9,6 +9,7 @@ import {TierCardComponent} from "@app/components/tier-card/tier-card.component";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {NgForOf} from "@angular/common";
+import {MatRipple} from "@angular/material/core";
 
 @Component({
   selector: 'os-tiers',
@@ -17,7 +18,8 @@ import {NgForOf} from "@angular/common";
     TierCardComponent,
     MatButtonModule,
     MatIconModule,
-    NgForOf
+    NgForOf,
+    MatRipple
   ],
   styleUrl: './tiers.component.scss'
 })
