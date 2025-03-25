@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'os-create-menu',
-  imports: [],
+  imports: [
+    RouterLink,
+  ],
   templateUrl: './create-menu.component.html',
   styleUrl: './create-menu.component.scss'
 })
