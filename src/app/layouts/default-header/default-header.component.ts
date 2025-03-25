@@ -7,6 +7,7 @@ import {MatAnchor, MatButton, MatButtonModule} from "@angular/material/button";
 import {User} from "@app/interfaces/ApiInterface";
 import {MatCardModule} from "@angular/material/card";
 import {MatIcon} from "@angular/material/icon";
+import {CreateMenuComponent} from "@app/layouts/create-menu/create-menu.component";
 
 @Component({
   selector: 'os-default-header',
@@ -17,6 +18,7 @@ import {MatIcon} from "@angular/material/icon";
     NgClass,
     MatCardModule,
     MatButtonModule,
+    CreateMenuComponent,
   ],
   templateUrl: './default-header.component.html',
   styleUrls: ['./default-header.component.scss']
