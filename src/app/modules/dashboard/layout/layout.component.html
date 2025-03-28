@@ -1,13 +1,13 @@
 <div class="inset-0 flex h-full">
-  <div class="flex flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-4 lg:w-72">
-    <div class="flex h-16 shrink-0 items-center justify-center">
+  <div class="flex flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white lg:w-72">
+    <div class="flex h-16 shrink-0 items-center justify-center sticky top-0 z-10 bg-white">
       <a routerLink="/">
         <img class="h-8 w-auto" ngSrc="/logo.svg"
              alt="Your Company" width="16" height="16">
       </a>
     </div>
     <nav class="flex flex-1 flex-col">
-      <mat-accordion displayMode="flat">
+      <mat-accordion displayMode="flat" class="[&_.mat-expansion-panel]:bg-transparent [&_.mat-expansion-panel-header.mat-expanded]:h-[48px]">
         <ng-template *ngFor="let menu of menus" [ngIf]="true">
           <mat-expansion-panel [expanded]="menu.active" class="!shadow-none !rounded-none"
                                *ngIf="menu.children && menu.children.length > 0">

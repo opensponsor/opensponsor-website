@@ -43,12 +43,6 @@ export const routes: Routes = [
     loadChildren: () => import('@modules/home/home.module').then(m => m.HomeModule)
   },
   {
-    path: 'account',
-    canActivate: [authGuard],
-    component: PureLayoutComponent,
-    loadChildren: () => import('@modules/account/account.module').then(m => m.AccountModule)
-  },
-  {
     path: 'create',
     canActivate: [authGuard],
     component: DefaultLayoutComponent,
