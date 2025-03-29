@@ -6,7 +6,7 @@ import {MatExpansionModule, MatExpansionPanelHeader} from "@angular/material/exp
 import {MatIcon, MatIconModule} from "@angular/material/icon";
 import {MatList, MatListModule} from "@angular/material/list";
 import {NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
-import {E_ORGANIZATION_TYPE} from "@app/interfaces/ApiInterface";
+import {E_ORGANIZATION_ROLE, E_ORGANIZATION_TYPE} from "@app/interfaces/ApiInterface";
 
 type Menu = {
   label: string;
@@ -36,6 +36,8 @@ type Menu = {
 export class LayoutComponent {
   public rootPath = "";
   public configPath = ':name';
+
+  public menuRole = E_ORGANIZATION_TYPE.USER;
 
   public menus: Menu[] = [
     {
@@ -166,7 +168,7 @@ export class LayoutComponent {
     private readonly platform: Platform,
     private readonly organizationsService: OrganizationsService,
   ) {
-    if (platform.isBrowser) {
+    if (this.platform.isBrowser) {
       this.activatedRoute.firstChild?.params.subscribe(value => {
         this.rootPath = ['/dashboard', value['name']].join("/");
         this.organizationsService.getOrganizationByName(value['name']).subscribe();

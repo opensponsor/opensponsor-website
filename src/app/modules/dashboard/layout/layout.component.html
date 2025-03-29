@@ -9,35 +9,42 @@
     <nav class="flex flex-1 flex-col">
       <mat-accordion displayMode="flat" class="[&_.mat-expansion-panel]:bg-transparent [&_.mat-expansion-panel-header.mat-expanded]:h-[48px]">
         <ng-template *ngFor="let menu of menus" [ngIf]="true">
-          <mat-expansion-panel [expanded]="menu.active" class="!shadow-none !rounded-none"
-                               *ngIf="menu.children && menu.children.length > 0">
-            <mat-expansion-panel-header>
-              <mat-panel-title class="gap-1">
+          @if (menu.children && menu.children.length > 0) {
+            <mat-expansion-panel [expanded]="menu.active" class="!shadow-none !rounded-none"
+                                 *ngIf="(menu.roles.length === 0 || menu.roles.includes(menuRole))">
+              <mat-expansion-panel-header>
+                <mat-panel-title class="gap-1">
+                  <mat-icon>{{ menu.icon }}</mat-icon>
+                  {{ menu.label }}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-list role="list">
+                @for (child of menu.children; track child) {
+                  <a mat-list-item
+                     [disabled]="!child?.link"
+                     [routerLink]="trimUrl([rootPath, child.link])"
+                     [ngClass]="{'!bg-gray-200': child.active}"
+                     *ngIf="!child.roles || child.roles?.includes(menuRole)"
+                     class="!cursor-pointer"
+                     role="listitem"
+                  >
+                    {{ child.label }}
+                  </a>
+                }
+              </mat-list>
+            </mat-expansion-panel>
+          }
+          @if (!menu.children || menu?.children?.length === 0) {
+            <div class="mat-expansion-panel !rounded-none !shadow-none"
+                 *ngIf="(menu.roles.length === 0 || menu.roles.includes(menuRole))">
+              <a [routerLink]="trimUrl([rootPath, menu.link])"
+                 [ngClass]="{'!bg-gray-200': menu.active}"
+                 class="!cursor-pointer w-full mat-expansion-panel-header mat-focus-indicator mat-expansion-toggle-indicator-after gap-1">
                 <mat-icon>{{ menu.icon }}</mat-icon>
                 {{ menu.label }}
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <mat-list role="list">
-              <a mat-list-item
-                 [disabled]="!child?.link"
-                 [routerLink]="trimUrl([rootPath, child.link])"
-                 [ngClass]="{'!bg-gray-200': child.active}"
-                 class="!cursor-pointer"
-                 role="listitem"
-                 *ngFor="let child of menu.children">
-                {{ child.label }}
               </a>
-            </mat-list>
-          </mat-expansion-panel>
-          <div class="mat-expansion-panel !rounded-none !shadow-none"
-               *ngIf="!menu.children || menu?.children?.length === 0">
-            <a [routerLink]="trimUrl([rootPath, menu.link])"
-               [ngClass]="{'!bg-gray-200': menu.active}"
-               class="!cursor-pointer w-full mat-expansion-panel-header mat-focus-indicator mat-expansion-toggle-indicator-after gap-1">
-              <mat-icon>{{ menu.icon }}</mat-icon>
-              {{ menu.label }}
-            </a>
-          </div>
+            </div>
+          }
         </ng-template>
       </mat-accordion>
 
