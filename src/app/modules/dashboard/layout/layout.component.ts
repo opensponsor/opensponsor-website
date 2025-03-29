@@ -6,13 +6,15 @@ import {MatExpansionModule, MatExpansionPanelHeader} from "@angular/material/exp
 import {MatIcon, MatIconModule} from "@angular/material/icon";
 import {MatList, MatListModule} from "@angular/material/list";
 import {NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
+import {E_ORGANIZATION_TYPE} from "@app/interfaces/ApiInterface";
 
 type Menu = {
   label: string;
   link?: string;
   active?: boolean;
   icon: string;
-  children?: Omit<Menu, 'icon'>[]
+  roles: E_ORGANIZATION_TYPE[];
+  children?: (Pick<Menu, 'label' | 'link'> & Partial<Menu>)[]
 }
 
 @Component({
@@ -40,27 +42,46 @@ export class LayoutComponent {
       label: '概览',
       link: '',
       icon: 'dashboard',
+      roles: [
+        E_ORGANIZATION_TYPE.USER,
+        E_ORGANIZATION_TYPE.ORGANIZATION,
+        E_ORGANIZATION_TYPE.COMMUNITY
+      ]
     },
     {
       label: '支出',
       link: '',
       icon: 'paid',
+      roles: [
+        E_ORGANIZATION_TYPE.USER,
+        E_ORGANIZATION_TYPE.ORGANIZATION,
+        E_ORGANIZATION_TYPE.COMMUNITY
+      ],
       children: [
         {
           label: '捐给谁',
           link: '',
         },
-      ]
+      ],
     },
     {
       label: '贡献者',
       link: 'contributor',
-      icon: 'apps'
+      icon: 'apps',
+      roles: [
+        E_ORGANIZATION_TYPE.ORGANIZATION,
+        E_ORGANIZATION_TYPE.COMMUNITY
+      ]
     },
     {
       label: '捐款',
       link: '',
       icon: 'group',
+      roles: [
+        E_ORGANIZATION_TYPE.USER,
+        E_ORGANIZATION_TYPE.ORGANIZATION,
+        E_ORGANIZATION_TYPE.COMMUNITY
+      ],
       children: [
         {
           label: '捐给谁',
@@ -71,16 +92,25 @@ export class LayoutComponent {
     {
       label: 'Team',
       link: 'team',
-      icon: 'group'
+      icon: 'group',
+      roles: [
+        E_ORGANIZATION_TYPE.ORGANIZATION,
+        E_ORGANIZATION_TYPE.COMMUNITY
+      ]
     },
     {
       label: '贡献等级',
       link: 'tiers',
-      icon: 'diamond'
+      icon: 'diamond',
+      roles: [
+        E_ORGANIZATION_TYPE.ORGANIZATION,
+        E_ORGANIZATION_TYPE.COMMUNITY
+      ]
     },
     {
       label: '设置',
       icon: 'settings',
+      roles: [],
       children: [
         {
           label: '基本信息',
@@ -112,11 +142,19 @@ export class LayoutComponent {
         },
         {
           label: '开发',
-          link: 'development'
+          link: 'development',
+          roles: [
+            E_ORGANIZATION_TYPE.ORGANIZATION,
+            E_ORGANIZATION_TYPE.COMMUNITY
+          ]
         },
         {
           label: 'webhook',
-          link: 'webhook'
+          link: 'webhook',
+          roles: [
+            E_ORGANIZATION_TYPE.ORGANIZATION,
+            E_ORGANIZATION_TYPE.COMMUNITY
+          ]
         },
       ]
     }
