@@ -27,9 +27,9 @@ export class TierService {
 
   public get(organizationId: string, slug: string) {
     return this.httpService.get<Tier>(`${this.Urls.create}/${organizationId}/${slug}`).pipe(res => {
-      res.subscribe(data => {
-        this.tier.set(data.body?.data as Tier);
-      })
+      // res.subscribe(data => {
+      //   this.tier.set(data.body?.data as Tier);
+      // })
       return res;
     });
   }

@@ -41,12 +41,7 @@ export class OrganizationsService {
   }
 
   public getOrganizationByName(name: string) {
-    return this.httpService.get<Organization>(`${this.Urls.get}/${name}`).pipe(res => {
-      res.subscribe(data => {
-        this.organization.set(data.body?.data);
-      })
-      return res;
-    });
+    return this.httpService.get<Organization>(`${this.Urls.get}/${name}`);
   }
 
 }
