@@ -2,11 +2,12 @@ import {Component} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet} from "@angular/router";
 import {OrganizationsService} from "@services/organizations/organizations.service";
 import {Platform} from "@angular/cdk/platform";
-import {MatExpansionModule, MatExpansionPanelHeader} from "@angular/material/expansion";
-import {MatIcon, MatIconModule} from "@angular/material/icon";
-import {MatList, MatListModule} from "@angular/material/list";
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatIconModule} from "@angular/material/icon";
+import {MatListModule} from "@angular/material/list";
 import {NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
-import {E_ORGANIZATION_ROLE, E_ORGANIZATION_TYPE} from "@app/interfaces/ApiInterface";
+import {E_ORGANIZATION_TYPE, Organization} from "@app/interfaces/ApiInterface";
+import {AuthService} from "@services/auth/auth.service";
 
 type Menu = {
   label: string;
@@ -35,20 +36,16 @@ type Menu = {
 })
 export class LayoutComponent {
   public rootPath = "";
-  public configPath = ':name';
+  public configPath = ':slug';
 
-  public menuRole = E_ORGANIZATION_TYPE.USER;
+  public organization: Organization | undefined;
 
   public menus: Menu[] = [
     {
       label: '概览',
       link: '',
       icon: 'dashboard',
-      roles: [
-        E_ORGANIZATION_TYPE.USER,
-        E_ORGANIZATION_TYPE.ORGANIZATION,
-        E_ORGANIZATION_TYPE.COMMUNITY
-      ]
+      roles: []
     },
     {
       label: '支出',
@@ -116,7 +113,7 @@ export class LayoutComponent {
       children: [
         {
           label: '基本信息',
-          link: 'profile'
+          link: `profile`
         },
         {
           label: '安全',
@@ -167,13 +164,24 @@ export class LayoutComponent {
     private readonly router: Router,
     private readonly platform: Platform,
     private readonly organizationsService: OrganizationsService,
+    private readonly authService: AuthService,
   ) {
+
     if (this.platform.isBrowser) {
-      this.activatedRoute.firstChild?.params.subscribe(value => {
-        this.rootPath = ['/dashboard', value['name']].join("/");
-        this.organizationsService.getOrganizationByName(value['name']).subscribe();
-        this.activeMenu();
-      })
+      if(this.activatedRoute.firstChild) {
+        const authUser = authService.authInfo()!;
+        this.activatedRoute.firstChild?.params.subscribe(value => {
+          const orgName = value['slug'] || authUser.slug;
+          this.rootPath = ['/dashboard', orgName].join("/");
+          this.organizationsService.getOrganizationByName(orgName).subscribe(res => {
+            if(res.status === 200 && res.body) {
+              this.organizationsService.organization.set(res.body.data);
+              this.organization = res.body.data;
+            }
+          });
+          this.activeMenu();
+        })
+      }
       this.router.events.subscribe((e) => {
         if (e instanceof NavigationEnd) {
           this.activeMenu();
@@ -190,15 +198,20 @@ export class LayoutComponent {
     this.menus.forEach(menu => {
       if (menu.children && menu.children.length > 0) {
         menu.children.forEach(child => {
-          if ([':name', child.link].join('/') === this.configPath && child.link !== undefined) {
+          if ([':slug', child.link].join('/') === this.configPath && child.link !== undefined) {
             menu.active = true;
             child.active = true;
           } else {
             child.active = false;
           }
         })
+      } else {
+        if(menu.link) {
+          menu.active = [':slug', menu.link].join('/') === this.configPath && menu.link !== undefined;
+        } else {
+          menu.active = ":slug" === this.configPath && menu.link !== undefined;
+        }
       }
-      menu.active = [':name', menu.link].join('/') === this.configPath && menu.link !== undefined;
     })
   }
 
