@@ -1,5 +1,6 @@
 /* eslint-disable */
 /* tslint:disable */
+// @ts-nocheck
 /*
  * ---------------------------------------------------------------
  * ## THIS FILE WAS GENERATED VIA SWAGGER-TYPESCRIPT-API        ##
@@ -300,7 +301,7 @@ export enum E_ORGANIZATION_TYPE {
 }
 
 export enum E_SEX {
-  WOMEN = "WOMEN",
+  WOMAN = "WOMAN",
   MAN = "MAN",
 }
 
@@ -564,14 +565,12 @@ export interface LoginBody {
    * password
    * @minLength 6
    * @maxLength 64
-   * @pattern \S
    */
   password: string;
   /**
    * code
    * @minLength 4
    * @maxLength 4
-   * @pattern \S
    */
   code: string;
 }
