@@ -1,5 +1,7 @@
-@if (organization) {
-  <os-organization-form
-    [data]="organization"
-    [organizationType]="organization.type || E_ORGANIZATION_TYPE.COMMUNITY"/>
+@if(organization) {
+  @if(organization?.type === E_ORGANIZATION_TYPE.USER) {
+    <os-profile-for-user />
+  } @else {
+    <os-profile-for-organization />
+  }
 }

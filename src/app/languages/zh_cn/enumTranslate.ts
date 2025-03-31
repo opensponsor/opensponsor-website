@@ -1,4 +1,4 @@
-import {E_AMOUNT_TYPE, E_IBAN_CURRENCIES, E_INTERVAL, E_TIER_TYPE} from "@app/interfaces/ApiInterface";
+import {E_AMOUNT_TYPE, E_IBAN_CURRENCIES, E_INTERVAL, E_SEX, E_TIER_TYPE} from "@app/interfaces/ApiInterface";
 
 export const enumTranslate: Record<string, string> = {
   [E_INTERVAL.ONETIME]: "一次性",
@@ -19,4 +19,7 @@ export const enumTranslate: Record<string, string> = {
   [E_TIER_TYPE.DONATION]: "捐赠",
   [E_TIER_TYPE.PRODUCT]: "产品",
   [E_TIER_TYPE.SERVICE]: "服务",
+
+  [E_SEX.WOMAN]: "女性",
+  [E_SEX.MAN]: "男性",
 }
