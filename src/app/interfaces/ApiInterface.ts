@@ -835,6 +835,31 @@ export enum Type {
  */
 export type UUID = string;
 
+export interface UpdateUser {
+  /**
+   * username
+   * @minLength 2
+   * @maxLength 32
+   */
+  username: string;
+  /**
+   * url slug
+   * @minLength 2
+   * @maxLength 32
+   */
+  slug: string;
+  /**
+   * website url
+   * @minLength 2
+   * @maxLength 128
+   */
+  website?: string;
+  /** sex */
+  sex?: E_SEX;
+  /** User country code */
+  countryCode?: CountryCode;
+}
+
 export interface User {
   id: UUID;
   /**
@@ -886,17 +911,6 @@ export interface User {
    * @maxLength 32
    */
   email?: string;
-  token?: UserToken;
-  /** when created */
-  whenCreated: Instant;
-  /** when modified */
-  whenModified: Instant;
-  whenDeleted?: Instant;
-}
-
-export interface UserToken {
-  id: UUID;
-  token?: string;
   /** when created */
   whenCreated: Instant;
   /** when modified */
