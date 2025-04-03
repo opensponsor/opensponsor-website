@@ -911,6 +911,18 @@ export interface User {
    * @maxLength 32
    */
   email?: string;
+  /** token */
+  token?: UserToken;
+  /** when created */
+  whenCreated: Instant;
+  /** when modified */
+  whenModified: Instant;
+  whenDeleted?: Instant;
+}
+
+export interface UserToken {
+  id: UUID;
+  token?: string;
   /** when created */
   whenCreated: Instant;
   /** when modified */
