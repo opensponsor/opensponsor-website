@@ -841,7 +841,7 @@ export interface UpdateUser {
    * @minLength 2
    * @maxLength 32
    */
-  username: string;
+  username: "FormControl<string | null>";
   /**
    * url slug
    * @minLength 2
