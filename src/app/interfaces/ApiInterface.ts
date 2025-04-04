@@ -841,7 +841,7 @@ export interface UpdateUser {
    * @maxItems 32
    * @minItems 2
    */
-  username: any[];
+  username: string[];
   /**
    * url slug
    * @minLength 2
