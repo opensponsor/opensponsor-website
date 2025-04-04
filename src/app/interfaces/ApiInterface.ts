@@ -838,10 +838,10 @@ export type UUID = string;
 export interface UpdateUser {
   /**
    * username
-   * @minLength 2
-   * @maxLength 32
+   * @maxItems 32
+   * @minItems 2
    */
-  username: string;
+  username: any[];
   /**
    * url slug
    * @minLength 2
