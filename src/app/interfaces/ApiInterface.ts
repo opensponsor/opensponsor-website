@@ -838,7 +838,6 @@ export type UUID = string;
 export interface UpdateUser {
   /**
    * username
-   * @format FormControl<string | null>
    * @minLength 2
    * @maxLength 32
    */
