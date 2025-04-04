@@ -840,7 +840,6 @@ export interface UpdateUser {
    * username
    * @minLength 2
    * @maxLength 32
-   * @default "FormControl<string | null>"
    */
   username: string;
   /**
