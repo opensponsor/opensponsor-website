@@ -856,8 +856,6 @@ export interface UpdateUser {
   website?: string;
   /** sex */
   sex?: E_SEX;
-  /** User country code */
-  countryCode?: CountryCode;
 }
 
 export interface User {
