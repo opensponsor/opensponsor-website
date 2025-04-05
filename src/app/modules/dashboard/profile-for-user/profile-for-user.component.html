@@ -1,23 +1,29 @@
 <div class="w-full lg:w-1/2 ">
   <form class="flex flex-col gap-3 w-full"
-        (ngSubmit)="formGroup.valid" [formGroup]="formGroup">
+        (ngSubmit)="formGroup.valid && submit()" [formGroup]="formGroup">
     <h3>更新资料信息</h3>
     <os-required-hint />
     <mat-form-field class="w-full">
       <mat-label>用户名</mat-label>
       <input matInput [formControl]="formGroup.controls.username" />
     </mat-form-field>
-    <mat-form-field class="w-full">
+    <mat-form-field class="w-full relative">
       <mat-label>URL路径</mat-label>
       <input matInput [formControl]="formGroup.controls.slug" />
+
+      @if( formGroup.controls.slug.disabled ) {
+        <button matSuffix type="button" (click)="confirmModifySlug()" mat-icon-button class="mr-2">
+          <mat-icon>mode_edit</mat-icon>
+        </button>
+      }
     </mat-form-field>
     <mat-form-field class="w-full">
       <mat-label>网站主页</mat-label>
-      <input matInput [formControl]="formGroup.controls.username" />
+      <input matInput [formControl]="formGroup.controls.website" />
     </mat-form-field>
     <div class="mat-mdc-form-field">
       <mat-label>性别</mat-label>
-      <mat-button-toggle-group class="w-fit !rounded-md" [formControl]="formGroup.controls.sex" aria-label="user sex">
+      <mat-button-toggle-group class="w-fit !rounded-md" [value]="formGroup.controls.sex.value" [formControl]="formGroup.controls.sex" aria-label="user sex">
         <mat-button-toggle [value]="E_SEX.MAN">
           <mat-icon>{{E_SEX.MAN.toLowerCase()}}</mat-icon>
           {{enumTranslate[E_SEX.MAN]}}
@@ -27,6 +33,9 @@
           {{enumTranslate[E_SEX.WOMAN]}}
         </mat-button-toggle>
       </mat-button-toggle-group>
+    </div>
+    <div>
+      <button mat-flat-button class="w-full" type="submit">保存</button>
     </div>
   </form>
 </div>

@@ -1,5 +1,5 @@
 @if(organization) {
-  @if(organization?.type === E_ORGANIZATION_TYPE.USER) {
+  @if(organization.type === E_ORGANIZATION_TYPE.USER) {
     <os-profile-for-user />
   } @else {
     <os-profile-for-organization />
