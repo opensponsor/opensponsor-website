@@ -39,24 +39,11 @@ import {DialogService} from "@services/dialog/dialog.service";
 })
 export class ProfileForUserComponent {
   public formGroup = new FormGroup< Required<Record<(keyof UpdateUser), FormControl>> >({
-    username: new FormControl<string>("", {
-      validators: [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(64),
-      ],
-      asyncValidators: [
-        () => {
-          return new Promise((resolve) => {
-            const n = this.formGroup.controls.username.getRawValue();
-            if(n) {
-              this.formGroup.controls.slug.setValue(slugify(n))
-            }
-            resolve({});
-          })
-        }
-      ]
-    }),
+    username: new FormControl<string>("", [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(64),
+    ]),
     slug: new FormControl<string>({value: '', disabled: true}, [
       Validators.required,
       Validators.minLength(4),
