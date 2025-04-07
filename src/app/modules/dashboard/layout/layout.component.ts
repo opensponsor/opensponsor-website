@@ -137,7 +137,11 @@ export class LayoutComponent {
         },
         {
           label: '收款设置',
-          link: 'receiving-money'
+          link: 'receiving-money',
+          roles: [
+            E_ORGANIZATION_TYPE.ORGANIZATION,
+            E_ORGANIZATION_TYPE.COMMUNITY
+          ],
         },
         {
           label: '开发',
