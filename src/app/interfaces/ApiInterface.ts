@@ -626,7 +626,7 @@ export interface Organization {
    * organization tags
    * @uniqueItems true
    */
-  tags: string[];
+  tags: Tags[];
   /**
    * website url
    * @minLength 2
@@ -745,6 +745,25 @@ export interface SendSmsResponseBody {
   code?: string;
   message?: string;
   requestId?: string;
+}
+
+export interface Tags {
+  id: UUID;
+  /**
+   * tag name
+   * @minLength 2
+   * @maxLength 32
+   */
+  name: string;
+  /** is official create */
+  official: boolean;
+  /** is popular */
+  popular: boolean;
+  /** when created */
+  whenCreated: Instant;
+  /** when modified */
+  whenModified: Instant;
+  whenDeleted?: Instant;
 }
 
 export interface Tier {
