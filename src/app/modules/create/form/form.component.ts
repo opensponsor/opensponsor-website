@@ -188,7 +188,7 @@ export class FormComponent implements AfterViewInit {
   create() {
     if (this.formGroup.valid) {
       const data = this.formGroup.value as Partial<Organization>;
-      data.tags = [...this.tags];
+      // data.tags = [...this.tags];
       this.organizationsService.create(data).subscribe(res => {
         this.router.navigate(['/dashboard/', res.body?.data.name]).then(() => {
           this.snackBarService.message({message: '组织已经创建'});

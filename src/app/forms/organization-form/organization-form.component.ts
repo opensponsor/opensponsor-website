@@ -1,24 +1,20 @@
-import {Component, inject, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatCardModule} from "@angular/material/card";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import {AsyncPipe} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {MatTooltip} from "@angular/material/tooltip";
 import {Platform} from "@angular/cdk/platform";
-import {MatAutocompleteModule, MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
-import {map, Observable, startWith} from "rxjs";
-import {MatChipInputEvent, MatChipsModule} from "@angular/material/chips";
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {LiveAnnouncer} from '@angular/cdk/a11y';
+import {MatChipsModule} from "@angular/material/chips";
 import {OrganizationsService} from "@services/organizations/organizations.service";
 import {E_ORGANIZATION_TYPE, Organization} from "@app/interfaces/ApiInterface";
 import {SnackBarService} from "@services/snack-bar/snack-bar.service";
 import {Router} from "@angular/router";
 import {RequiredHintComponent} from "@app/components/required-hint/required-hint.component";
 import slugify from "limax";
+import {TagsFieldComponent} from "@app/forms/tags-field/tags-field.component";
 
 @Component({
   selector: 'os-organization-form',
@@ -30,10 +26,9 @@ import slugify from "limax";
     MatButtonModule,
     MatIcon,
     MatTooltip,
-    MatAutocompleteModule,
-    AsyncPipe,
     MatChipsModule,
-    RequiredHintComponent
+    RequiredHintComponent,
+    TagsFieldComponent
   ],
   templateUrl: './organization-form.component.html',
   styleUrl: './organization-form.component.scss'
@@ -50,16 +45,6 @@ export class OrganizationFormComponent implements OnInit {
     required: false,
   })
   data?: Partial<Organization>;
-
-  // @Input({
-  //     required: true,
-  // })
-  tags: Set<string> = new Set(this.data?.tags || []);
-
-  readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  announcer = inject(LiveAnnouncer);
-  options: string[] = ['One', 'Two', 'Three'];
-  filteredOptions: Observable<string[]>;
 
   public formGroup = new FormGroup({
     name: new FormControl<string>('', {
@@ -94,7 +79,7 @@ export class OrganizationFormComponent implements OnInit {
       Validators.minLength(4),
       Validators.maxLength(64),
     ]),
-    tags: new FormControl(""),
+    tags: new FormControl<string[]>([]),
     introduce: new FormControl<string>('', [
       Validators.required,
       Validators.minLength(4),
@@ -114,11 +99,6 @@ export class OrganizationFormComponent implements OnInit {
     if (this.platform.isBrowser) {
       this.urlOrigin = [location?.origin, '/'].join("");
     }
-
-    this.filteredOptions = this.formGroup.controls.tags.valueChanges.pipe(
-      startWith(''),
-      map((value: any) => this._filter(value || '')),
-    );
   }
 
   ngOnInit() {
@@ -131,7 +111,7 @@ export class OrganizationFormComponent implements OnInit {
         }
       }
 
-      this.data.tags?.forEach(t => this.tags.add(t))
+      // this.data.tags?.forEach(t => this.tags.add(t))
       this.formGroup.controls.name.disable();
     }
 
@@ -141,45 +121,18 @@ export class OrganizationFormComponent implements OnInit {
     }
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
-  }
-
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.tags.add(event.option.viewValue);
-    this.formGroup.controls.tags.setValue("");
-  }
-
-  add(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
-    // Add our tags
-    if (value) {
-      this.tags.add(value);
-    }
-    // Clear the input value
-    event.chipInput!.clear();
-  }
-
-  remove(tag: string): void {
-    this.tags.delete(tag);
-    this.announcer.announce(`Removed ${tag}`).then();
-    this.formGroup.controls.tags.setValue("");
-  }
-
   public save() {
     if (this.formGroup.valid) {
       if (this.data) {
         const data = {...this.data, ...this.formGroup.value} as Organization;
-        data.tags = [...this.tags];
+        // data.tags = [...this.tags];
         // data.user;
         this.organizationsService.update(data).subscribe(res => {
           this.snackBarService.message({message: '更新完成'})
         })
       } else {
         const data = this.formGroup.value as Partial<Organization>;
-        data.tags = [...this.tags];
+        // data.tags = [...this.tags];
         this.organizationsService.create(data).subscribe(res => {
           this.router.navigate(['/dashboard/', res.body?.data.name]).then(() => {
             this.snackBarService.message({message: '组织已经创建'});

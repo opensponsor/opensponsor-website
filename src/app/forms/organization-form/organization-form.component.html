@@ -27,38 +27,8 @@
         <mat-label>简介</mat-label>
         <textarea matInput name="introduce" [formControl]="formGroup.controls.introduce"></textarea>
       </mat-form-field>
-      <mat-form-field floatLabel="always" class="w-full">
-        <mat-label>标签</mat-label>
-        <input type="text"
-               placeholder="Pick one"
-               aria-label="Number"
-               name="tags"
-               matInput
-               [matChipInputFor]="chipGrid"
-               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-               [matChipInputAddOnBlur]="true"
-               (matChipInputTokenEnd)="add($event)"
-               [formControl]="formGroup.controls.tags"
-               [matAutocomplete]="auto"/>
-
-        <mat-chip-grid matTextPrefix #chipGrid aria-label="Enter fruits">
-          @for (tag of tags; track tag) {
-            <mat-chip-row
-              (removed)="remove(tag)"
-              [aria-description]="'press enter to edit ' + tag">
-              {{ tag }}
-              <button matChipRemove [attr.aria-label]="'remove ' + tag">
-                <mat-icon>cancel</mat-icon>
-              </button>
-            </mat-chip-row>
-          }
-        </mat-chip-grid>
-        <mat-autocomplete autoActiveFirstOption="" (optionSelected)="selected($event)" #auto="matAutocomplete">
-          @for (option of filteredOptions | async; track option) {
-            <mat-option [value]="option">{{ option }}</mat-option>
-          }
-        </mat-autocomplete>
-      </mat-form-field>
+      {{formGroup.controls.tags.value?.length}}
+      <os-tags-field ngDefaultControl [tagsFormControl]="formGroup.controls.tags" />
       <mat-form-field floatLabel="always" class="w-full">
         <mat-label>网站链接</mat-label>
         <input matInput name="website" [formControl]="formGroup.controls.website" placeholder="https://www.example.com"/>
