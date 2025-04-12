@@ -9,7 +9,7 @@ import {MatTooltip} from "@angular/material/tooltip";
 import {Platform} from "@angular/cdk/platform";
 import {MatChipsModule} from "@angular/material/chips";
 import {OrganizationsService} from "@services/organizations/organizations.service";
-import {E_ORGANIZATION_TYPE, Organization} from "@app/interfaces/ApiInterface";
+import {E_ORGANIZATION_TYPE, Organization, Tags} from "@app/interfaces/ApiInterface";
 import {SnackBarService} from "@services/snack-bar/snack-bar.service";
 import {Router} from "@angular/router";
 import {RequiredHintComponent} from "@app/components/required-hint/required-hint.component";
@@ -125,14 +125,18 @@ export class OrganizationFormComponent implements OnInit {
     if (this.formGroup.valid) {
       if (this.data) {
         const data = {...this.data, ...this.formGroup.value} as Organization;
-        // data.tags = [...this.tags];
-        // data.user;
+        data.tags = this.formGroup.controls.tags.value?.map(tag => ({
+          name: tag
+        })) as Tags[];
+
         this.organizationsService.update(data).subscribe(res => {
           this.snackBarService.message({message: '更新完成'})
         })
       } else {
         const data = this.formGroup.value as Partial<Organization>;
-        // data.tags = [...this.tags];
+        data.tags = this.formGroup.controls.tags.value?.map(tag => ({
+          name: tag
+        })) as Tags[];
         this.organizationsService.create(data).subscribe(res => {
           this.router.navigate(['/dashboard/', res.body?.data.name]).then(() => {
             this.snackBarService.message({message: '组织已经创建'});

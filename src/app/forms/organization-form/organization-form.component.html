@@ -27,7 +27,6 @@
         <mat-label>简介</mat-label>
         <textarea matInput name="introduce" [formControl]="formGroup.controls.introduce"></textarea>
       </mat-form-field>
-      {{formGroup.controls.tags.value?.length}}
       <os-tags-field ngDefaultControl [tagsFormControl]="formGroup.controls.tags" />
       <mat-form-field floatLabel="always" class="w-full">
         <mat-label>网站链接</mat-label>

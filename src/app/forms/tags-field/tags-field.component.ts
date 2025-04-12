@@ -60,17 +60,17 @@ export class TagsFieldComponent {
     if (value && this.allTags.includes(value)) {
       this.tags.update(tags => {
         tags.add(value);
-        this.tagsFormControl.setValue([...tags])
         return tags;
       });
+      this.tagsFormControl.setValue([...this.tags()])
     } else if (value && !this.allTags.includes(value) && !this.tags().has(value)) {
       this.dialogService.confirm({message: `是否要创建Tag： ${value}`}).afterClosed().subscribe((ok) => {
         if (ok) {
           this.tags.update(tags => {
             tags.add(value);
-            this.tagsFormControl.setValue([...tags])
             return tags;
           });
+          this.tagsFormControl.setValue([...this.tags()])
         }
       })
     }
@@ -82,9 +82,9 @@ export class TagsFieldComponent {
   remove(tag: string): void {
     this.tags.update(tags => {
       tags.delete(tag);
-      this.tagsFormControl.setValue([...tags]);
       return tags;
     });
+    this.tagsFormControl.setValue([...this.tags()])
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
@@ -92,6 +92,7 @@ export class TagsFieldComponent {
       tags.add(event.option.viewValue);
       return tags;
     });
+    this.tagsFormControl.setValue([...this.tags()])
     this.currentTag.set('');
     event.option.deselect();
   }
