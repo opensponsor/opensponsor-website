@@ -7,9 +7,11 @@ import {MatButtonModule} from "@angular/material/button";
 import {TierCardComponent} from "@app/components/tier-card/tier-card.component";
 import {NgForOf} from "@angular/common";
 import {MatIcon} from "@angular/material/icon";
-import {MatChip, MatChipGrid} from "@angular/material/chips";
+import {MatChip, MatChipGrid, MatChipSet} from "@angular/material/chips";
 import Swiper from "swiper";
 import {Scrollbar, FreeMode, Mousewheel} from "swiper/modules";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatListModule} from "@angular/material/list";
 
 @Component({
   selector: 'os-info',
@@ -21,6 +23,9 @@ import {Scrollbar, FreeMode, Mousewheel} from "swiper/modules";
     MatIcon,
     MatChipGrid,
     MatChip,
+    MatChipSet,
+    MatTabsModule,
+    MatListModule
   ],
   styleUrl: './info.component.scss'
 })
