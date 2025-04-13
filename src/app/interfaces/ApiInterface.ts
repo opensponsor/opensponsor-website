@@ -653,11 +653,6 @@ export interface Organization {
   /** 开源协议 */
   licenses?: Licenses;
   /**
-   * 团队人数
-   * @format int32
-   */
-  amountOfMembers: number;
-  /**
    * 额外的协议信息
    * @maxLength 1000
    */
