@@ -582,7 +582,7 @@ export interface Member {
   /** organization */
   organization: Organization;
   /** member role */
-  roles: E_ORGANIZATION_ROLE;
+  role: E_ORGANIZATION_ROLE;
   /** when created */
   whenCreated: Instant;
   /** when modified */
