@@ -21,7 +21,6 @@ import {MatListModule} from "@angular/material/list";
     TierCardComponent,
     NgForOf,
     MatIcon,
-    MatChipGrid,
     MatChip,
     MatChipSet,
     MatTabsModule,
