@@ -12,6 +12,12 @@ import Swiper from "swiper";
 import {Scrollbar, FreeMode, Mousewheel} from "swiper/modules";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatListModule} from "@angular/material/list";
+import {BudgetComponent} from "../components/budget/budget.component";
+import {ContributorsComponent} from "../components/contributors/contributors.component";
+import {ContributorsListComponent} from "../components/contributors-list/contributors-list.component";
+import {NewsComponent} from "../components/news/news.component";
+import {TeamComponent} from "../components/team/team.component";
+import {HeroComponent} from "../components/hero/hero.component";
 
 @Component({
   selector: 'os-info',
@@ -24,12 +30,18 @@ import {MatListModule} from "@angular/material/list";
     MatChip,
     MatChipSet,
     MatTabsModule,
-    MatListModule
+    MatListModule,
+    BudgetComponent,
+    ContributorsComponent,
+    ContributorsListComponent,
+    NewsComponent,
+    TeamComponent,
+    HeroComponent,
   ],
   styleUrl: './info.component.scss'
 })
 export class InfoComponent {
-  public organization: Partial<Organization> = {};
+  public organization: Organization | undefined;
 
   constructor(
     private readonly router: Router,

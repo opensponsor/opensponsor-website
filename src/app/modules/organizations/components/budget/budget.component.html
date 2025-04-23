@@ -1,1 +1,22 @@
-<p>budget works!</p>
+<div class="relative isolate -z-10 mt-32 sm:mt-48">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <h2 class="text-lg font-semibold leading-8 text-gray-900">财务预算</h2>
+  </div>
+  <div class="mx-auto max-w-7xl px-6 lg:px-8 flex divide-x divide-gray-300">
+    <div class="grid grid-cols-2 w-3/4">
+      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" [animationDuration]="0">
+        <mat-tab label="First">全部交易</mat-tab>
+        <mat-tab label="Second">支出</mat-tab>
+        <mat-tab label="Third">收入</mat-tab>
+      </mat-tab-group>
+    </div>
+    <div class="w-1/4">
+      <mat-list>
+        <mat-list-item>余额</mat-list-item>
+        <mat-list-item>募集资金总额</mat-list-item>
+        <mat-list-item>支出总额</mat-list-item>
+        <mat-list-item>年度预算</mat-list-item>
+      </mat-list>
+    </div>
+  </div>
+</div>

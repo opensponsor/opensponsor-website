@@ -1,9 +1,16 @@
 import {Component, Input} from '@angular/core';
 import {Organization} from "@app/interfaces/ApiInterface";
+import {MatList, MatListItem} from "@angular/material/list";
+import {MatTab, MatTabGroup} from "@angular/material/tabs";
 
 @Component({
   selector: 'os-budget',
-  imports: [],
+  imports: [
+    MatList,
+    MatListItem,
+    MatTab,
+    MatTabGroup
+  ],
   templateUrl: './budget.component.html',
   styleUrl: './budget.component.scss'
 })

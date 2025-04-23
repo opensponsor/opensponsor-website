@@ -1,9 +1,12 @@
 import {Component, Input} from '@angular/core';
 import {Organization} from "@app/interfaces/ApiInterface";
+import {MatButton} from "@angular/material/button";
 
 @Component({
   selector: 'os-news',
-  imports: [],
+  imports: [
+    MatButton
+  ],
   templateUrl: './news.component.html',
   styleUrl: './news.component.scss'
 })
