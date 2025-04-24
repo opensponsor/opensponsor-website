@@ -6,7 +6,7 @@
     }
 
     <!-- Content section -->
-    @if(organization && organization.tiers.length > 0) {
+    @if(organization && organization.type !== E_ORGANIZATION_TYPE.USER && organization.tiers.length > 0) {
       <div class="flex flex-col gap-4">
         <div class="overflow-hidden rounded-lg bg-white shadow">
           <div class="px-4 py-5 sm:p-6 text-xl font-bold">捐赠</div>
@@ -28,14 +28,14 @@
     }
 
     <!-- Values section -->
-    <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
-      @if (organization) {
+    @if (organization && organization.type !== E_ORGANIZATION_TYPE.USER) {
+      <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
         <os-contributors-list [organization]="organization" />
         <os-contributors [organization]="organization" />
-      }
-    </div>
+      </div>
+    }
 
-    @if (organization) {
+    @if (organization && organization.type !== E_ORGANIZATION_TYPE.USER) {
       <os-budget [organization]="organization" />
     }
 
@@ -51,12 +51,12 @@
     }
 
     <!-- Team section -->
-    @if (organization) {
+    @if (organization && organization.type !== E_ORGANIZATION_TYPE.USER) {
       <os-team [organization]="organization" />
     }
 
     <!-- Blog section -->
-    @if (organization) {
+    @if (organization && organization.type !== E_ORGANIZATION_TYPE.USER) {
       <os-news [organization]="organization" />
     }
   </main>

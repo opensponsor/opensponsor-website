@@ -2,7 +2,7 @@ import {afterNextRender, Component} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {OrganizationsService} from "@services/organizations/organizations.service";
 import {Platform} from "@angular/cdk/platform";
-import {Organization} from "@app/interfaces/ApiInterface";
+import {E_ORGANIZATION_TYPE, Organization} from "@app/interfaces/ApiInterface";
 import {MatButtonModule} from "@angular/material/button";
 import {TierCardComponent} from "@app/components/tier-card/tier-card.component";
 import {NgForOf} from "@angular/common";
@@ -25,10 +25,6 @@ import {HeroComponent} from "../components/hero/hero.component";
   imports: [
     MatButtonModule,
     TierCardComponent,
-    NgForOf,
-    MatIcon,
-    MatChip,
-    MatChipSet,
     MatTabsModule,
     MatListModule,
     BudgetComponent,
@@ -87,4 +83,6 @@ export class InfoComponent {
       }
     })
   }
+
+  protected readonly E_ORGANIZATION_TYPE = E_ORGANIZATION_TYPE;
 }
