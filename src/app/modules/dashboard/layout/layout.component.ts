@@ -6,32 +6,31 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {MatIconModule} from "@angular/material/icon";
 import {MatListModule} from "@angular/material/list";
 import {NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
-import {E_ORGANIZATION_TYPE, Organization} from "@app/interfaces/ApiInterface";
+import {Organization} from "@app/interfaces/ApiInterface";
 import {AuthService} from "@services/auth/auth.service";
-
-type Menu = {
-  label: string;
-  link?: string;
-  active?: boolean;
-  icon: string;
-  roles: E_ORGANIZATION_TYPE[];
-  children?: (Pick<Menu, 'label' | 'link'> & Partial<Menu>)[]
-}
+import {MatFormField} from "@angular/material/form-field";
+import {MatSelectChange, MatSelectModule} from "@angular/material/select";
+import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {menus} from "@modules/dashboard/layout/menus";
 
 @Component({
   selector: 'os-layout',
   templateUrl: './layout.component.html',
-    imports: [
-        MatExpansionModule,
-        MatIconModule,
-        RouterLink,
-        MatListModule,
-        NgClass,
-        NgForOf,
-        NgIf,
-        RouterOutlet,
-        NgOptimizedImage
-    ],
+  imports: [
+    MatExpansionModule,
+    MatIconModule,
+    RouterLink,
+    MatListModule,
+    NgClass,
+    NgForOf,
+    NgIf,
+    RouterOutlet,
+    NgOptimizedImage,
+    MatFormField,
+    MatSelectModule,
+    ReactiveFormsModule,
+    FormsModule,
+  ],
   styleUrl: './layout.component.scss'
 })
 export class LayoutComponent {
@@ -39,136 +38,17 @@ export class LayoutComponent {
   public configPath = ':slug';
 
   public organization: Organization | undefined;
+  public myOrganizations: Organization[] = [];
+  public organizationSlugControl = new FormControl();
 
-  public menus: Menu[] = [
-    {
-      label: '概览',
-      link: '',
-      icon: 'dashboard',
-      roles: []
-    },
-    {
-      label: '支出',
-      link: '',
-      icon: 'paid',
-      roles: [
-        E_ORGANIZATION_TYPE.USER,
-        E_ORGANIZATION_TYPE.ORGANIZATION,
-        E_ORGANIZATION_TYPE.COMMUNITY
-      ],
-      children: [
-        {
-          label: '捐给谁',
-          link: '',
-        },
-      ],
-    },
-    {
-      label: '贡献者',
-      link: 'contributor',
-      icon: 'apps',
-      roles: [
-        E_ORGANIZATION_TYPE.ORGANIZATION,
-        E_ORGANIZATION_TYPE.COMMUNITY
-      ]
-    },
-    {
-      label: '捐款',
-      link: '',
-      icon: 'group',
-      roles: [
-        E_ORGANIZATION_TYPE.USER,
-        E_ORGANIZATION_TYPE.ORGANIZATION,
-        E_ORGANIZATION_TYPE.COMMUNITY
-      ],
-      children: [
-        {
-          label: '捐给谁',
-          link: '',
-        },
-      ]
-    },
-    {
-      label: 'Team',
-      link: 'team',
-      icon: 'group',
-      roles: [
-        E_ORGANIZATION_TYPE.ORGANIZATION,
-        E_ORGANIZATION_TYPE.COMMUNITY
-      ]
-    },
-    {
-      label: '贡献等级',
-      link: 'tiers',
-      icon: 'diamond',
-      roles: [
-        E_ORGANIZATION_TYPE.ORGANIZATION,
-        E_ORGANIZATION_TYPE.COMMUNITY
-      ]
-    },
-    {
-      label: '设置',
-      icon: 'settings',
-      roles: [],
-      children: [
-        {
-          label: '基本信息',
-          link: `profile`
-        },
-        {
-          label: '安全',
-          link: 'security'
-        },
-        {
-          label: '社交账户',
-          link: 'social'
-        },
-        {
-          label: '规则',
-          link: ''
-        },
-        {
-          label: '财务证明',
-          link: ''
-        },
-        {
-          label: '付款设置',
-          link: 'sending-money'
-        },
-        {
-          label: '收款设置',
-          link: 'receiving-money',
-          roles: [
-            E_ORGANIZATION_TYPE.ORGANIZATION,
-            E_ORGANIZATION_TYPE.COMMUNITY
-          ],
-        },
-        {
-          label: '开发',
-          link: 'development',
-          roles: [
-            E_ORGANIZATION_TYPE.ORGANIZATION,
-            E_ORGANIZATION_TYPE.COMMUNITY
-          ]
-        },
-        {
-          label: 'webhook',
-          link: 'webhook',
-          roles: [
-            E_ORGANIZATION_TYPE.ORGANIZATION,
-            E_ORGANIZATION_TYPE.COMMUNITY
-          ]
-        },
-      ]
-    }
-  ];
+  public menus = menus;
 
   public constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router,
     private readonly platform: Platform,
     private readonly organizationsService: OrganizationsService,
-    private readonly authService: AuthService,
+    public readonly authService: AuthService,
   ) {
 
     if (this.platform.isBrowser) {
@@ -181,6 +61,7 @@ export class LayoutComponent {
             if(res.status === 200 && res.body) {
               this.organizationsService.organization.set(res.body.data);
               this.organization = res.body.data;
+              this.organizationSlugControl.setValue(this.organization.slug);
             }
           });
           this.activeMenu();
@@ -191,7 +72,17 @@ export class LayoutComponent {
           this.activeMenu();
         }
       })
+
+      this.getMyOrganizations();
     }
+  }
+
+  private getMyOrganizations() {
+    this.organizationsService.list({userId: this.authService.authInfo()?.id}).subscribe(res => {
+      if(res.status === 200 && res.body) {
+        this.myOrganizations = res.body?.records;
+      }
+    })
   }
 
   public activeMenu() {
@@ -223,4 +114,7 @@ export class LayoutComponent {
     return commands.filter(r => r && r.trim())
   }
 
+  public changeOrganization(e: MatSelectChange<string>) {
+    console.log(e.value);
+  }
 }

@@ -7,6 +7,16 @@
       </a>
     </div>
     <nav class="flex flex-1 flex-col">
+      <div class="px-4">
+        <mat-form-field class="w-full">
+          <mat-select [formControl]="organizationSlugControl" (selectionChange)="changeOrganization($event)">
+            <mat-option [value]="authService.authInfo()?.slug">{{authService.authInfo()?.username}}</mat-option>
+            @for (mo of myOrganizations; track mo) {
+              <mat-option [value]="mo.slug">{{mo.name}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
       @if(organization) {
         <mat-accordion displayMode="flat" class="[&_.mat-expansion-panel]:bg-transparent [&_.mat-expansion-panel-header.mat-expanded]:h-[48px]">
           <ng-template *ngFor="let menu of menus" [ngIf]="true">
