@@ -50,20 +50,13 @@ export class LayoutComponent {
     private readonly organizationsService: OrganizationsService,
     public readonly authService: AuthService,
   ) {
-
     if (this.platform.isBrowser) {
       if(this.activatedRoute.firstChild) {
         const authUser = authService.authInfo()!;
         this.activatedRoute.firstChild?.params.subscribe(value => {
           const orgName = value['slug'] || authUser.slug;
           this.rootPath = ['/dashboard', orgName].join("/");
-          this.organizationsService.getOrganizationByName(orgName).subscribe(res => {
-            if(res.status === 200 && res.body) {
-              this.organizationsService.organization.set(res.body.data);
-              this.organization = res.body.data;
-              this.organizationSlugControl.setValue(this.organization.slug);
-            }
-          });
+          this.loadOrganizations(orgName);
           this.activeMenu();
         })
       }
@@ -75,6 +68,16 @@ export class LayoutComponent {
 
       this.getMyOrganizations();
     }
+  }
+
+  private loadOrganizations(orgName: string) {
+    this.organizationsService.getOrganizationByName(orgName).subscribe(res => {
+      if(res.status === 200 && res.body) {
+        this.organizationsService.organization.set(res.body.data);
+        this.organization = res.body.data;
+        this.organizationSlugControl.setValue(this.organization.slug);
+      }
+    });
   }
 
   private getMyOrganizations() {
@@ -115,6 +118,9 @@ export class LayoutComponent {
   }
 
   public changeOrganization(e: MatSelectChange<string>) {
-    console.log(e.value);
+    this.router.navigate(['/dashboard', e.value]).then(() => {
+      this.rootPath = ['/dashboard', e.value].join("/");
+      this.loadOrganizations(e.value);
+    });
   }
 }
