@@ -16,7 +16,7 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TiersComponent} from './tiers/tiers.component';
-import {MatRippleModule} from "@angular/material/core";
+import {MatRippleModule, provideNativeDateAdapter} from "@angular/material/core";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatSelectModule} from "@angular/material/select";
@@ -73,7 +73,8 @@ const routes: Routes = [
     TranslatePipe,
     EnumeratedPipe,
     OrganizationFormComponent,
-  ]
+  ],
+  providers: [provideNativeDateAdapter()],
 })
 export class DashboardModule {
 }
