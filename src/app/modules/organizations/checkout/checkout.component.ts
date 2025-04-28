@@ -45,9 +45,7 @@ export class CheckoutComponent {
           this.organization = this.organizationsService.organization();
         }
       })
-      this.organizationsService.organization$.subscribe(() => {
-        this.organization = this.organizationsService.organization();
-      })
+      this.organizationsService.organization$.subscribe((org) => this.organization = org)
     }
   }
 

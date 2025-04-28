@@ -22,11 +22,7 @@ export class ProfileComponent {
   constructor(
     protected readonly organizationsService: OrganizationsService,
   ) {
-    this.organization = this.organizationsService.organization();
-
-    this.organizationsService.organization$.subscribe(() => {
-      this.organization = this.organizationsService.organization();
-    })
+    this.organizationsService.organization$.subscribe((org) => this.organization = org)
   }
 
   protected readonly E_ORGANIZATION_TYPE = E_ORGANIZATION_TYPE;
