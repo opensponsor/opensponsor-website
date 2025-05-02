@@ -10,97 +10,48 @@
  * ---------------------------------------------------------------
  */
 
-export interface CountryCode {
-  id: UUID;
-  /**
-   * country calling code
-   * @minLength 2
-   * @maxLength 16
-   */
-  dial: string;
-  /**
-   * ISO3166-1-Alpha-2
-   * @minLength 2
-   * @maxLength 16
-   */
-  countryCode: string;
-  /**
-   * official name en
-   * @minLength 1
-   * @maxLength 64
-   */
-  officialNameEn: string;
-  /**
-   * official name cn
-   * @minLength 1
-   * @maxLength 64
-   */
-  officialNameCn: string;
-  /**
-   * cldr display name
-   * @minLength 1
-   * @maxLength 32
-   */
-  cldrDisplayName: string;
-  /**
-   * languages
-   * @minLength 1
-   * @maxLength 16
-   */
-  languages: string;
-  /**
-   * currency alphabetic code
-   * @minLength 1
-   * @maxLength 16
-   */
-  currencyAlphabeticCode: string;
-  /** when created */
-  whenCreated: Instant;
-  /** when modified */
-  whenModified: Instant;
-  whenDeleted?: Instant;
+export enum Type {
+  CLASS = "CLASS",
+  PROPERTY = "PROPERTY",
+  PARAMETER = "PARAMETER",
+  RETURN_VALUE = "RETURN_VALUE",
 }
 
-export interface DebitCard {
-  id: UUID;
-  /**
-   * Debit Card No
-   * @minLength 16
-   * @maxLength 22
-   */
-  cardNo?: string;
-  /**
-   * legal name
-   * @minLength 2
-   * @maxLength 16
-   */
-  legalName?: string;
-  /** User country code */
-  countryCode?: CountryCode;
-  /**
-   * @minLength 4
-   * @maxLength 11
-   */
-  phoneNumber?: string;
-  /**
-   * bank name
-   * @minLength 2
-   * @maxLength 64
-   */
-  bankName?: string;
-  /** create for organization */
-  organization?: Organization;
-  /** create by user */
-  user?: User;
-  /** when created */
-  whenCreated: Instant;
-  /** when modified */
-  whenModified: Instant;
-  whenDeleted?: Instant;
+export enum E_TIER_TYPE {
+  GENERIC = "GENERIC",
+  MEMBERSHIP = "MEMBERSHIP",
+  DONATION = "DONATION",
+  PRODUCT = "PRODUCT",
+  SERVICE = "SERVICE",
 }
 
-export enum E_AMOUNT_TYPE {
-  FIXED = "FIXED",
+export enum E_SEX {
+  WOMAN = "WOMAN",
+  MAN = "MAN",
+}
+
+export enum E_ORGANIZATION_TYPE {
+  FISCAL_HOST = "FISCAL_HOST",
+  COMMUNITY = "COMMUNITY",
+  EVENT = "EVENT",
+  ORGANIZATION = "ORGANIZATION",
+  BOT = "BOT",
+  PROJECT = "PROJECT",
+  FUND = "FUND",
+  VENDOR = "VENDOR",
+  USER = "USER",
+}
+
+export enum E_ORGANIZATION_ROLE {
+  ADMIN = "ADMIN",
+  MEMBER = "MEMBER",
+  ACCOUNTANT = "ACCOUNTANT",
+}
+
+export enum E_INTERVAL {
+  ONETIME = "ONETIME",
+  MONTH = "MONTH",
+  YEAR = "YEAR",
   FLEXIBLE = "FLEXIBLE",
 }
 
@@ -275,42 +226,98 @@ export enum E_IBAN_CURRENCIES {
   ZWL = "ZWL",
 }
 
-export enum E_INTERVAL {
-  ONETIME = "ONETIME",
-  MONTH = "MONTH",
-  YEAR = "YEAR",
+export enum E_AMOUNT_TYPE {
+  FIXED = "FIXED",
   FLEXIBLE = "FLEXIBLE",
 }
 
-export enum E_ORGANIZATION_ROLE {
-  ADMIN = "ADMIN",
-  MEMBER = "MEMBER",
-  ACCOUNTANT = "ACCOUNTANT",
+export interface CountryCode {
+  id: UUID;
+  /**
+   * country calling code
+   * @minLength 2
+   * @maxLength 16
+   */
+  dial: string;
+  /**
+   * ISO3166-1-Alpha-2
+   * @minLength 2
+   * @maxLength 16
+   */
+  countryCode: string;
+  /**
+   * official name en
+   * @minLength 1
+   * @maxLength 64
+   */
+  officialNameEn: string;
+  /**
+   * official name cn
+   * @minLength 1
+   * @maxLength 64
+   */
+  officialNameCn: string;
+  /**
+   * cldr display name
+   * @minLength 1
+   * @maxLength 32
+   */
+  cldrDisplayName: string;
+  /**
+   * languages
+   * @minLength 1
+   * @maxLength 16
+   */
+  languages: string;
+  /**
+   * currency alphabetic code
+   * @minLength 1
+   * @maxLength 16
+   */
+  currencyAlphabeticCode: string;
+  /** when created */
+  whenCreated: Instant;
+  /** when modified */
+  whenModified: Instant;
+  whenDeleted?: Instant;
 }
 
-export enum E_ORGANIZATION_TYPE {
-  FISCAL_HOST = "FISCAL_HOST",
-  COMMUNITY = "COMMUNITY",
-  EVENT = "EVENT",
-  ORGANIZATION = "ORGANIZATION",
-  BOT = "BOT",
-  PROJECT = "PROJECT",
-  FUND = "FUND",
-  VENDOR = "VENDOR",
-  USER = "USER",
-}
-
-export enum E_SEX {
-  WOMAN = "WOMAN",
-  MAN = "MAN",
-}
-
-export enum E_TIER_TYPE {
-  GENERIC = "GENERIC",
-  MEMBERSHIP = "MEMBERSHIP",
-  DONATION = "DONATION",
-  PRODUCT = "PRODUCT",
-  SERVICE = "SERVICE",
+export interface DebitCard {
+  id: UUID;
+  /**
+   * Debit Card No
+   * @minLength 16
+   * @maxLength 22
+   */
+  cardNo?: string;
+  /**
+   * legal name
+   * @minLength 2
+   * @maxLength 16
+   */
+  legalName?: string;
+  /** User country code */
+  countryCode?: CountryCode;
+  /**
+   * @minLength 4
+   * @maxLength 11
+   */
+  phoneNumber?: string;
+  /**
+   * bank name
+   * @minLength 2
+   * @maxLength 64
+   */
+  bankName?: string;
+  /** create for organization */
+  organization?: Organization;
+  /** create by user */
+  user?: User;
+  /** when created */
+  whenCreated: Instant;
+  /** when modified */
+  whenModified: Instant;
+  whenDeleted?: Instant;
 }
 
 export interface GithubAccessToken {
@@ -785,7 +792,7 @@ export interface Tier {
    */
   description: string;
   /**
-   * 捐助等级类型
+   * 完整的描述
    * @maxLength 1000
    */
   longDescription?: string;
@@ -834,13 +841,6 @@ export interface Tier {
   /** when modified */
   whenModified: Instant;
   whenDeleted?: Instant;
-}
-
-export enum Type {
-  CLASS = "CLASS",
-  PROPERTY = "PROPERTY",
-  PARAMETER = "PARAMETER",
-  RETURN_VALUE = "RETURN_VALUE",
 }
 
 /**
