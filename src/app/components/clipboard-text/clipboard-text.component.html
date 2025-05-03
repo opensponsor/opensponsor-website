@@ -1,0 +1,8 @@
+<button [class]="class" type="button" [disabled]="copied" class="whitespace-nowrap" mat-stroked-button (cdkCopyToClipboardCopied)="onCopied()" [cdkCopyToClipboard]="content">
+  @if (copied) {
+    <mat-icon>checked</mat-icon>
+  } @else {
+    <mat-icon>content_copy</mat-icon>
+  }
+  {{text || "拷贝到剪切板"}}
+</button>
