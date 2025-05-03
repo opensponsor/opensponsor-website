@@ -2,19 +2,10 @@
   <div class="rounded-lg bg-white shadow">
     <div class="flex flex-col gap-4 px-4 py-5 sm:p-6">
       <div class="relative">
-        <div class="absolute inset-0 flex items-center" aria-hidden="true">
-          <div class="w-full border-t border-gray-300"></div>
-        </div>
         <div class="relative flex items-center justify-between">
-          <span class="bg-white pr-3 text-base font-semibold leading-6 text-gray-900">你的信息</span>
-          <button type="button"
-                  class="inline-flex items-center gap-x-1.5 rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-            <svg class="-ml-1 -mr-0.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path
-                d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"/>
-            </svg>
-            <span>分享链接</span>
-          </button>
+          <div class="text-base font-semibold whitespace-nowrap leading-6 text-gray-900">你的信息</div>
+          <div class="w-full mx-3 border-t border-gray-300"></div>
+          <os-clipboard-text [content]="location.href" text="分享链接"></os-clipboard-text>
         </div>
       </div>
       <div class="relative">
@@ -61,7 +52,7 @@
               @for (item of organizationOptions; track item) {
                 <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50"
                      [ngClass]="{'bg-gray-50': selected?.id === item.id}"
-                     (click)="selected = item; profileSelectOpen = false">
+                     (click)="selectProfile(item)">
                   <div
                     class="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                     <svg class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24"
@@ -93,7 +84,7 @@
           <mat-form-field class="w-full">
             <mat-label>法定姓名</mat-label>
             <input matInput formControlName="legalName" [formControl]="this.formGroup.controls.legalName"/>
-            <mat-hint>身份证显示名称(不公开显示)</mat-hint>
+            <mat-hint>身份证/执照显示名称(不公开显示)</mat-hint>
           </mat-form-field>
         </form>
       </div>

@@ -72,7 +72,7 @@ export class InfoComponent {
 
   private getOrg() {
     const slug = this.activatedRoute.snapshot.paramMap.get("slug") as string;
-    this.organizationsService.getOrganizationByName(slug).subscribe({
+    this.organizationsService.getOrganizationBySlug(slug).subscribe({
       next: (res) => {
         if (res.body) {
           this.organization = res.body.data;

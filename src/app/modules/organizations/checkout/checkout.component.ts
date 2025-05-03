@@ -6,6 +6,7 @@ import {Organization} from "@app/interfaces/ApiInterface";
 import {Platform} from "@angular/cdk/platform";
 import {NgClass} from "@angular/common";
 import {MatAnchor} from "@angular/material/button";
+import {AuthService} from "@services/auth/auth.service";
 
 @Component({
   selector: 'os-checkout',
@@ -30,23 +31,44 @@ export class CheckoutComponent {
 
   constructor(
     private readonly router: Router,
-    private readonly platform: Platform,
     private readonly activatedRoute: ActivatedRoute,
     private readonly checkoutService: CheckoutService,
+    private readonly authService: AuthService,
     private readonly organizationsService: OrganizationsService,
   ) {
-    if (platform.isBrowser) {
-      this.checkoutService.stepDesc$.subscribe(() => {
-        this.setSteps();
-      })
-      this.router.events.subscribe((e) => {
-        if (e instanceof NavigationEnd) {
-          this.setSteps()
-          this.organization = this.organizationsService.organization();
+    afterNextRender(() => {
+      this.initialize();
+      this.authService.authInfo$.subscribe(user => {
+        if(user) {
+          this.authService.authInfo.set(user)
+        } else {
+          /*TODO goto login, or open login dialog*/
         }
-      })
-      this.organizationsService.organization$.subscribe((org) => this.organization = org)
-    }
+      });
+    })
+  }
+
+  private initialize(): void {
+    this.checkoutService.stepDesc$.subscribe(() => {
+      this.setSteps();
+    })
+    this.activatedRoute.paramMap.subscribe(paramMap => {
+      const slug = paramMap.get('slug');
+      if(slug) {
+        this.organizationsService.getOrganizationBySlug(slug).subscribe(res => {
+          if(res.body?.data) {
+            this.organizationsService.organization.set(res.body?.data);
+          }
+        });
+      }
+    })
+    this.router.events.subscribe((e) => {
+      if (e instanceof NavigationEnd) {
+        this.setSteps()
+        this.organization = this.organizationsService.organization();
+      }
+    })
+    this.organizationsService.organization$.subscribe((org) => this.organization = org)
   }
 
 

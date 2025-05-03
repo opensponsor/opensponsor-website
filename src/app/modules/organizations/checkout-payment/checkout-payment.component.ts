@@ -1,10 +1,11 @@
-import {Component} from '@angular/core';
+import {afterNextRender, Component} from '@angular/core';
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {Tier} from "@app/interfaces/ApiInterface";
 import {TierService} from "@services/tier/tier.service";
 import {MatExpansionModule, MatExpansionPanel} from "@angular/material/expansion";
 import {MatAnchor} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import {CheckoutService} from "@services/checkout/checkout.service";
 
 @Component({
   selector: 'os-checkout-payment',
@@ -22,15 +23,20 @@ export class CheckoutPaymentComponent {
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly tierService: TierService,
+    public readonly checkoutService: CheckoutService,
   ) {
-    if (this.tierService.tier()) {
-      this.tier = this.tierService.tier();
-    } else {
-      // redirect start
-      if (this.activatedRoute.parent?.snapshot?.paramMap) {
-        this.tierService.redirectStep(this.activatedRoute.parent?.snapshot.paramMap as ParamMap, 'start').then()
+    afterNextRender(() => {
+      if (this.tierService.tier()) {
+        console.dir(this.checkoutService.tierCache().tier)
+        console.dir(this.checkoutService.tierCache().profile)
+        this.tier = this.tierService.tier();
+      } else {
+        // redirect start
+        if (this.activatedRoute.parent?.snapshot?.paramMap) {
+          this.tierService.redirectStep(this.activatedRoute.parent?.snapshot.paramMap as ParamMap, 'start').then()
+        }
       }
-    }
+    })
   }
 
   public expandPanel(e: 'unionPay' | 'aliPay' | 'weChatPay') {
@@ -40,4 +46,5 @@ export class CheckoutPaymentComponent {
   public toLink(to: 'summary') {
     this.tierService.redirectStep(this.activatedRoute.parent?.snapshot.paramMap as ParamMap, to).then();
   }
+
 }

@@ -7,13 +7,16 @@ import {Platform} from "@angular/cdk/platform";
 import {CheckoutService} from "@services/checkout/checkout.service";
 import {MatAnchor} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import {ClipboardTextComponent} from "@app/components/clipboard-text/clipboard-text.component";
+import {enumTranslate} from "@app/languages/zh_cn/enumTranslate";
 
 @Component({
   selector: 'os-checkout-start',
   templateUrl: './checkout-start.component.html',
   imports: [
     MatAnchor,
-    MatIconModule
+    MatIconModule,
+    ClipboardTextComponent
   ],
   styleUrl: './checkout-start.component.scss'
 })
@@ -31,24 +34,23 @@ export class CheckoutStartComponent {
     if (this.platform.isBrowser) {
       this.activatedRoute.paramMap.subscribe(paramMap => {
         const tier = paramMap.get('tier');
-        const organization = paramMap.get('name');
-        if (organization) {
-          this.organizationsService.getOrganizationByName(organization).subscribe(res => {
-            if (res.status === 200 && res.body) {
-              this.organization = res.body.data;
-              if (tier) {
-                this.tierService.get(res.body.data?.id, tier).subscribe(res2 => {
-                  if (res2.status === 200) {
-                    const tier = this.tier = res2.body?.data;
-                    this.checkoutService.stepDesc.set({'checkoutStart': `${tier?.amount}${tier?.currency}/${tier?.interval}`});
-                  }
-                });
-              } else {
-                // redirect to 404
+        this.organizationsService.organization$.subscribe((org) => {
+          this.organization = org;
+          if (tier && this.organization) {
+            this.tierService.get(this.organization.id, tier).subscribe(res => {
+              if (res.status === 200) {
+                const tier = this.tier = res.body?.data;
+                if(tier) {
+                  this.checkoutService.tierCache.set({...this.checkoutService.tierCache(), tier: tier});
+                  this.tierService.tier.set(tier);
+                  this.checkoutService.stepDesc.set({'checkoutStart': `${tier?.amount}${enumTranslate[tier.currency]}/${enumTranslate[tier.interval]}`});
+                }
               }
-            }
-          });
-        }
+            });
+          } else {
+            // redirect to 404
+          }
+        })
       })
     }
   }
@@ -56,4 +58,7 @@ export class CheckoutStartComponent {
   public toLink(to: 'profile') {
     this.tierService.redirectStep(this.activatedRoute.snapshot.paramMap as ParamMap, to).then();
   }
+
+  protected readonly location = location;
+  protected readonly enumTranslate = enumTranslate;
 }

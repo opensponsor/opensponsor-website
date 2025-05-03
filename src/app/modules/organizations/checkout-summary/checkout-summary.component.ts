@@ -5,13 +5,15 @@ import {TierService} from "@services/tier/tier.service";
 import {OrganizationsService} from "@services/organizations/organizations.service";
 import {MatAnchor} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import {ClipboardTextComponent} from "@app/components/clipboard-text/clipboard-text.component";
 
 @Component({
   selector: 'os-checkout-summary',
   templateUrl: './checkout-summary.component.html',
   imports: [
     MatAnchor,
-    MatIconModule
+    MatIconModule,
+    ClipboardTextComponent
   ],
   styleUrl: './checkout-summary.component.scss'
 })
@@ -38,4 +40,6 @@ export class CheckoutSummaryComponent {
   public toLink(to: 'profile' | 'payment') {
     this.tierService.redirectStep(this.activatedRoute.parent?.snapshot.paramMap as ParamMap, to).then();
   }
+
+  protected readonly location = location;
 }

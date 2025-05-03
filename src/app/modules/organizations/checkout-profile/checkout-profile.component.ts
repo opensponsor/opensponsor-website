@@ -1,17 +1,19 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {TierService} from "@services/tier/tier.service";
-import {Tier} from "@app/interfaces/ApiInterface";
+import {Organization, Tier, User} from "@app/interfaces/ApiInterface";
 import {Platform} from "@angular/cdk/platform";
 import {OrganizationsService} from "@services/organizations/organizations.service";
 import {AuthService} from "@services/auth/auth.service";
-import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
 import {NgClass} from "@angular/common";
-import {MatAnchor} from "@angular/material/button";
+import {MatAnchor, MatButton} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
+import {ClipboardTextComponent} from "@app/components/clipboard-text/clipboard-text.component";
+import {CheckoutService} from "@services/checkout/checkout.service";
 
-type OptionType = { type: 'user' | 'organization'; id: string; name: string; desc: string };
+type OptionType = { type: 'user' | 'organization'; id: string; name: string; desc: string, entity: User | Organization };
 
 @Component({
   selector: 'os-checkout-profile',
@@ -22,6 +24,8 @@ type OptionType = { type: 'user' | 'organization'; id: string; name: string; des
     NgClass,
     MatInputModule,
     ReactiveFormsModule,
+    MatButton,
+    ClipboardTextComponent,
   ],
   styleUrl: './checkout-profile.component.scss'
 })
@@ -35,8 +39,12 @@ export class CheckoutProfileComponent {
   public organizationOptions: OptionType[] = [];
 
   public formGroup = new FormGroup({
-    name: new FormControl(),
-    legalName: new FormControl(),
+    name: new FormControl("", [
+      Validators.required
+    ]),
+    legalName: new FormControl("", [
+      Validators.required
+    ]),
   })
 
   constructor(
@@ -45,6 +53,7 @@ export class CheckoutProfileComponent {
     private readonly platform: Platform,
     private readonly authService: AuthService,
     private readonly organizationsService: OrganizationsService,
+    private readonly checkoutService: CheckoutService,
   ) {
     if (this.platform.isBrowser) {
       if (this.tierService.tier()) {
@@ -68,6 +77,7 @@ export class CheckoutProfileComponent {
         id: info.id,
         name: info.username,
         desc: `@${info.username}`,
+        entity: info
       })
       this.selected = this.profileOptions[0];
       this.formGroup.controls.name.setValue(this.selected.name);
@@ -83,6 +93,7 @@ export class CheckoutProfileComponent {
             id: it.id,
             name: it.name,
             desc: `@${it.name}`,
+            entity: it
           })
         })
       }
@@ -96,6 +107,21 @@ export class CheckoutProfileComponent {
   }
 
   public toLink(to: 'start' | 'summary') {
-    this.tierService.redirectStep(this.activatedRoute.parent?.snapshot.paramMap as ParamMap, to).then();
+    if(this.selected && this.formGroup.valid) {
+      this.checkoutService.tierCache.set({
+        ...this.checkoutService.tierCache(),
+        profile: {
+          type: this.selected.type,
+          profile: this.selected.entity,
+          name: this.formGroup.controls.name.value as string,
+          legalName: this.formGroup.controls.legalName.value as string
+        },
+      });
+      this.tierService.redirectStep(this.activatedRoute.parent?.snapshot.paramMap as ParamMap, to).then();
+    } else {
+      this.formGroup.markAllAsTouched();
+    }
   }
+
+  protected readonly location = location;
 }

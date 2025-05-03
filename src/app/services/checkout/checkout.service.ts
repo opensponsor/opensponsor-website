@@ -15,9 +15,8 @@ export class CheckoutService {
   public stepDesc$ = toObservable(this.stepDesc);
 
   public tierCache = signal<{
-    start?: Tier,
-    profile?: { type: 'user' | 'org'; profile: User | Organization },
-    payment?: string,
+    tier?: Tier,
+    profile?: { type: 'user' | 'organization'; profile: User | Organization; name: string; legalName: string },
   }>({});
 
   constructor() {

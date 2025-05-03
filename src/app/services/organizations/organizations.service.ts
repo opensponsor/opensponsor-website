@@ -35,13 +35,13 @@ export class OrganizationsService {
   // refresh organization data
   public refresh() {
     const org = this.organization();
-    if (org?.name) {
-      this.getOrganizationByName(org.name);
+    if (org?.slug) {
+      this.getOrganizationBySlug(org.slug);
     }
   }
 
-  public getOrganizationByName(name: string) {
-    return this.httpService.get<Organization>(`${this.Urls.get}/${name}`);
+  public getOrganizationBySlug(slug: string) {
+    return this.httpService.get<Organization>(`${this.Urls.get}/${slug}`);
   }
 
 }
