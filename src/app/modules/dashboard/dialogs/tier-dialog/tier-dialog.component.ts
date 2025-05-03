@@ -4,7 +4,8 @@ import {
   E_AMOUNT_TYPE,
   E_IBAN_CURRENCIES,
   E_INTERVAL,
-  E_TIER_TYPE, Organization,
+  E_TIER_TYPE,
+  Organization,
   Tier,
 } from "@app/interfaces/ApiInterface";
 import transformType from "@app/utils/transform-type";
@@ -18,6 +19,8 @@ import {TranslatePipe} from "@app/pipes/translate/translate.pipe";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {TierCardComponent} from "@app/components/tier-card/tier-card.component";
 import {MatButtonModule} from "@angular/material/button";
+import slugify from "limax";
+import {RequiredHintComponent} from "@app/components/required-hint/required-hint.component";
 
 @Component({
   selector: 'os-tier-dialog',
@@ -33,7 +36,8 @@ import {MatButtonModule} from "@angular/material/button";
     TranslatePipe,
     MatSlideToggleModule,
     MatDialogModule,
-    TierCardComponent
+    TierCardComponent,
+    RequiredHintComponent
   ],
   styleUrl: './tier-dialog.component.scss',
 })
@@ -44,14 +48,31 @@ export class TierDialogComponent {
     type: new FormControl<E_TIER_TYPE>(E_TIER_TYPE.DONATION, [
       Validators.required
     ]),
-    name: new FormControl("", [
-      Validators.required,
-      Validators.minLength(1),
-      Validators.maxLength(64),
-    ]),
+    name: new FormControl("", {
+      validators: [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(64),
+      ],
+      asyncValidators: [
+        () => {
+          return new Promise((resolve) => {
+            const n = this.formGroup.controls.name?.getRawValue();
+            if(n) {
+              this.formGroup.controls.slug?.setValue(slugify(n))
+            }
+            resolve({});
+          })
+        }
+      ]
+    }),
     description: new FormControl<string>('', [
       Validators.maxLength(500),
     ]),
+    longDescription: new FormControl<string>('', [
+      Validators.maxLength(1000),
+    ]),
+    videoUrl: new FormControl<string>("", []),
     useStandalonePage: new FormControl<boolean>(false, [
       Validators.required,
     ]),
@@ -74,7 +95,7 @@ export class TierDialogComponent {
     button: new FormControl<string>("贡献", []),
   });
 
-  private presetsFormArray() {
+  private presetsFormArray(): FormControl[] {
     if (this.data.tier?.presets && this.data.tier.presets.length > 0) {
       return this.data.tier.presets.map((p: number) => {
         return new FormControl<number | null>(p, [

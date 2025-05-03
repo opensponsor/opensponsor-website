@@ -71,7 +71,7 @@ export class LayoutComponent {
   }
 
   private loadOrganizations(orgName: string) {
-    this.organizationsService.getOrganizationByName(orgName).subscribe(res => {
+    this.organizationsService.getOrganizationBySlug(orgName).subscribe(res => {
       if(res.status === 200 && res.body) {
         this.organizationsService.organization.set(res.body.data);
         this.organization = res.body.data;

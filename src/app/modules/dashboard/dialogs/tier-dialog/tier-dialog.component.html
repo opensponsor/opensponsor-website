@@ -1,5 +1,8 @@
 <h2 mat-dialog-title>捐赠等级</h2>
 <mat-dialog-content class="mat-typography">
+  <div class="my-2">
+    <os-required-hint />
+  </div>
   <div class="flex flex-row gap-4 flex-nowrap">
     <div class="w-8/12 my-1">
       <form #form class="grid grid-flow-row-dense grid-cols-1 gap-1 w-full" (ngSubmit)="formGroup.valid && save()"
@@ -13,11 +16,11 @@
           </mat-select>
         </mat-form-field>
         <mat-form-field class="w-full">
-          <mat-label>标题</mat-label>
+          <mat-label>名称</mat-label>
           <input matInput formControlName="name" [formControl]="formGroup.controls.name" required/>
         </mat-form-field>
         <mat-form-field class="w-full">
-          <mat-label>描述</mat-label>
+          <mat-label>描述（最长500字）</mat-label>
           <textarea matInput formControlName="description" [formControl]="formGroup.controls.description"></textarea>
         </mat-form-field>
         <mat-form-field class="w-full">
@@ -88,18 +91,31 @@
           <mat-label>筹款目标</mat-label>
           <input matInput formControlName="goal" type="number" [formControl]="formGroup.controls.goal"/>
         </mat-form-field>
-        <div class="w-full py-4">
-          <mat-slide-toggle>使用独立页面</mat-slide-toggle>
-        </div>
         <mat-form-field class="w-full">
           <mat-label>按钮文字</mat-label>
           <input matInput formControlName="button" [formControl]="formGroup.controls.button" required/>
         </mat-form-field>
+        @if(formGroup.controls.useStandalonePage.value) {
+          <mat-form-field class="w-full">
+            <mat-label>视频介绍链接</mat-label>
+            <input matInput formControlName="videoUrl" [formControl]="formGroup.controls.videoUrl" />
+          </mat-form-field>
+          <mat-form-field class="w-full">
+            <mat-label>长文字介绍（最长1000字）</mat-label>
+            <textarea matInput rows="5" formControlName="longDescription" [formControl]="formGroup.controls.longDescription"></textarea>
+          </mat-form-field>
+        }
+        <div class="w-full py-4">
+          <mat-slide-toggle [formControl]="formGroup.controls.useStandalonePage">使用独立页面</mat-slide-toggle>
+          <div class="text-pretty text-sm text-gray-600 py-2">
+            <mat-hint>独立页面是一个小型的捐款页面，你可以额外设置一个视频地址，和更完善的介绍，并且可以分享这个独立页面。</mat-hint>
+          </div>
+        </div>
       </form>
     </div>
     <div class="w-4/12">
       <div class="sticky top-0 h-full max-h-[65vh] py-1">
-        <os-tier-card class="h-full" [tier]="transformType(this.formGroup.value)"></os-tier-card>
+        <os-tier-card [readonly]="true" class="h-full" [tier]="transformType(this.formGroup.value)"></os-tier-card>
       </div>
     </div>
   </div>
