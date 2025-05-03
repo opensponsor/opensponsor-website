@@ -783,9 +783,9 @@ export interface Tier {
    * @minLength 2
    * @maxLength 32
    */
-  slug?: string;
+  slug: string;
   /** 捐助等级类型 */
-  type?: E_TIER_TYPE;
+  type: E_TIER_TYPE;
   /**
    * 描述
    * @maxLength 500
@@ -804,17 +804,17 @@ export interface Tier {
    * 按钮文字
    * @maxLength 16
    */
-  button?: string;
+  button: string;
   /**
    * 捐助金额
    * @min 1
    * @max 100000
    */
-  amount?: number;
+  amount: number;
   /** 捐助金额范围 */
-  presets?: number[];
+  presets: number[];
   /** 捐助金额类型 */
-  amountType?: E_AMOUNT_TYPE;
+  amountType: E_AMOUNT_TYPE;
   /**
    * 最小金额
    * @min 1
@@ -822,9 +822,9 @@ export interface Tier {
    */
   minimumAmount?: number;
   /** 货币 */
-  currency?: E_IBAN_CURRENCIES;
+  currency: E_IBAN_CURRENCIES;
   /** 捐助方式 */
-  interval?: E_INTERVAL;
+  interval: E_INTERVAL;
   /**
    * 库存
    * @min 1
