@@ -1,4 +1,4 @@
-<div class="rounded-3xl ring-1 ring-gray-200 h-full flex flex-col justify-between overflow-clip">
+<div class="rounded-3xl ring-1 ring-gray-200 h-full flex flex-col justify-between overflow-clip relative">
   <div>
     <div class="p-4 bg-amber-400">
       <h5 class="text-xs font-semibold leading-8 text-gray-900">{{ tier.amountType | translate }}</h5>
@@ -34,4 +34,8 @@
       {{ tier.button || '贡献' }}
     </a>
   </div>
+
+  @if(readonly) {
+    <div class="absolute inset-0 z-10 bg-transparent"></div>
+  }
 </div>

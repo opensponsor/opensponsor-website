@@ -26,10 +26,7 @@ export class TierService {
   }
 
   public get(organizationId: string, slug: string) {
-    return this.httpService.get<Tier>(`${this.Urls.create}/${organizationId}/${slug}`).pipe(res => {
-      // res.subscribe(data => {
-      //   this.tier.set(data.body?.data as Tier);
-      // })
+    return this.httpService.get<Tier>(`${this.Urls.get}/${organizationId}/${slug}`).pipe(res => {
       return res;
     });
   }
@@ -50,7 +47,7 @@ export class TierService {
 
   public redirectStep(paramMap: ParamMap, step: 'start' | 'profile' | 'summary' | 'payment') {
     const tier = paramMap.get('tier');
-    const organization = paramMap.get('name');
+    const organization = paramMap.get('slug');
     const st = step === 'start' ? '' : step;
     return this.router.navigate(['/', organization, 'contribute', tier, 'checkout', st].filter(i => i))
   }

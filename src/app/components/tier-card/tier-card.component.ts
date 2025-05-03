@@ -1,8 +1,8 @@
 import {Component, Input} from '@angular/core';
-import {JsonPipe, NgForOf, NgIf} from "@angular/common";
-import {E_AMOUNT_TYPE, E_INTERVAL, Tier} from "@app/interfaces/ApiInterface";
+import {NgIf} from "@angular/common";
+import {Tier} from "@app/interfaces/ApiInterface";
 import {TranslatePipe} from "@app/pipes/translate/translate.pipe";
-import {MatAnchor, MatButton} from "@angular/material/button";
+import {MatAnchor} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
 
 @Component({
@@ -22,6 +22,8 @@ export class TierCardComponent {
   })
   public tier: Partial<Tier> = {};
 
-  protected readonly E_AMOUNT_TYPE = E_AMOUNT_TYPE;
-  protected readonly E_INTERVAL = E_INTERVAL;
+  @Input({
+    required: false
+  })
+  public readonly: boolean = false;
 }
