@@ -1,8 +1,7 @@
-import {Component} from '@angular/core';
+import {afterNextRender, Component} from '@angular/core';
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {TierService} from "@services/tier/tier.service";
 import {Organization, Tier, User} from "@app/interfaces/ApiInterface";
-import {Platform} from "@angular/cdk/platform";
 import {OrganizationsService} from "@services/organizations/organizations.service";
 import {AuthService} from "@services/auth/auth.service";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
@@ -50,23 +49,15 @@ export class CheckoutProfileComponent {
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly tierService: TierService,
-    private readonly platform: Platform,
     private readonly authService: AuthService,
     private readonly organizationsService: OrganizationsService,
     private readonly checkoutService: CheckoutService,
   ) {
-    if (this.platform.isBrowser) {
-      if (this.tierService.tier()) {
-        this.tier = this.tierService.tier();
-      } else {
-        // redirect start
-        if (this.activatedRoute.parent?.snapshot?.paramMap) {
-          this.tierService.redirectStep(this.activatedRoute.parent?.snapshot.paramMap as ParamMap, 'start').then()
-        }
-      }
+    afterNextRender(() => {
+      this.tierService.tier$.subscribe(t => this.tier = t);
       this.setProfileOptions();
       this.setOrganizationsOptions();
-    }
+    })
   }
 
   private setProfileOptions() {
@@ -79,8 +70,7 @@ export class CheckoutProfileComponent {
         desc: `@${info.username}`,
         entity: info
       })
-      this.selected = this.profileOptions[0];
-      this.formGroup.controls.name.setValue(this.selected.name);
+      this.selectProfile(this.profileOptions[0]);
     }
   }
 
@@ -109,7 +99,6 @@ export class CheckoutProfileComponent {
   public toLink(to: 'start' | 'summary') {
     if(this.selected && this.formGroup.valid) {
       this.checkoutService.tierCache.set({
-        ...this.checkoutService.tierCache(),
         profile: {
           type: this.selected.type,
           profile: this.selected.entity,
@@ -117,7 +106,15 @@ export class CheckoutProfileComponent {
           legalName: this.formGroup.controls.legalName.value as string
         },
       });
-      this.tierService.redirectStep(this.activatedRoute.parent?.snapshot.paramMap as ParamMap, to).then();
+      if(to === 'summary') {
+        this.checkoutService.stepDesc.set({
+          ...this.checkoutService.stepDesc(),
+          checkoutProfile: this.formGroup.controls.legalName.value as string,
+        })
+        this.tierService.redirectStep(this.activatedRoute.parent?.snapshot.paramMap as ParamMap, to).then();
+      } else {
+        this.tierService.redirectStep(this.activatedRoute.parent?.snapshot.paramMap as ParamMap, to).then();
+      }
     } else {
       this.formGroup.markAllAsTouched();
     }

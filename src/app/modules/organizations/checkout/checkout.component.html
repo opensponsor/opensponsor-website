@@ -2,25 +2,56 @@
   <!-- We've used 3xl here, but feel free to try other max-widths based on your needs -->
   <div class="mx-auto max-w-3xl">
     <div class="grid grid-cols-1 gap-4">
+      @if(tier && organization) {
+        <div>
+          <div class="py-4 text-2xl font-bold text-gray-700">成为 {{organization.name}}的{{tier.name}}</div>
 
-      <nav aria-label="Progress">
-        <ol role="list" class="space-y-4 md:flex md:space-x-2 md:space-y-0">
-          @for (step of steps; track step; ) {
-            <li class="md:flex-1">
-              <!-- Completed Step -->
-              <a [ngClass]="{'border-indigo-600': step.completed, 'border-gray-200': !step.completed}"
-                 class="group flex flex-col border-l-4 py-2 pl-4 md:border-l-0 md:border-t-4 md:pb-0 md:pl-0 md:pt-4">
-                <span class="text-sm font-medium">{{ step.label }}</span>
-                <span class="text-sm font-medium text-indigo-600 group-hover:text-indigo-800">{{ step.desc }}</span>
-              </a>
-            </li>
-          }
-        </ol>
-      </nav>
+          <mat-card appearance="outlined">
+            <mat-card-content>
+              <div class="flex flex-col gap-2 py-4 text-xl">
+                <div>赞助金额：{{ tier.amount }}{{ enumTranslate[tier.currency] }}</div>
+                <div>赞助周期：{{ enumTranslate[tier.interval] }}</div>
+                <mat-accordion class="[&_.mat-expansion-panel-body]:p-0">
+                  <mat-expansion-panel class="!shadow-none !p-0" hideToggle #paymentPanel>
+                    <section class="flex flex-col gap-4">
+                      <mat-button-toggle-group [(ngModel)]="paymentMethod" aria-label="payment method" class="w-full">
+                        @for (pm of paymentMethodOptions; track pm) {
+                          <mat-button-toggle class="w-1/3 py-1" [value]="pm.name">
+                            <img class="inline-block rounded-full" [ngSrc]="pm.icon" alt="" width="32" height="32">
+                            {{pm.label}}
+                          </mat-button-toggle>
+                        }
+                      </mat-button-toggle-group>
+                      <div class="hidden" [ngClass]="{'!block': paymentMethod === 'Alipay'}">
+                        <button type="button" mat-stroked-button class="w-full">使用支付宝支付 {{ tier.amount }}{{ enumTranslate[tier.currency] }}</button>
+                      </div>
+                      <div class="hidden" [ngClass]="{'!block': paymentMethod === 'WechatPay'}">
+                        <img class="mx-auto h-40" src="https://img1.baidu.com/it/u=3476642889,2824087446&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=680" alt="">
+                      </div>
+                      <div class="hidden" [ngClass]="{'!block': paymentMethod === 'UnionPay'}">
+                        UnionPay
+                      </div>
+                    </section>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
 
-      <div>
-        <router-outlet></router-outlet>
-      </div>
+        <div>
+          <div class="flex justify-between">
+            <a mat-stroked-button>
+              返回<mat-icon>arrow_left_alt</mat-icon>
+            </a>
+            <button mat-flat-button (click)="openPaymentSection(paymentPanel)" [disabled]="paymentPanel.expanded">
+              支付 <mat-icon class="!text-white" iconPositionEnd>arrow_right_alt</mat-icon>
+            </button>
+          </div>
+        </div>
+      } @else {
+        loading...
+      }
 
       <div class="flex justify-center">
         <a mat-button [routerLink]="['/', organization?.slug]"> 返回 {{ organization?.name }} 页 </a>

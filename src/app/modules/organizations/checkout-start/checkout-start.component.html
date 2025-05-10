@@ -4,13 +4,13 @@
       <div class="flex flex-col gap-4 px-4 py-5 sm:p-6">
         <div class="relative">
           <div class="relative flex items-center justify-between">
-            <div class="text-base font-semibold whitespace-nowrap leading-6 text-gray-900">捐助详情</div>
+            <div class="text-base font-semibold whitespace-nowrap leading-6 text-gray-900">赞助详情</div>
             <div class="w-full mx-3 border-t border-gray-300"></div>
             <os-clipboard-text [content]="location.href" text="分享链接"></os-clipboard-text>
           </div>
         </div>
 
-        <div>捐助：{{ tier.amount }}{{ enumTranslate[tier.currency] }}/{{ enumTranslate[tier.interval] }}</div>
+        <div>赞助：{{ tier.amount }}{{ enumTranslate[tier.currency] }}/{{ enumTranslate[tier.interval] }}</div>
       </div>
     </div>
 

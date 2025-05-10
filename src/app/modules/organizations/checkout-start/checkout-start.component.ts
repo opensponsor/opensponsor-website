@@ -41,7 +41,6 @@ export class CheckoutStartComponent {
               if (res.status === 200) {
                 const tier = this.tier = res.body?.data;
                 if(tier) {
-                  this.checkoutService.tierCache.set({...this.checkoutService.tierCache(), tier: tier});
                   this.tierService.tier.set(tier);
                   this.checkoutService.stepDesc.set({'checkoutStart': `${tier?.amount}${enumTranslate[tier.currency]}/${enumTranslate[tier.interval]}`});
                 }

@@ -6,6 +6,9 @@ import {MatExpansionModule, MatExpansionPanel} from "@angular/material/expansion
 import {MatAnchor} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {CheckoutService} from "@services/checkout/checkout.service";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {FormsModule} from "@angular/forms";
+import {PaymentMethod, PaymentMethodOptions} from "@app/constants/payment-method";
 
 @Component({
   selector: 'os-checkout-payment',
@@ -14,11 +17,15 @@ import {CheckoutService} from "@services/checkout/checkout.service";
     MatExpansionModule,
     MatAnchor,
     MatIconModule,
+    MatButtonToggleModule,
+    FormsModule,
   ],
   styleUrl: './checkout-payment.component.scss'
 })
 export class CheckoutPaymentComponent {
   public tier: Tier | undefined;
+  public paymentMethod: PaymentMethod = 'Alipay';
+  public paymentMethodOptions = PaymentMethodOptions;
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
@@ -27,8 +34,6 @@ export class CheckoutPaymentComponent {
   ) {
     afterNextRender(() => {
       if (this.tierService.tier()) {
-        console.dir(this.checkoutService.tierCache().tier)
-        console.dir(this.checkoutService.tierCache().profile)
         this.tier = this.tierService.tier();
       } else {
         // redirect start
@@ -37,10 +42,6 @@ export class CheckoutPaymentComponent {
         }
       }
     })
-  }
-
-  public expandPanel(e: 'unionPay' | 'aliPay' | 'weChatPay') {
-    console.dir(e);
   }
 
   public toLink(to: 'summary') {
