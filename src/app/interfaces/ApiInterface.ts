@@ -30,6 +30,12 @@ export enum E_SEX {
   MAN = "MAN",
 }
 
+export enum E_PAYMENT_METHOD {
+  WE_CHAT_PAY = "WE_CHAT_PAY",
+  ALI_PAY = "ALI_PAY",
+  UNION_PAY = "UNION_PAY",
+}
+
 export enum E_ORGANIZATION_TYPE {
   FISCAL_HOST = "FISCAL_HOST",
   COMMUNITY = "COMMUNITY",
@@ -46,6 +52,23 @@ export enum E_ORGANIZATION_ROLE {
   ADMIN = "ADMIN",
   MEMBER = "MEMBER",
   ACCOUNTANT = "ACCOUNTANT",
+}
+
+export enum E_ORDER_STATUS {
+  NEW = "NEW",
+  REQUIRE_CLIENT_CONFIRMATION = "REQUIRE_CLIENT_CONFIRMATION",
+  PAID = "PAID",
+  ERROR = "ERROR",
+  PROCESSING = "PROCESSING",
+  REJECTED = "REJECTED",
+  ACTIVE = "ACTIVE",
+  CANCELLED = "CANCELLED",
+  PENDING = "PENDING",
+  EXPIRED = "EXPIRED",
+  DISPUTED = "DISPUTED",
+  REFUNDED = "REFUNDED",
+  PAUSED = "PAUSED",
+  IN_REVIEW = "IN_REVIEW",
 }
 
 export enum E_INTERVAL {
@@ -841,6 +864,20 @@ export interface Tier {
   /** when modified */
   whenModified: Instant;
   whenDeleted?: Instant;
+}
+
+export interface TradePagePayBodyForAliPay {
+  out_trade_no?: string;
+  method?: string;
+  total_amount?: string;
+  sign?: string;
+  trade_no?: string;
+  auth_app_id?: string;
+  version?: string;
+  app_id?: string;
+  sign_type?: string;
+  seller_id?: string;
+  timestamp?: string;
 }
 
 /**
