@@ -1,8 +1,8 @@
 import {Component, inject} from '@angular/core';
 import {FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {
+  CountryCode,
   E_AMOUNT_TYPE,
-  E_IBAN_CURRENCIES,
   E_INTERVAL,
   E_TIER_TYPE,
   Organization,
@@ -21,6 +21,7 @@ import {TierCardComponent} from "@app/components/tier-card/tier-card.component";
 import {MatButtonModule} from "@angular/material/button";
 import slugify from "limax";
 import {RequiredHintComponent} from "@app/components/required-hint/required-hint.component";
+import {CountrySelectComponent} from "@app/forms/country-select/country-select.component";
 
 @Component({
   selector: 'os-tier-dialog',
@@ -37,7 +38,8 @@ import {RequiredHintComponent} from "@app/components/required-hint/required-hint
     MatSlideToggleModule,
     MatDialogModule,
     TierCardComponent,
-    RequiredHintComponent
+    RequiredHintComponent,
+    CountrySelectComponent
   ],
   styleUrl: './tier-dialog.component.scss',
 })
@@ -89,7 +91,9 @@ export class TierDialogComponent {
       Validators.required,
     ]),
     minimumAmount: new FormControl<number | null>(null, []),
-    currency: new FormControl<E_IBAN_CURRENCIES>(E_IBAN_CURRENCIES.CNY, []),
+    currency: new FormControl<CountryCode | undefined>(undefined, [
+      Validators.required,
+    ]),
     maxQuantity: new FormControl<number | null>(null, []),
     goal: new FormControl<number | null>(null, []),
     button: new FormControl<string>("贡献", []),
@@ -230,6 +234,5 @@ export class TierDialogComponent {
   protected readonly E_AMOUNT_TYPE = E_AMOUNT_TYPE;
   protected readonly transformType = transformType;
   protected readonly E_INTERVAL = E_INTERVAL;
-  protected readonly E_IBAN_CURRENCIES = E_IBAN_CURRENCIES;
   protected readonly E_TIER_TYPE = E_TIER_TYPE;
 }

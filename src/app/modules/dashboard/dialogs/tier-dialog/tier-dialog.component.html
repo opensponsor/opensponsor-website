@@ -1,8 +1,7 @@
-<h2 mat-dialog-title>捐赠等级</h2>
+<h2 mat-dialog-title>
+  捐赠等级 <os-required-hint />
+</h2>
 <mat-dialog-content class="mat-typography">
-  <div class="my-2">
-    <os-required-hint />
-  </div>
   <div class="flex flex-row gap-4 flex-nowrap">
     <div class="w-8/12 my-1">
       <form #form class="grid grid-flow-row-dense grid-cols-1 gap-1 w-full" (ngSubmit)="formGroup.valid && save()"
@@ -69,14 +68,12 @@
                    [required]="formGroup.controls.amountType.value === E_AMOUNT_TYPE.FLEXIBLE || formGroup.controls.interval.value === E_INTERVAL.FLEXIBLE"/>
           </mat-form-field>
         }
-        <mat-form-field class="w-full">
-          <mat-label>接受货币</mat-label>
-          <mat-select [formControl]="formGroup.controls.currency" required>
-            @for (currency of E_IBAN_CURRENCIES | enumerated:{pick: [E_IBAN_CURRENCIES.CNY]}; track currency) {
-              <mat-option [value]="currency">{{ currency | translate }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
+        <os-country-select
+          label="接受货币"
+          ngDefaultControl
+          [required]="true"
+          labelType="currencyAlphabeticCode"
+          [countryCodeControl]="formGroup.controls.currency" />
         @if (formGroup.controls.type.value === E_TIER_TYPE.PRODUCT) {
           <mat-form-field class="w-full">
             <mat-label>库存</mat-label>
