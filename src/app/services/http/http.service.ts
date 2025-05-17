@@ -78,12 +78,13 @@ export abstract class HttpService {
       }
     } else if (res.status === 401) {
       localStorage.removeItem("accessToken")
+      this.snackBar.message({message: '请先登录'});
       return throwError(() => new Error('请先登录。'));
     } else {
       this.snackBar.message({message: res.message});
     }
     // Return an observable with a user-facing error message.
-    return throwError(() => new Error('Something bad happened; please try again later.'));
+    return throwError(() => new Error('请稍后再试.'));
   }
 
   public get<T>(url: string, params?: HttpParams) {
