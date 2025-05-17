@@ -1,4 +1,6 @@
 export interface AlertOptions {
-  title?: string;
-  message: string;
+  title: string;
+  message?: string;
+  confirmText?: string;
+  cancelText?: string
 }

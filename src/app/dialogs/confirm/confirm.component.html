@@ -1,19 +1,25 @@
-@if(data.title) {
-  <h1 mat-dialog-title>{{ data.title }}</h1>
-}
+<h1 mat-dialog-title>{{ data.title }}</h1>
 <mat-dialog-content>
-  {{ data.message }}
+  @if (data.message) {
+    <div class="py-4">
+      {{ data.message }}
+    </div>
+  } @else {
+    <div class="w-4/5 mx-auto py-4">
+      <mat-progress-bar mode="buffer"></mat-progress-bar>
+    </div>
+  }
 </mat-dialog-content>
 <mat-dialog-actions>
   <div class="grid grid-cols-2 gap-4 w-full">
     <div class="w-full">
       <button class="w-full" mat-stroked-button (click)="dialogRef.close(false)">
-        取消
+        {{data.cancelText || "取消"}}
       </button>
     </div>
     <div class="w-full">
       <button class="w-full" mat-flat-button color="primary" [autofocus]="true" (click)="dialogRef.close(true)">
-        确定
+        {{data.cancelText || "确定"}}
       </button>
     </div>
   </div>

@@ -14,6 +14,8 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {FormsModule} from "@angular/forms";
 import {NgClass, NgOptimizedImage} from "@angular/common";
 import {MatExpansionModule, MatExpansionPanel} from "@angular/material/expansion";
+import {PaymentService} from "@services/payment/payment.service";
+import {DialogService} from "@services/dialog/dialog.service";
 
 @Component({
   selector: 'os-checkout',
@@ -30,6 +32,7 @@ import {MatExpansionModule, MatExpansionPanel} from "@angular/material/expansion
     MatButton,
     MatExpansionModule
   ],
+  standalone: true,
   styleUrl: './checkout.component.scss'
 })
 export class CheckoutComponent {
@@ -46,6 +49,8 @@ export class CheckoutComponent {
     private readonly authService: AuthService,
     private readonly tierService: TierService,
     private readonly organizationsService: OrganizationsService,
+    private readonly paymentService: PaymentService,
+    private readonly dialogService: DialogService,
   ) {
     afterNextRender(() => {
       this.initialize();
@@ -94,6 +99,21 @@ export class CheckoutComponent {
 
   public openPaymentSection(panel: MatExpansionPanel) {
     panel.open();
+  }
+
+  public useAlipay() {
+    this.paymentService.getAlipayForm(this.tier!).subscribe(res => {
+      if(res.status === 200) {
+        const div = document.createElement('div')
+        document.body.append(div);
+        div.innerHTML = res.body?.data as string;
+        div.querySelector('form')?.setAttribute('target', '_blank');
+        div.querySelector('form')?.submit();
+        this.dialogService.confirm({title: '是否已经支付完成?', confirmText: '支付完成', cancelText: '支付遇到问题？'}).afterClosed().subscribe(result => {
+          alert(result);
+        })
+      }
+    });
   }
 
   protected readonly enumTranslate = enumTranslate;

@@ -42,7 +42,7 @@ export class CheckoutStartComponent {
                 const tier = this.tier = res.body?.data;
                 if(tier) {
                   this.tierService.tier.set(tier);
-                  this.checkoutService.stepDesc.set({'checkoutStart': `${tier?.amount}${enumTranslate[tier.currency]}/${enumTranslate[tier.interval]}`});
+                  this.checkoutService.stepDesc.set({'checkoutStart': `${tier?.amount}${enumTranslate[tier.currency.currencyAlphabeticCode]}/${enumTranslate[tier.interval]}`});
                 }
               }
             });

@@ -64,7 +64,7 @@ export class TagsFieldComponent {
       });
       this.tagsFormControl.setValue([...this.tags()])
     } else if (value && !this.allTags.includes(value) && !this.tags().has(value)) {
-      this.dialogService.confirm({message: `是否要创建Tag： ${value}`}).afterClosed().subscribe((ok) => {
+      this.dialogService.confirm({title: `是否要创建Tag： ${value}`}).afterClosed().subscribe((ok) => {
         if (ok) {
           this.tags.update(tags => {
             tags.add(value);
