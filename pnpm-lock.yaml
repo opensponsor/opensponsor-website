@@ -56,6 +56,9 @@ importers:
       ng-extract-i18n-merge:
         specifier: ^2.14.3
         version: 2.14.3(@angular-devkit/build-angular@19.2.4(@angular/compiler-cli@19.2.3(@angular/compiler@19.2.3)(typescript@5.6.3))(@angular/compiler@19.2.3)(@angular/localize@19.2.3(@angular/compiler-cli@19.2.3(@angular/compiler@19.2.3)(typescript@5.6.3))(@angular/compiler@19.2.3))(@angular/platform-server@19.2.3(@angular/common@19.2.3(@angular/core@19.2.3(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/compiler@19.2.3)(@angular/core@19.2.3(rxjs@7.8.1)(zone.js@0.15.0))(@angular/platform-browser@19.2.3(@angular/animations@19.2.3(@angular/core@19.2.3(rxjs@7.8.1)(zone.js@0.15.0)))(@angular/common@19.2.3(@angular/core@19.2.3(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.2.3(rxjs@7.8.1)(zone.js@0.15.0)))(rxjs@7.8.1))(@angular/ssr@19.2.4(c5ia4dsjhx5ri2f5ajnymokiwa))(@types/node@18.19.68)(chokidar@4.0.3)(jiti@1.21.7)(karma@6.4.4)(tailwindcss@3.4.17)(typescript@5.6.3)(vite@6.2.0(@types/node@18.19.68)(jiti@1.21.7)(less@4.2.2)(sass@1.85.0)(terser@5.39.0)(yaml@2.6.1))(yaml@2.6.1))(chokidar@4.0.3)
+      qrcanvas:
+        specifier: ^3.1.2
+        version: 3.1.2
       rxjs:
         specifier: ~7.8.0
         version: 7.8.1
@@ -3712,6 +3715,12 @@ packages:
   qjobs@1.2.0:
     resolution: {integrity: sha512-8YOJEHtxpySA3fFDyCRxA+UUV+fA+rTWnuWvylOK/NCjhY+b4ocCtmu8TtsWb+mYeU+GCHf/S66KZF/AsteKHg==}
     engines: {node: '>=0.9'}
+
+  qrcanvas@3.1.2:
+    resolution: {integrity: sha512-lNcAyCHN0Eno/mJ5eBc7lHV/5ejAJxII0UELthG3bNnlLR+u8hCc7CR+hXBawbYUf96kNIosXfG2cJzx92ZWKg==}
+
+  qrcode-generator@1.4.4:
+    resolution: {integrity: sha512-HM7yY8O2ilqhmULxGMpcHSF1EhJJ9yBj8gvDEuZ6M+KGJ0YY2hKpnXvRD+hZPLrDVck3ExIGhmPtSdcjC+guuw==}
 
   qs@6.13.0:
     resolution: {integrity: sha512-+38qI9SOr8tfZ4QmJNplMUxqjbe7LKvvZgWdExBOmd+egZTtjLB67Gu0HRX3u/XOq7UU2Nx6nsjvS16Z9uwfpg==}
@@ -8470,6 +8479,13 @@ snapshots:
   punycode@1.4.1: {}
 
   qjobs@1.2.0: {}
+
+  qrcanvas@3.1.2:
+    dependencies:
+      '@babel/runtime': 7.26.10
+      qrcode-generator: 1.4.4
+
+  qrcode-generator@1.4.4: {}
 
   qs@6.13.0:
     dependencies:
