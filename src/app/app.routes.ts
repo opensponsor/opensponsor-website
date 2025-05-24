@@ -76,6 +76,11 @@ export const routes: Routes = [
     component: NotFoundComponent
   },
   {
+    path: 'payment',
+    component: DefaultLayoutComponent,
+    loadChildren: () => import('@modules/payment/payment.module').then(m => m.PaymentModule)
+  },
+  {
     path: ':slug',
     component: FullWidthLayoutComponent,
     loadChildren: () => import('@modules/organizations/organizations.module').then(m => m.OrganizationsModule)

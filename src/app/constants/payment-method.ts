@@ -11,9 +11,9 @@ export const PaymentMethodOptions: {name: PaymentMethod, label: string; icon: st
     name: 'WechatPay',
     icon: 'https://gtimg.wechatpay.cn/core/favicon.ico',
   },
-  {
-    label: '银联',
-    name: 'UnionPay',
-    icon: 'https://m.unionpayintl.com/favicon.ico',
-  }
+  // {
+  //   label: '银联',
+  //   name: 'UnionPay',
+  //   icon: 'https://m.unionpayintl.com/favicon.ico',
+  // }
 ]

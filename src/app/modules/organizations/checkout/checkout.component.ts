@@ -10,12 +10,14 @@ import {MatIcon} from "@angular/material/icon";
 import {MatCardModule} from "@angular/material/card";
 import {enumTranslate} from "@app/languages/zh_cn/enumTranslate";
 import {PaymentMethod, PaymentMethodOptions} from "@app/constants/payment-method";
-import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatButtonToggleChange, MatButtonToggleModule} from "@angular/material/button-toggle";
 import {FormsModule} from "@angular/forms";
 import {NgClass, NgOptimizedImage} from "@angular/common";
 import {MatExpansionModule, MatExpansionPanel} from "@angular/material/expansion";
 import {PaymentService} from "@services/payment/payment.service";
 import {DialogService} from "@services/dialog/dialog.service";
+import {QrcodeComponent} from "@app/components/qrcode/qrcode.component";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'os-checkout',
@@ -30,7 +32,9 @@ import {DialogService} from "@services/dialog/dialog.service";
     NgOptimizedImage,
     NgClass,
     MatButton,
-    MatExpansionModule
+    MatExpansionModule,
+    QrcodeComponent,
+    MatProgressSpinner
   ],
   standalone: true,
   styleUrl: './checkout.component.scss'
@@ -38,6 +42,7 @@ import {DialogService} from "@services/dialog/dialog.service";
 export class CheckoutComponent {
   public organization: Organization | undefined;
   public tier: Tier | undefined;
+  public wechatPayUrl: string | undefined;
 
   public paymentMethod: PaymentMethod = 'Alipay';
   public paymentMethodOptions = PaymentMethodOptions;
@@ -99,6 +104,19 @@ export class CheckoutComponent {
 
   public openPaymentSection(panel: MatExpansionPanel) {
     panel.open();
+  }
+
+  public paymentChange(e: MatButtonToggleChange) {
+    console.dir(e.value === 'WechatPay' && this.tier && !this.wechatPayUrl)
+    if(e.value === 'WechatPay' && this.tier && !this.wechatPayUrl) {
+      this.paymentService.getWechatScheme(this.tier).subscribe(res => {
+        if(res.body?.data) {
+          this.wechatPayUrl = res.body?.data;
+        } else {
+          // TODO Has Error
+        }
+      });
+    }
   }
 
   public useAlipay() {

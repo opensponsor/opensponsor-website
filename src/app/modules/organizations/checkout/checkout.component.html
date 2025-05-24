@@ -14,7 +14,7 @@
                 <mat-accordion class="[&_.mat-expansion-panel-body]:p-0">
                   <mat-expansion-panel class="!shadow-none !p-0" hideToggle #paymentPanel>
                     <section class="flex flex-col gap-4">
-                      <mat-button-toggle-group [(ngModel)]="paymentMethod" aria-label="payment method" class="w-full">
+                      <mat-button-toggle-group (change)="paymentChange($event)" [(ngModel)]="paymentMethod" aria-label="payment method" class="w-full">
                         @for (pm of paymentMethodOptions; track pm) {
                           <mat-button-toggle class="w-full py-1" [value]="pm.name">
                             <img class="inline-block rounded-full" [ngSrc]="pm.icon" alt="" width="32" height="32">
@@ -22,15 +22,21 @@
                           </mat-button-toggle>
                         }
                       </mat-button-toggle-group>
-                      <div class="hidden" [ngClass]="{'!block': paymentMethod === 'Alipay'}">
+                      <div class="hidden" [ngClass]="{'!flex': paymentMethod === 'Alipay'}">
                         <button type="button" mat-stroked-button class="w-full" (click)="useAlipay()">
                           使用支付宝支付 {{ tier.amount }}{{ enumTranslate[tier.currency.currencyAlphabeticCode] }}
                         </button>
                       </div>
-                      <div class="hidden" [ngClass]="{'!block': paymentMethod === 'WechatPay'}">
-                        <img class="mx-auto h-40" src="https://img1.baidu.com/it/u=3476642889,2824087446&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=680" alt="">
+                      <div class="hidden justify-center" [ngClass]="{'!flex': paymentMethod === 'WechatPay'}">
+                        <div class="w-32 h-32">
+                          @if (wechatPayUrl) {
+                            <os-qrcode [content]="wechatPayUrl"></os-qrcode>
+                          } @else {
+                            <div class="rounded w-full h-full bg-gray-400 animate-pulse"></div>
+                          }
+                        </div>
                       </div>
-                      <div class="hidden" [ngClass]="{'!block': paymentMethod === 'UnionPay'}">
+                      <div class="hidden" [ngClass]="{'!flex': paymentMethod === 'UnionPay'}">
                         UnionPay
                       </div>
                     </section>

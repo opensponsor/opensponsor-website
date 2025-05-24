@@ -11,8 +11,12 @@ export class PaymentService {
     private readonly httpService: HttpService,
   ) {}
 
-  getAlipayForm(tire: Tier) {
-    return this.httpService.post("/payment-ali", tire);
+  getAlipayForm(tier: Tier) {
+    return this.httpService.post<string>("/payment-ali", tier);
+  }
+
+  getWechatScheme(tier: Tier) {
+    return this.httpService.post<string>("/payment-wechat", tier);
   }
 
 }
