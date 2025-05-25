@@ -24,14 +24,10 @@ export class OrganizationSearchComponent {
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
   ) {
-    afterNextRender({
-      read: () => {
-        this.activatedRoute.queryParams.subscribe(params => {
-          const queryParams = new URLSearchParams(params);
-          this.keyword.setValue(queryParams.get('w'));
-        });
-      }
-    })
+    this.activatedRoute.queryParams.subscribe(params => {
+      const queryParams = new URLSearchParams(params);
+      this.keyword.setValue(queryParams.get('w'));
+    });
   }
 
   public doSearch() {

@@ -1,5 +1,5 @@
-import {afterNextRender, Component} from '@angular/core';
-import {ActivatedRoute, RouterLink} from "@angular/router";
+import {AfterViewInit, Component} from '@angular/core';
+import {RouterLink} from "@angular/router";
 import {OrganizationsService} from "@services/organizations/organizations.service";
 import {E_ORGANIZATION_ROLE, Member, Organization} from "@app/interfaces/ApiInterface";
 
@@ -11,16 +11,16 @@ import {E_ORGANIZATION_ROLE, Member, Organization} from "@app/interfaces/ApiInte
   ],
   styleUrl: './team.component.scss'
 })
-export class TeamComponent {
+export class TeamComponent implements AfterViewInit {
   public organization: Organization | undefined;
 
   constructor(
-    private readonly activatedRoute: ActivatedRoute,
     private readonly organizationsService: OrganizationsService,
   ) {
-    afterNextRender(() => {
-      this.organizationsService.organization$.subscribe(org => this.organization = org);
-    })
+  }
+
+  ngAfterViewInit(): void {
+    this.organizationsService.organization$.subscribe(org => this.organization = org);
   }
 
   public filterMember(type: E_ORGANIZATION_ROLE): Member[] {

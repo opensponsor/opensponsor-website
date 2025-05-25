@@ -1,6 +1,6 @@
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {
-  afterNextRender,
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -23,7 +23,7 @@ import {DialogService} from "@services/dialog/dialog.service";
   imports: [MatFormFieldModule, MatChipsModule, MatIconModule, MatAutocompleteModule, FormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TagsFieldComponent {
+export class TagsFieldComponent implements AfterViewInit {
   @Input({
     required: true
   })
@@ -43,15 +43,16 @@ export class TagsFieldComponent {
     private readonly tagsService: TagsService,
     private readonly dialogService: DialogService,
   ) {
-    afterNextRender(() => {
-      this.tagsService.getOfficialTags().subscribe(res => {
-        if(res.body?.records) {
-          this.currentTag.set(" ")
-          this.allTags.push(...res.body?.records.map(i => i.name))
-          this.currentTag.set("");
-        }
-      });
-    })
+  }
+
+  ngAfterViewInit() {
+    this.tagsService.getOfficialTags().subscribe(res => {
+      if(res.body?.records) {
+        this.currentTag.set(" ")
+        this.allTags.push(...res.body?.records.map(i => i.name))
+        this.currentTag.set("");
+      }
+    });
   }
 
   add(event: MatChipInputEvent): void {

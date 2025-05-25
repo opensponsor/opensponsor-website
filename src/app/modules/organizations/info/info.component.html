@@ -1,64 +1,61 @@
-<div class="bg-white">
-  <main class="isolate">
-    <!-- Hero section -->
-    @if (organization) {
-      <os-hero [organization]="organization" />
-    }
+<main class="isolate">
+  <!-- Hero section -->
+  @if (organization) {
+    <os-hero [organization]="organization" />
+  }
 
-    <!-- Content section -->
-    @if(organization && organization.type !== E_ORGANIZATION_TYPE.USER && organization.tiers.length > 0) {
-      <div class="flex flex-col gap-4">
-        <div class="overflow-hidden rounded-lg bg-white shadow">
-          <div class="px-4 py-5 sm:p-6 text-xl font-bold">捐赠</div>
-        </div>
+  <!-- Content section -->
+  @if(organization && organization.type !== E_ORGANIZATION_TYPE.USER && organization.tiers.length > 0) {
+    <div class="flex flex-col gap-4">
+      <div class="overflow-hidden rounded-lg bg-white shadow">
+        <div class="px-4 py-5 sm:p-6 text-xl font-bold">捐赠</div>
+      </div>
 
-        <div class="flex justify-center w-full px-4">
-          <div id="tier-list" class="swiper w-full cursor-grab">
-            <div class="swiper-wrapper">
-              @for (tier of organization.tiers; track tier) {
-                <div class="swiper-slide !w-1/6 p-2">
-                  <os-tier-card [tier]="tier" />
-                </div>
-              }
-            </div>
-            <div class="swiper-scrollbar"></div>
+      <div class="flex justify-center w-full px-4">
+        <div id="tier-list" class="swiper w-full cursor-grab">
+          <div class="swiper-wrapper">
+            @for (tier of organization.tiers; track tier) {
+              <div class="swiper-slide !w-1/6 p-2">
+                <os-tier-card [tier]="tier" />
+              </div>
+            }
           </div>
+          <div class="swiper-scrollbar"></div>
         </div>
       </div>
-    }
+    </div>
+  }
 
-    <!-- Values section -->
-    @if (organization && organization.type !== E_ORGANIZATION_TYPE.USER) {
-      <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
-        <os-contributors-list [organization]="organization" />
-        <os-contributors [organization]="organization" />
+  <!-- Values section -->
+  @if (organization && organization.type !== E_ORGANIZATION_TYPE.USER) {
+    <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
+      <os-contributors-list [organization]="organization" />
+      <os-contributors [organization]="organization" />
+    </div>
+  }
+
+  @if (organization && organization.type !== E_ORGANIZATION_TYPE.USER) {
+    <os-budget [organization]="organization" />
+  }
+
+  @if (organization) {
+    <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-48 lg:px-8">
+      <div class="mx-auto max-w-2xl lg:mx-0">
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">关于 {{ organization.name }}</h2>
+        <p class="mt-6 text-lg leading-8 text-gray-600">
+          {{organization.introduce}}
+        </p>
       </div>
-    }
+    </div>
+  }
 
-    @if (organization && organization.type !== E_ORGANIZATION_TYPE.USER) {
-      <os-budget [organization]="organization" />
-    }
+  <!-- Team section -->
+  @if (organization && organization.type !== E_ORGANIZATION_TYPE.USER) {
+    <os-team [organization]="organization" />
+  }
 
-    @if (organization) {
-      <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-48 lg:px-8">
-        <div class="mx-auto max-w-2xl lg:mx-0">
-          <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">关于 {{ organization.name }}</h2>
-          <p class="mt-6 text-lg leading-8 text-gray-600">
-            {{organization.introduce}}
-          </p>
-        </div>
-      </div>
-    }
-
-    <!-- Team section -->
-    @if (organization && organization.type !== E_ORGANIZATION_TYPE.USER) {
-      <os-team [organization]="organization" />
-    }
-
-    <!-- Blog section -->
-    @if (organization && organization.type !== E_ORGANIZATION_TYPE.USER) {
-      <os-news [organization]="organization" />
-    }
-  </main>
-
-</div>
+  <!-- Blog section -->
+  @if (organization && organization.type !== E_ORGANIZATION_TYPE.USER) {
+    <os-news [organization]="organization" />
+  }
+</main>

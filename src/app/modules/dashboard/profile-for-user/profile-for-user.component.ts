@@ -1,4 +1,4 @@
-import {afterNextRender, Component} from '@angular/core';
+import {afterNextRender, AfterViewInit, Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {RequiredHintComponent} from "@app/components/required-hint/required-hint.component";
 import {MatCardModule} from "@angular/material/card";
@@ -37,7 +37,7 @@ import {DialogService} from "@services/dialog/dialog.service";
   templateUrl: './profile-for-user.component.html',
   styleUrl: './profile-for-user.component.scss'
 })
-export class ProfileForUserComponent {
+export class ProfileForUserComponent implements AfterViewInit {
   public formGroup = new FormGroup< Required<Record<(keyof UpdateUser), FormControl>> >({
     username: new FormControl<string>("", [
       Validators.required,
@@ -62,17 +62,18 @@ export class ProfileForUserComponent {
     private readonly snackBarService: SnackBarService,
     private readonly dialogService: DialogService,
   ) {
-    afterNextRender(() => {
-      this.authService.getAuthUser().subscribe(res => {
-        if(res.status === 200 && res.body?.data) {
-          this.formGroup.setValue({
-            username: res.body?.data.username,
-            slug: res.body?.data.slug,
-            sex: res.body?.data.sex,
-            website: res.body?.data.website,
-          })
-        }
-      })
+  }
+
+  ngAfterViewInit() {
+    this.authService.getAuthUser().subscribe(res => {
+      if(res.status === 200 && res.body?.data) {
+        this.formGroup.setValue({
+          username: res.body?.data.username,
+          slug: res.body?.data.slug,
+          sex: res.body?.data.sex,
+          website: res.body?.data.website,
+        })
+      }
     })
   }
 

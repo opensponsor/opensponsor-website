@@ -1,13 +1,10 @@
-import {afterNextRender, Component} from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {OrganizationsService} from "@services/organizations/organizations.service";
 import {Platform} from "@angular/cdk/platform";
 import {E_ORGANIZATION_TYPE, Organization} from "@app/interfaces/ApiInterface";
 import {MatButtonModule} from "@angular/material/button";
 import {TierCardComponent} from "@app/components/tier-card/tier-card.component";
-import {NgForOf} from "@angular/common";
-import {MatIcon} from "@angular/material/icon";
-import {MatChip, MatChipGrid, MatChipSet} from "@angular/material/chips";
 import Swiper from "swiper";
 import {Scrollbar, FreeMode, Mousewheel} from "swiper/modules";
 import {MatTabsModule} from "@angular/material/tabs";
@@ -45,12 +42,9 @@ export class InfoComponent {
     private readonly organizationsService: OrganizationsService,
     private readonly platform: Platform,
   ) {
-    afterNextRender({
-      read: () => {
-        this.getOrg();
-        this.initialSwiper()
-      }
-    });
+    if(this.platform.isBrowser) {
+      this.getOrg();
+    }
   }
 
   private initialSwiper() {
@@ -76,6 +70,7 @@ export class InfoComponent {
       next: (res) => {
         if (res.body) {
           this.organization = res.body.data;
+          this.initialSwiper();
         }
       },
       error: err => {

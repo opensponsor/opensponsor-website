@@ -1,4 +1,4 @@
-import {afterNextRender, Component} from '@angular/core';
+import {AfterViewInit, Component} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {OrganizationsService} from "@services/organizations/organizations.service";
 import {E_ORGANIZATION_TYPE, Organization} from "@app/interfaces/ApiInterface";
@@ -14,17 +14,17 @@ import {FinanceBlockComponent} from "../blocks/finance-block/finance-block.compo
   ],
   styleUrl: './index.component.scss'
 })
-export class IndexComponent {
+export class IndexComponent implements AfterViewInit {
   public organization: Organization | undefined;
 
   constructor(
-    private readonly activatedRoute: ActivatedRoute,
     private readonly organizationsService: OrganizationsService,
   ) {
-    afterNextRender(() => {
-      this.organizationsService.organization$.subscribe(org => {
-        this.organization = org;
-      })
+  }
+
+  ngAfterViewInit() {
+    this.organizationsService.organization$.subscribe(org => {
+      this.organization = org;
     })
   }
 

@@ -1,10 +1,8 @@
-import {afterNextRender, Component} from '@angular/core';
-import {ActivatedRoute, NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
-import {CheckoutService} from "@services/checkout/checkout.service";
+import {AfterViewInit, Component} from '@angular/core';
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {OrganizationsService} from "@services/organizations/organizations.service";
 import {Organization, Tier} from "@app/interfaces/ApiInterface";
 import {MatAnchor, MatButton} from "@angular/material/button";
-import {AuthService} from "@services/auth/auth.service";
 import {TierService} from "@services/tier/tier.service";
 import {MatIcon} from "@angular/material/icon";
 import {MatCardModule} from "@angular/material/card";
@@ -17,7 +15,7 @@ import {MatExpansionModule, MatExpansionPanel} from "@angular/material/expansion
 import {PaymentService} from "@services/payment/payment.service";
 import {DialogService} from "@services/dialog/dialog.service";
 import {QrcodeComponent} from "@app/components/qrcode/qrcode.component";
-import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {AuthService} from "@services/auth/auth.service";
 
 @Component({
   selector: 'os-checkout',
@@ -34,12 +32,11 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
     MatButton,
     MatExpansionModule,
     QrcodeComponent,
-    MatProgressSpinner
   ],
   standalone: true,
   styleUrl: './checkout.component.scss'
 })
-export class CheckoutComponent {
+export class CheckoutComponent implements AfterViewInit {
   public organization: Organization | undefined;
   public tier: Tier | undefined;
   public wechatPayUrl: string | undefined;
@@ -49,24 +46,24 @@ export class CheckoutComponent {
 
   constructor(
     private readonly router: Router,
-    private readonly activatedRoute: ActivatedRoute,
-    private readonly checkoutService: CheckoutService,
     private readonly authService: AuthService,
+    private readonly activatedRoute: ActivatedRoute,
     private readonly tierService: TierService,
     private readonly organizationsService: OrganizationsService,
     private readonly paymentService: PaymentService,
     private readonly dialogService: DialogService,
   ) {
-    afterNextRender(() => {
-      this.initialize();
-      this.authService.authInfo$.subscribe(user => {
-        if(user) {
-          this.authService.authInfo.set(user)
-        } else {
-          /*TODO goto login, or open login dialog*/
-        }
-      });
-    })
+  }
+
+  ngAfterViewInit() {
+    this.initialize();
+    this.authService.authInfo$.subscribe(user => {
+      if(user) {
+        this.authService.authInfo.set(user)
+      } else {
+        /*TODO goto login, or open login dialog*/
+      }
+    });
   }
 
   private initialize(): void {
@@ -92,11 +89,6 @@ export class CheckoutComponent {
       } else {
         // error
         this.router.navigateByUrl('/not-found').then();
-      }
-    })
-    this.router.events.subscribe((e) => {
-      if (e instanceof NavigationEnd) {
-        this.organization = this.organizationsService.organization();
       }
     })
     this.organizationsService.organization$.subscribe((org) => this.organization = org)
