@@ -10,11 +10,41 @@
  * ---------------------------------------------------------------
  */
 
+export enum TypeEnum {
+  CASH = "CASH",
+  NOCASH = "NOCASH",
+}
+
 export enum Type {
   CLASS = "CLASS",
   PROPERTY = "PROPERTY",
   PARAMETER = "PARAMETER",
   RETURN_VALUE = "RETURN_VALUE",
+}
+
+export enum TradeTypeEnum {
+  JSAPI = "JSAPI",
+  NATIVE = "NATIVE",
+  APP = "APP",
+  MICROPAY = "MICROPAY",
+  MWEB = "MWEB",
+  FACEPAY = "FACEPAY",
+}
+
+export enum TradeStateEnum {
+  SUCCESS = "SUCCESS",
+  REFUND = "REFUND",
+  NOTPAY = "NOTPAY",
+  CLOSED = "CLOSED",
+  REVOKED = "REVOKED",
+  USERPAYING = "USERPAYING",
+  PAYERROR = "PAYERROR",
+  ACCEPT = "ACCEPT",
+}
+
+export enum ScopeEnum {
+  GLOBAL = "GLOBAL",
+  SINGLE = "SINGLE",
 }
 
 export enum E_TIER_TYPE {
@@ -698,6 +728,35 @@ export interface Organization {
   whenDeleted?: Instant;
 }
 
+export interface PromotionDetail {
+  couponId?: string;
+  name?: string;
+  scope?: ScopeEnum;
+  type?: TypeEnum;
+  /** @format int32 */
+  amount?: number;
+  stockId?: string;
+  /** @format int32 */
+  wechatpayContribute?: number;
+  /** @format int32 */
+  merchantContribute?: number;
+  /** @format int32 */
+  otherContribute?: number;
+  currency?: string;
+  goodsDetail?: PromotionGoodsDetail[];
+}
+
+export interface PromotionGoodsDetail {
+  goodsId?: string;
+  /** @format int32 */
+  quantity?: number;
+  /** @format int32 */
+  unitPrice?: number;
+  /** @format int32 */
+  discountAmount?: number;
+  goodsRemark?: string;
+}
+
 export interface RegisterBody {
   /**
    * user name
@@ -876,6 +935,19 @@ export interface TradePagePayBodyForAliPay {
   timestamp?: string;
 }
 
+export interface TransactionAmount {
+  currency?: string;
+  payerCurrency?: string;
+  /** @format int32 */
+  payerTotal?: number;
+  /** @format int32 */
+  total?: number;
+}
+
+export interface TransactionPayer {
+  openid?: string;
+}
+
 /**
  * @format uuid
  * @pattern [a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}
@@ -988,4 +1060,20 @@ export interface WechatPayOrderResult {
   codeUrl: string;
   /** outTradeNo */
   outTradeNo: string;
+}
+
+export interface WechatTradeState {
+  amount?: TransactionAmount;
+  appid?: string;
+  attach?: string;
+  bankType?: string;
+  mchid?: string;
+  outTradeNo?: string;
+  payer?: TransactionPayer;
+  promotionDetail?: PromotionDetail[];
+  successTime?: string;
+  tradeState?: TradeStateEnum;
+  tradeStateDesc?: string;
+  tradeType?: TradeTypeEnum;
+  transactionId?: string;
 }
