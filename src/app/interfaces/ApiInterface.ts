@@ -646,6 +646,48 @@ export interface Member {
   whenDeleted?: Instant;
 }
 
+export interface Order {
+  id: UUID;
+  /** create by user */
+  user: User;
+  /** from by organization */
+  organization: Organization;
+  /** 使用的货币 */
+  currency?: CountryCode;
+  /** usage tier */
+  tier?: Tier;
+  /**
+   * total amount
+   * @min 1
+   */
+  totalAmount?: number;
+  /** is guest */
+  isGuest?: boolean;
+  /**
+   * quantity (only product)
+   * @min 0
+   */
+  quantity?: number;
+  /** order status */
+  status?: E_ORDER_STATUS;
+  /** pay status */
+  payStatus: boolean;
+  /** 支付方式 */
+  paymentMethod?: E_PAYMENT_METHOD;
+  /** trade no */
+  tradeNo: string;
+  /** out trade no */
+  outTradeNo?: string;
+  /** order expires time */
+  whenExpires?: Instant;
+  /** when created */
+  whenCreated: Instant;
+  /** when modified */
+  whenModified: Instant;
+  whenDeleted?: Instant;
+  guest?: boolean;
+}
+
 export interface Organization {
   id: UUID;
   /**
