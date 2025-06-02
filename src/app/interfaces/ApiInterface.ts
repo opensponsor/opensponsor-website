@@ -982,3 +982,10 @@ export interface ViolationReport {
   parameterViolations?: ResteasyConstraintViolation[];
   returnValueViolations?: ResteasyConstraintViolation[];
 }
+
+export interface WechatPayOrderResult {
+  /** qrcode url */
+  codeUrl: string;
+  /** outTradeNo */
+  outTradeNo: string;
+}
