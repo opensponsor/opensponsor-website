@@ -1,7 +1,7 @@
 import {AfterViewInit, Component} from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {OrganizationsService} from "@services/organizations/organizations.service";
-import {Organization, Tier} from "@app/interfaces/ApiInterface";
+import {Organization, Tier, TradeStateEnum} from "@app/interfaces/ApiInterface";
 import {MatAnchor, MatButton} from "@angular/material/button";
 import {TierService} from "@services/tier/tier.service";
 import {MatIcon} from "@angular/material/icon";
@@ -40,6 +40,7 @@ export class CheckoutComponent implements AfterViewInit {
   public organization: Organization | undefined;
   public tier: Tier | undefined;
   public wechatPayUrl: string | undefined;
+
 
   public paymentMethod: PaymentMethod = 'Alipay';
   public paymentMethodOptions = PaymentMethodOptions;
@@ -94,6 +95,18 @@ export class CheckoutComponent implements AfterViewInit {
     this.organizationsService.organization$.subscribe((org) => this.organization = org)
   }
 
+  private checkWechatPayStatus(outTradeNo: string) {
+    this.paymentService.queryWechatOrderStatus(outTradeNo).subscribe((res) => {
+      if(res.body?.data === TradeStateEnum.SUCCESS) {
+        alert(res.body?.data)
+      } else {
+        setTimeout(() => {
+          this.checkWechatPayStatus(outTradeNo);
+        }, 3000);
+      }
+    });
+  }
+
   public openPaymentSection(panel: MatExpansionPanel) {
     panel.open();
   }
@@ -103,7 +116,8 @@ export class CheckoutComponent implements AfterViewInit {
     if(e.value === 'WechatPay' && this.tier && !this.wechatPayUrl) {
       this.paymentService.getWechatScheme(this.tier).subscribe(res => {
         if(res.body?.data) {
-          this.wechatPayUrl = res.body?.data;
+          this.wechatPayUrl = res.body.data.codeUrl;
+          this.checkWechatPayStatus(res.body.data.outTradeNo);
         } else {
           // TODO Has Error
         }
@@ -111,6 +125,7 @@ export class CheckoutComponent implements AfterViewInit {
     }
   }
 
+  // http://localhost:4200/payment/alipay-callback?charset=UTF-8&out_trade_no=2025629716550009329527039907489&method=alipay.trade.page.pay.return&total_amount=100.00&sign=Eyu7fPnH73klIngxXuineAPprhq5GEGrIzg9D41Ahjm%2B09QNvCJQn%2BlMA5TvSQpL%2FQ7EkPhY34VVD3YFaSWbO34ErZHhh0mnQqISbrolRj3jMtM5W4BNIunZrEVh%2FCLQwOGx6bYu19Q6xpWLKVCtFOye7bceRQPBnjtsSWWiirj%2BWW0nD9QLwxXPjCCM3%2BW%2Fft%2FKMNWoIGafwukORHLuJjSA196x%2B9q48a645z%2FUm6XdM6H1daHRPd5yK55yRb0BDxnpcJYOBB%2B1UpAsW4acft%2FT0V57v1fEHu3HvOuPKPoDJSV%2FwnO7UkC8n%2F%2BwW0JoYj9OniGUjkStd5TeWlTf2w%3D%3D&trade_no=2025060222001429231418105298&auth_app_id=2021004192686216&version=1.0&app_id=2021004192686216&sign_type=RSA2&seller_id=2088941653694599&timestamp=2025-06-02+12%3A09%3A10
   public useAlipay() {
     this.paymentService.getAlipayForm(this.tier!).subscribe(res => {
       if(res.status === 200) {
