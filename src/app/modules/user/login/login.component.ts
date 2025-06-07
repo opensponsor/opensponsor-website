@@ -3,7 +3,7 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {ForPhoneNumberComponent} from "@modules/user/for-phone-number/for-phone-number.component";
 import {ForEmailComponent} from "@modules/user/for-email/for-email.component";
 import {ForSmsCodeComponent} from "@modules/user/for-sms-code/for-sms-code.component";
-import {NgOptimizedImage} from "@angular/common";
+import {LogoComponent} from "@app/components/logo/logo.component";
 
 @Component({
   selector: 'os-login',
@@ -13,7 +13,7 @@ import {NgOptimizedImage} from "@angular/common";
     ForPhoneNumberComponent,
     ForEmailComponent,
     ForSmsCodeComponent,
-    NgOptimizedImage,
+    LogoComponent,
   ],
   styleUrl: './login.component.scss'
 })

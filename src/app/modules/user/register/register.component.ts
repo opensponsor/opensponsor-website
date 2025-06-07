@@ -7,12 +7,12 @@ import {SnackBarService} from "@services/snack-bar/snack-bar.service";
 import {MatFormFieldModule, MatLabel} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
-import {NgOptimizedImage} from "@angular/common";
 import {environment} from "@environments/environment";
 import slugify from "limax";
 import {SmsCodeButtonComponent} from "@app/forms/sms-code-button/sms-code-button.component";
 import {validatePhoneNumber} from "@app/components/regular/phone-number";
 import {CountryPhoneGroupComponent} from "@app/forms/country-phone-group/country-phone-group.component";
+import {LogoComponent} from "@app/components/logo/logo.component";
 
 @Component({
   selector: 'os-register',
@@ -24,9 +24,9 @@ import {CountryPhoneGroupComponent} from "@app/forms/country-phone-group/country
     ReactiveFormsModule,
     MatSelectModule,
     RouterLink,
-    NgOptimizedImage,
     SmsCodeButtonComponent,
     CountryPhoneGroupComponent,
+    LogoComponent,
   ],
   styleUrl: './register.component.scss'
 })

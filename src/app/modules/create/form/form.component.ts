@@ -1,11 +1,11 @@
 import {AfterViewInit, Component, inject, ViewChild} from '@angular/core';
-import {AsyncPipe, NgClass, NgIf, NgOptimizedImage} from "@angular/common";
+import {AsyncPipe, NgClass, NgIf} from "@angular/common";
 import {MatRadioModule} from "@angular/material/radio";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatExpansionModule, MatExpansionPanel} from "@angular/material/expansion";
 import {MatIcon} from "@angular/material/icon";
 import {E_ORGANIZATION_TYPE, Licenses, Organization} from "@app/interfaces/ApiInterface";
-import {MatFormField, MatHint, MatLabel, MatPrefix, MatSuffix} from "@angular/material/form-field";
+import {MatFormField, MatLabel, MatPrefix} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {Platform} from "@angular/cdk/platform";
 import {
@@ -25,6 +25,7 @@ import {RequiredHintComponent} from "@app/components/required-hint/required-hint
 import {OrganizationsService} from "@services/organizations/organizations.service";
 import {SnackBarService} from "@services/snack-bar/snack-bar.service";
 import {Router} from "@angular/router";
+import {LogoComponent} from "@app/components/logo/logo.component";
 
 @Component({
   selector: 'os-form',
@@ -33,7 +34,6 @@ import {Router} from "@angular/router";
     MatRadioModule,
     MatExpansionModule,
     ReactiveFormsModule,
-    NgOptimizedImage,
     MatIcon,
     NgIf,
     MatFormField,
@@ -51,6 +51,7 @@ import {Router} from "@angular/router";
     MatSelect,
     MatButton,
     RequiredHintComponent,
+    LogoComponent,
   ],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss'

@@ -5,13 +5,14 @@ import {Platform} from "@angular/cdk/platform";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatIconModule} from "@angular/material/icon";
 import {MatListModule} from "@angular/material/list";
-import {NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
+import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {Organization} from "@app/interfaces/ApiInterface";
 import {AuthService} from "@services/auth/auth.service";
 import {MatFormField} from "@angular/material/form-field";
 import {MatSelectChange, MatSelectModule} from "@angular/material/select";
 import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {menus} from "@modules/dashboard/layout/menus";
+import {LogoComponent} from "@app/components/logo/logo.component";
 
 @Component({
   selector: 'os-layout',
@@ -25,11 +26,11 @@ import {menus} from "@modules/dashboard/layout/menus";
     NgForOf,
     NgIf,
     RouterOutlet,
-    NgOptimizedImage,
     MatFormField,
     MatSelectModule,
     ReactiveFormsModule,
     FormsModule,
+    LogoComponent,
   ],
   styleUrl: './layout.component.scss'
 })

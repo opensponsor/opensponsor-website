@@ -92,7 +92,7 @@
                  [ngClass]="{'!border-indigo-500': communityTypeControl.getRawValue() === 'code'}"
                  class="code bg-gray-200 rounded-md p-4 cursor-pointer border-2 border-transparent">
               <div class="flex flex-wrap gap-2">
-                <img ngSrc="/logo.svg" alt="" width="40" height="40">
+                <os-logo />
                 <mat-radio-button value="code">代码项目</mat-radio-button>
               </div>
               <div class="mt-2 bg-gray-100 rounded-md p-2 text-sm">描述</div>
@@ -101,7 +101,7 @@
                  [ngClass]="{'!border-indigo-500': communityTypeControl.getRawValue() === 'community'}"
                  class="community bg-gray-200 rounded-md p-4 cursor-pointer border-2 border-transparent">
               <div class="flex flex-wrap gap-2">
-                <img ngSrc="/logo.svg" alt="" width="40" height="40">
+                <os-logo />
                 <mat-radio-button value="community">其他社区</mat-radio-button>
               </div>
               <div class="mt-2 bg-gray-100 rounded-md p-2 text-sm">描述</div>

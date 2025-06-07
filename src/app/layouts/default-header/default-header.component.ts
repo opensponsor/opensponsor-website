@@ -2,23 +2,23 @@ import {Component, computed, HostListener} from '@angular/core';
 import {AuthService} from "@services/auth/auth.service";
 import {Platform} from "@angular/cdk/platform";
 import {RouterLink} from "@angular/router";
-import {NgClass, NgForOf, NgIf} from "@angular/common";
-import {MatAnchor, MatButton, MatButtonModule} from "@angular/material/button";
+import {NgClass, NgForOf} from "@angular/common";
+import {MatButtonModule} from "@angular/material/button";
 import {User} from "@app/interfaces/ApiInterface";
 import {MatCardModule} from "@angular/material/card";
-import {MatIcon} from "@angular/material/icon";
 import {CreateMenuComponent} from "@app/layouts/create-menu/create-menu.component";
+import {LogoComponent} from "@app/components/logo/logo.component";
 
 @Component({
   selector: 'os-default-header',
   imports: [
     RouterLink,
     NgForOf,
-    MatAnchor,
     NgClass,
     MatCardModule,
     MatButtonModule,
     CreateMenuComponent,
+    LogoComponent,
   ],
   templateUrl: './default-header.component.html',
   styleUrls: ['./default-header.component.scss']

@@ -1,8 +1,11 @@
 import {Component} from '@angular/core';
+import {LogoComponent} from "@app/components/logo/logo.component";
 
 @Component({
   selector: 'os-default-footer',
-  imports: [],
+  imports: [
+    LogoComponent
+  ],
   templateUrl: './default-footer.component.html',
   styleUrl: './default-footer.component.scss'
 })

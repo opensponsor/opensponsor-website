@@ -1,4 +1,4 @@
-<main class="m-auto flex flex-col gap-20">
+<main class="flex flex-col gap-20">
   <div class="flex justify-center w-full">
     <section class="flex flex-col gap-8 max-w-4xl">
       <div class="flex flex-row justify-center items-center h-32">
@@ -39,15 +39,19 @@
     </section>
   </div>
 
-  <div class="flex justify-center w-full">
-    <section class="flex flex-col gap-8 max-w-4xl">
+  <div class="flex justify-center w-full max-w-4xl mx-auto">
+    <section class="flex flex-col gap-8 w-full">
       <div class="flex flex-row justify-center items-center h-32">
         <h1 class="text-6xl font-bold">向社区做出贡献</h1>
       </div>
 
-      <div class="grid grid-cols-4 gap-2">
+      <div class="grid grid-cols-4 gap-2 w-full">
         @for (item of ['资金', 'code', '管理', '财务']; track item) {
-          <div class="w-full h-64 bg-gray-200">{{item}}</div>
+          <mat-card class="aspect-[10/14]" blob="primary" [alpha]="0.4" [backgroundSize]="['150%', '150%']" [backgroundPosition]="['120%', '120%']">
+            <mat-card-content>
+              {{item}}
+            </mat-card-content>
+          </mat-card>
         }
       </div>
     </section>
