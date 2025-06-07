@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <style>
+            body {
+                align-items: center;
+                display: flex;
+                height: 100vh;
+                justify-content: center;
+                margin: 0;
+                width: 100vw;
+            }
+
+            body * {
+                border: 1px solid #eee;
+            }
+
+            .buttons {
+                display: flex;
+                flex-direction: column;
+            }
+
+            #interact {
+                margin-top: 20px;
+                padding: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="buttons">
+            <button id="toggle">TOGGLE<br />DEBUG</button>
+            <button id="interact">INTERACT</button>
+        </div>
+        <script src="script.ts"></script>
+    </body>
+</html>
