@@ -17,6 +17,9 @@ import slugify from "limax";
 import {resetFormFields} from "@app/utils/reset-form-fields";
 import {SnackBarService} from "@services/snack-bar/snack-bar.service";
 import {DialogService} from "@services/dialog/dialog.service";
+import {
+  DashboardContainerComponent
+} from "@modules/dashboard/components/dashboard-container/dashboard-container.component";
 
 @Component({
   selector: 'os-profile-for-user',
@@ -33,6 +36,7 @@ import {DialogService} from "@services/dialog/dialog.service";
     MatButtonToggleGroup,
     MatButtonToggle,
     MatIcon,
+    DashboardContainerComponent,
   ],
   templateUrl: './profile-for-user.component.html',
   styleUrl: './profile-for-user.component.scss'

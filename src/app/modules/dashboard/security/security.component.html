@@ -1,1 +1,7 @@
-<p>security works!</p>
+@if (this.organization) {
+  @if (this.organization?.type === E_ORGANIZATION_TYPE.USER) {
+    <os-security-for-user></os-security-for-user>
+  } @else {
+    <os-security-for-organization></os-security-for-organization>
+  }
+}
