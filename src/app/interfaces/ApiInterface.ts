@@ -284,6 +284,19 @@ export enum E_AMOUNT_TYPE {
   FLEXIBLE = "FLEXIBLE",
 }
 
+export type AliPay = object;
+
+export interface Company {
+  id: UUID;
+  /** @maxLength 32 */
+  legalName?: string;
+  /** when created */
+  whenCreated: Instant;
+  /** when modified */
+  whenModified: Instant;
+  whenDeleted?: Instant;
+}
+
 export interface CountryCode {
   id: UUID;
   /**
@@ -362,6 +375,37 @@ export interface DebitCard {
   organization?: Organization;
   /** create by user */
   user?: User;
+  /** when created */
+  whenCreated: Instant;
+  /** when modified */
+  whenModified: Instant;
+  whenDeleted?: Instant;
+}
+
+export interface Example {
+  id: UUID;
+  name: string;
+  likeName?: string;
+  /** @format int32 */
+  age: number;
+  /** @format int32 */
+  minAge?: number;
+  /** @format int32 */
+  maxAge?: number;
+  /** when created */
+  whenCreated: Instant;
+  /** when modified */
+  whenModified: Instant;
+  whenDeleted?: Instant;
+}
+
+export interface FiscalHost {
+  id: UUID;
+  /**
+   * @minLength 2
+   * @maxLength 32
+   */
+  legalName?: string;
   /** when created */
   whenCreated: Instant;
   /** when modified */
@@ -646,6 +690,25 @@ export interface Member {
   whenDeleted?: Instant;
 }
 
+export interface MemberInvitation {
+  id: UUID;
+  /** 邀请链接 */
+  link?: string;
+  /** 过期时间 */
+  whenExpire?: string;
+  /** user */
+  user: User;
+  /** organization */
+  organization: Organization;
+  /** member role */
+  role: E_ORGANIZATION_ROLE;
+  /** when created */
+  whenCreated: Instant;
+  /** when modified */
+  whenModified: Instant;
+  whenDeleted?: Instant;
+}
+
 export interface Order {
   id: UUID;
   /** create by user */
@@ -686,6 +749,35 @@ export interface Order {
   whenModified: Instant;
   whenDeleted?: Instant;
   guest?: boolean;
+}
+
+export interface OrderSnapshot {
+  id: UUID;
+  order?: Order;
+  string?: string;
+  /** when created */
+  whenCreated: Instant;
+  /** when modified */
+  whenModified: Instant;
+  whenDeleted?: Instant;
+}
+
+export interface OrderTax {
+  id: UUID;
+  /**
+   * 税率比例
+   * @format float
+   */
+  percentage: number;
+  /** 纳税国家 */
+  taxedCountry?: CountryCode;
+  /** 纳税人所在国家 */
+  taxerCountry?: CountryCode;
+  /** when created */
+  whenCreated: Instant;
+  /** when modified */
+  whenModified: Instant;
+  whenDeleted?: Instant;
 }
 
 export interface Organization {
@@ -769,6 +861,8 @@ export interface Organization {
   /** when deleted */
   whenDeleted?: Instant;
 }
+
+export type Policies = object;
 
 export interface PromotionDetail {
   couponId?: string;
@@ -867,6 +961,21 @@ export interface SendSmsResponseBody {
   code?: string;
   message?: string;
   requestId?: string;
+}
+
+export interface SmsCode {
+  id: UUID;
+  /** country code */
+  countryCode?: CountryCode;
+  phoneNumber: string;
+  code: string;
+  /** 是否有效, (使用过后变为无效) */
+  effective: boolean;
+  /** when created */
+  whenCreated: Instant;
+  /** when modified */
+  whenModified: Instant;
+  whenDeleted?: Instant;
 }
 
 export interface Tags {
@@ -996,6 +1105,8 @@ export interface TransactionPayer {
  */
 export type UUID = string;
 
+export type UnionPay = object;
+
 export interface UpdateUser {
   /**
    * username
@@ -1063,7 +1174,7 @@ export interface User {
    * @minLength 4
    * @maxLength 11
    */
-  phoneNumber?: string;
+  phoneNumber: string;
   /**
    * email
    * @minLength 6
@@ -1096,6 +1207,8 @@ export interface ViolationReport {
   parameterViolations?: ResteasyConstraintViolation[];
   returnValueViolations?: ResteasyConstraintViolation[];
 }
+
+export type WeChatPay = object;
 
 export interface WechatPayOrderResult {
   /** qrcode url */
