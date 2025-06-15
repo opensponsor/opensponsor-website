@@ -1,0 +1,17 @@
+<os-dashboard-container>
+  <form class="flex flex-col gap-3 w-full"
+        (ngSubmit)="formGroup.valid && submit()" [formGroup]="formGroup">
+    <h3>更新资料信息</h3>
+    <os-required-hint />
+
+    @if (user) {
+      <div class="text-sm text-amber-500 text-end">发送验证码到 {{user.phoneNumber}} </div>
+      <os-sms-code-button [smsCodeFormControl]="formGroup.controls.smsCode" ngDefaultControl [toSelf]="true" [phoneNumber]="undefined" [countryCode]="user.countryCode" />
+    }
+
+    <mat-form-field class="w-full">
+      <mat-label>新密码</mat-label>
+      <input matInput [formControl]="formGroup.controls.password" />
+    </mat-form-field>
+  </form>
+</os-dashboard-container>

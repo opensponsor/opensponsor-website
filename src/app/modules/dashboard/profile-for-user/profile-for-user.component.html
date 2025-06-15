@@ -3,6 +3,7 @@
         (ngSubmit)="formGroup.valid && submit()" [formGroup]="formGroup">
     <h3>更新资料信息</h3>
     <os-required-hint />
+
     <mat-form-field class="w-full">
       <mat-label>用户名</mat-label>
       <input matInput [formControl]="formGroup.controls.username" />

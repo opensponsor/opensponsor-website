@@ -14,4 +14,8 @@ export class UserService {
   public update(user: UpdateUser) {
     return this.httpService.put('/user', user);
   }
+
+  public updatePassword(user: UpdateUser) {
+    return this.httpService.put('/user', user);
+  }
 }

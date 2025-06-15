@@ -31,12 +31,17 @@ export class SmsCodeButtonComponent {
   @Input({
     required: true,
   })
-  phoneNumber: string | null = null;
+  phoneNumber: string | undefined | null;
+
+  @Input({
+    required: false,
+  })
+  toSelf: boolean = false;
 
   @Input({
     required: true,
   })
-  countryCode: CountryCode | null = null;
+  countryCode: CountryCode | undefined | null;
 
   private initialText = '获取验证码';
   private pendingTimes = isDevMode() ? 5 : 80; // seconds
