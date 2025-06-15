@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {MatButton} from "@angular/material/button";
-import {MatFormField, MatSuffix} from "@angular/material/form-field";
+import {MatError, MatFormField, MatSuffix} from "@angular/material/form-field";
 import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInput} from "@angular/material/input";
 import {validatePhoneNumber} from "@app/components/regular/phone-number";
@@ -8,6 +8,7 @@ import {CountryCode} from "@app/interfaces/ApiInterface";
 import {SmsService} from "@services/sms/sms.service";
 import {SnackBarService} from "@services/snack-bar/snack-bar.service";
 import { isDevMode } from '@angular/core';
+import {FieldErrors} from "@app/forms/field-errors/field-errors";
 
 @Component({
   selector: 'os-sms-code-button',
@@ -17,7 +18,9 @@ import { isDevMode } from '@angular/core';
     FormsModule,
     MatFormField,
     MatInput,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FieldErrors,
+    MatError
   ],
   templateUrl: './sms-code-button.component.html',
   styleUrl: './sms-code-button.component.scss'
