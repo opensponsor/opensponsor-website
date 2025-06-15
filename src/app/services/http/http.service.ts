@@ -99,7 +99,7 @@ export abstract class HttpService {
     )
   }
 
-  public post<T>(url: string, body: any | null, params?: HttpParams) {
+  public post<T>(url: string, body?: any | null, params?: HttpParams) {
     this.setToken();
     return this.http.post<T extends Array<any> ? HttpResultOfArray<T> : HttpResultOfData<T>>(this.getUrl(url), body, {
       headers: this.headers,
@@ -111,7 +111,7 @@ export abstract class HttpService {
     );
   }
 
-  public put<T>(url: string, body: any | null, params?: HttpParams) {
+  public put<T>(url: string, body?: any | null, params?: HttpParams) {
     this.setToken();
     return this.http.put<T extends Array<any> ? HttpResultOfArray<T> : HttpResultOfData<T>>(this.getUrl(url), body, {
       headers: this.headers,
