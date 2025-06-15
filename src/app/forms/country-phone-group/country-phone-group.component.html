@@ -4,7 +4,7 @@
       <mat-option *ngFor="let item of countryCodes" [value]="item">{{ item.dial }}</mat-option>
     </mat-select>
   </mat-form-field>
-  <mat-form-field class="[&_div]:rounded-l-none [&_div]:!border-l-0 w-9/12">
+  <mat-form-field class="[&_div]:!rounded-none [&_div]:!border-l-0 w-9/12">
     <mat-label>手机号</mat-label>
     <input matInput name="phoneNumber" [formControl]="phoneNumberControl"
            required
