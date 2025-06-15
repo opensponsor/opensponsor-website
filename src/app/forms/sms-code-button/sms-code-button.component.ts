@@ -85,6 +85,20 @@ export class SmsCodeButtonComponent {
           this.snackBarService.message({message: err.body.message})
         }
       })
+    } else if(this.toSelf) {
+      this.smsService.sendVerificationCodeToSelf().subscribe({
+        next: res => {
+          if(res.body?.code == 200) {
+            this.countDown(this.pendingTimes);
+          } else {
+            this.snackBarService.message({message: res.body?.message as string});
+          }
+        },
+        error: err => {
+          this.disabled = false;
+          this.snackBarService.message({message: err.body.message})
+        }
+      })
     }
   }
 
