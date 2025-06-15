@@ -939,6 +939,13 @@ export interface ResteasyConstraintViolation {
   value?: string;
 }
 
+export interface ResultOfData {
+  message: string;
+  /** @format int64 */
+  code: number;
+  data?: any;
+}
+
 export interface SendCodeBody {
   countryCode: CountryCode;
   /**
@@ -1130,6 +1137,21 @@ export interface UpdateUser {
   sex?: E_SEX;
 }
 
+export interface UpdateUserPassword {
+  /**
+   * password
+   * @minLength 6
+   * @maxLength 64
+   */
+  password: string;
+  /**
+   * code
+   * @minLength 4
+   * @maxLength 4
+   */
+  code: string;
+}
+
 export interface User {
   id: UUID;
   /**
@@ -1188,6 +1210,7 @@ export interface User {
   /** when modified */
   whenModified: Instant;
   whenDeleted?: Instant;
+  getFullData?: boolean;
 }
 
 export interface UserToken {
