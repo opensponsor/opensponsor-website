@@ -6,12 +6,20 @@
 
     @if (user) {
       <div class="text-sm text-amber-500 text-end">发送验证码到 {{user.phoneNumber}} </div>
-      <os-sms-code-button [smsCodeFormControl]="formGroup.controls.smsCode" ngDefaultControl [toSelf]="true" [phoneNumber]="undefined" [countryCode]="user.countryCode" />
+      <os-sms-code-button [smsCodeFormControl]="formGroup.controls.code" ngDefaultControl [toSelf]="true" [phoneNumber]="undefined" [countryCode]="user.countryCode" />
     }
 
     <mat-form-field class="w-full">
       <mat-label>新密码</mat-label>
-      <input matInput [formControl]="formGroup.controls.password" />
+      <input matInput type="password" [formControl]="formGroup.controls.password" />
+      <mat-error>
+        <os-field-errors  [field]="formGroup.controls.password" />
+      </mat-error>
     </mat-form-field>
+
+    <div>
+      <button mat-flat-button class="w-full" type="submit">保存</button>
+    </div>
+
   </form>
 </os-dashboard-container>

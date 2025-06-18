@@ -1,0 +1,9 @@
+  @if (field.hasError('required')) {
+    请输入必填项
+  }
+  @if (field.hasError('minlength')) {
+    请输入至少{{field.getError("minlength").requiredLength}}个字符
+  }
+  @if (field.hasError('maxlength')) {
+    请输入最多{{field.getError("maxlength").requiredLength}}个字符
+  }

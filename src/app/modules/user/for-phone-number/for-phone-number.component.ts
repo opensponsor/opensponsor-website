@@ -41,7 +41,7 @@ export class ForPhoneNumberComponent {
     ]),
     password: new FormControl(null, [
       Validators.required,
-      Validators.minLength(4),
+      Validators.minLength(6),
       Validators.maxLength(64),
     ]),
   });

@@ -94,7 +94,7 @@ export class RegisterComponent {
     ]),
     password: new FormControl<string>("", [
       Validators.required,
-      Validators.minLength(4),
+      Validators.minLength(6),
       Validators.maxLength(64),
     ]),
   });

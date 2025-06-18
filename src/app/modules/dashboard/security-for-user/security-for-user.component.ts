@@ -10,8 +10,10 @@ import {resetFormFields} from "@app/utils/reset-form-fields";
 import {UserService} from "@services/user/user.service";
 import {SnackBarService} from "@services/snack-bar/snack-bar.service";
 import {SmsCodeButtonComponent} from "@app/forms/sms-code-button/sms-code-button.component";
-import {User} from "@app/interfaces/ApiInterface";
+import {UpdateUserPassword, User} from "@app/interfaces/ApiInterface";
 import {AuthService} from "@services/auth/auth.service";
+import {MatButton} from "@angular/material/button";
+import {FieldErrors} from "@app/forms/field-errors/field-errors";
 
 @Component({
   selector: 'os-security-for-user',
@@ -23,7 +25,9 @@ import {AuthService} from "@services/auth/auth.service";
     MatInput,
     MatLabel,
     MatFormFieldModule,
-    SmsCodeButtonComponent
+    SmsCodeButtonComponent,
+    MatButton,
+    FieldErrors
   ],
   templateUrl: './security-for-user.component.html',
   styleUrl: './security-for-user.component.scss'
@@ -33,10 +37,10 @@ export class SecurityForUserComponent {
   public formGroup = new FormGroup({
     password: new FormControl<string>("", [
       Validators.required,
-      Validators.minLength(2),
+      Validators.minLength(6),
       Validators.maxLength(64),
     ]),
-    smsCode: new FormControl<string>("", [
+    code: new FormControl<string>("", [
       Validators.required,
       Validators.minLength(4),
       Validators.maxLength(4),
@@ -54,13 +58,15 @@ export class SecurityForUserComponent {
   public submit(): void {
     if(this.formGroup.valid) {
       resetFormFields(this.formGroup.controls);
-      // this.userService.update(this.formGroup.getRawValue()).subscribe((res) => {
-      //   if(res.status === 200 && res.body) {
-      //     this.snackBarService.message({ message: res.body.message })
-      //   }
-      // });
+      this.userService.updatePassword(this.formGroup.getRawValue() as UpdateUserPassword).subscribe((res) => {
+        if(res.status === 200 && res.body) {
+          this.snackBarService.message({ message: res.body.message })
+        }
+      });
     } else {
       console.dir(this.formGroup.errors);
     }
   }
+
+  protected readonly JSON = JSON;
 }

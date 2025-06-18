@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpService} from "@services/http/http.service";
-import {UpdateUser} from "@app/interfaces/ApiInterface";
+import {UpdateUser, UpdateUserPassword} from "@app/interfaces/ApiInterface";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class UserService {
     return this.httpService.put('/user', user);
   }
 
-  public updatePassword(user: UpdateUser) {
-    return this.httpService.put('/user', user);
+  public updatePassword(user: UpdateUserPassword) {
+    return this.httpService.put('/user/updatePassword', user);
   }
 }
