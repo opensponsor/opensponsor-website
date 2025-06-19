@@ -21,7 +21,6 @@ export const menus: Menu[] = [
     link: '',
     icon: 'paid',
     roles: [
-      E_ORGANIZATION_TYPE.USER,
       E_ORGANIZATION_TYPE.ORGANIZATION,
       E_ORGANIZATION_TYPE.COMMUNITY
     ],
@@ -52,8 +51,8 @@ export const menus: Menu[] = [
     ],
     children: [
       {
-        label: '捐给谁',
-        link: '',
+        label: '所有捐款',
+        link: 'donation',
       },
     ]
   },
