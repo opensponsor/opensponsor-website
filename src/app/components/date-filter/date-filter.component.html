@@ -1,0 +1,27 @@
+<form method="dialog">
+  <div class="flex gap-2">
+    <mat-form-field class="rounded-full">
+      <mat-select value="today">
+        <mat-option [value]="'today'">{{'今天'}}</mat-option>
+        <mat-option [value]="'topping'">{{'过去一周'}}</mat-option>
+        <mat-option [value]="'topping'">{{'过去四周'}}</mat-option>
+        <mat-option [value]="'topping'">{{'过去三个月'}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="rounded-full">
+      <mat-label>时间范围</mat-label>
+      <mat-date-range-input
+        [formGroup]="range"
+        [rangePicker]="rangePicker"
+        [comparisonStart]="range.value.start"
+        [comparisonEnd]="range.value.end">
+        <input matStartDate placeholder="起始日期" formControlName="start">
+        <input matEndDate placeholder="截止日期" formControlName="end">
+      </mat-date-range-input>
+      <mat-hint>最长不超过6个月范围</mat-hint>
+      <mat-datepicker-toggle class="pr-1" matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
+      <mat-date-range-picker #rangePicker></mat-date-range-picker>
+    </mat-form-field>
+  </div>
+</form>

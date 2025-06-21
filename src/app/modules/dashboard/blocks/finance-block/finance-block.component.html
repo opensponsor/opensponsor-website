@@ -1,32 +1,6 @@
 <section>
   <div class="border-b border-gray-200 pb-4 md:max-w-4xl">
-    <form method="dialog">
-      <div class="flex gap-2">
-        <mat-form-field class="rounded-full">
-          <mat-select>
-            <mat-option [value]="'topping'">{{'今天'}}</mat-option>
-            <mat-option [value]="'topping'">{{'过去一周'}}</mat-option>
-            <mat-option [value]="'topping'">{{'过去四周'}}</mat-option>
-            <mat-option [value]="'topping'">{{'过去三个月'}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field class="rounded-full">
-          <mat-label>时间范围</mat-label>
-          <mat-date-range-input
-            [formGroup]="campaignOne"
-            [rangePicker]="campaignOnePicker"
-            [comparisonStart]="campaignOne.value.start"
-            [comparisonEnd]="campaignOne.value.end">
-            <input matStartDate placeholder="Start date" formControlName="start">
-            <input matEndDate placeholder="End date" formControlName="end">
-          </mat-date-range-input>
-          <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle matIconSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
-          <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
-        </mat-form-field>
-      </div>
-    </form>
+    <os-date-filter />
     <div class="mt-4 grid grid-cols-2 gap-2">
       <mat-card appearance="outlined">
         <mat-card-header>

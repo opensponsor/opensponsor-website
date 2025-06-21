@@ -1,1 +1,7 @@
-<p>donation works!</p>
+@if (organization) {
+  @if (organization.type === E_ORGANIZATION_TYPE.USER) {
+    <os-donation-for-user></os-donation-for-user>
+  } @else {
+    <os-donation-for-organization></os-donation-for-organization>
+  }
+}

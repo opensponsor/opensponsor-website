@@ -1,11 +1,10 @@
 import {Component} from '@angular/core';
 import {OrganizationsService} from "@services/organizations/organizations.service";
 import {E_ORGANIZATION_TYPE, Organization} from "@app/interfaces/ApiInterface";
-import {OrganizationFormComponent} from "@app/forms/organization-form/organization-form.component";
-import {ProfileForUserComponent} from "@modules/dashboard/profile-for-user/profile-for-user.component";
+import {ProfileForUserComponent} from "@modules/dashboard/profile/group/profile-for-user/profile-for-user.component";
 import {
   ProfileForOrganizationComponent
-} from "@modules/dashboard/profile-for-organization/profile-for-organization.component";
+} from "@modules/dashboard/profile/group/profile-for-organization/profile-for-organization.component";
 
 @Component({
   selector: 'os-profile',
