@@ -36,7 +36,8 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/tailwind.css"
             ],
             "scripts": [],
             "server": "src/main.server.ts",
@@ -118,7 +119,8 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/tailwind.css"
             ],
             "scripts": []
           }
