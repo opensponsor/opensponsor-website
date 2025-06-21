@@ -11,9 +11,6 @@
           "prefix": "os",
           "standalone": true,
           "type": "component"
-        },
-        "@schematics/angular:directive": {
-          "prefix": "dir"
         }
       },
       "root": "",
