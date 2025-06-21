@@ -7,12 +7,17 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "prefix": "os",
+          "standalone": true,
+          "type": "component"
+        },
+        "@schematics/angular:directive": {
+          "prefix": "dir"
         }
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "os",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
