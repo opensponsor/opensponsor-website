@@ -11,6 +11,12 @@
           "prefix": "os",
           "standalone": true,
           "type": "component"
+        },
+        "@schematics/angular:service": {
+          "type": "service"
+        },
+        "@schematics/angular:directive": {
+          "type": "directive"
         }
       },
       "root": "",
