@@ -711,9 +711,17 @@ export interface MemberInvitation {
 
 export interface Order {
   id: UUID;
-  /** create by user */
+  /** donation from user */
   user: User;
-  /** from by organization */
+  /** filterable */
+  userId?: string;
+  /** filterable */
+  organizationId?: string;
+  /** filterable */
+  startDate?: string;
+  /** filterable */
+  endDate?: string;
+  /** donation to organization */
   organization: Organization;
   /** 使用的货币 */
   currency?: CountryCode;
@@ -860,6 +868,13 @@ export interface Organization {
   whenModified: Instant;
   /** when deleted */
   whenDeleted?: Instant;
+}
+
+export interface PageParams {
+  /** @format int32 */
+  page?: number;
+  /** @format int32 */
+  pageSize?: number;
 }
 
 export type Policies = object;
