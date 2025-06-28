@@ -4,6 +4,7 @@ import {MatList, MatListItem} from "@angular/material/list";
 import {MatTab, MatTabGroup} from "@angular/material/tabs";
 
 @Component({
+  standalone: true,
   selector: 'os-budget',
   imports: [
     MatList,

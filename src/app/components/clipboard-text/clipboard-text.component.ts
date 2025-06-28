@@ -4,6 +4,7 @@ import {CdkCopyToClipboard} from "@angular/cdk/clipboard";
 import {MatIcon} from "@angular/material/icon";
 
 @Component({
+  standalone: true,
   selector: 'os-clipboard-text',
   imports: [
     MatButton,

@@ -16,7 +16,8 @@
           "type": "service"
         },
         "@schematics/angular:directive": {
-          "type": "directive"
+          "type": "directive",
+          "standalone": true
         }
       },
       "root": "",

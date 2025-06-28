@@ -17,6 +17,7 @@ import {TeamComponent} from "../components/team/team.component";
 import {HeroComponent} from "../components/hero/hero.component";
 
 @Component({
+  standalone: true,
   selector: 'os-info',
   templateUrl: './info.component.html',
   imports: [

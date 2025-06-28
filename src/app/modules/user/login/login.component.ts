@@ -6,6 +6,7 @@ import {ForSmsCodeComponent} from "@modules/user/for-sms-code/for-sms-code.compo
 import {LogoComponent} from "@app/components/logo/logo.component";
 
 @Component({
+  standalone: true,
   selector: 'os-login',
   templateUrl: './login.component.html',
   imports: [

@@ -8,6 +8,7 @@ const craftsKeys = ["arrow", 'check'] as const;
 type craftsConstType = typeof craftsKeys[number];
 
 @Component({
+  standalone: true,
   selector: 'os-handcrafts',
   templateUrl: './handcrafts.component.html',
   styleUrl: './handcrafts.component.scss'

@@ -17,11 +17,10 @@ import slugify from "limax";
 import {resetFormFields} from "@app/utils/reset-form-fields";
 import {SnackBarService} from "@services/snack-bar/snack-bar.service";
 import {DialogService} from "@services/dialog/dialog.service";
-import {
-  DashboardContainerComponent
-} from "@modules/dashboard/components/dashboard-container/dashboard-container.component";
+import {DashboardLayoutComponent} from "@modules/dashboard/components/dashboard-layout/dashboard-layout.component";
 
 @Component({
+  standalone: true,
   selector: 'os-profile-for-user',
   imports: [
     RequiredHintComponent,
@@ -32,11 +31,10 @@ import {
     MatButtonModule,
     MatAutocompleteModule,
     MatChipsModule,
-    RequiredHintComponent,
     MatButtonToggleGroup,
     MatButtonToggle,
     MatIcon,
-    DashboardContainerComponent,
+    DashboardLayoutComponent,
   ],
   templateUrl: './profile-for-user.component.html',
   styleUrl: './profile-for-user.component.scss'

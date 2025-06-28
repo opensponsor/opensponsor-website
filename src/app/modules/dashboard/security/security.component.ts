@@ -8,6 +8,7 @@ import {
 } from "@modules/dashboard/security/group/security-for-organization/security-for-organization.component";
 
 @Component({
+  standalone: true,
   selector: 'os-security',
   templateUrl: './security.component.html',
   imports: [

@@ -5,6 +5,7 @@ import {MatProgressBar} from "@angular/material/progress-bar";
 import {AlertOptions} from "@app/interfaces";
 
 @Component({
+  standalone: true,
   selector: 'os-confirm',
   templateUrl: './confirm.component.html',
   styleUrls: ['./confirm.component.scss'],

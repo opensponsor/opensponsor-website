@@ -3,6 +3,7 @@ import { qrcanvas } from 'qrcanvas';
 import {Platform} from "@angular/cdk/platform";
 
 @Component({
+  standalone: true,
   selector: 'os-qrcode',
   imports: [],
   templateUrl: './qrcode.component.html',

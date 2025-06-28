@@ -9,6 +9,7 @@ import {CountryCode} from "@app/interfaces/ApiInterface";
 import {enumTranslate} from "@app/languages/zh_cn/enumTranslate";
 
 @Component({
+  standalone: true,
   selector: 'os-country-select',
   imports: [
     MatFormField,

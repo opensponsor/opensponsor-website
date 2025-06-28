@@ -10,6 +10,7 @@ const month = today.getMonth();
 const year = today.getFullYear();
 
 @Component({
+  standalone: true,
   selector: 'os-date-filter',
   imports: [MatSelectModule, MatFormFieldModule, MatDatepickerModule, FormsModule, ReactiveFormsModule],
   providers: [provideNativeDateAdapter()],

@@ -9,6 +9,7 @@ import {CountryCodesService} from "@services/countryCodes/country-codes.service"
 import {CountryCode} from "@app/interfaces/ApiInterface";
 
 @Component({
+  standalone: true,
   selector: 'os-country-phone-group',
   imports: [
     MatError,

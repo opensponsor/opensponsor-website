@@ -10,6 +10,7 @@ import {CreateMenuComponent} from "@app/layouts/create-menu/create-menu.componen
 import {LogoComponent} from "@app/components/logo/logo.component";
 
 @Component({
+  standalone: true,
   selector: 'os-default-header',
   imports: [
     RouterLink,

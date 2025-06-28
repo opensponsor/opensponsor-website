@@ -4,6 +4,7 @@ import {RouterOutlet} from "@angular/router";
 import {DefaultFooterComponent} from "@app/layouts/default-footer/default-footer.component";
 
 @Component({
+  standalone: true,
   selector: 'os-default-layout',
   imports: [
     DefaultHeaderComponent,

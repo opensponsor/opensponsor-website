@@ -9,6 +9,7 @@ import {MatInputModule} from "@angular/material/input";
 import {CountryPhoneGroupComponent} from "@app/forms/country-phone-group/country-phone-group.component";
 
 @Component({
+  standalone: true,
   selector: 'os-for-phone-number',
   imports: [
     MatFormFieldModule,

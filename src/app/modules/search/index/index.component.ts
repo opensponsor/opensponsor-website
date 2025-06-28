@@ -11,6 +11,7 @@ import {NgIf} from "@angular/common";
 import {EmptyStatesComponent} from "@app/components/empty-states/empty-states.component";
 
 @Component({
+  standalone: true,
   selector: 'os-index',
   templateUrl: './index.component.html',
   imports: [

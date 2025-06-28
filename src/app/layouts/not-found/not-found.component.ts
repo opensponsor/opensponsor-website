@@ -3,6 +3,7 @@ import {DefaultHeaderComponent} from "@app/layouts/default-header/default-header
 import {DefaultFooterComponent} from "@app/layouts/default-footer/default-footer.component";
 
 @Component({
+  standalone: true,
   selector: 'os-not-found',
   imports: [
     DefaultHeaderComponent,

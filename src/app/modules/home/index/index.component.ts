@@ -5,6 +5,7 @@ import {MatCardModule} from "@angular/material/card";
 import {BlobDirective} from "@app/directive/blob/blob.directive";
 
 @Component({
+  standalone: true,
   selector: 'os-index',
   templateUrl: './index.component.html',
   imports: [

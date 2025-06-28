@@ -10,6 +10,7 @@ import {NgForOf} from "@angular/common";
 import {MatRipple} from "@angular/material/core";
 
 @Component({
+  standalone: true,
   selector: 'os-tiers',
   templateUrl: './tiers.component.html',
   imports: [

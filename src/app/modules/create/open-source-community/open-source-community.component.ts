@@ -4,6 +4,7 @@ import {getWebFlowAuthorizationUrl} from "@octokit/oauth-methods";
 import {environment} from "@environments/environment";
 
 @Component({
+  standalone: true,
   selector: 'os-open-source-community',
   templateUrl: './open-source-community.component.html',
   imports: [

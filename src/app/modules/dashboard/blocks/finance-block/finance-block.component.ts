@@ -9,6 +9,7 @@ import {MatCardModule} from "@angular/material/card";
 import {DateFilterComponent} from "@app/components/date-filter/date-filter.component";
 
 @Component({
+  standalone: true,
   selector: 'os-finance-block',
   imports: [
     ReactiveFormsModule,

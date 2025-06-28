@@ -4,6 +4,7 @@ import {OrganizationsService} from "@services/organizations/organizations.servic
 import {E_ORGANIZATION_ROLE, Member, Organization} from "@app/interfaces/ApiInterface";
 
 @Component({
+  standalone: true,
   selector: 'os-team',
   templateUrl: './team.component.html',
   imports: [

@@ -11,6 +11,7 @@ import {MatIcon} from "@angular/material/icon";
 import {Router} from "@angular/router";
 
 @Component({
+  standalone: true,
   selector: 'os-apply-for-github',
   imports: [
     MatSelectionList,

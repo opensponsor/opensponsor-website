@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {DateFilterComponent} from "@app/components/date-filter/date-filter.component";
 
 @Component({
+  standalone: true,
   selector: 'os-donation-for-organization',
   imports: [
     DateFilterComponent

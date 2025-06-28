@@ -4,6 +4,7 @@ import {NgOptimizedImage, NgStyle} from "@angular/common";
 type Size = 'sm' | 'md' | 'xl' | '2xl';
 
 @Component({
+  standalone: true,
   selector: 'os-logo',
   imports: [
     NgOptimizedImage,

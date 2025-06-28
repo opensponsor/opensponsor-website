@@ -15,6 +15,7 @@ import {CountryPhoneGroupComponent} from "@app/forms/country-phone-group/country
 import {LogoComponent} from "@app/components/logo/logo.component";
 
 @Component({
+  standalone: true,
   selector: 'os-register',
   templateUrl: './register.component.html',
   imports: [

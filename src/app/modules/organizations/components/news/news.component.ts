@@ -3,6 +3,7 @@ import {Organization} from "@app/interfaces/ApiInterface";
 import {MatButton} from "@angular/material/button";
 
 @Component({
+  standalone: true,
   selector: 'os-news',
   imports: [
     MatButton

@@ -6,6 +6,7 @@ import {ActivityBlockComponent} from "../blocks/activity-block/activity-block.co
 import {FinanceBlockComponent} from "../blocks/finance-block/finance-block.component";
 
 @Component({
+  standalone: true,
   selector: 'os-index',
   templateUrl: './index.component.html',
   imports: [

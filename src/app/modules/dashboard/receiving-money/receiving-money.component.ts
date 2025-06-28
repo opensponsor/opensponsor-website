@@ -8,6 +8,7 @@ import {MatButton, MatButtonModule} from "@angular/material/button";
 import {MatDivider} from "@angular/material/divider";
 
 @Component({
+  standalone: true,
   selector: 'os-receiving-money',
   templateUrl: './receiving-money.component.html',
   imports: [

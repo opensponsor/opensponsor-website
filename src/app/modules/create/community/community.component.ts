@@ -3,6 +3,7 @@ import {E_ORGANIZATION_TYPE} from "@app/interfaces/ApiInterface";
 import {OrganizationFormComponent} from "@app/forms/organization-form/organization-form.component";
 
 @Component({
+  standalone: true,
   selector: 'os-community',
   templateUrl: './community.component.html',
   imports: [

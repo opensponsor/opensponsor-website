@@ -24,6 +24,7 @@ import {RequiredHintComponent} from "@app/components/required-hint/required-hint
 import {CountrySelectComponent} from "@app/forms/country-select/country-select.component";
 
 @Component({
+  standalone: true,
   selector: 'os-tier-dialog',
   templateUrl: './tier-dialog.component.html',
   imports: [

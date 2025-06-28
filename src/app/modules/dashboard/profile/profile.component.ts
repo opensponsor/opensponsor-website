@@ -7,6 +7,7 @@ import {
 } from "@modules/dashboard/profile/group/profile-for-organization/profile-for-organization.component";
 
 @Component({
+  standalone: true,
   selector: 'os-profile',
   templateUrl: './profile.component.html',
   imports: [

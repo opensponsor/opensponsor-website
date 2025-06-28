@@ -15,6 +15,7 @@ import {menus} from "@modules/dashboard/layout/menus";
 import {LogoComponent} from "@app/components/logo/logo.component";
 
 @Component({
+  standalone: true,
   selector: 'os-layout',
   templateUrl: './layout.component.html',
   imports: [

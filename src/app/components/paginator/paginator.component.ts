@@ -3,6 +3,7 @@ import {HttpResultOfArray} from "@services/http/http.service";
 import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
+  standalone: true,
   selector: 'os-paginator',
   imports: [
     MatPaginator

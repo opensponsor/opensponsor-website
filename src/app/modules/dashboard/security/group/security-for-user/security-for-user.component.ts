@@ -16,6 +16,7 @@ import {MatButton} from "@angular/material/button";
 import {FieldErrors} from "@app/forms/field-errors/field-errors";
 
 @Component({
+  standalone: true,
   selector: 'os-security-for-user',
   imports: [
     DashboardContainerComponent,

@@ -8,6 +8,7 @@ import {CountryPhoneGroupComponent} from "@app/forms/country-phone-group/country
 import {SmsCodeButtonComponent} from "@app/forms/sms-code-button/sms-code-button.component";
 
 @Component({
+  standalone: true,
   selector: 'os-for-sms-code',
   imports: [
     CountryPhoneGroupComponent,

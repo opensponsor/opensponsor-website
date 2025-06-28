@@ -18,6 +18,7 @@ import {QrcodeComponent} from "@app/components/qrcode/qrcode.component";
 import {AuthService} from "@services/auth/auth.service";
 
 @Component({
+  standalone: true,
   selector: 'os-checkout',
   templateUrl: './checkout.component.html',
   imports: [
@@ -33,7 +34,6 @@ import {AuthService} from "@services/auth/auth.service";
     MatExpansionModule,
     QrcodeComponent,
   ],
-  standalone: true,
   styleUrl: './checkout.component.scss'
 })
 export class CheckoutComponent implements AfterViewInit {

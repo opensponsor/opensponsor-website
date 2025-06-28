@@ -4,6 +4,7 @@ import {MatChip, MatChipSet} from "@angular/material/chips";
 import {MatIcon} from "@angular/material/icon";
 
 @Component({
+  standalone: true,
   selector: 'os-hero',
   imports: [
     MatChip,

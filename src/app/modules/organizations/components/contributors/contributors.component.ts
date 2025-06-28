@@ -3,6 +3,7 @@ import {Organization} from "@app/interfaces/ApiInterface";
 import {MatTab, MatTabGroup} from "@angular/material/tabs";
 
 @Component({
+  standalone: true,
   selector: 'os-contributors',
   imports: [
     MatTab,

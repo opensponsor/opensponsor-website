@@ -28,6 +28,7 @@ import {Router} from "@angular/router";
 import {LogoComponent} from "@app/components/logo/logo.component";
 
 @Component({
+  standalone: true,
   selector: 'os-form',
   imports: [
     NgClass,

@@ -11,6 +11,7 @@ import { isDevMode } from '@angular/core';
 import {FieldErrors} from "@app/forms/field-errors/field-errors";
 
 @Component({
+  standalone: true,
   selector: 'os-sms-code-button',
   imports: [
     MatButton,

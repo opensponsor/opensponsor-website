@@ -17,6 +17,7 @@ import slugify from "limax";
 import {TagsFieldComponent} from "@app/forms/tags-field/tags-field.component";
 
 @Component({
+  standalone: true,
   selector: 'os-organization-form',
   imports: [
     MatCardModule,

@@ -17,6 +17,7 @@ import {TagsService} from "@services/tags/tags.service";
 import {DialogService} from "@services/dialog/dialog.service";
 
 @Component({
+  standalone: true,
   selector: 'os-tags-field',
   templateUrl: 'tags-field.component.html',
   styleUrl: 'tags-field.component.scss',

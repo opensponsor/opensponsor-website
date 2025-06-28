@@ -9,6 +9,7 @@ import {E_ORGANIZATION_TYPE, Organization} from "@app/interfaces/ApiInterface";
 import {OrganizationsService} from "@services/organizations/organizations.service";
 
 @Component({
+  standalone: true,
   selector: 'os-donation',
   imports: [
     DonationForUserComponent,

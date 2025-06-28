@@ -1,7 +1,6 @@
-<os-dashboard-container>
+<os-dashboard-layout title="更新资料信息">
   <form class="flex flex-col gap-3 w-full"
         (ngSubmit)="formGroup.valid && submit()" [formGroup]="formGroup">
-    <h3>更新资料信息</h3>
     <os-required-hint />
 
     <mat-form-field class="w-full">
@@ -39,4 +38,4 @@
       <button mat-flat-button class="w-full" type="submit">保存</button>
     </div>
   </form>
-</os-dashboard-container>
+</os-dashboard-layout>

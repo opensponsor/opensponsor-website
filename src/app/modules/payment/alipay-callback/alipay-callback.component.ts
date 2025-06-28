@@ -4,6 +4,7 @@ import {PaymentService} from "@services/payment/payment.service";
 import {Router} from "@angular/router";
 
 @Component({
+  standalone: true,
   selector: 'os-alipay-callback',
   imports: [],
   templateUrl: './alipay-callback.component.html',

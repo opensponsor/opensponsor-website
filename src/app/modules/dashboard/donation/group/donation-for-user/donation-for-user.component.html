@@ -1,46 +1,47 @@
-<div class="w-full px-6 lg:px-8 grid grid-cols-1 gap-8">
-  <div class="mx-auto max-w-2xl lg:mx-0">
-    <h2 class="text-pretty text-2xl font-semibold tracking-tight text-gray-900 sm:text-4xl">我的捐款</h2>
+<os-dashboard-layout title="我的捐款">
+  <div class="grid grid-cols-1 gap-4">
+    <os-date-filter />
+    <section>
+      <div class="sm:flex sm:items-center">
+        <div class="sm:flex-auto">
+          <div class="text-sm text-gray-700">累计捐赠：1000元，当前有4个 <a mat-button matTooltip="指周期性捐款" class="!text-sm">活跃 <sup>?</sup> </a> 的捐款</div>
+        </div>
+        <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+          <button type="button" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add user</button>
+        </div>
+      </div>
+      <div class="mt-8 flow-root">
+        <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+            <table class="min-w-full divide-y divide-gray-300">
+              <thead>
+              <tr>
+                <th scope="col" class="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900 sm:pl-3">Name</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Title</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Email</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Role</th>
+                <th scope="col" class="relative py-3.5 pr-4 pl-3 sm:pr-3">
+                  <span class="sr-only">Edit</span>
+                </th>
+              </tr>
+              </thead>
+              <tbody class="bg-white">
+                @for (item of dataSource; track item.id) {
+                  <tr class="even:bg-gray-50">
+                    <td class="py-4 pr-3 pl-4 text-sm font-medium whitespace-nowrap text-gray-900 sm:pl-3">Lindsay Walton</td>
+                    <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500">Front-end Developer</td>
+                    <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500">{{"lindsay.walton@example.com"}}</td>
+                    <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500">Member</td>
+                    <td class="relative py-4 pr-4 pl-3 text-right text-sm font-medium whitespace-nowrap sm:pr-3">
+                      <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, Lindsay Walton</span></a>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
-  <os-date-filter />
-
-  <div class="flex flex-col gap-2">
-    <div class="count text-gray-500 text-sm flex items-center">
-      <div>累计捐赠：1000元，当前有4个 <a mat-button matTooltip="指周期性捐款" class="!text-sm">活跃 <sup>?</sup> </a> 的捐款</div>
-    </div>
-    <div class="table-list bg-gray-50 p-8 rounded-md">
-      <table mat-table [dataSource]="dataSource">
-        <ng-container matColumnDef="whenCreated">
-          <th mat-header-cell *matHeaderCellDef> 日期 </th>
-          <td mat-cell *matCellDef="let element"> {{element.whenCreated | date:"yyyy-MM-dd"}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="totalAmount">
-          <th mat-header-cell *matHeaderCellDef> 金额 </th>
-          <td mat-cell *matCellDef="let element">
-            {{element.totalAmount}}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="currency">
-          <th mat-header-cell *matHeaderCellDef>货币</th>
-          <td mat-cell *matCellDef="let element">
-            {{element.currency.currencyAlphabeticCode | translate}}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="organization">
-          <th mat-header-cell *matHeaderCellDef> 捐给的社区 </th>
-          <td mat-cell *matCellDef="let element">
-            <a matButton [routerLink]="['/', element.organization.name]" target="_blank">
-              {{element.organization.name}}
-            </a>
-          </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="hover:!bg-gray-200/60"></tr>
-      </table>
-    </div>
-  </div>
-</div>
+</os-dashboard-layout>

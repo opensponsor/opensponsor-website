@@ -6,6 +6,7 @@ import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
+  standalone: true,
   selector: 'os-organization-search',
   imports: [
     MatFormFieldModule,

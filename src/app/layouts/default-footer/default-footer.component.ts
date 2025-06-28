@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {LogoComponent} from "@app/components/logo/logo.component";
 
 @Component({
+  standalone: true,
   selector: 'os-default-footer',
   imports: [
     LogoComponent

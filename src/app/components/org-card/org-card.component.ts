@@ -4,6 +4,7 @@ import {RouterLink} from "@angular/router";
 import {MatCardModule} from "@angular/material/card";
 
 @Component({
+  standalone: true,
   selector: 'os-org-card',
   imports: [
     RouterLink,
