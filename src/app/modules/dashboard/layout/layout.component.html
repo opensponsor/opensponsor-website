@@ -7,7 +7,7 @@
     </div>
     <nav class="flex flex-1 flex-col">
       <div class="px-4">
-        <mat-form-field class="w-full">
+        <mat-form-field class="w-full rounded-full">
           <mat-select [formControl]="organizationSlugControl" (selectionChange)="changeOrganization($event)">
             <mat-option [value]="authService.authInfo()?.slug">{{authService.authInfo()?.username}}</mat-option>
             @for (mo of myOrganizations; track mo) {
@@ -35,7 +35,7 @@
                        [routerLink]="trimUrl([rootPath, child.link])"
                        [ngClass]="{'!bg-gray-200': child.active}"
                        *ngIf="!child.roles || child.roles?.includes(organization!.type)"
-                       class="!cursor-pointer"
+                       class="!cursor-pointer !rounded-full hover:!bg-gray-200/80"
                        role="listitem"
                     >
                       {{ child.label }}
@@ -49,7 +49,7 @@
                    *ngIf="(menu.roles.length === 0 || menu.roles.includes(organization!.type))">
                 <a [routerLink]="trimUrl([rootPath, menu.link])"
                    [ngClass]="{'!bg-gray-200': menu.active}"
-                   class="!cursor-pointer w-full mat-expansion-panel-header mat-focus-indicator mat-expansion-toggle-indicator-after gap-1">
+                   class="!cursor-pointer w-full !rounded-full hover:!bg-gray-200/80 mat-expansion-panel-header mat-focus-indicator mat-expansion-toggle-indicator-after gap-1">
                   <mat-icon>{{ menu.icon }}</mat-icon>
                   {{ menu.label }}
                 </a>

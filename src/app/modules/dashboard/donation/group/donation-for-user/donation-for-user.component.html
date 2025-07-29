@@ -6,9 +6,6 @@
         <div class="sm:flex-auto">
           <div class="text-sm text-gray-700">累计捐赠：1000元，当前有4个 <a mat-button matTooltip="指周期性捐款" class="!text-sm">活跃 <sup>?</sup> </a> 的捐款</div>
         </div>
-        <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-          <button type="button" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add user</button>
-        </div>
       </div>
       <div class="mt-8 flow-root">
         <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -16,10 +13,11 @@
             <table class="min-w-full divide-y divide-gray-300">
               <thead>
               <tr>
-                <th scope="col" class="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900 sm:pl-3">Name</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Title</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Email</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Role</th>
+                <th scope="col" class="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900 sm:pl-3">To</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">金额</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">支付状态</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">支付方式</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">捐款时间</th>
                 <th scope="col" class="relative py-3.5 pr-4 pl-3 sm:pr-3">
                   <span class="sr-only">Edit</span>
                 </th>
@@ -28,10 +26,16 @@
               <tbody class="bg-white">
                 @for (item of dataSource; track item.id) {
                   <tr class="even:bg-gray-50">
-                    <td class="py-4 pr-3 pl-4 text-sm font-medium whitespace-nowrap text-gray-900 sm:pl-3">Lindsay Walton</td>
-                    <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500">Front-end Developer</td>
-                    <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500">{{"lindsay.walton@example.com"}}</td>
-                    <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500">Member</td>
+                    <td class="py-4 pr-3 pl-4 text-sm font-medium whitespace-nowrap text-gray-900 sm:pl-3">
+                      <a [routerLink]="['/', item.organization.slug]" target="_blank">{{item.organization.name}}</a>
+                    </td>
+                    <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500">
+                      {{item.totalAmount}}
+                      {{item.currency?.currencyAlphabeticCode}}
+                    </td>
+                    <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500">{{item.payStatus ? '完成' : '失败'}}</td>
+                    <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500">{{item.paymentMethod | translate}}</td>
+                    <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500">{{item.whenCreated | date:'yyyy-MM-dd HH:mm'}}</td>
                     <td class="relative py-4 pr-4 pl-3 text-right text-sm font-medium whitespace-nowrap sm:pr-3">
                       <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, Lindsay Walton</span></a>
                     </td>

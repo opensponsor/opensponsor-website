@@ -29,6 +29,7 @@ import {OrganizationFormComponent} from "@app/forms/organization-form/organizati
 import {SendingMoneyComponent} from './sending-money/sending-money.component';
 import {ReceivingMoneyComponent} from './receiving-money/receiving-money.component';
 import {DonationComponent} from "@modules/dashboard/donation/donation.component";
+import {ExpendsComponent} from "@modules/dashboard/expends/expends.component";
 
 const routes: Routes = [
   {
@@ -43,6 +44,7 @@ const routes: Routes = [
       {path: ':slug/contributor', component: ContributorComponent, pathMatch: 'full'},
       {path: ':slug/security', component: SecurityComponent, pathMatch: 'full'},
       {path: ':slug/social', component: SocialComponent, pathMatch: 'full'},
+      {path: ':slug/expends', component: ExpendsComponent, pathMatch: 'full'},
       {path: ':slug/sending-money', component: SendingMoneyComponent, pathMatch: 'full'},
       {path: ':slug/receiving-money', component: ReceivingMoneyComponent, pathMatch: 'full'},
       {path: ':slug/development', component: DevelopmentComponent, pathMatch: 'full'},

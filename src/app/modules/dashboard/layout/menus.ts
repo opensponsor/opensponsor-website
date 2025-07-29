@@ -26,8 +26,8 @@ export const menus: Menu[] = [
     ],
     children: [
       {
-        label: '捐给谁',
-        link: '',
+        label: '费用支持',
+        link: 'expends',
       },
     ],
   },
