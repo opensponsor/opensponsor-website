@@ -47,6 +47,29 @@ export enum ScopeEnum {
   SINGLE = "SINGLE",
 }
 
+export enum E_TRANSACTION_TYPES {
+  CREDIT = "CREDIT",
+  DEBIT = "DEBIT",
+}
+
+export enum E_TRANSACTION_KIND {
+  ADDED_FUNDS = "ADDED_FUNDS",
+  BALANCE_TRANSFER = "BALANCE_TRANSFER",
+  CONTRIBUTION = "CONTRIBUTION",
+  EXPENSE = "EXPENSE",
+  HOST_FEE = "HOST_FEE",
+  HOST_FEE_SHARE = "HOST_FEE_SHARE",
+  HOST_FEE_SHARE_DEBT = "HOST_FEE_SHARE_DEBT",
+  PAYMENT_PROCESSOR_COVER = "PAYMENT_PROCESSOR_COVER",
+  PAYMENT_PROCESSOR_DISPUTE_FEE = "PAYMENT_PROCESSOR_DISPUTE_FEE",
+  PAYMENT_PROCESSOR_FEE = "PAYMENT_PROCESSOR_FEE",
+  PLATFORM_FEE = "PLATFORM_FEE",
+  PLATFORM_TIP = "PLATFORM_TIP",
+  PLATFORM_TIP_DEBT = "PLATFORM_TIP_DEBT",
+  PREPAID_PAYMENT_METHOD = "PREPAID_PAYMENT_METHOD",
+  TAX = "TAX",
+}
+
 export enum E_TIER_TYPE {
   GENERIC = "GENERIC",
   MEMBERSHIP = "MEMBERSHIP",
@@ -284,8 +307,6 @@ export enum E_AMOUNT_TYPE {
   FLEXIBLE = "FLEXIBLE",
 }
 
-export type AliPay = object;
-
 export interface Company {
   id: UUID;
   /** @maxLength 32 */
@@ -399,13 +420,19 @@ export interface Example {
   whenDeleted?: Instant;
 }
 
-export interface FiscalHost {
+export interface Expense {
   id: UUID;
+  /** 创建用户 */
+  user: User;
+  /** 筹款组织 */
+  organization: Organization;
   /**
-   * @minLength 2
-   * @maxLength 32
+   * 费用
+   * @format int32
    */
-  legalName?: string;
+  expense: number;
+  /** 交易货币 */
+  currency: E_IBAN_CURRENCIES;
   /** when created */
   whenCreated: Instant;
   /** when modified */
@@ -713,6 +740,8 @@ export interface Order {
   id: UUID;
   /** donation from user */
   user: User;
+  /** donation from organization */
+  fromOrganization?: Organization;
   /** filterable */
   userId?: string;
   /** filterable */
@@ -729,6 +758,7 @@ export interface Order {
   tier?: Tier;
   /**
    * total amount
+   * @format int32
    * @min 1
    */
   totalAmount?: number;
@@ -736,6 +766,7 @@ export interface Order {
   isGuest?: boolean;
   /**
    * quantity (only product)
+   * @format int32
    * @min 0
    */
   quantity?: number;
@@ -862,12 +893,15 @@ export interface Organization {
   previousEvents?: string;
   /** receiving-money debitCard */
   debitCard?: DebitCard;
+  /** is host account */
+  isHostAccount?: boolean;
   /** when created */
   whenCreated: Instant;
   /** when modified */
   whenModified: Instant;
   /** when deleted */
   whenDeleted?: Instant;
+  hostAccount?: boolean;
 }
 
 export interface PageParams {
@@ -1058,6 +1092,7 @@ export interface Tier {
   button: string;
   /**
    * 捐助金额
+   * @format int32
    * @min 1
    * @max 100000
    */
@@ -1068,8 +1103,9 @@ export interface Tier {
   amountType: E_AMOUNT_TYPE;
   /**
    * 最小金额
+   * @format int32
    * @min 1
-   * @max 100000
+   * @max 100000000
    */
   minimumAmount?: number;
   /** 货币 */
@@ -1078,6 +1114,7 @@ export interface Tier {
   interval: E_INTERVAL;
   /**
    * 库存
+   * @format int32
    * @min 1
    * @max 100000
    */
@@ -1085,6 +1122,8 @@ export interface Tier {
   /**
    * 筹款目标
    * @format int64
+   * @min 1
+   * @max 10000000
    */
   goal?: number;
   /** when created */
@@ -1126,8 +1165,6 @@ export interface TransactionPayer {
  * @pattern [a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}
  */
 export type UUID = string;
-
-export type UnionPay = object;
 
 export interface UpdateUser {
   /**
@@ -1245,8 +1282,6 @@ export interface ViolationReport {
   parameterViolations?: ResteasyConstraintViolation[];
   returnValueViolations?: ResteasyConstraintViolation[];
 }
-
-export type WeChatPay = object;
 
 export interface WechatPayOrderResult {
   /** qrcode url */
