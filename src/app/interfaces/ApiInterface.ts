@@ -894,7 +894,9 @@ export interface Organization {
   /** receiving-money debitCard */
   debitCard?: DebitCard;
   /** is host account */
-  isHostAccount?: boolean;
+  isHostAccount: boolean;
+  /** financial host */
+  host?: Organization;
   /** when created */
   whenCreated: Instant;
   /** when modified */
