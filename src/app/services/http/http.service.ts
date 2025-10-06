@@ -44,6 +44,8 @@ export abstract class HttpService {
       const accessToken = localStorage.getItem('accessToken');
       if (accessToken && accessToken.length > 0) {
         this.headers['Authorization'] = `Bearer ${accessToken}`;
+      } else {
+        delete this.headers['Authorization'];
       }
     }
   }
