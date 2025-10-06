@@ -6,6 +6,7 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {CountryCode, User} from "@app/interfaces/ApiInterface";
 import {CountryPhoneGroupComponent} from "@app/forms/country-phone-group/country-phone-group.component";
 import {SmsCodeButtonComponent} from "@app/forms/sms-code-button/sms-code-button.component";
+import {MatButton} from "@angular/material/button";
 
 @Component({
   standalone: true,
@@ -14,7 +15,8 @@ import {SmsCodeButtonComponent} from "@app/forms/sms-code-button/sms-code-button
     CountryPhoneGroupComponent,
     ReactiveFormsModule,
     RouterLink,
-    SmsCodeButtonComponent
+    SmsCodeButtonComponent,
+    MatButton
   ],
   templateUrl: './for-sms-code.component.html',
   styleUrl: './for-sms-code.component.scss'

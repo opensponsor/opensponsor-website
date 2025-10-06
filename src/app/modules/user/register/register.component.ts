@@ -13,6 +13,7 @@ import {SmsCodeButtonComponent} from "@app/forms/sms-code-button/sms-code-button
 import {validatePhoneNumber} from "@app/components/regular/phone-number";
 import {CountryPhoneGroupComponent} from "@app/forms/country-phone-group/country-phone-group.component";
 import {LogoComponent} from "@app/components/logo/logo.component";
+import {MatButton} from "@angular/material/button";
 
 @Component({
   standalone: true,
@@ -28,6 +29,7 @@ import {LogoComponent} from "@app/components/logo/logo.component";
     SmsCodeButtonComponent,
     CountryPhoneGroupComponent,
     LogoComponent,
+    MatButton,
   ],
   styleUrl: './register.component.scss'
 })

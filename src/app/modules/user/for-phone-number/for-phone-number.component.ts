@@ -7,6 +7,7 @@ import {SnackBarService} from "@services/snack-bar/snack-bar.service";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {CountryPhoneGroupComponent} from "@app/forms/country-phone-group/country-phone-group.component";
+import {MatButton} from "@angular/material/button";
 
 @Component({
   standalone: true,
@@ -17,6 +18,7 @@ import {CountryPhoneGroupComponent} from "@app/forms/country-phone-group/country
     MatInputModule,
     RouterLink,
     CountryPhoneGroupComponent,
+    MatButton,
   ],
   templateUrl: './for-phone-number.component.html',
   styleUrl: './for-phone-number.component.scss'
