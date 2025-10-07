@@ -1,0 +1,13 @@
+<mat-form-field class="w-full" subscriptSizing="dynamic">
+  <mat-label>{{label}}</mat-label>
+  <mat-select [required]="required" [placeholder]="label" [formControl]="currencyControl">
+    @for (currency of [E_IBAN_CURRENCIES.CNY]; track currency) {
+      <mat-option [value]="currency">
+        {{currency}} ({{currency | translate}})
+      </mat-option>
+    }
+  </mat-select>
+  <mat-hint>
+    选择组织财务交易和报告的主要货币。
+  </mat-hint>
+</mat-form-field>
