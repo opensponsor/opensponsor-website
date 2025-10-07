@@ -840,11 +840,23 @@ export interface Organization {
    */
   slug: string;
   /**
+   * url slug
+   * @minLength 2
+   * @maxLength 32
+   */
+  countryISO: CountryCode;
+  /**
+   * prime currency
+   * @minLength 2
+   * @maxLength 32
+   */
+  currency: E_IBAN_CURRENCIES;
+  /**
    * introduce
    * @minLength 2
    * @maxLength 150
    */
-  introduce?: string;
+  description?: string;
   /**
    * organization types
    * @minLength 2
