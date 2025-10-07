@@ -752,8 +752,12 @@ export interface Order {
   endDate?: string;
   /** donation to organization */
   organization: Organization;
-  /** 使用的货币 */
-  currency?: CountryCode;
+  /**
+   * prime currency
+   * @minLength 2
+   * @maxLength 32
+   */
+  currency: E_IBAN_CURRENCIES;
   /** usage tier */
   tier?: Tier;
   /**
@@ -844,7 +848,7 @@ export interface Organization {
    * @minLength 2
    * @maxLength 32
    */
-  countryISO: CountryCode;
+  country: CountryCode;
   /**
    * prime currency
    * @minLength 2
@@ -1122,8 +1126,12 @@ export interface Tier {
    * @max 100000000
    */
   minimumAmount?: number;
-  /** 货币 */
-  currency: CountryCode;
+  /**
+   * prime currency
+   * @minLength 2
+   * @maxLength 32
+   */
+  currency: E_IBAN_CURRENCIES;
   /** 捐助方式 */
   interval: E_INTERVAL;
   /**
