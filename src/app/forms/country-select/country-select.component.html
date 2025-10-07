@@ -1,12 +1,14 @@
 <mat-form-field class="w-full">
   <mat-label>{{label}}</mat-label>
   <mat-select [required]="required" placeholder="国际区号" [formControl]="countryCodeControl">
-    <mat-option *ngFor="let item of countryCodes" [value]="item">
-      @if (labelType === 'officialNameCn') {
-        {{ item.officialNameCn }}
-      } @else {
-        {{ enumTranslate[item.currencyAlphabeticCode] }}
-      }
-    </mat-option>
+    @for (item of countryCodes; track item) {
+      <mat-option>
+        @if (labelType === 'officialNameCn') {
+          {{ item.officialNameCn }}
+        } @else {
+          {{ enumTranslate[item.currencyAlphabeticCode] }}
+        }
+      </mat-option>
+    }
   </mat-select>
 </mat-form-field>

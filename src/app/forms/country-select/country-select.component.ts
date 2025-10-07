@@ -15,7 +15,6 @@ import {enumTranslate} from "@app/languages/zh_cn/enumTranslate";
     MatFormField,
     MatOption,
     MatSelect,
-    NgForOf,
     ReactiveFormsModule,
     MatLabel,
   ],
