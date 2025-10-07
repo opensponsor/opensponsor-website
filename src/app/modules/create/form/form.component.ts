@@ -94,7 +94,7 @@ export class FormComponent implements AfterViewInit {
       Validators.maxLength(64),
     ]),
     tags: new FormControl(""),
-    introduce: new FormControl(null, [
+    description: new FormControl(null, [
       Validators.required,
       Validators.minLength(4),
       Validators.maxLength(200),

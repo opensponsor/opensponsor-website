@@ -6,31 +6,34 @@
         <p class="mt-6 text-lg leading-8 text-gray-600">关于贡献等级</p>
       </div>
     </div>
-    <div class="default-tier">
-      Enable default contribution tier
-    </div>
-    <div class="grid grid-cols-4 gap-4">
-      <div class="rounded-3xl ring-1 ring-gray-200" *ngFor="let tier of organization.tiers">
-        <div class="relative overflow-hidden hover:opacity-90">
-          <os-tier-card [tier]="tier"/>
-          <div class="absolute z-10 inset-0 opacity-0 hover:opacity-100">
-            <div class="absolute top-2 right-2">
-              <button mat-icon-button (click)="openDialog(tier)" color="primary" class="!ring-1 ring-gray-400">
-                <mat-icon>edit</mat-icon>
-              </button>
+    @if (organization.isHostAccount && organization.host) {
+      <div class="grid grid-cols-4 gap-4">
+        @for (tier of organization.tiers; track tier) {
+          <div class="rounded-3xl ring-1 ring-gray-200">
+            <div class="relative overflow-hidden hover:opacity-90">
+              <os-tier-card [tier]="tier"/>
+              <div class="absolute z-10 inset-0 opacity-0 hover:opacity-100">
+                <div class="absolute top-2 right-2">
+                  <button mat-icon-button (click)="openDialog(tier)" color="primary" class="!ring-1 ring-gray-400">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                </div>
+              </div>
             </div>
+          </div>
+        }
+        <div (click)="openDialog()" class="rounded-3xl p-8 ring-1 xl:p-10 ring-gray-200 flex justify-center items-center cursor-pointer" matRipple>
+          <div class="flex flex-col justify-center items-center">
+            <button mat-icon-button color="basic">
+              <mat-icon color="basic">add</mat-icon>
+            </button>
+            创建贡献等级
           </div>
         </div>
       </div>
-      <div (click)="openDialog()"
-           class="rounded-3xl p-8 ring-1 xl:p-10 ring-gray-200 flex justify-center items-center cursor-pointer" matRipple>
-        <div class="flex flex-col justify-center items-center">
-          <button mat-icon-button color="basic">
-            <mat-icon color="basic">add</mat-icon>
-          </button>
-          创建贡献等级
-        </div>
-      </div>
-    </div>
+    } @else {
+      <div>在接受财务贡献之前，你需要完成设置并决定将资金储蓄在哪。</div>
+      <button class="mt-2" mat-flat-button [routerLink]="['/', organization.slug, 'accept-financial-contributions']">设置开始接受捐款</button>
+    }
   </div>
 }

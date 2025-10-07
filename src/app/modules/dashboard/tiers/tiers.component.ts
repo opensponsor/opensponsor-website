@@ -8,6 +8,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {NgForOf} from "@angular/common";
 import {MatRipple} from "@angular/material/core";
+import {RouterLink} from "@angular/router";
 
 @Component({
   standalone: true,
@@ -17,8 +18,8 @@ import {MatRipple} from "@angular/material/core";
     TierCardComponent,
     MatButtonModule,
     MatIconModule,
-    NgForOf,
-    MatRipple
+    MatRipple,
+    RouterLink
   ],
   styleUrl: './tiers.component.scss'
 })

@@ -81,7 +81,7 @@ export class OrganizationFormComponent implements OnInit {
       Validators.maxLength(64),
     ]),
     tags: new FormControl<string[]>([]),
-    introduce: new FormControl<string>('', [
+    description: new FormControl<string>('', [
       Validators.required,
       Validators.minLength(4),
       Validators.maxLength(200),

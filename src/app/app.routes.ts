@@ -1,40 +1,10 @@
-import {Routes, CanActivateFn, Router, ActivatedRoute} from '@angular/router';
+import {Routes} from '@angular/router';
 import {FullWidthLayoutComponent} from "@app/layouts/full-width-layout/full-width-layout.component";
 import {DefaultLayoutComponent} from "@app/layouts/default-layout/default-layout.component";
 import {PureLayoutComponent} from "@app/layouts/pure-layout/pure-layout.component";
-import {PageNotFoundComponent} from "@modules/error/page-not-found/page-not-found.component";
-import {inject} from "@angular/core";
-import {SnackBarService} from "@services/snack-bar/snack-bar.service";
-import {AuthService} from "@services/auth/auth.service";
 import {NotFoundComponent} from "@app/layouts/not-found/not-found.component";
-import {Platform} from "@angular/cdk/platform";
+import {authGuard} from "@app/utils/auth-guard";
 
-const authGuard: CanActivateFn = (route, state) => {
-  const authService = inject(AuthService);
-  const snackBarService = inject(SnackBarService);
-  const router = inject(Router);
-  const activatedRoute = inject(ActivatedRoute);
-  const platform = inject(Platform);
-
-  return new Promise(resolve => {
-    if(platform.isBrowser) {
-      authService.getAuthUser().subscribe({
-        next: () => {
-          resolve(true)
-        },
-        error: err => {
-          // ?ref=${state.url}
-          router.navigateByUrl("/user/login").then(() => {
-            snackBarService.message({message: err.message});
-          })
-          resolve(false)
-        }
-      })
-    } else {
-      resolve(true);
-    }
-  })
-};
 
 export const routes: Routes = [
   {
