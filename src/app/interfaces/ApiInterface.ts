@@ -852,7 +852,7 @@ export interface Organization {
    */
   currency: E_IBAN_CURRENCIES;
   /**
-   * introduce
+   * description
    * @minLength 2
    * @maxLength 150
    */
