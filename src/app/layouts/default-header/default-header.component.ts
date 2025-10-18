@@ -44,7 +44,7 @@ export class DefaultHeaderComponent {
   onScroll(event: Event) {
     if (window.scrollY < this.scrollY) {
       this.hideHeader = false;
-    } else if (this.scrollY > 100) {
+    } else if (this.scrollY > 300) {
       this.hideHeader = true
     }
 
