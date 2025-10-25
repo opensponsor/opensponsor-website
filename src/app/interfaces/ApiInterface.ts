@@ -368,11 +368,11 @@ export interface CountryCode {
 export interface DebitCard {
   id: UUID;
   /**
-   * Debit Card No
+   * identity Card No
    * @minLength 16
    * @maxLength 22
    */
-  cardNo?: string;
+  identityCardNo?: string;
   /**
    * legal name
    * @minLength 2
