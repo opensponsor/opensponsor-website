@@ -392,6 +392,12 @@ export interface DebitCard {
    * @maxLength 64
    */
   bankName?: string;
+  /**
+   * bankCardNo
+   * @minLength 2
+   * @maxLength 64
+   */
+  bankCardNo?: string;
   /** create for organization */
   organization?: Organization;
   /** create by user */
