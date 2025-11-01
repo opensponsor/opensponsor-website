@@ -18,6 +18,7 @@ export const authGuard: CanActivateFn = (route, state) => {
         },
         error: err => {
           // ?ref=${state.url}
+          authService.removeAuthInfo();
           router.navigateByUrl("/user/login").then(() => {
             snackBarService.message({message: err.message});
           })
