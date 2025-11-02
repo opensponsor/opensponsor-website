@@ -1,0 +1,34 @@
+<div class="max-w-3xl shadow p-4">
+  <form [formGroup]="formGroup" (submit)="formGroup.valid && save()">
+    <os-country-select
+      ngDefaultControl
+      label="选择国家"
+      labelType="officialNameCn"
+      [required]="true"
+      [countryCodeControl]="formGroup.controls.countryCode"
+    />
+    <mat-form-field class="w-full">
+      <mat-label>姓名</mat-label>
+      <input matInput type="text" placeholder="与身份证上的姓名相匹配" [formControl]="formGroup.controls.legalName" />
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>身份证号</mat-label>
+      <input matInput type="text" placeholder="中国大陆身份证号码" [formControl]="formGroup.controls.identityCardNo" />
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>储蓄卡号</mat-label>
+      <input matInput type="text" placeholder="银行储蓄卡号" [formControl]="formGroup.controls.bankCardNo" />
+    </mat-form-field>
+    <div [ngClass]="{ '!flex': !!formGroup.controls.bankCardNo.value }" class="transition-all duration-1000 delay-500 ease-in-out hidden">
+      <mat-form-field #eleBankName class="w-full">
+        <mat-label>开户行</mat-label>
+        <input matInput type="text" placeholder="开户银行名称" [formControl]="formGroup.controls.bankName" />
+      </mat-form-field>
+    </div>
+    <mat-form-field class="w-full">
+      <mat-label>预留手机号</mat-label>
+      <input matInput type="text" placeholder="银行预留手机号码" [formControl]="formGroup.controls.phoneNumber" />
+    </mat-form-field>
+    <button mat-flat-button color="accent" class="w-full">保存</button>
+  </form>
+</div>
