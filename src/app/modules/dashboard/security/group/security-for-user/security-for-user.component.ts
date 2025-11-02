@@ -14,6 +14,7 @@ import {UpdateUserPassword, User} from "@app/interfaces/ApiInterface";
 import {AuthService} from "@services/auth/auth.service";
 import {MatButton} from "@angular/material/button";
 import {FieldErrors} from "@app/forms/field-errors/field-errors";
+import {HttpStatusCode} from "@angular/common/http";
 
 @Component({
   standalone: true,
@@ -60,7 +61,7 @@ export class SecurityForUserComponent {
     if(this.formGroup.valid) {
       resetFormFields(this.formGroup.controls);
       this.userService.updatePassword(this.formGroup.getRawValue() as UpdateUserPassword).subscribe((res) => {
-        if(res.status === 200 && res.body) {
+        if(res.status === HttpStatusCode.Ok && res.body) {
           this.snackBarService.message({ message: res.body.message })
         }
       });

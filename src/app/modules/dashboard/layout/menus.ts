@@ -127,6 +127,15 @@ export const menus: Menu[] = [
           E_ORGANIZATION_TYPE.COMMUNITY
         ]
       },
+      {
+        label: '高级设置',
+        link: 'advanced',
+        roles: [
+          E_ORGANIZATION_TYPE.ORGANIZATION,
+          E_ORGANIZATION_TYPE.COMMUNITY,
+          E_ORGANIZATION_TYPE.USER,
+        ]
+      },
     ]
   }
 ];

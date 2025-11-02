@@ -18,6 +18,7 @@ import {resetFormFields} from "@app/utils/reset-form-fields";
 import {SnackBarService} from "@services/snack-bar/snack-bar.service";
 import {DialogService} from "@services/dialog/dialog.service";
 import {DashboardLayoutComponent} from "@modules/dashboard/components/dashboard-layout/dashboard-layout.component";
+import {HttpStatusCode} from "@angular/common/http";
 
 @Component({
   standalone: true,
@@ -68,7 +69,7 @@ export class ProfileForUserComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.authService.getAuthUser().subscribe(res => {
-      if(res.status === 200 && res.body?.data) {
+      if(res.status === HttpStatusCode.Ok && res.body?.data) {
         this.formGroup.setValue({
           username: res.body?.data.username,
           slug: res.body?.data.slug,
@@ -83,7 +84,7 @@ export class ProfileForUserComponent implements AfterViewInit {
     if(this.formGroup.valid) {
       resetFormFields(this.formGroup.controls);
       this.userService.update(this.formGroup.getRawValue()).subscribe((res) => {
-        if(res.status === 200 && res.body) {
+        if(res.status === HttpStatusCode.Ok && res.body) {
           this.snackBarService.message({ message: res.body.message })
         }
       });

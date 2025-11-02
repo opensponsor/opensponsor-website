@@ -30,6 +30,7 @@ import {SendingMoneyComponent} from './sending-money/sending-money.component';
 import {ReceivingMoneyComponent} from './receiving-money/receiving-money.component';
 import {DonationComponent} from "@modules/dashboard/donation/donation.component";
 import {ExpendsComponent} from "@modules/dashboard/expends/expends.component";
+import {AdvancedComponent} from "@modules/dashboard/advanced/advanced.component";
 
 const routes: Routes = [
   {
@@ -50,6 +51,7 @@ const routes: Routes = [
       {path: ':slug/development', component: DevelopmentComponent, pathMatch: 'full'},
       {path: ':slug/webhook', component: WebhookComponent, pathMatch: 'full'},
       {path: ':slug/donation', component: DonationComponent, pathMatch: 'full'},
+      {path: ':slug/advanced', component: AdvancedComponent, pathMatch: 'full'},
     ]
   },
 ]

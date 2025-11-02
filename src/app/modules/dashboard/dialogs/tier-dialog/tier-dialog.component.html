@@ -73,7 +73,8 @@
           ngDefaultControl
           [required]="true"
           labelType="currencyAlphabeticCode"
-          [countryCodeControl]="formGroup.controls.currency" />
+          [countryCodeControl]="formGroup.controls.currency"
+        />
         @if (formGroup.controls.type.value === E_TIER_TYPE.PRODUCT) {
           <mat-form-field class="w-full">
             <mat-label>库存</mat-label>

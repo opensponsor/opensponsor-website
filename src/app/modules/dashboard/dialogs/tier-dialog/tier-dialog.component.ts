@@ -22,6 +22,7 @@ import {MatButtonModule} from "@angular/material/button";
 import slugify from "limax";
 import {RequiredHintComponent} from "@app/components/required-hint/required-hint.component";
 import {CountrySelectComponent} from "@app/forms/country-select/country-select.component";
+import {HttpStatusCode} from "@angular/common/http";
 
 @Component({
   standalone: true,
@@ -121,18 +122,18 @@ export class TierDialogComponent {
 
   public save() {
     if (this.formGroup.valid) {
-      const tier = this.formGroup.value as Tier
+      const tier = this.formGroup.value as unknown as Tier
       tier.organization = this.data.org;
       if (this.data.tier) {
         tier.id = this.data.tier.id;
         this.tierService.update(tier).subscribe(res => {
-          if (res.status === 200) {
+          if (res.status === HttpStatusCode.Ok) {
             this.dialogRef.close();
           }
         });
       } else {
         this.tierService.create(tier).subscribe(res => {
-          if (res.status === 200) {
+          if (res.status === HttpStatusCode.Ok) {
             this.dialogRef.close();
           }
         });

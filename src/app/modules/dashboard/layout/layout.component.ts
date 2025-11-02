@@ -13,6 +13,7 @@ import {MatSelectChange, MatSelectModule} from "@angular/material/select";
 import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {menus} from "@modules/dashboard/layout/menus";
 import {LogoComponent} from "@app/components/logo/logo.component";
+import {HttpStatusCode} from "@angular/common/http";
 
 @Component({
   standalone: true,
@@ -74,7 +75,7 @@ export class LayoutComponent {
 
   private loadOrganizations(orgName: string) {
     this.organizationsService.getOrganizationBySlug(orgName).subscribe(res => {
-      if(res.status === 200 && res.body) {
+      if(res.status === HttpStatusCode.Ok && res.body) {
         this.organizationsService.organization.set(res.body.data);
         this.organization = res.body.data;
         this.organizationSlugControl.setValue(this.organization.slug);
@@ -84,7 +85,7 @@ export class LayoutComponent {
 
   private getMyOrganizations() {
     this.organizationsService.list({userId: this.authService.authInfo()?.id}).subscribe(res => {
-      if(res.status === 200 && res.body) {
+      if(res.status === HttpStatusCode.Ok && res.body) {
         this.myOrganizations = res.body?.records;
       }
     })
