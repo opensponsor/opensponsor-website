@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpParams, HttpStatusCode} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
 import {throwError} from 'rxjs';
 import {SnackBarService} from '@services/snack-bar/snack-bar.service';
@@ -13,13 +13,13 @@ export type HttpResultOfArray<T> = {
   pageSize: number
   totalRecords: number
   message: string
-  code: number
+  code: HttpStatusCode
   records: T
 }
 
 export type HttpResultOfData<T> = {
   message: string
-  code: number
+  code: HttpStatusCode
   data: T
 }
 
@@ -79,7 +79,6 @@ export abstract class HttpService {
         this.snackBar.message({message: `${res.message}`});
       }
     } else if (res.status === 401) {
-      localStorage.removeItem("accessToken")
       this.snackBar.message({message: '请先登录'});
       return throwError(() => new Error('请先登录。'));
     } else {
