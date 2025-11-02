@@ -1,1 +1,15 @@
-<router-outlet></router-outlet>
+<div class="flex flex-row flex-wrap">
+  <div class="w-full sticky top-0 z-50">
+    <os-default-header class="[&_.container]:!max-w-full"></os-default-header>
+  </div>
+  <div class="min-h-screen w-full">
+    <div class="flex justify-center h-full">
+      <div class="w-full">
+        <router-outlet/>
+      </div>
+    </div>
+  </div>
+  <div class="w-full pt-4">
+    <os-default-footer/>
+  </div>
+</div>
