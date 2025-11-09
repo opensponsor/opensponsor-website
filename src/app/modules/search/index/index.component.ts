@@ -1,4 +1,4 @@
-import {AfterViewChecked, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {OrganizationsService} from "@services/organizations/organizations.service";
 import {Organization} from "@app/interfaces/ApiInterface";
 import {Platform} from "@angular/cdk/platform";
@@ -7,8 +7,8 @@ import {ActivatedRoute} from "@angular/router";
 import {OrgCardComponent} from "@app/components/org-card/org-card.component";
 import {OrganizationSearchComponent} from "@app/components/organization-search/organization-search.component";
 import {PaginatorComponent} from "@app/components/paginator/paginator.component";
-import {NgIf} from "@angular/common";
 import {EmptyStatesComponent} from "@app/components/empty-states/empty-states.component";
+import {HttpStatusCode} from "@angular/common/http";
 
 @Component({
   standalone: true,
@@ -46,7 +46,7 @@ export class IndexComponent implements OnInit {
     this.organizationsService.list(filter).subscribe({
       next: res => {
         this.loading = false;
-        if (res.status === 200) {
+        if (res.status === HttpStatusCode.Ok) {
           this.httpResult = res.body;
         }
       },
