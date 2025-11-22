@@ -3,7 +3,6 @@ import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {MatOption} from "@angular/material/core";
 import {MatSelect} from "@angular/material/select";
-import {NgForOf} from "@angular/common";
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {CountryCodesService} from "@services/countryCodes/country-codes.service";
 import {CountryCode} from "@app/interfaces/ApiInterface";
@@ -18,7 +17,6 @@ import {CountryCode} from "@app/interfaces/ApiInterface";
     MatLabel,
     MatOption,
     MatSelect,
-    NgForOf,
     ReactiveFormsModule
   ],
   templateUrl: './country-phone-group.component.html',
@@ -34,6 +32,16 @@ export class CountryPhoneGroupComponent implements OnInit {
     required: true,
   })
   countryCodeControl!: FormControl;
+
+  @Input({
+    required: false,
+  })
+  label: string = '手机号';
+
+  @Input({
+    required: false,
+  })
+  placeholder: string = '手机号';
 
   public countryCodes: CountryCode[] = [];
 

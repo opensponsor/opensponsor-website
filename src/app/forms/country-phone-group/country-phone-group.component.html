@@ -1,14 +1,16 @@
 <div class="flex flex-row">
   <mat-form-field class="[&_div]:!rounded-r-none [&_div]:!border-r-0 w-3/12">
     <mat-select required placeholder="国际区号" [formControl]="countryCodeControl">
-      <mat-option *ngFor="let item of countryCodes" [value]="item">{{ item.dial }}</mat-option>
+      @for (item of countryCodes; track item) {
+        <mat-option [value]="item">{{ item.dial }}</mat-option>
+      }
     </mat-select>
   </mat-form-field>
   <mat-form-field class="[&_div]:!rounded-none [&_div]:!border-l-0 w-9/12">
-    <mat-label>手机号</mat-label>
+    <mat-label>{{label}}</mat-label>
     <input matInput name="phoneNumber" [formControl]="phoneNumberControl"
            required
-           placeholder="手机号">
+           [placeholder]="placeholder">
 
     @if (phoneNumberControl.errors) {
       <mat-error>{{phoneNumberControl.errors['message']}}</mat-error>
