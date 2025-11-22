@@ -44,4 +44,14 @@ export class OrganizationsService {
     return this.httpService.get<Organization>(`${this.Urls.get}/${slug}`);
   }
 
+  // 成为独立集体
+  public enableIndependent(slug: string) {
+    return this.httpService.put<Organization>(`${this.Urls.get}/${slug}/enableIndependent`);
+  }
+
+  // 重置组织财务
+  public resetFinancial(slug: string) {
+    return this.httpService.put<Organization>(`${this.Urls.get}/${slug}/resetFinancial`);
+  }
+
 }

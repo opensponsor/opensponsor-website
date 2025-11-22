@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {Platform} from "@angular/cdk/platform";
 import {PaymentService} from "@services/payment/payment.service";
 import {Router} from "@angular/router";
+import {HttpStatusCode} from "@angular/common/http";
 
 @Component({
   standalone: true,
@@ -21,7 +22,7 @@ export class AlipayCallbackComponent {
       [...new URLSearchParams(location.href)].forEach(item => data[item[0]] = item[1]);
 
       this.paymentService.queryAlipayOrderStatus(data).subscribe(res => {
-        if(res.body?.code === 200 && res.body.data?.payStatus) {
+        if(res.body?.code === HttpStatusCode.Ok && res.body.data?.payStatus) {
           this.router.navigateByUrl("/payment/pay-success").then();
         } else {
           this.router.navigateByUrl("/payment/pay-failed").then();

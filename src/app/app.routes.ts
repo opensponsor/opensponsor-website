@@ -4,6 +4,9 @@ import {DefaultLayoutComponent} from "@app/layouts/default-layout/default-layout
 import {PureLayoutComponent} from "@app/layouts/pure-layout/pure-layout.component";
 import {NotFoundComponent} from "@app/layouts/not-found/not-found.component";
 import {authGuard} from "@app/utils/auth-guard";
+import {
+  OrganizationInfoLayoutComponent
+} from "@app/layouts/organization-info-layout/organization-info-layout.component";
 
 
 export const routes: Routes = [
@@ -52,7 +55,7 @@ export const routes: Routes = [
   },
   {
     path: ':slug',
-    component: FullWidthLayoutComponent,
+    component: OrganizationInfoLayoutComponent,
     loadChildren: () => import('@modules/organizations/organizations.module').then(m => m.OrganizationsModule)
   },
   {

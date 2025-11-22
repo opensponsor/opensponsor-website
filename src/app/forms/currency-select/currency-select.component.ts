@@ -38,5 +38,4 @@ export class CurrencySelectComponent {
 
   protected readonly E_IBAN_CURRENCIES = E_IBAN_CURRENCIES;
   protected readonly Object = Object;
-  protected readonly console = console;
 }

@@ -9,12 +9,14 @@ import {MatTooltip} from "@angular/material/tooltip";
 import {Platform} from "@angular/cdk/platform";
 import {MatChipsModule} from "@angular/material/chips";
 import {OrganizationsService} from "@services/organizations/organizations.service";
-import {E_ORGANIZATION_TYPE, Organization, Tags} from "@app/interfaces/ApiInterface";
+import {E_IBAN_CURRENCIES, E_ORGANIZATION_TYPE, Organization, Tags} from "@app/interfaces/ApiInterface";
 import {SnackBarService} from "@services/snack-bar/snack-bar.service";
 import {Router} from "@angular/router";
 import {RequiredHintComponent} from "@app/components/required-hint/required-hint.component";
 import slugify from "limax";
 import {TagsFieldComponent} from "@app/forms/tags-field/tags-field.component";
+import {CountrySelectComponent} from "@app/forms/country-select/country-select.component";
+import {CurrencySelectComponent} from "@app/forms/currency-select/currency-select.component";
 
 @Component({
   standalone: true,
@@ -29,7 +31,9 @@ import {TagsFieldComponent} from "@app/forms/tags-field/tags-field.component";
     MatTooltip,
     MatChipsModule,
     RequiredHintComponent,
-    TagsFieldComponent
+    TagsFieldComponent,
+    CountrySelectComponent,
+    CurrencySelectComponent
   ],
   templateUrl: './organization-form.component.html',
   styleUrl: './organization-form.component.scss'
@@ -74,6 +78,16 @@ export class OrganizationFormComponent implements OnInit {
       Validators.required,
       Validators.minLength(4),
       Validators.maxLength(64),
+    ]),
+    country: new FormControl<string>('', [
+      Validators.required,
+      Validators.minLength(4),
+      Validators.maxLength(64),
+    ]),
+    currency: new FormControl<E_IBAN_CURRENCIES>(E_IBAN_CURRENCIES.CNY, [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(32),
     ]),
     website: new FormControl<string>('', [
       Validators.required,
@@ -139,7 +153,7 @@ export class OrganizationFormComponent implements OnInit {
           name: tag
         })) as Tags[];
         this.organizationsService.create(data).subscribe(res => {
-          this.router.navigate(['/dashboard/', res.body?.data.name]).then(() => {
+          this.router.navigate(['/dashboard/', res.body?.data.slug]).then(() => {
             this.snackBarService.message({message: '组织已经创建'});
           })
         })

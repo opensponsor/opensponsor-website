@@ -9,6 +9,7 @@ import {OrganizationSearchComponent} from "@app/components/organization-search/o
 import {PaginatorComponent} from "@app/components/paginator/paginator.component";
 import {EmptyStatesComponent} from "@app/components/empty-states/empty-states.component";
 import {HttpStatusCode} from "@angular/common/http";
+import {SkeletonComponent} from "@app/components/skeleton/skeleton.component";
 
 @Component({
   standalone: true,
@@ -19,6 +20,7 @@ import {HttpStatusCode} from "@angular/common/http";
     OrganizationSearchComponent,
     PaginatorComponent,
     EmptyStatesComponent,
+    SkeletonComponent,
   ],
   styleUrl: './index.component.scss'
 })

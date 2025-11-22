@@ -6,7 +6,7 @@
     }
   </div>
   @if (loading) {
-    loading...
+    <os-skeleton />
   } @else {
     @if(httpResult && httpResult.records.length > 0) {
       <os-paginator [result]="httpResult"></os-paginator>

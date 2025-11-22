@@ -1,5 +1,5 @@
 <div class="grid grid-cols-1 mt-10 gap-10">
-  <div class="grid grid-cols-2 gap-4">
+  <div class="grid grid-cols-1 gap-4">
     <form class="flex flex-col gap-3 w-full"
           (ngSubmit)="formGroup.valid && save()" [formGroup]="formGroup">
       <h3>组织信息</h3>
@@ -18,6 +18,10 @@
           <mat-hint>营业执照注册名称, 用于收据、发票、税务、费用付款明细和其他非公开内容。法定名称仅对管理员可见。</mat-hint>
         </mat-form-field>
       }
+      <os-country-select ngDefaultControl label="国家" [required]="true" [countryCodeControl]="formGroup.controls.country"></os-country-select>
+
+      <os-currency-select ngDefaultControl label="货币" [required]="true" [currencyControl]="formGroup.controls.currency"></os-currency-select>
+
       <mat-form-field floatLabel="always" subscriptSizing="dynamic" class="w-full">
         <mat-label>主页链接</mat-label>
         <span matTextPrefix class="text-gray-400">{{ urlOrigin }}</span>
@@ -32,16 +36,16 @@
         <mat-label>网站链接</mat-label>
         <input matInput name="website" [formControl]="formGroup.controls.website" placeholder="https://www.example.com"/>
       </mat-form-field>
+      <div class="invite-admin">
+        <h3>邀请管理员</h3>
+        <mat-card class="!shadow-none !rounded-md !bg-transparent !border !border-gray-300 hover:!border-gray-400">
+          <mat-card-content>
+            invite
+          </mat-card-content>
+        </mat-card>
+      </div>
       <button mat-flat-button color="primary" class="w-full">创建组织</button>
     </form>
-    <div class="invite-admin">
-      <h3>邀请管理员</h3>
-      <mat-card class="!shadow-none !rounded-md !bg-transparent !border !border-gray-300 hover:!border-gray-400">
-        <mat-card-content>
-          invite
-        </mat-card-content>
-      </mat-card>
-    </div>
   </div>
 
 </div>
