@@ -3,11 +3,13 @@ import {Organization} from "@app/interfaces/ApiInterface";
 import {OrganizationsService} from "@services/organizations/organizations.service";
 import {MatButton} from "@angular/material/button";
 import {HttpStatusCode} from "@angular/common/http";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'os-reset-financial',
   imports: [
-    MatButton
+    MatButton,
+    MatIcon
   ],
   templateUrl: './reset-financial.component.html',
   styleUrl: './reset-financial.component.scss'
