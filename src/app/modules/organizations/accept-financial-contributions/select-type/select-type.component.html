@@ -1,9 +1,62 @@
 <div class="flex justify-center my-10 text-2xl font-bold">接受财务捐助</div>
-<div class="grid grid-cols-2 gap-6 divide-x-2 divide-gray-100 min-h-100 items-center">
-  <div class="flex items-center justify-center">
-    <button mat-raised-button routerLink="ourselves">独立负责财务</button>
-  </div>
-  <div class="flex items-center justify-center">
-    <button mat-raised-button routerLink="host">托管于一个财务主机</button>
-  </div>
-</div>
+
+@if (organization) {
+  @if (organization.isHostAccount) {
+    <div class="max-w-xl mx-auto">
+      <div class="flex justify-between items-center">
+        <div class="text-lg font-medium">我们独立负责财务</div>
+        <os-reset-financial />
+      </div>
+      @if (!organization.debitCard) {
+        <os-bind-debit-card />
+      } @else {
+        <os-debit-card [debitCard]="organization.debitCard" />
+      }
+    </div>
+  } @else if (organization.host) {
+    have host
+  } @else {
+    <mat-radio-group
+      class="grid grid-cols-1 gap-6 min-h-100 max-w-7xl"
+      [(ngModel)]="selectFinanceType"
+      (change)="navigateToType($event)"
+    >
+      <div class="flex flex-col justify-start">
+        <mat-radio-button #r1 value="noHost" class="cursor-pointer">无</mat-radio-button>
+        <p>你无法收到财务贡献或使用预算功能。但仍可编辑你的资料页、提及支出和发布更新。</p>
+      </div>
+
+      <div class="flex flex-col justify-start">
+        <mat-radio-button #r2 value="selfHost" class="cursor-pointer">独立集体</mat-radio-button>
+        <p>你无法收到财务贡献或使用预算功能。但仍可编辑你的资料页、提及支出和发布更新。</p>
+        @if (selectFinanceType === r2.value) {
+          <div>
+            <button mat-flat-button (click)="enableIndependent()">激活独立集体</button>
+          </div>
+        }
+      </div>
+
+      <div class="flex flex-col justify-start">
+        <mat-radio-button disabled #r3 value="ownHost" class="cursor-pointer">我们自己的财务托管方</mat-radio-button>
+        <p>选择或创建你自己的财政主机，这是你能够为多个收藏集持有资金的 为这个集体持有资金并做相关的管理员。 更多信息</p>
+        @if (selectFinanceType === r3.value) {
+          <div>
+            <button mat-flat-button routerLink="own-host">设置我们的财务托管方</button>
+          </div>
+        }
+      </div>
+
+      <div class="flex flex-col justify-start">
+        <mat-radio-button #r4 value="findHost" class="cursor-pointer">支付给财务托管</mat-radio-button>
+        <p>加入现有的财务托管方，它将代表你持有资金，并负责会计、税收、用户、管理、支付和赔偿。大多数托管方会就此服务收取费用（你可以在选择托管方前审查细节）。</p>
+        @if (selectFinanceType === r4.value) {
+          <div>
+            <button mat-flat-button routerLink="host">选择一个财务主机作为财务托管</button>
+          </div>
+        }
+      </div>
+    </mat-radio-group>
+  }
+} @else {
+  <os-skeleton />
+}

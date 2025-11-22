@@ -16,6 +16,8 @@ import {PaymentService} from "@services/payment/payment.service";
 import {DialogService} from "@services/dialog/dialog.service";
 import {QrcodeComponent} from "@app/components/qrcode/qrcode.component";
 import {AuthService} from "@services/auth/auth.service";
+import {HttpStatusCode} from "@angular/common/http";
+import {SkeletonComponent} from "@app/components/skeleton/skeleton.component";
 
 @Component({
   standalone: true,
@@ -33,6 +35,7 @@ import {AuthService} from "@services/auth/auth.service";
     MatButton,
     MatExpansionModule,
     QrcodeComponent,
+    SkeletonComponent,
   ],
   styleUrl: './checkout.component.scss'
 })
@@ -78,7 +81,7 @@ export class CheckoutComponent implements AfterViewInit {
             this.organizationsService.organization.set(org);
 
             this.tierService.get(org.id, tier).subscribe(res => {
-              if (res.status === 200) {
+              if (res.status === HttpStatusCode.Ok) {
                 this.tier = res.body?.data;
                 this.tierService.tier.set(this.tier);
               }
@@ -128,7 +131,7 @@ export class CheckoutComponent implements AfterViewInit {
   // http://localhost:4200/payment/alipay-callback?charset=UTF-8&out_trade_no=2025629716550009329527039907489&method=alipay.trade.page.pay.return&total_amount=100.00&sign=Eyu7fPnH73klIngxXuineAPprhq5GEGrIzg9D41Ahjm%2B09QNvCJQn%2BlMA5TvSQpL%2FQ7EkPhY34VVD3YFaSWbO34ErZHhh0mnQqISbrolRj3jMtM5W4BNIunZrEVh%2FCLQwOGx6bYu19Q6xpWLKVCtFOye7bceRQPBnjtsSWWiirj%2BWW0nD9QLwxXPjCCM3%2BW%2Fft%2FKMNWoIGafwukORHLuJjSA196x%2B9q48a645z%2FUm6XdM6H1daHRPd5yK55yRb0BDxnpcJYOBB%2B1UpAsW4acft%2FT0V57v1fEHu3HvOuPKPoDJSV%2FwnO7UkC8n%2F%2BwW0JoYj9OniGUjkStd5TeWlTf2w%3D%3D&trade_no=2025060222001429231418105298&auth_app_id=2021004192686216&version=1.0&app_id=2021004192686216&sign_type=RSA2&seller_id=2088941653694599&timestamp=2025-06-02+12%3A09%3A10
   public useAlipay() {
     this.paymentService.getAlipayForm(this.tier!).subscribe(res => {
-      if(res.status === 200) {
+      if(res.status === HttpStatusCode.Ok) {
         const div = document.createElement('div')
         document.body.append(div);
         div.innerHTML = res.body?.data as string;

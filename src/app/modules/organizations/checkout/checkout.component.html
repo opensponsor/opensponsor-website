@@ -9,7 +9,7 @@
           <mat-card appearance="outlined">
             <mat-card-content>
               <div class="flex flex-col gap-2 py-4 text-xl">
-                <div>赞助金额：{{ tier.amount }}{{ enumTranslate[tier.currency.currencyAlphabeticCode] }}</div>
+                <div>赞助金额：{{ tier.amount }}{{ enumTranslate[tier.currency] }}</div>
                 <div>赞助周期：{{ enumTranslate[tier.interval] }}</div>
                 <mat-accordion class="[&_.mat-expansion-panel-body]:p-0">
                   <mat-expansion-panel class="!shadow-none !p-0" hideToggle #paymentPanel>
@@ -24,7 +24,7 @@
                       </mat-button-toggle-group>
                       <div class="hidden" [ngClass]="{'!flex': paymentMethod === 'Alipay'}">
                         <button type="button" mat-stroked-button class="w-full" (click)="useAlipay()">
-                          使用支付宝支付 {{ tier.amount }}{{ enumTranslate[tier.currency.currencyAlphabeticCode] }}
+                          使用支付宝支付 {{ tier.amount }}{{ enumTranslate[tier.currency] }}
                         </button>
                       </div>
                       <div class="hidden justify-center" [ngClass]="{'!flex': paymentMethod === 'WechatPay'}">
@@ -58,7 +58,7 @@
           </div>
         </div>
       } @else {
-        loading...
+        <os-skeleton />
       }
 
       <div class="flex justify-center">

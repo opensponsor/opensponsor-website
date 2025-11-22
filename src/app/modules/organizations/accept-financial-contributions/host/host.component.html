@@ -1,6 +1,45 @@
 <div class="flex justify-center my-10 text-2xl font-bold">接受财务捐助</div>
-<div class="grid grid-cols-1 gap-6 divide-x-2 divide-gray-100 min-h-100 items-center">
-  <div class="flex items-center justify-center">
-    选择一个财务主机
+
+<div class="grid grid-cols-1">
+  <form method="dialog" (submit)="search()">
+    <mat-form-field
+      class="rounded-full w-full"
+    >
+      <mat-label>查找财务方</mat-label>
+      <input type="text" matInput [formControl]="searchWorld" />
+      <button mat-icon-button matSuffix class="mr-2" type="submit">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+  <div class="flex justify-start">
+    <mat-chip-set>
+      <mat-chip (click)="searchWorld.setValue('动物保护')">动物保护</mat-chip>
+      <mat-chip (click)="searchWorld.setValue('环保')">环保</mat-chip>
+    </mat-chip-set>
+  </div>
+
+  <div class="grid grid-cols-1 gap-3">
+    <div class="grid grid-cols-3 gap-4 mt-10">
+      @for (org of httpResult?.records; track org) {
+        <div class="relative overflow-hidden rounded-md [&:hover>.apply]:bottom-0">
+          <os-org-card [org]="org" />
+          <div class="apply pb-2 absolute -bottom-36 w-full transition-all ease-in-out duration-300">
+            <button mat-flat-button class="w-full">
+              申请
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+    @if (loading) {
+      <os-skeleton />
+    } @else {
+      @if(httpResult && httpResult.records.length > 0) {
+        <os-paginator [result]="httpResult"></os-paginator>
+      } @else {
+        <os-empty-states />
+      }
+    }
   </div>
 </div>
