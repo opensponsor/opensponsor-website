@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpParams, HttpStatusCode} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
 import {throwError} from 'rxjs';
@@ -80,6 +80,7 @@ export abstract class HttpService {
       }
     } else if (res.status === 401) {
       this.snackBar.message({message: '请先登录'});
+      localStorage.removeItem("accessToken");
       return throwError(() => new Error('请先登录。'));
     } else {
       this.snackBar.message({message: res.message});
