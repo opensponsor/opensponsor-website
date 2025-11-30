@@ -31,17 +31,13 @@ export class ApplyForGithubComponent {
 
   constructor(
     private githubService: GithubService,
-    private platform: Platform,
     private router: Router
   ) {
     const token = this.githubService.getToken();
     if(token) {
-      fetch("http://localhost:4200/m.json").then(res => res.json()).then(data => {
-        this.repoGroupList = data.data as GithubRepoGroup[];
-      })
-      // this.githubService.listRepoGroup(token).subscribe(res => {
-      //   console.dir(res.body?.records);
-      // });
+      this.githubService.listRepoGroup(token).subscribe(res => {
+        console.dir(res.body?.records);
+      });
 
     }
   }
@@ -50,7 +46,7 @@ export class ApplyForGithubComponent {
     if(this.repoControl.value && this.repoControl.value.length > 0) {
       this.githubService.setCacheRepo(this.repoControl.value[0]);
       // next action
-      this.router.navigate(['/create/open-source-community/apply/form']).then();
+      this.router.navigate(['/create/opensource-community/apply/form']).then();
     }
   }
 }
