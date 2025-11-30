@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {MatAnchor} from "@angular/material/button";
+import {MatAnchor, MatButton} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
 import {MatCardModule} from "@angular/material/card";
 import {BlobDirective} from "@app/directive/blob/blob.directive";
@@ -12,7 +12,8 @@ import {BlobDirective} from "@app/directive/blob/blob.directive";
     MatAnchor,
     RouterLink,
     MatCardModule,
-    BlobDirective
+    BlobDirective,
+    MatButton
   ],
   styleUrl: './index.component.scss'
 })

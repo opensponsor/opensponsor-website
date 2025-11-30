@@ -16,7 +16,7 @@ export class GithubComponent {
   ) {
     const {code} = router.parseUrl(router.url).queryParams;
     this.githubService.getAccessToken(code).subscribe(() => {
-      this.router.navigate(['/create/open-source-community/apply/github']).then();
+      this.router.navigate(['/create/opensource-community/apply/github']).then();
     })
   }
 }

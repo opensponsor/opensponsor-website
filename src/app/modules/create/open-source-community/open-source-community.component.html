@@ -3,26 +3,28 @@
     <div
       class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6 flex gap-2 flex-col justify-center items-center">
       <dt class="">
-        logo
+        <img src="/assets/opensource-logos/github-mark.svg" class="w-40 h-40"  alt="github"/>
       </dt>
       <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">
         通过GitHub认证
       </dd>
-      <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">
-        <a mat-flat-button [href]="verifyForGithub">开始验证</a>
-        <!--/create/open-source-community/apply/github-->
+      <dd class="mt-1 text-3xl font-semibold tracking-tight flex gap-1">
+        <a matButton="filled" [href]="verifyForGithub">开始验证</a>
+        <!--/create/opensource-community/apply/github-->
+        <a matButton="text"> <mat-icon>emoji_people</mat-icon> 手动验证</a>
       </dd>
     </div>
     <div
       class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6 flex gap-2 flex-col justify-center items-center">
       <dt class="truncate text-sm font-medium text-gray-500">
-        logo
+        <img src="/assets/opensource-logos/logo_gitee_g_red.svg" class="w-40 h-40"  alt="gitee"/>
       </dt>
       <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">
         通过Gitee认证
       </dd>
-      <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">
+      <dd class="mt-1 text-3xl font-semibold tracking-tight flex gap-1">
         <button mat-flat-button>开始验证 (coming soon)</button>
+        <a matButton="text"> <mat-icon>emoji_people</mat-icon> 手动验证</a>
       </dd>
     </div>
   </dl>

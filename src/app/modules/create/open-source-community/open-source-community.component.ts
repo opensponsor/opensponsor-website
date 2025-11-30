@@ -2,13 +2,15 @@ import {Component} from '@angular/core';
 import {MatButtonModule} from "@angular/material/button";
 import {getWebFlowAuthorizationUrl} from "@octokit/oauth-methods";
 import {environment} from "@environments/environment";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   standalone: true,
   selector: 'os-open-source-community',
   templateUrl: './open-source-community.component.html',
   imports: [
-    MatButtonModule
+    MatButtonModule,
+    MatIcon
   ],
   styleUrl: './open-source-community.component.scss'
 })
