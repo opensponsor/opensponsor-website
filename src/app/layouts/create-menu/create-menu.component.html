@@ -1,5 +1,5 @@
 <div class="relative">
-  <button matButton="text" (mouseenter)="showCreateMenu = !showCreateMenu" type="button" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+  <button matButton="text" (mouseleave)="showCreateMenu = false" (mouseenter)="showCreateMenu = !showCreateMenu" type="button" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
     <span>创建社区</span>
     <mat-icon iconPositionEnd [class]="showCreateMenu ? 'rotate-180' : 'rotate-0'">keyboard_arrow_down</mat-icon>
   </button>
