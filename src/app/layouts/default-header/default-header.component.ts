@@ -1,4 +1,4 @@
-import {Component, computed, HostListener} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {AuthService} from "@services/auth/auth.service";
 import {Platform} from "@angular/cdk/platform";
 import {RouterLink} from "@angular/router";
@@ -8,6 +8,7 @@ import {User} from "@app/interfaces/ApiInterface";
 import {MatCardModule} from "@angular/material/card";
 import {CreateMenuComponent} from "@app/layouts/create-menu/create-menu.component";
 import {LogoComponent} from "@app/components/logo/logo.component";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   standalone: true,
@@ -20,6 +21,7 @@ import {LogoComponent} from "@app/components/logo/logo.component";
     MatButtonModule,
     CreateMenuComponent,
     LogoComponent,
+    MatIcon,
   ],
   templateUrl: './default-header.component.html',
   styleUrls: ['./default-header.component.scss']
