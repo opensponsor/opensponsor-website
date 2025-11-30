@@ -2,7 +2,7 @@ import {Component, HostListener} from '@angular/core';
 import {AuthService} from "@services/auth/auth.service";
 import {Platform} from "@angular/cdk/platform";
 import {RouterLink} from "@angular/router";
-import {NgClass, NgForOf} from "@angular/common";
+import {NgClass} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
 import {User} from "@app/interfaces/ApiInterface";
 import {MatCardModule} from "@angular/material/card";
@@ -15,7 +15,6 @@ import {MatIcon} from "@angular/material/icon";
   selector: 'os-default-header',
   imports: [
     RouterLink,
-    NgForOf,
     NgClass,
     MatCardModule,
     MatButtonModule,
