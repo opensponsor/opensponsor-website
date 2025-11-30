@@ -11,7 +11,7 @@ export class GithubService {
   private repoCache: GithubRepo | undefined = undefined;
 
   private Urls = {
-    repoGroup: "/github/repo-group",
+    repoGroup: "/github/list-repo-group",
     accessToken: "/github/access-token",
   }
 
