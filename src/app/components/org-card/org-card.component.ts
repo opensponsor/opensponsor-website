@@ -3,6 +3,9 @@ import {Organization} from "@app/interfaces/ApiInterface";
 import {RouterLink} from "@angular/router";
 import {MatCardModule} from "@angular/material/card";
 import {TranslatePipe} from "@app/pipes/translate/translate.pipe";
+import {BlobDirective} from "@app/directive/blob/blob.directive";
+import {MatButton} from "@angular/material/button";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   standalone: true,
@@ -11,6 +14,9 @@ import {TranslatePipe} from "@app/pipes/translate/translate.pipe";
     RouterLink,
     MatCardModule,
     TranslatePipe,
+    BlobDirective,
+    MatButton,
+    MatIcon,
   ],
   templateUrl: './org-card.component.html',
   styleUrl: './org-card.component.scss'

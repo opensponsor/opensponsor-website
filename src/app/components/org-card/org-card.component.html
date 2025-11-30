@@ -1,18 +1,25 @@
-<div class="border-b bg-white border-gray-200 rounded-md overflow-hidden relative">
-  <div class="px-4 py-5 sm:px-6 bg-blue-200 rounded-md">
-    <div class="h-10">name: {{ org.name }}</div>
-    <div>
-      <a target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-         [routerLink]="['/', org.slug]">{{ org.name }}</a>
+<mat-card appearance="outlined" class="overflow-hidden">
+  <mat-card-header class="bg-gray-100 !pb-10" blob="accent" [backgroundSize]="['200%', '200%']">
+    <mat-card-title>
+      <a [routerLink]="['/', org.slug]" target="_blank">
+        {{ org.name }}
+      </a>
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="py-3">
+      <div class="flex flex-row gap-4">
+        <div>类型： {{ org.type | translate }}</div>
+      </div>
+      <div>{{ org.tags }}</div>
+      <div>贡献者数量</div>
+      <div>累计筹集资金</div>
+      <div>介绍： {{ org.description }}</div>
     </div>
-  </div>
-  <div class="px-4 py-5 sm:px-6">
-    <div class="flex flex-row gap-4">
-      <div>类型： {{ org.type | translate }}</div>
-    </div>
-    <div>{{ org.tags }}</div>
-    <div>贡献者数量</div>
-    <div>累计筹集资金</div>
-    <div>介绍： {{ org.description }}</div>
-  </div>
-</div>
+  </mat-card-content>
+
+  <mat-card-actions class="flex justify-end">
+    <a matButton [routerLink]="['/', org.slug]" target="_blank">查看 <mat-icon iconPositionEnd>arrow_outward</mat-icon> </a>
+  </mat-card-actions>
+</mat-card>
