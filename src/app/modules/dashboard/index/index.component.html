@@ -4,10 +4,14 @@
   </div>
 
   @if (organization && organization.type !== E_ORGANIZATION_TYPE.USER) {
-    <os-finance-block [organization]="organization" />
+    <os-develop-status tag="develop">
+      <os-finance-block [organization]="organization" />
+    </os-develop-status>
   }
 
   @if (organization) {
-    <os-activity-block [organization]="organization" />
+    <os-develop-status tag="develop">
+      <os-activity-block [organization]="organization" />
+    </os-develop-status>
   }
 </div>

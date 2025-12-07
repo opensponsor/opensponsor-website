@@ -89,7 +89,7 @@ export const menus: Menu[] = [
       },
       {
         label: '社交账户',
-        link: 'social'
+        link: 'social',
       },
       {
         label: '规则',

@@ -1,10 +1,14 @@
 <os-dashboard-layout title="我的捐款">
   <div class="grid grid-cols-1 gap-4">
-    <os-date-filter />
+    <os-develop-status tag="develop">
+      <os-date-filter />
+    </os-develop-status>
     <section>
       <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
-          <div class="text-sm text-gray-700">累计捐赠：1000元，当前有4个 <a mat-button matTooltip="指周期性捐款" class="!text-sm">活跃 <sup>?</sup> </a> 的捐款</div>
+          <os-develop-status tag="develop">
+            <div class="text-sm text-gray-700">累计捐赠：1000元，当前有4个 <a mat-button matTooltip="指周期性捐款" class="!text-sm">活跃 <sup>?</sup> </a> 的捐款</div>
+          </os-develop-status>
         </div>
       </div>
       <div class="mt-8 flow-root">

@@ -1,9 +1,9 @@
 import {AfterViewInit, Component} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
 import {OrganizationsService} from "@services/organizations/organizations.service";
 import {E_ORGANIZATION_TYPE, Organization} from "@app/interfaces/ApiInterface";
 import {ActivityBlockComponent} from "../blocks/activity-block/activity-block.component";
 import {FinanceBlockComponent} from "../blocks/finance-block/finance-block.component";
+import {DevelopStatusComponent} from "@app/components/develop-status/develop-status.component";
 
 @Component({
   standalone: true,
@@ -11,7 +11,8 @@ import {FinanceBlockComponent} from "../blocks/finance-block/finance-block.compo
   templateUrl: './index.component.html',
   imports: [
     FinanceBlockComponent,
-    ActivityBlockComponent
+    ActivityBlockComponent,
+    DevelopStatusComponent
   ],
   styleUrl: './index.component.scss'
 })

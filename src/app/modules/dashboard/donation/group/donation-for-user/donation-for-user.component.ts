@@ -9,6 +9,7 @@ import {DashboardLayoutComponent} from "@modules/dashboard/components/dashboard-
 import {DatePipe} from "@angular/common";
 import {TranslatePipe} from "@app/pipes/translate/translate.pipe";
 import {RouterLink} from "@angular/router";
+import {DevelopStatusComponent} from "@app/components/develop-status/develop-status.component";
 
 interface PeriodicElement {
   name: string;
@@ -28,7 +29,8 @@ interface PeriodicElement {
     DashboardLayoutComponent,
     DatePipe,
     TranslatePipe,
-    RouterLink
+    RouterLink,
+    DevelopStatusComponent
   ],
   templateUrl: './donation-for-user.component.html',
   styleUrl: './donation-for-user.component.scss',

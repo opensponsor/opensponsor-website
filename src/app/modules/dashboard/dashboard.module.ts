@@ -78,7 +78,7 @@ const routes: Routes = [
     TierCardComponent,
     TranslatePipe,
     EnumeratedPipe,
-    OrganizationFormComponent,
+    OrganizationFormComponent
   ],
   providers: [provideNativeDateAdapter()],
 })
