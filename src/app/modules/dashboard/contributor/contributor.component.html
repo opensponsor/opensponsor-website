@@ -1,1 +1,19 @@
-<p>contributor works!</p>
+<os-dashboard-layout title="财务贡献者">
+  <div class="flex flex-col gap-8">
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      @for (item of Array.from({length: 20}); track item) {
+        <div class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow-sm">
+          <div class="flex flex-1 flex-col p-8">
+            <img src="https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=JD" alt="" class="mx-auto size-32 shrink-0 rounded-full bg-gray-300 outline -outline-offset-1 outline-black/5" />
+            <h3 class="mt-6 text-sm font-medium text-gray-900">{{"@Jane Cooper"}}</h3>
+            <dl class="mt-1 flex grow flex-col justify-between">
+              <dt class="sr-only">Title</dt>
+              <dd class="text-sm text-gray-500">Paradigm Representative</dd>
+              <dt class="sr-only">Role</dt>
+            </dl>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</os-dashboard-layout>

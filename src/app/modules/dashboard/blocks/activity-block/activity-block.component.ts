@@ -4,7 +4,8 @@ import {Organization} from "@app/interfaces/ApiInterface";
 @Component({
   standalone: true,
   selector: 'os-activity-block',
-  imports: [],
+  imports: [
+  ],
   templateUrl: './activity-block.component.html',
   styleUrl: './activity-block.component.scss'
 })
